@@ -1,0 +1,33 @@
+/* Work Sans 本地字体 - 请将下载的字体文件放入此目录 */
+
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("./WorkSans-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("./WorkSans-Medium.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("./WorkSans-SemiBold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Work Sans";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("./WorkSans-Bold.ttf") format("truetype");
+}
