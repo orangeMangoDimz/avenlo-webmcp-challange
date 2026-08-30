@@ -15,6 +15,7 @@ back-end/storage/tokens/
 back-end/storage/exports/*
 !back-end/storage/exports/.gitkeep
 back-end/storage/geoip/*.mmdb
+back-end/runtime/
 back-end/composer.phar
 back-end/database/backup*.sql
 back-end/database/all_crm*.sql
