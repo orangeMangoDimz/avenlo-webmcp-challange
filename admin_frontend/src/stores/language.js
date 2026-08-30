@@ -9,8 +9,6 @@ const ADMIN_LOCALES = [
   { languageCode: "zh", languageName: "简体中文", flagEmoji: "🇨🇳" },
 ];
 
-const publicAssetUrl = (filename) => import.meta.env.BASE_URL + filename;
-
 function packUrlForCode(code) {
   const c = code === "zh-CN" ? "zh" : code;
   const filename =
@@ -35,6 +33,35 @@ export function adminLocaleBcp47(code) {
 function syncDocumentHtmlLang(code) {
   if (typeof document === "undefined") return;
   document.documentElement.lang = adminLocaleBcp47(code);
+}
+
+export function normalizeTranslationPack(data = {}) {
+  const rawTranslations = data?.translations;
+  if (
+    !rawTranslations ||
+    typeof rawTranslations !== "object" ||
+    Array.isArray(rawTranslations)
+  ) {
+    return {};
+  }
+
+  const translations = { ...rawTranslations };
+  const legacyTranslations = translations._legacy_duplicate_translations;
+  delete translations._legacy_duplicate_translations;
+
+  if (
+    legacyTranslations &&
+    typeof legacyTranslations === "object" &&
+    !Array.isArray(legacyTranslations)
+  ) {
+    Object.entries(legacyTranslations).forEach(([key, value]) => {
+      if (!Object.prototype.hasOwnProperty.call(translations, key)) {
+        translations[key] = value;
+      }
+    });
+  }
+
+  return translations;
 }
 
 export const useLanguageStore = defineStore("adminLanguage", () => {
@@ -78,7 +105,7 @@ export const useLanguageStore = defineStore("adminLanguage", () => {
         return;
       }
       const data = await res.json();
-      translations.value = data.translations || {};
+      translations.value = normalizeTranslationPack(data);
     } catch (err) {
       console.error("Failed to load admin language pack:", err);
     } finally {

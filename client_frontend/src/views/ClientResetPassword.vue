@@ -15,9 +15,7 @@
         :aria-expanded="showLanguageDropdown"
         @click.stop="toggleLanguageDropdown"
       >
-        <span class="lang-icon">
-          <i class="fas fa-globe" aria-hidden="true"></i>
-        </span>
+        <ClientLangFlagIcon :language-code="languageStore.currentLanguage" />
         <span class="language-text">{{ currentLanguageName }}</span>
       </button>
       <div class="language-dropdown" :class="{ active: showLanguageDropdown }">
@@ -31,7 +29,8 @@
           }"
           @click="changeLanguage(lang.languageCode)"
         >
-          {{ lang.languageName }}
+          <ClientLangFlagIcon :language-code="lang.languageCode" />
+          <span>{{ lang.languageName }}</span>
         </button>
       </div>
     </header>
@@ -293,6 +292,7 @@ import { useClientAuthStore } from "@/stores/clientAuth";
 import { useLanguageStore } from "@/stores/language";
 import brandingApi from "@/services/brandingApi";
 import loginSettingsService from "@/services/loginSettingsService";
+import ClientLangFlagIcon from "@/components/layout/ClientLangFlagIcon.vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -591,7 +591,7 @@ onMounted(async () => {
   position: absolute;
   top: 68px;
   right: 132px;
-  background: #fff;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -605,7 +605,9 @@ onMounted(async () => {
 }
 
 .language-option {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 8px;
   width: 100%;
   border: 0;
   background: transparent;
@@ -802,12 +804,12 @@ onMounted(async () => {
   width: 100%;
   padding: 24px;
   box-sizing: border-box;
-  background: #fff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
 }
 
 .form-title {
-  color: #292929;
+  color: var(--color-ink);
   margin: 0 0 8px 0;
   line-height: 1.2;
   text-align: center;
@@ -850,7 +852,7 @@ onMounted(async () => {
   width: 40px;
   height: 40px;
   margin: 0 auto 16px;
-  border: 3px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-top-color: var(--color-brand);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
@@ -891,7 +893,7 @@ onMounted(async () => {
   display: block;
   font-size: 16px;
   font-weight: 500;
-  color: #656565;
+  color: var(--color-muted);
   margin-bottom: 8px;
 }
 
@@ -904,8 +906,8 @@ onMounted(async () => {
   border-radius: var(--radius-sm);
   font-size: 15px;
   font-weight: 500;
-  color: #292929;
-  background: #fff;
+  color: var(--color-ink);
+  background: var(--color-surface);
   box-sizing: border-box;
   transition:
     border-color 0.2s,
@@ -917,9 +919,8 @@ onMounted(async () => {
 }
 
 .form-group input:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 2px var(--color-focus-ring);
+  box-shadow: none;
 }
 
 .form-group.error input {
@@ -927,7 +928,7 @@ onMounted(async () => {
 }
 
 .form-group.error input:focus {
-  box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.15);
+  box-shadow: none;
 }
 
 .password-input-wrapper {
@@ -982,10 +983,10 @@ onMounted(async () => {
   height: 48px;
   background: linear-gradient(
     90deg,
-    var(--color-brand) 0%,
+    var(--color-brand-solid) 0%,
     var(--color-accent) 100%
   );
-  border: 1.5px solid var(--color-brand);
+  border: 1.1px solid var(--color-brand);
   border-radius: 32px;
   color: #fff;
   border: none;
@@ -999,10 +1000,10 @@ onMounted(async () => {
 .btn-primary:hover:not(:disabled) {
   background: linear-gradient(
     90deg,
-    var(--color-brand) 0%,
+    var(--color-brand-solid) 0%,
     var(--color-accent) 100%
   );
-  border: 1.5px solid var(--color-brand);
+  border: 1.1px solid var(--color-brand);
   border-radius: 32px;
 }
 
@@ -1199,7 +1200,7 @@ onMounted(async () => {
 .journey-title .line2 {
   margin-top: 8px;
   background: none;
-  color: #d8bc83;
+  color: var(--color-warning);
   -webkit-text-fill-color: currentColor;
 }
 
@@ -1233,7 +1234,7 @@ onMounted(async () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border: 1px solid var(--color-brand);
   border-radius: var(--radius-md);
   box-shadow: none;

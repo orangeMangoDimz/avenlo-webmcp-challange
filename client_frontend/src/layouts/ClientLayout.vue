@@ -1,21 +1,22 @@
 <template>
-  <div class="workspace-shell">
+  <div class="workspace-shell" :class="{ 'sidebar-pinned': sidebarPinned }">
     <a
       class="skip-link"
       href="#workspace-main"
-      :inert="navigationOpen ? '' : undefined"
-      :aria-hidden="navigationOpen ? 'true' : undefined"
+      :inert="navigationModalOpen ? '' : undefined"
+      :aria-hidden="navigationModalOpen ? 'true' : undefined"
       >{{ t("skipToContent", "Skip to content") }}</a
     >
     <ClientSidebar
       :mobile-open="navigationOpen"
+      :pinned="sidebarPinned"
       @close-mobile="closeNavigation"
     />
 
     <header
       class="workspace-topbar"
-      :inert="navigationOpen ? '' : undefined"
-      :aria-hidden="navigationOpen ? 'true' : undefined"
+      :inert="navigationModalOpen ? '' : undefined"
+      :aria-hidden="navigationModalOpen ? 'true' : undefined"
     >
       <div class="workspace-brand">
         <span class="workspace-brand-mark">A</span
@@ -25,7 +26,7 @@
         ref="navigationButton"
         type="button"
         class="workspace-navigate-button"
-        :aria-expanded="navigationOpen"
+        :aria-expanded="navigationOpen || sidebarPinned"
         aria-controls="clientSidebar"
         @click="openNavigation"
       >
@@ -44,8 +45,14 @@
             :aria-expanded="showLanguageDropdown"
             @click="showLanguageDropdown = !showLanguageDropdown"
           >
-            <i class="fas fa-globe" aria-hidden="true"></i
-            ><span>{{ languageStore.currentLanguageName }}</span>
+            <ClientLangFlagIcon
+              class="language-trigger-flag"
+              :language-code="languageStore.currentLanguage"
+            />
+            <span class="language-text">{{
+              languageStore.currentLanguageName
+            }}</span>
+            <span class="language-arrow" aria-hidden="true">▼</span>
           </button>
           <div v-if="showLanguageDropdown" class="language-dropdown">
             <button
@@ -58,7 +65,8 @@
               }"
               @click="changeLanguage(lang.languageCode)"
             >
-              {{ lang.languageName }}
+              <ClientLangFlagIcon :language-code="lang.languageCode" />
+              <span>{{ lang.languageName }}</span>
             </button>
           </div>
         </div>
@@ -71,8 +79,8 @@
     <div
       v-if="clientAuthStore.isPreviewMode"
       class="workspace-preview-banner"
-      :inert="navigationOpen ? '' : undefined"
-      :aria-hidden="navigationOpen ? 'true' : undefined"
+      :inert="navigationModalOpen ? '' : undefined"
+      :aria-hidden="navigationModalOpen ? 'true' : undefined"
     >
       <i class="fas fa-eye" aria-hidden="true"></i> Preview mode (read-only) —
       View as client
@@ -81,8 +89,8 @@
       id="workspace-main"
       class="workspace-main"
       tabindex="-1"
-      :inert="navigationOpen ? '' : undefined"
-      :aria-hidden="navigationOpen ? 'true' : undefined"
+      :inert="navigationModalOpen ? '' : undefined"
+      :aria-hidden="navigationModalOpen ? 'true' : undefined"
     >
       <div class="workspace-page-context">
         <i :class="pageIcon" aria-hidden="true"></i>
@@ -109,7 +117,12 @@ import { useClientAuthStore } from "@/stores/clientAuth";
 import ClientSidebar from "@/components/client/ClientSidebar.vue";
 import ClientNotification from "@/components/client/ClientNotification.vue";
 import ClientUserDropdown from "@/components/client/ClientUserDropdown.vue";
+import ClientLangFlagIcon from "@/components/layout/ClientLangFlagIcon.vue";
 import ThemeToggle from "@/components/layout/ThemeToggle.vue";
+import {
+  toggleSidebarFromMenu,
+  useSidebarPinned,
+} from "@/composables/useSidebarPinned";
 
 const route = useRoute();
 const languageStore = useLanguageStore();
@@ -117,6 +130,15 @@ const clientAuthStore = useClientAuthStore();
 const navigationOpen = ref(false);
 const navigationButton = ref(null);
 const showLanguageDropdown = ref(false);
+const {
+  pinned: sidebarPinnedPreference,
+  isDesktop,
+  effectivePinned: sidebarPinned,
+  setPinned,
+} = useSidebarPinned();
+const navigationModalOpen = computed(
+  () => navigationOpen.value && !sidebarPinned.value,
+);
 const t = (key, fallback = "") => languageStore.t(key, fallback);
 
 const normalizeTransactionResultType = (type) => {
@@ -225,7 +247,12 @@ const handleClickOutside = (event) => {
     showLanguageDropdown.value = false;
 };
 const openNavigation = () => {
-  navigationOpen.value = true;
+  navigationOpen.value = toggleSidebarFromMenu({
+    pinned: sidebarPinnedPreference.value,
+    open: navigationOpen.value,
+    isDesktop: isDesktop.value,
+    setPinned,
+  });
 };
 const closeNavigation = async () => {
   navigationOpen.value = false;

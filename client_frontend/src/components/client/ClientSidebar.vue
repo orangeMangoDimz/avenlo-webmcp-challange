@@ -9,11 +9,11 @@
   ></button>
 
   <aside
-    :class="['sidebar', { 'mobile-open': isMobileOpen }]"
-    :inert="!isMobileOpen ? '' : undefined"
-    :aria-hidden="!isMobileOpen ? 'true' : undefined"
-    role="dialog"
-    aria-modal="true"
+    :class="['sidebar', { 'mobile-open': isMobileOpen, 'is-pinned': pinned }]"
+    :inert="!isVisible ? '' : undefined"
+    :aria-hidden="!isVisible ? 'true' : undefined"
+    :role="isModal ? 'dialog' : undefined"
+    :aria-modal="isModal ? 'true' : undefined"
     aria-labelledby="clientSidebarTitle"
     id="clientSidebar"
     @keydown="handleKeydown"
@@ -23,6 +23,7 @@
         t("navigate", "Navigate")
       }}</span>
       <button
+        v-if="isMobileOpen"
         ref="closeButton"
         type="button"
         class="toggle-sidebar-btn"
@@ -33,50 +34,37 @@
       </button>
     </div>
 
-    <!-- Dashboard Section -->
-    <div class="menu-section" :class="{ expanded: expandedSections.dashboard }">
-      <button
-        type="button"
-        class="menu-section-header"
-        :data-title="t('navDashboard', 'Dashboard')"
-        :aria-expanded="expandedSections.dashboard"
-        @click="toggleSection('dashboard')"
+    <!-- Home -->
+    <div class="menu-section">
+      <router-link
+        to="/client/dashboard"
+        class="menu-section-header menu-section-link"
+        active-class="active"
+        :data-title="t('navHome', 'Home')"
       >
         <div class="menu-section-title">
           <span class="menu-icon"><i class="fas fa-home"></i></span>
-          <span class="menu-text">{{ t("navDashboard", "Dashboard") }}</span>
+          <span class="menu-text">{{ t("navHome", "Home") }}</span>
         </div>
-        <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
-      </button>
-      <div class="menu-items">
-        <router-link
-          to="/client/dashboard"
-          class="menu-item"
-          active-class="active"
-          >{{ t("navOverview", "Overview") }}</router-link
-        >
-        <!--        <router-link to="/client/account-summary" class="menu-item">Account Summary</router-link>-->
-      </div>
+      </router-link>
     </div>
 
-    <!-- Transactions Section -->
+    <!-- Funds Section -->
     <div
       v-if="isKycApproved"
       class="menu-section"
-      :class="{ expanded: expandedSections.transactions }"
+      :class="{ expanded: expandedSections.funds }"
     >
       <button
         type="button"
         class="menu-section-header"
-        :data-title="t('navTransactions', 'Transactions')"
-        :aria-expanded="expandedSections.transactions"
-        @click="toggleSection('transactions')"
+        :data-title="t('navFunds', 'Funds')"
+        :aria-expanded="expandedSections.funds"
+        @click="toggleSection('funds')"
       >
         <div class="menu-section-title">
           <span class="menu-icon"><i class="fas fa-exchange-alt"></i></span>
-          <span class="menu-text">{{
-            t("navTransactions", "Transactions")
-          }}</span>
+          <span class="menu-text">{{ t("navFunds", "Funds") }}</span>
         </div>
         <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
       </button>
@@ -116,12 +104,25 @@
         <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
       </button>
       <div class="menu-items">
-        <!-- <router-link to="/client/trading" class="menu-item">Trading Platform</router-link> -->
+        <router-link
+          to="/client/accounts"
+          class="menu-item"
+          active-class="active"
+          >{{ t("navMyTradingAccounts", "My trading accounts") }}</router-link
+        >
+        <router-link
+          v-if="canOpenNewAccount"
+          to="/client/account/new"
+          class="menu-item"
+          active-class="active"
+        >
+          {{ t("navOpenAccount", "Open account") }}
+        </router-link>
         <router-link
           to="/client/positions"
           class="menu-item"
           active-class="active"
-          >{{ t("navPositions", "Positions") }}</router-link
+          >{{ t("navOpenPositions", "Open positions") }}</router-link
         >
         <router-link
           to="/client/history"
@@ -132,63 +133,26 @@
       </div>
     </div>
 
-    <!-- Accounts Section -->
-    <div
-      v-if="isKycApproved"
-      class="menu-section"
-      :class="{ expanded: expandedSections.accounts }"
-    >
-      <button
-        type="button"
-        class="menu-section-header"
-        :data-title="t('navAccounts', 'Accounts')"
-        :aria-expanded="expandedSections.accounts"
-        @click="toggleSection('accounts')"
-      >
-        <div class="menu-section-title">
-          <span class="menu-icon"><i class="fas fa-wallet"></i></span>
-          <span class="menu-text">{{ t("navAccounts", "Accounts") }}</span>
-        </div>
-        <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
-      </button>
-      <div class="menu-items">
-        <router-link
-          to="/client/accounts"
-          class="menu-item"
-          active-class="active"
-          >{{ t("navMyAccounts", "My Accounts") }}</router-link
-        >
-        <router-link
-          v-if="canOpenNewAccount"
-          to="/client/account/new"
-          class="menu-item"
-          active-class="active"
-        >
-          {{ t("navOpenNewAccount", "Open New Account") }}
-        </router-link>
-      </div>
-    </div>
-
-    <!-- IB Program Section (显示条件：通过IB邀请但没有通过后台IB Applications审核通过的用户) -->
+    <!-- Partner program: invitation accepted, approval pending -->
     <div v-if="showIbProgram && !isIbApproved" class="menu-section">
       <router-link
         to="/client/ib-dashboard"
         class="menu-section-header menu-section-locked"
         :class="{ active: $route.name === 'client-ib-dashboard' }"
-        :data-title="t('navIbProgramLocked', 'IB Program (Locked)')"
+        :data-title="t('navPartnerProgramLocked', 'Partner program (locked)')"
         style="text-decoration: none; color: inherit"
       >
         <div class="menu-section-title">
           <span class="menu-icon"><i class="fas fa-handshake"></i></span>
           <span class="menu-text"
-            >{{ t("navIbProgram", "IB Program")
+            >{{ t("navPartnerProgram", "Partner program")
             }}<i class="fas fa-lock menu-lock-icon"></i
           ></span>
         </div>
       </router-link>
     </div>
 
-    <!-- IB Program Section (显示条件：用户已通过审批成为 IB 代理) -->
+    <!-- Partner program: approved partner -->
     <div
       v-if="showIbProgram && isIbApproved"
       class="menu-section"
@@ -197,13 +161,15 @@
       <button
         type="button"
         class="menu-section-header"
-        :data-title="t('navIbProgram', 'IB Program')"
+        :data-title="t('navPartnerProgram', 'Partner program')"
         :aria-expanded="expandedSections.ibProgram"
         @click="toggleSection('ibProgram')"
       >
         <div class="menu-section-title">
           <span class="menu-icon"><i class="fas fa-handshake"></i></span>
-          <span class="menu-text">{{ t("navIbProgram", "IB Program") }}</span>
+          <span class="menu-text">{{
+            t("navPartnerProgram", "Partner program")
+          }}</span>
         </div>
         <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
       </button>
@@ -212,7 +178,7 @@
           to="/client/ib-dashboard-active"
           class="menu-item"
           active-class="active"
-          >{{ t("navMyIbDashboard", "My IB Dashboard") }}</router-link
+          >{{ t("navMyPartnerDashboard", "My partner dashboard") }}</router-link
         >
         <router-link
           to="/client/commission-report"
@@ -225,49 +191,37 @@
           class="menu-item"
           active-class="active"
           >{{
-            t("navDepositWithdrawReport", "Deposit Withdraw Report")
+            t("navNetworkFundingReport", "Network funding report")
           }}</router-link
         >
         <router-link
           to="/client/ib-statement"
           class="menu-item"
           active-class="active"
-          >{{ t("navPnlReport", "P&L Report") }}</router-link
+          >{{ t("navNetworkPnlReport", "Network P&L report") }}</router-link
         >
         <router-link
           to="/client/ib-client-position"
           class="menu-item"
           active-class="active"
-          >{{ t("navClientPosition", "Client's Position") }}</router-link
+          >{{ t("navClientPositions", "Client positions") }}</router-link
         >
       </div>
     </div>
 
-    <!-- Documents Section -->
-    <div class="menu-section" :class="{ expanded: expandedSections.documents }">
-      <button
-        type="button"
-        class="menu-section-header"
+    <!-- Documents -->
+    <div class="menu-section">
+      <router-link
+        to="/client/documents"
+        class="menu-section-header menu-section-link"
+        active-class="active"
         :data-title="t('navDocuments', 'Documents')"
-        :aria-expanded="expandedSections.documents"
-        @click="toggleSection('documents')"
       >
         <div class="menu-section-title">
           <span class="menu-icon"><i class="fas fa-file-alt"></i></span>
           <span class="menu-text">{{ t("navDocuments", "Documents") }}</span>
         </div>
-        <span class="menu-arrow"><i class="fas fa-chevron-down"></i></span>
-      </button>
-      <div class="menu-items">
-        <router-link
-          to="/client/documents"
-          class="menu-item"
-          active-class="active"
-          >{{ t("navMyDocuments", "My Documents") }}</router-link
-        >
-        <!-- <router-link to="/client/statements" class="menu-item">Statements</router-link> -->
-        <!-- <router-link to="/client/reports" class="menu-item">Reports</router-link> -->
-      </div>
+      </router-link>
     </div>
   </aside>
 </template>
@@ -280,6 +234,10 @@ import { useLanguageStore } from "@/stores/language";
 
 const props = defineProps({
   mobileOpen: {
+    type: Boolean,
+    default: false,
+  },
+  pinned: {
     type: Boolean,
     default: false,
   },
@@ -297,14 +255,13 @@ const showIbProgram = computed(() => clientAuthStore.showIbProgram);
 const isIbApproved = computed(() => clientAuthStore.isIbApproved);
 
 const isMobileOpen = computed(() => props.mobileOpen);
+const isVisible = computed(() => props.pinned || isMobileOpen.value);
+const isModal = computed(() => isMobileOpen.value && !props.pinned);
 const closeButton = ref(null);
 
 const expandedSections = ref({
-  dashboard: true,
+  funds: false,
   trading: false,
-  accounts: false,
-  transactions: false,
-  documents: false,
   ibProgram: false,
 });
 
@@ -468,6 +425,11 @@ const handleKeydown = (event) => {
   border-color: rgba(255, 255, 255, 0.24);
 }
 
+.toggle-sidebar-btn:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
 .sidebar.collapsed .toggle-sidebar-btn {
   margin: 0 auto;
 }
@@ -499,6 +461,17 @@ const handleKeydown = (event) => {
   background: rgba(255, 255, 255, 0.07);
 }
 
+.menu-section-link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.menu-section-link.router-link-active,
+.menu-section-link.active {
+  background: rgba(255, 255, 255, 0.1);
+  box-shadow: inset 3px 0 0 var(--color-accent);
+}
+
 .menu-section-title {
   display: flex;
   align-items: center;
@@ -507,7 +480,7 @@ const handleKeydown = (event) => {
 }
 
 .menu-icon {
-  color: #d8bc83;
+  color: var(--color-warning);
   font-size: 16px;
   min-width: 24px;
   text-align: center;
@@ -685,21 +658,7 @@ const handleKeydown = (event) => {
   border: 0;
 }
 
-/* 桌面端：隐藏移动端专用按钮 */
-.mobile-only {
-  display: none !important;
-}
-
 @media (max-width: 1000px) {
-  /* 移动端：隐藏桌面折叠按钮，显示关闭按钮 */
-  .desktop-only {
-    display: none !important;
-  }
-
-  .mobile-only {
-    display: flex !important;
-  }
-
   .sidebar-overlay {
     display: block;
     position: fixed;
@@ -772,6 +731,14 @@ const handleKeydown = (event) => {
   .sidebar.mobile-open {
     transform: translateX(0);
     box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .sidebar.is-pinned {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.is-pinned.mobile-open {
+    transform: translateX(0);
   }
 
   .sidebar.collapsed.mobile-open {

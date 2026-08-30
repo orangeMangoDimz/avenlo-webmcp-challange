@@ -4,12 +4,12 @@
     id="sidebar"
     ref="sidebarRef"
     class="sidebar"
-    :class="{ 'is-open': open }"
+    :class="{ 'is-open': open, 'is-pinned': pinned }"
     tabindex="-1"
-    :inert="!open"
-    :aria-hidden="!open"
-    :aria-modal="open || undefined"
-    :role="open ? 'dialog' : undefined"
+    :inert="!isVisible"
+    :aria-hidden="!isVisible"
+    :aria-modal="isModal ? 'true' : undefined"
+    :role="isModal ? 'dialog' : undefined"
     aria-label="Primary navigation"
     @click="closeAfterNavigation"
     @keydown.tab.prevent="trapFocus"
@@ -23,6 +23,7 @@
         </span>
       </div>
       <button
+        v-if="open"
         type="button"
         class="toggle-sidebar-btn"
         aria-label="Close navigation"
@@ -622,12 +623,18 @@ const authStore = useAuthStore();
 
 const props = defineProps({
   open: Boolean,
+  pinned: {
+    type: Boolean,
+    default: false,
+  },
 });
 const emit = defineEmits(["close"]);
 
 const sidebarRef = ref(null);
 const expandedSections = ref([]);
 const showDeveloperSettings = ref(false);
+const isVisible = computed(() => props.open || props.pinned);
+const isModal = computed(() => props.open && !props.pinned);
 
 // 检查 Client 分组是否有任何页面权限
 const hasClientSectionPermission = computed(() => {
@@ -1188,6 +1195,10 @@ onMounted(async () => {
 
 <style scoped>
 .sidebar {
+  --sidebar-nav-ink: #e7edf6;
+  --sidebar-nav-muted: #aab8ca;
+  --sidebar-nav-subtle: #7f8fa5;
+  --sidebar-nav-border: #344860;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1246,7 +1257,7 @@ onMounted(async () => {
 }
 
 .sidebar-brand-copy small {
-  color: var(--color-muted);
+  color: var(--sidebar-nav-muted);
   font-size: 10px;
   font-weight: 650;
   letter-spacing: 0.08em;
@@ -1260,6 +1271,11 @@ onMounted(async () => {
   border-radius: 8px;
 }
 
+.toggle-sidebar-btn:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
 .sidebar-navigation {
   flex: 1;
   min-height: 0;
@@ -1270,7 +1286,7 @@ onMounted(async () => {
 
 .sidebar-navigation-label {
   margin: 0 8px 9px;
-  color: var(--color-faint);
+  color: var(--sidebar-nav-subtle);
   font-size: 10px;
   font-weight: 750;
   letter-spacing: 0.13em;
@@ -1318,7 +1334,7 @@ onMounted(async () => {
 }
 
 .menu-text {
-  color: var(--color-ink);
+  color: var(--sidebar-nav-ink);
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.005em;
@@ -1326,7 +1342,7 @@ onMounted(async () => {
 
 .menu-section-copy small {
   overflow: hidden;
-  color: var(--color-muted);
+  color: var(--sidebar-nav-muted);
   font-size: 10px;
   font-weight: 500;
   line-height: 1.2;
@@ -1340,13 +1356,13 @@ onMounted(async () => {
   height: 24px;
   flex: 0 0 24px;
   place-items: center;
-  color: var(--color-muted);
+  color: var(--sidebar-nav-muted);
   border-radius: 6px;
   font-size: 10px;
 }
 
 .menu-section-header:hover .menu-arrow {
-  color: var(--color-ink);
+  color: var(--sidebar-nav-ink);
   background: rgba(255, 255, 255, 0.06);
 }
 
@@ -1354,7 +1370,7 @@ onMounted(async () => {
   max-height: 0;
   margin: 0 0 8px 24px;
   padding-left: 17px;
-  border-left: 1px solid var(--color-border-strong);
+  border-left: 1px solid var(--sidebar-nav-border);
 }
 
 .menu-section.expanded .menu-items {
@@ -1366,7 +1382,7 @@ onMounted(async () => {
   min-height: 34px;
   margin: 2px 0;
   padding: 8px 10px;
-  color: var(--color-muted);
+  color: var(--sidebar-nav-muted);
   border: 1px solid transparent;
   border-radius: 6px;
   font-size: 12px;
@@ -1380,13 +1396,13 @@ onMounted(async () => {
   width: 5px;
   height: 5px;
   content: "";
-  background: var(--color-border-strong);
+  background: var(--sidebar-nav-border);
   border-radius: 999px;
   transform: translateY(-50%);
 }
 
 .menu-item:hover {
-  color: var(--color-ink);
+  color: var(--sidebar-nav-ink);
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.06);
 }
