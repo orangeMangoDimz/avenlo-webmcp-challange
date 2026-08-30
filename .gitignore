@@ -38,5 +38,6 @@ tmp/
 /AGENTS.md
 /CLAUDE.md
 .superpowers/
+docs/
 docs/superpowers/
 @wsl.localhost/
