@@ -185,6 +185,102 @@ class WebMcpClientController {
         ]);
     }
 
+    public static function normalizeTransactionSearchInput(array $input): array {
+        $filterKeys = [
+            'transactionId', 'clientEmail', 'clientId', 'type', 'status',
+            'dateFrom', 'dateTo', 'minAmount', 'maxAmount'
+        ];
+        if (!array_intersect($filterKeys, array_keys($input))) {
+            throw new InvalidArgumentException('At least one transaction filter is required.');
+        }
+
+        $normalized = [];
+        if (array_key_exists('transactionId', $input)) {
+            $normalized['transactionId'] = self::normalizeTransactionId($input['transactionId']);
+        }
+        if (array_key_exists('clientEmail', $input)) {
+            $normalized['clientEmail'] = self::normalizeLookupInput(['email' => $input['clientEmail']])['email'];
+        }
+        if (array_key_exists('clientId', $input)) {
+            $normalized['clientId'] = self::normalizeLookupInput(['id' => $input['clientId']])['id'];
+        }
+        if (array_key_exists('type', $input)) {
+            $normalized['type'] = self::normalizeTransactionTypeFilter($input['type']);
+        }
+        if (array_key_exists('status', $input)) {
+            $normalized['status'] = self::normalizeOptionalExportString($input['status'], 'status', 50);
+        }
+        foreach (['dateFrom', 'dateTo'] as $key) {
+            if (array_key_exists($key, $input)) {
+                $normalized[$key] = self::normalizeExportDate($input[$key], $key);
+            }
+        }
+        if (isset($normalized['dateFrom'], $normalized['dateTo']) && $normalized['dateFrom'] > $normalized['dateTo']) {
+            throw new InvalidArgumentException('dateFrom cannot be after dateTo.');
+        }
+        foreach (['minAmount', 'maxAmount'] as $key) {
+            if (array_key_exists($key, $input)) {
+                $normalized[$key] = self::normalizeTransactionAmount($input[$key], $key);
+            }
+        }
+        if (isset($normalized['minAmount'], $normalized['maxAmount']) && $normalized['minAmount'] > $normalized['maxAmount']) {
+            throw new InvalidArgumentException('minAmount cannot be greater than maxAmount.');
+        }
+        $normalized['page'] = self::normalizePositiveInteger($input['page'] ?? 1, 'page', 1000);
+        $normalized['limit'] = self::normalizePositiveInteger($input['limit'] ?? 25, 'limit', 50);
+        return $normalized;
+    }
+
+    public static function normalizeGetTransactionInput(array $input): array {
+        if (!array_key_exists('transactionId', $input)) {
+            throw new InvalidArgumentException('transactionId is required.');
+        }
+        $normalized = ['transactionId' => self::normalizeTransactionId($input['transactionId'])];
+        if (array_key_exists('type', $input)) {
+            $normalized['type'] = self::normalizeTransactionTypeFilter($input['type']);
+        }
+        return $normalized;
+    }
+
+    private static function normalizeTransactionTypeFilter($value): string {
+        $type = strtolower(trim((string)$value));
+        $aliases = [
+            'deposits' => 'deposit',
+            'withdrawals' => 'withdrawal',
+            'internal-transfer' => 'internal_transfer',
+            'internal-transfers' => 'internal_transfer',
+            'internaltransfer' => 'internal_transfer',
+            'internaltransfers' => 'internal_transfer'
+        ];
+        $type = $aliases[$type] ?? $type;
+        if (!in_array($type, ['deposit', 'withdrawal', 'internal_transfer', 'credit'], true)) {
+            throw new InvalidArgumentException('type must be one of: deposit, withdrawal, internal_transfer, credit.');
+        }
+        return $type;
+    }
+
+    private static function normalizeTransactionId($value): string {
+        if (!is_string($value)) {
+            throw new InvalidArgumentException('transactionId must be a string.');
+        }
+        $transactionId = trim($value);
+        if ($transactionId === '' || strlen($transactionId) > 128 || preg_match('/^[A-Za-z0-9._-]+$/', $transactionId) !== 1) {
+            throw new InvalidArgumentException('transactionId must be 1 to 128 letters, numbers, dots, underscores, or hyphens.');
+        }
+        return $transactionId;
+    }
+
+    private static function normalizeTransactionAmount($value, string $name): float {
+        if (!is_numeric($value)) {
+            throw new InvalidArgumentException("{$name} must be a number.");
+        }
+        $amount = (float)$value;
+        if (!is_finite($amount) || $amount < 0 || $amount > 1000000000000) {
+            throw new InvalidArgumentException("{$name} must be between 0 and 1000000000000.");
+        }
+        return $amount;
+    }
+
     /**
      * Normalize the selected-client export filters.
      *
@@ -896,6 +992,188 @@ class WebMcpClientController {
             'transactions' => $transactions,
             'pagination' => self::pagination($input['page'], $input['limit'], $total)
         ]);
+    }
+
+    /**
+     * GET /api/webmcp/admin/search-transactions
+     */
+    public function searchTransactions(): void {
+        $scope = $this->requireClientScope(['page_fundingreport_readonly']);
+        try {
+            $input = self::normalizeTransactionSearchInput($_GET);
+        } catch (InvalidArgumentException $exception) {
+            Response::error($exception->getMessage(), 422);
+        }
+
+        [$transactions, $pagination] = $this->findVisibleTransactions($input, $scope);
+        Response::success([
+            'transactions' => $transactions,
+            'pagination' => $pagination,
+        ]);
+    }
+
+    /**
+     * GET /api/webmcp/admin/get-transaction
+     */
+    public function getTransaction(): void {
+        $scope = $this->requireClientScope(['page_fundingreport_readonly']);
+        try {
+            $input = self::normalizeGetTransactionInput($_GET);
+        } catch (InvalidArgumentException $exception) {
+            Response::error($exception->getMessage(), 422);
+        }
+
+        [$transactions] = $this->findVisibleTransactions(array_merge($input, [
+            'page' => 1,
+            'limit' => 2,
+        ]), $scope);
+        if (!$transactions) {
+            Response::notFound('Transaction not found');
+        }
+        if (count($transactions) > 1) {
+            Response::error('Multiple transactions share this ID; provide type to disambiguate.', 409);
+        }
+        Response::success(['transaction' => $transactions[0]]);
+    }
+
+    private function findVisibleTransactions(array $input, array $scope): array {
+        $type = $input['type'] ?? 'all';
+        $queries = [];
+        if ($type === 'all' || $type === 'deposit') {
+            $queries[] = "SELECT
+                d.userId AS clientId,
+                CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
+                cu.email AS clientEmail,
+                d.id,
+                d.transactionId,
+                'deposit' AS transactionType,
+                d.status,
+                d.amount,
+                COALESCE(d.currencyCode, 'USD') AS currency,
+                d.requestedAt AS transactionDate
+             FROM deposits d
+             INNER JOIN clientUsers cu ON cu.id = d.userId";
+        }
+        if ($type === 'all' || $type === 'withdrawal') {
+            $queries[] = "SELECT
+                w.userId AS clientId,
+                CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
+                cu.email AS clientEmail,
+                w.id,
+                w.transactionId,
+                'withdrawal' AS transactionType,
+                w.status,
+                w.amount,
+                COALESCE(w.currencyCode, 'USD') AS currency,
+                w.requestedAt AS transactionDate
+             FROM withdrawals w
+             INNER JOIN clientUsers cu ON cu.id = w.userId";
+        }
+        if ($type === 'all' || $type === 'credit') {
+            $queries[] = "SELECT
+                ta_credit.userId AS clientId,
+                CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
+                cu.email AS clientEmail,
+                tcd.id,
+                CONCAT('CR-', tcd.id) AS transactionId,
+                'credit' AS transactionType,
+                'completed' AS status,
+                CASE WHEN tcd.direction = 2 THEN -tcd.amount ELSE tcd.amount END AS amount,
+                COALESCE(ta_credit.accountCurrency, 'USD') AS currency,
+                tcd.deal_time AS transactionDate
+             FROM trading_credit_deals tcd
+             INNER JOIN tradingAccounts ta_credit ON ta_credit.id = tcd.trading_account_id
+             INNER JOIN clientUsers cu ON cu.id = ta_credit.userId";
+        }
+        if ($type === 'all' || $type === 'internal_transfer') {
+            $queries[] = "SELECT
+                it.userId AS clientId,
+                CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
+                cu.email AS clientEmail,
+                it.id,
+                it.transactionId,
+                'internal_transfer' AS transactionType,
+                it.status,
+                it.amount,
+                'USD' AS currency,
+                it.requestedAt AS transactionDate
+             FROM internalTransfers it
+             INNER JOIN clientUsers cu ON cu.id = it.userId";
+        }
+
+        $conditions = ['1 = 1'];
+        $params = [];
+        if (($scope['scope'] ?? '') === 'own') {
+            $conditions[] = 'transactions.clientId IN (SELECT clientId FROM sales_bind WHERE salesId = :transaction_sales_id)';
+            $params['transaction_sales_id'] = (int)($scope['restrict_to_sales_id'] ?? 0);
+        }
+        if (isset($input['transactionId'])) {
+            $conditions[] = 'transactions.transactionId = :transaction_id';
+            $params['transaction_id'] = $input['transactionId'];
+        }
+        if (isset($input['clientEmail'])) {
+            $conditions[] = 'LOWER(transactions.clientEmail) = LOWER(:transaction_client_email)';
+            $params['transaction_client_email'] = $input['clientEmail'];
+        }
+        if (isset($input['clientId'])) {
+            $conditions[] = 'transactions.clientId = :transaction_client_id';
+            $params['transaction_client_id'] = (int)$input['clientId'];
+        }
+        if (isset($input['status'])) {
+            $conditions[] = 'transactions.status = :transaction_status';
+            $params['transaction_status'] = $input['status'];
+        }
+        if (isset($input['dateFrom'])) {
+            $conditions[] = 'transactions.transactionDate >= :transaction_date_from';
+            $params['transaction_date_from'] = $input['dateFrom'];
+        }
+        if (isset($input['dateTo'])) {
+            $conditions[] = 'transactions.transactionDate < DATE_ADD(:transaction_date_to, INTERVAL 1 DAY)';
+            $params['transaction_date_to'] = $input['dateTo'];
+        }
+        if (isset($input['minAmount'])) {
+            $conditions[] = 'transactions.amount >= :transaction_min_amount';
+            $params['transaction_min_amount'] = $input['minAmount'];
+        }
+        if (isset($input['maxAmount'])) {
+            $conditions[] = 'transactions.amount <= :transaction_max_amount';
+            $params['transaction_max_amount'] = $input['maxAmount'];
+        }
+
+        $unionSql = implode(' UNION ALL ', $queries);
+        $whereSql = implode(' AND ', $conditions);
+        $countRow = $this->clientModel->queryOne(
+            "SELECT COUNT(*) AS total FROM ({$unionSql}) transactions WHERE {$whereSql}",
+            $params
+        );
+        $total = (int)($countRow['total'] ?? 0);
+        $offset = ((int)$input['page'] - 1) * (int)$input['limit'];
+        $rows = $this->clientModel->query(
+            "SELECT * FROM ({$unionSql}) transactions
+             WHERE {$whereSql}
+             ORDER BY transactions.transactionDate DESC, transactions.id DESC
+             LIMIT " . (int)$input['limit'] . " OFFSET " . $offset,
+            $params
+        );
+        $transactions = array_map([self::class, 'projectTransaction'], $rows);
+        return [$transactions, self::pagination((int)$input['page'], (int)$input['limit'], $total)];
+    }
+
+    private static function projectTransaction(array $row): array {
+        return [
+            'id' => (int)($row['id'] ?? 0),
+            'transactionId' => $row['transactionId'] ?? null,
+            'type' => $row['transactionType'] ?? null,
+            'status' => $row['status'] ?? null,
+            'amount' => isset($row['amount']) ? (float)$row['amount'] : null,
+            'currency' => $row['currency'] ?? null,
+            'date' => $row['transactionDate'] ?? null,
+            'client' => [
+                'id' => (int)($row['clientId'] ?? 0),
+                'name' => $row['clientName'] ?? null,
+                'email' => $row['clientEmail'] ?? null,
+            ],
+        ];
     }
 
     /**

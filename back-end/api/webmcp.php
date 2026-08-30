@@ -18,6 +18,8 @@ try {
         'admin/get-client-documents' => ['handler' => 'getClientDocuments', 'method' => 'GET'],
         'admin/get-client-trading-accounts' => ['handler' => 'getClientTradingAccounts', 'method' => 'GET'],
         'admin/get-client-recent-transactions' => ['handler' => 'getClientRecentTransactions', 'method' => 'GET'],
+        'admin/search-transactions' => ['handler' => 'searchTransactions', 'method' => 'GET'],
+        'admin/get-transaction' => ['handler' => 'getTransaction', 'method' => 'GET'],
         'admin/export-clients' => ['handler' => 'exportClients', 'method' => 'POST'],
         'admin/export-client-transactions' => ['handler' => 'exportClientTransactions', 'method' => 'POST'],
         'admin/export-status' => ['handler' => 'exportStatus', 'method' => 'GET'],

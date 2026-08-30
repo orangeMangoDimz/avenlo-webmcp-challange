@@ -115,6 +115,69 @@ const recentTransactionsInputSchema = {
   additionalProperties: false,
 };
 
+const transactionSearchInputSchema = {
+  type: "object",
+  properties: {
+    transactionId: {
+      type: "string",
+      maxLength: 128,
+      description: "Exact transaction identifier, such as DEP-2026-0009.",
+    },
+    clientEmail: {
+      type: "string",
+      maxLength: 254,
+      description: "Exact client email address.",
+    },
+    clientId: {
+      type: "integer",
+      minimum: 1,
+      maximum: MAX_CLIENT_ID,
+      description: "Exact numeric client ID.",
+    },
+    type: {
+      type: "string",
+      enum: ["deposit", "withdrawal", "internal_transfer", "credit"],
+    },
+    status: { type: "string", maxLength: 50 },
+    dateFrom: {
+      type: "string",
+      pattern: "^\\d{4}-\\d{2}-\\d{2}$",
+      description: "Inclusive transaction date lower bound.",
+    },
+    dateTo: {
+      type: "string",
+      pattern: "^\\d{4}-\\d{2}-\\d{2}$",
+      description: "Inclusive transaction date upper bound.",
+    },
+    minAmount: { type: "number", minimum: 0 },
+    maxAmount: { type: "number", minimum: 0 },
+    page: { type: "integer", minimum: 1, maximum: 1000 },
+    limit: { type: "integer", minimum: 1, maximum: 50 },
+  },
+  anyOf: [
+    { required: ["transactionId"] },
+    { required: ["clientEmail"] },
+    { required: ["clientId"] },
+    { required: ["type"] },
+    { required: ["status"] },
+    { required: ["dateFrom"] },
+    { required: ["dateTo"] },
+    { required: ["minAmount"] },
+    { required: ["maxAmount"] },
+  ],
+  additionalProperties: false,
+};
+
+const getTransactionInputSchema = {
+  type: "object",
+  required: ["transactionId"],
+  properties: {
+    transactionId: transactionSearchInputSchema.properties.transactionId,
+    type: transactionSearchInputSchema.properties.type,
+  },
+  additionalProperties: false,
+};
+
 const exportClientInputSchema = {
   type: "object",
   required: ["clientIds"],
@@ -211,6 +274,7 @@ const SEARCH_CLIENTS_PERMISSIONS = ["page_clientslist_readonly"];
 const DOCUMENTS_PERMISSIONS = ["page_clientsdetail_document"];
 const TRADING_ACCOUNTS_PERMISSIONS = ["page_clientsdetail_trading"];
 const TRANSACTIONS_PERMISSIONS = ["page_clientsdetail_funding"];
+const TRANSACTION_SEARCH_PERMISSIONS = ["page_fundingreport_readonly"];
 const CLIENT_EXPORT_PERMISSIONS = ["page_clientslist_export"];
 const TRANSACTION_EXPORT_PERMISSIONS = ["page_fundingreport_export"];
 
@@ -474,6 +538,134 @@ export const normalizeTransactionInput = (input = {}) => {
     page: normalizeIntegerOption(input.page, "page", 1, 1000),
     limit: normalizeIntegerOption(input.limit, "limit", 10, 50),
   };
+};
+
+const normalizeTransactionTypeFilter = (value) => {
+  const aliases = {
+    deposits: "deposit",
+    withdrawals: "withdrawal",
+    "internal-transfer": "internal_transfer",
+    "internal-transfers": "internal_transfer",
+    internaltransfer: "internal_transfer",
+    internaltransfers: "internal_transfer",
+  };
+  const type =
+    aliases[String(value).trim().toLowerCase()] ||
+    String(value).trim().toLowerCase();
+  if (
+    !["deposit", "withdrawal", "internal_transfer", "credit"].includes(type)
+  ) {
+    throw new Error(
+      "type must be one of: deposit, withdrawal, internal_transfer, credit.",
+    );
+  }
+  return type;
+};
+
+const normalizeTransactionIdentifier = (value) => {
+  if (typeof value !== "string") {
+    throw new Error("transactionId must be a string.");
+  }
+  const transactionId = value.trim();
+  if (
+    !transactionId ||
+    transactionId.length > 128 ||
+    !/^[A-Za-z0-9._-]+$/.test(transactionId)
+  ) {
+    throw new Error(
+      "transactionId must be 1 to 128 letters, numbers, dots, underscores, or hyphens.",
+    );
+  }
+  return transactionId;
+};
+
+const normalizeAmountFilter = (value, name) => {
+  const amount = Number(value);
+  if (!Number.isFinite(amount) || amount < 0 || amount > 1000000000000) {
+    throw new Error(`${name} must be a number between 0 and 1000000000000.`);
+  }
+  return amount;
+};
+
+export const normalizeTransactionSearchInput = (input = {}) => {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new Error("Input must be an object.");
+  }
+
+  const filterKeys = [
+    "transactionId",
+    "clientEmail",
+    "clientId",
+    "type",
+    "status",
+    "dateFrom",
+    "dateTo",
+    "minAmount",
+    "maxAmount",
+  ];
+  if (
+    !filterKeys.some((key) => Object.prototype.hasOwnProperty.call(input, key))
+  ) {
+    throw new Error("At least one transaction filter is required.");
+  }
+
+  const normalized = {};
+  if (Object.prototype.hasOwnProperty.call(input, "transactionId")) {
+    normalized.transactionId = normalizeTransactionIdentifier(
+      input.transactionId,
+    );
+  }
+  if (Object.prototype.hasOwnProperty.call(input, "clientEmail")) {
+    normalized.clientEmail = normalizeLookupInput({
+      email: input.clientEmail,
+    }).email;
+  }
+  if (Object.prototype.hasOwnProperty.call(input, "clientId")) {
+    normalized.clientId = normalizeLookupInput({ id: input.clientId }).id;
+  }
+  if (Object.prototype.hasOwnProperty.call(input, "type")) {
+    normalized.type = normalizeTransactionTypeFilter(input.type);
+  }
+  if (Object.prototype.hasOwnProperty.call(input, "status")) {
+    normalized.status = normalizeStringFilter(input, "status", 50);
+  }
+  for (const key of ["dateFrom", "dateTo"]) {
+    if (Object.prototype.hasOwnProperty.call(input, key)) {
+      normalized[key] = normalizeExportDate(input, key);
+    }
+  }
+  normalizeExportDateRange(normalized, "dateFrom", "dateTo");
+  for (const key of ["minAmount", "maxAmount"]) {
+    if (Object.prototype.hasOwnProperty.call(input, key)) {
+      normalized[key] = normalizeAmountFilter(input[key], key);
+    }
+  }
+  if (
+    normalized.minAmount !== undefined &&
+    normalized.maxAmount !== undefined &&
+    normalized.minAmount > normalized.maxAmount
+  ) {
+    throw new Error("minAmount cannot be greater than maxAmount.");
+  }
+  normalized.page = normalizeIntegerOption(input.page, "page", 1, 1000);
+  normalized.limit = normalizeIntegerOption(input.limit, "limit", 25, 50);
+  return normalized;
+};
+
+export const normalizeGetTransactionInput = (input = {}) => {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new Error("Input must be an object.");
+  }
+  if (!Object.prototype.hasOwnProperty.call(input, "transactionId")) {
+    throw new Error("transactionId is required.");
+  }
+  const normalized = {
+    transactionId: normalizeTransactionIdentifier(input.transactionId),
+  };
+  if (Object.prototype.hasOwnProperty.call(input, "type")) {
+    normalized.type = normalizeTransactionTypeFilter(input.type);
+  }
+  return normalized;
 };
 
 export const normalizeLookupInput = (input = {}) => {
@@ -746,6 +938,58 @@ export const createGetClientRecentTransactionsTool = ({
   },
 });
 
+export const createSearchTransactionsTool = ({
+  authStore,
+  webMcpApi = adminWebMcpApi,
+}) => ({
+  name: "search_transactions",
+  title: "Search transactions",
+  description:
+    "Find funding transactions visible to the signed-in administrator by client, transaction ID, type, status, date range, or amount range.",
+  inputSchema: transactionSearchInputSchema,
+  annotations: {
+    readOnlyHint: true,
+    untrustedContentHint: true,
+  },
+  execute: async (input = {}) => {
+    const filters = normalizeTransactionSearchInput(input);
+    return requestClientData({
+      authStore,
+      permissionKeys: TRANSACTION_SEARCH_PERMISSIONS,
+      input: filters,
+      request: (requestInput) => webMcpApi.searchTransactions(requestInput),
+      notFoundMessage: "No transactions found.",
+      errorMessage: "Unable to search transactions.",
+    });
+  },
+});
+
+export const createGetTransactionTool = ({
+  authStore,
+  webMcpApi = adminWebMcpApi,
+}) => ({
+  name: "get_transaction",
+  title: "Get transaction",
+  description:
+    "Retrieve one funding transaction visible to the signed-in administrator by its exact transaction ID.",
+  inputSchema: getTransactionInputSchema,
+  annotations: {
+    readOnlyHint: true,
+    untrustedContentHint: true,
+  },
+  execute: async (input = {}) => {
+    const lookup = normalizeGetTransactionInput(input);
+    return requestClientData({
+      authStore,
+      permissionKeys: TRANSACTION_SEARCH_PERMISSIONS,
+      input: lookup,
+      request: (requestInput) => webMcpApi.getTransaction(requestInput),
+      notFoundMessage: "Transaction not found.",
+      errorMessage: "Unable to get transaction.",
+    });
+  },
+});
+
 const getExportProgressUrl = (router, jobId) => {
   const resolved = router?.resolve?.({
     name: "webmcp-export-progress",
@@ -905,6 +1149,14 @@ export const registerAdminClientWebMcpTools = ({
       catalog: WEBMCP_TOOL_CATALOG[7],
       create: () =>
         createExportClientTransactionsTool({ authStore, webMcpApi, router }),
+    },
+    {
+      catalog: WEBMCP_TOOL_CATALOG[8],
+      create: () => createSearchTransactionsTool({ authStore, webMcpApi }),
+    },
+    {
+      catalog: WEBMCP_TOOL_CATALOG[9],
+      create: () => createGetTransactionTool({ authStore, webMcpApi }),
     },
   ];
   const tools = toolDefinitions

@@ -79,6 +79,14 @@ export const adminWebMcpApi = {
     });
   },
 
+  async searchTransactions(input) {
+    return webMcpApi.get("/admin/search-transactions", { params: input });
+  },
+
+  async getTransaction(input) {
+    return webMcpApi.get("/admin/get-transaction", { params: input });
+  },
+
   async exportClients(input) {
     return webMcpApi.post("/admin/export-clients", input);
   },

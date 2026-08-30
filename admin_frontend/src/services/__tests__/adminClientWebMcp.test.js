@@ -10,6 +10,8 @@ import {
   createExportClientTransactionsTool,
   createNavigateToClientTool,
   createSearchClientsTool,
+  createSearchTransactionsTool,
+  createGetTransactionTool,
   registerAdminClientWebMcpTools,
 } from "../adminClientWebMcp";
 import {
@@ -45,6 +47,13 @@ const webMcpApi = {
   getClientRecentTransactions: vi.fn(async () => ({
     clientId: 42,
     transactions: [{ id: 9, type: "deposit", amount: 100 }],
+  })),
+  searchTransactions: vi.fn(async () => ({
+    transactions: [{ transactionId: "DEP-2026-0009", type: "deposit" }],
+    pagination: { page: 1, perPage: 25, total: 1 },
+  })),
+  getTransaction: vi.fn(async () => ({
+    transaction: { transactionId: "DEP-2026-0009", type: "deposit" },
   })),
   exportClients: vi.fn(async () => ({
     jobId: "wmcp_client_42",
@@ -85,6 +94,13 @@ describe("admin client WebMCP tools", () => {
       clientId: 42,
       transactions: [{ id: 9, type: "deposit", amount: 100 }],
     });
+    webMcpApi.searchTransactions.mockResolvedValue({
+      transactions: [{ transactionId: "DEP-2026-0009", type: "deposit" }],
+      pagination: { page: 1, perPage: 25, total: 1 },
+    });
+    webMcpApi.getTransaction.mockResolvedValue({
+      transaction: { transactionId: "DEP-2026-0009", type: "deposit" },
+    });
     webMcpApi.exportClients.mockResolvedValue({
       jobId: "wmcp_client_42",
       queued: true,
@@ -112,6 +128,8 @@ describe("admin client WebMCP tools", () => {
       "get_client_recent_transactions",
       "export_clients",
       "export_client_transactions",
+      "search_transactions",
+      "get_transaction",
     ]);
     expect(WEBMCP_TOOL_CATALOG.every(({ description }) => description)).toBe(
       true,
@@ -147,16 +165,30 @@ describe("admin client WebMCP tools", () => {
   });
 
   it("groups catalog tools into the Client section", () => {
-    expect(WEBMCP_TOOL_SECTIONS.map(({ key }) => key)).toEqual(["client"]);
-    expect(groupWebMcpTools(WEBMCP_TOOL_CATALOG)).toEqual([
-      expect.objectContaining({
-        key: "client",
-        tools: expect.arrayContaining([
-          expect.objectContaining({ name: "get_client" }),
-          expect.objectContaining({ name: "get_client_recent_transactions" }),
-        ]),
-      }),
+    expect(WEBMCP_TOOL_SECTIONS.map(({ key }) => key)).toEqual([
+      "client",
+      "transactions",
     ]);
+    expect(groupWebMcpTools(WEBMCP_TOOL_CATALOG)).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          key: "client",
+          tools: expect.arrayContaining([
+            expect.objectContaining({ name: "get_client" }),
+            expect.objectContaining({
+              name: "get_client_recent_transactions",
+            }),
+          ]),
+        }),
+        expect.objectContaining({
+          key: "transactions",
+          tools: expect.arrayContaining([
+            expect.objectContaining({ name: "search_transactions" }),
+            expect.objectContaining({ name: "get_transaction" }),
+          ]),
+        }),
+      ]),
+    );
   });
 
   afterEach(() => {
@@ -273,6 +305,38 @@ describe("admin client WebMCP tools", () => {
       clientId: 42,
       transactions: [{ id: 9, type: "deposit", amount: 100 }],
     });
+  });
+
+  it("searches funding transactions with type, amount, and date filters", async () => {
+    const tool = createSearchTransactionsTool({ authStore, webMcpApi });
+    const result = await tool.execute({
+      type: "withdrawals",
+      status: "pending_review",
+      minAmount: "10000",
+      dateFrom: "2026-08-24",
+      page: 1,
+      limit: 25,
+    });
+
+    expect(webMcpApi.searchTransactions).toHaveBeenLastCalledWith({
+      type: "withdrawal",
+      status: "pending_review",
+      minAmount: 10000,
+      dateFrom: "2026-08-24",
+      page: 1,
+      limit: 25,
+    });
+    expect(result.transactions).toHaveLength(1);
+  });
+
+  it("gets one transaction by exact transaction ID", async () => {
+    const tool = createGetTransactionTool({ authStore, webMcpApi });
+    const result = await tool.execute({ transactionId: " DEP-2026-0009 " });
+
+    expect(webMcpApi.getTransaction).toHaveBeenLastCalledWith({
+      transactionId: "DEP-2026-0009",
+    });
+    expect(result.transaction.transactionId).toBe("DEP-2026-0009");
   });
 
   it("exports selected clients and triggers a browser download", async () => {
@@ -447,7 +511,7 @@ describe("admin client WebMCP tools", () => {
     });
     await Promise.resolve();
 
-    expect(registerTool).toHaveBeenCalledTimes(8);
+    expect(registerTool).toHaveBeenCalledTimes(10);
     expect(registerTool.mock.calls.map(([tool]) => tool.name)).toEqual([
       "get_client",
       "navigate_to_client",
@@ -457,6 +521,8 @@ describe("admin client WebMCP tools", () => {
       "get_client_recent_transactions",
       "export_clients",
       "export_client_transactions",
+      "search_transactions",
+      "get_transaction",
     ]);
 
     const signal = registerTool.mock.calls[0][1].signal;

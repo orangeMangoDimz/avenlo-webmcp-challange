@@ -5,6 +5,12 @@ export const WEBMCP_TOOL_SECTIONS = [
     description: "Look up and navigate through client information.",
     icon: "fa-user-group",
   },
+  {
+    key: "transactions",
+    title: "Transactions",
+    description: "Inspect funding activity across visible clients.",
+    icon: "fa-arrow-right-arrow-left",
+  },
 ];
 
 const CLIENT_LOOKUP_FIELDS = [
@@ -124,6 +130,69 @@ const PAGINATION_RESPONSE = {
   total: 1,
   totalPages: 1,
   hasMore: false,
+};
+
+const TRANSACTION_SEARCH_FIELDS = [
+  {
+    name: "transactionId",
+    type: "string",
+    requirement: "At least one",
+    description: "Exact transaction identifier.",
+  },
+  {
+    name: "clientEmail",
+    type: "string",
+    requirement: "At least one",
+    description: "Exact client email address.",
+  },
+  {
+    name: "clientId",
+    type: "integer",
+    requirement: "At least one",
+    description: "Exact client ID.",
+  },
+  {
+    name: "type",
+    type: "enum",
+    requirement: "At least one",
+    description: "deposit, withdrawal, internal_transfer, or credit.",
+  },
+  {
+    name: "status",
+    type: "string",
+    requirement: "At least one",
+    description: "Exact transaction status.",
+  },
+  {
+    name: "dateFrom / dateTo",
+    type: "YYYY-MM-DD",
+    requirement: "At least one",
+    description: "Inclusive transaction date range.",
+  },
+  {
+    name: "minAmount / maxAmount",
+    type: "number",
+    requirement: "At least one",
+    description: "Inclusive amount range.",
+  },
+  {
+    name: "page / limit",
+    type: "integer",
+    requirement: "Optional",
+    description:
+      "Page defaults to 1; limit defaults to 25 and is capped at 50.",
+  },
+];
+
+const TRANSACTION_RESPONSE = {
+  id: 9,
+  transactionId: "DEP-2026-0009",
+  type: "deposit",
+  status: "pending",
+  amount: 100,
+  currency: "USD",
+  date: "2026-08-30T07:45:00Z",
+  client: { id: 42, name: "Jane Smith", email: "jane@example.com" },
 };
 
 export const WEBMCP_TOOL_CATALOG = [
@@ -429,6 +498,63 @@ export const WEBMCP_TOOL_CATALOG = [
       opened: true,
       queued: true,
     },
+    accessMode: "read",
+  },
+  {
+    name: "search_transactions",
+    title: "Search transactions",
+    description:
+      "Find funding transactions visible to the signed-in administrator by client, transaction ID, type, status, date range, or amount range.",
+    icon: "fa-magnifying-glass-dollar",
+    permissionKeys: ["page_fundingreport_readonly"],
+    sectionKey: "transactions",
+    inputSummary:
+      "Provide at least one transaction filter; pagination is optional.",
+    inputFields: TRANSACTION_SEARCH_FIELDS,
+    inputExample: {
+      type: "withdrawal",
+      status: "pending_review",
+      minAmount: 10000,
+      dateFrom: "2026-08-24",
+      page: 1,
+      limit: 25,
+    },
+    outputSummary:
+      "Returns safe transaction summaries and pagination metadata.",
+    outputExample: {
+      transactions: [TRANSACTION_RESPONSE],
+      pagination: PAGINATION_RESPONSE,
+    },
+    accessMode: "read",
+  },
+  {
+    name: "get_transaction",
+    title: "Get transaction",
+    description:
+      "Retrieve one funding transaction visible to the signed-in administrator by its exact transaction ID.",
+    icon: "fa-receipt",
+    permissionKeys: ["page_fundingreport_readonly"],
+    sectionKey: "transactions",
+    inputSummary:
+      "Provide an exact transaction ID; type is optional for disambiguation.",
+    inputFields: [
+      {
+        name: "transactionId",
+        type: "string",
+        requirement: "Required",
+        description: "Exact transaction identifier, such as DEP-2026-0009.",
+      },
+      {
+        name: "type",
+        type: "enum",
+        requirement: "Optional",
+        description: "deposit, withdrawal, internal_transfer, or credit.",
+      },
+    ],
+    inputExample: { transactionId: "DEP-2026-0009" },
+    outputSummary:
+      "Returns one safe transaction summary with its visible client.",
+    outputExample: { transaction: TRANSACTION_RESPONSE },
     accessMode: "read",
   },
 ];
