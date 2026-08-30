@@ -58,6 +58,45 @@ export const adminWebMcpApi = {
   async getClient(input) {
     return webMcpApi.get("/admin/get-client", { params: input });
   },
+
+  async searchClients(input) {
+    return webMcpApi.get("/admin/search-clients", { params: input });
+  },
+
+  async getClientDocuments(input) {
+    return webMcpApi.get("/admin/get-client-documents", { params: input });
+  },
+
+  async getClientTradingAccounts(input) {
+    return webMcpApi.get("/admin/get-client-trading-accounts", {
+      params: input,
+    });
+  },
+
+  async getClientRecentTransactions(input) {
+    return webMcpApi.get("/admin/get-client-recent-transactions", {
+      params: input,
+    });
+  },
+
+  async exportClients(input) {
+    return webMcpApi.post("/admin/export-clients", input);
+  },
+
+  async exportClientTransactions(input) {
+    return webMcpApi.post("/admin/export-client-transactions", input);
+  },
+
+  async getExportStatus(jobId) {
+    return webMcpApi.get("/admin/export-status", { params: { jobId } });
+  },
+
+  async downloadExport(jobId) {
+    return webMcpApi.get("/admin/export-download", {
+      params: { jobId },
+      responseType: "blob",
+    });
+  },
 };
 
 export { getWebMcpApiBaseURL };

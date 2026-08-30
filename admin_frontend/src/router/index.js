@@ -384,6 +384,38 @@ const router = createRouter({
             requiresAuth: true,
           },
         },
+        {
+          path: "webmcp",
+          name: "webmcp",
+          redirect: "/webmcp/overview",
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          path: "webmcp/overview",
+          name: "webmcp-overview",
+          component: () => import("@/views/WebMcpOverview.vue"),
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          path: "webmcp/tools",
+          name: "webmcp-tools",
+          component: () => import("@/views/WebMcpTools.vue"),
+          meta: {
+            requiresAuth: true,
+          },
+        },
+        {
+          path: "webmcp/export-progress",
+          name: "webmcp-export-progress",
+          component: () => import("@/views/WebMcpExportProgress.vue"),
+          meta: {
+            requiresAuth: true,
+          },
+        },
       ],
     },
     {

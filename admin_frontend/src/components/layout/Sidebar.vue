@@ -569,6 +569,37 @@
           >
             {{ t("nav_feature_controls", "Feature controls") }}
           </router-link>
+          <router-link
+            to="/webmcp/overview"
+            class="menu-item webmcp-parent-item"
+            :class="{ active: isWebMcpRoute }"
+            active-class="active"
+          >
+            <span class="webmcp-parent-copy">
+              <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
+              <span>{{ t("nav_webmcp", "WebMCP") }}</span>
+            </span>
+            <i
+              class="fas fa-chevron-right webmcp-parent-arrow"
+              aria-hidden="true"
+            ></i>
+          </router-link>
+          <div class="menu-sub-items" aria-label="WebMCP pages">
+            <router-link
+              to="/webmcp/overview"
+              class="menu-sub-item"
+              active-class="active"
+            >
+              {{ t("nav_webmcp_overview", "Overview") }}
+            </router-link>
+            <router-link
+              to="/webmcp/tools"
+              class="menu-sub-item"
+              active-class="active"
+            >
+              {{ t("nav_webmcp_tools", "Tool catalog") }}
+            </router-link>
+          </div>
         </div>
       </div>
     </nav>
@@ -680,6 +711,10 @@ const isCustomReportRoute = computed(() =>
   String(route.path || "").startsWith("/custom-report"),
 );
 
+const isWebMcpRoute = computed(() =>
+  String(route.path || "").startsWith("/webmcp"),
+);
+
 // 检查 System Setting 分组是否有任何页面权限
 const hasSystemSettingSectionPermission = computed(() => {
   return (
@@ -775,7 +810,7 @@ const expandDeveloperSectionIfNeeded = () => {
         "/log-settings",
       ],
     ],
-    ["developer", ["/developer-settings"]],
+    ["developer", ["/developer-settings", "/webmcp"]],
   ];
   const activeSection = sectionByPath.find(([, paths]) =>
     paths.some((prefix) => path.startsWith(prefix)),
@@ -1052,6 +1087,61 @@ onMounted(async () => {
   font-weight: 600;
 }
 
+.webmcp-parent-item {
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.webmcp-parent-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.webmcp-parent-copy i {
+  width: 14px;
+  color: #d8bc83;
+  font-size: 12px;
+  text-align: center;
+}
+
+.webmcp-parent-arrow {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 10px;
+}
+
+.menu-sub-items {
+  margin: 0 8px 4px 25px;
+  padding: 2px 0 2px 13px;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.menu-sub-item {
+  display: block;
+  margin: 2px 0;
+  padding: 7px 10px;
+  color: rgba(255, 255, 255, 0.58);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  text-decoration: none;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.menu-sub-item:hover,
+.menu-sub-item.active,
+.menu-sub-item.router-link-active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.menu-sub-item.active,
+.menu-sub-item.router-link-active {
+  box-shadow: inset 2px 0 0 var(--color-accent);
+  font-weight: 600;
+}
+
 .sidebar.collapsed .menu-items {
   display: none;
 }
@@ -1087,6 +1177,10 @@ onMounted(async () => {
   }
 
   .sidebar.collapsed .menu-items {
+    display: block;
+  }
+
+  .sidebar.collapsed .menu-sub-items {
     display: block;
   }
 }

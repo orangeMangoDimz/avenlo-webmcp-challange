@@ -1281,6 +1281,42 @@ class Server
                     'message' => $e->getMessage(),
                 ]);
             }
+        } else if (isset($data['type']) && $data['type'] == 'export_webmcp_client') {
+            require_once __DIR__ . '/../services/WebMcpClientExportService.php';
+            $exportService = new \WebMcpClientExportService();
+            try {
+                $exportService->run($data);
+                $this->finalizeExportBackgroundJob(
+                    $jobService,
+                    $jobId,
+                    \WebMcpClientExportService::readProgress($jobId)
+                );
+            } catch (\Throwable $e) {
+                $adminUserId = isset($data['adminUserId']) ? (int)$data['adminUserId'] : 0;
+                if ($jobId !== '') {
+                    \WebMcpClientExportService::writeProgress($jobId, [
+                        'adminUserId' => $adminUserId,
+                        'exportType' => (string)($data['exportType'] ?? ''),
+                        'status' => 'error',
+                        'percent' => 0,
+                        'processed' => 0,
+                        'total' => 0,
+                        'message' => 'Export failed',
+                        'downloadReady' => false,
+                        'file' => null,
+                        'fileName' => (string)($data['fileName'] ?? ''),
+                    ]);
+                    $jobService->markFailed($jobId, $e->getMessage());
+                }
+                if ($adminUserId > 0) {
+                    \WebMcpClientExportService::clearActive($adminUserId);
+                }
+                echo json_encode([
+                    'success' => false,
+                    'type' => 'export_webmcp_client',
+                    'message' => $e->getMessage(),
+                ]);
+            }
         } else if (isset($data['type']) && $data['type'] == 'export_admin_operation_log_report') {
             require_once __DIR__ . '/../services/OperationLogReportExportService.php';
             $exportService = new \OperationLogReportExportService();

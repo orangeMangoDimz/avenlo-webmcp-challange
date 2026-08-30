@@ -97,7 +97,7 @@ repos:
       - id: semgrep
         args:
           - --disable-version-check
-          - --quiet
+          - --jobs=1
           - --skip-unknown-extensions
           - --error
           - --severity=ERROR

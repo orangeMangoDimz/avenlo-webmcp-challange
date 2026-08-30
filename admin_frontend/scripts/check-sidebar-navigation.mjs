@@ -7,19 +7,19 @@ const sidebarSource = fs.readFileSync(path.join(appRoot, 'src', 'components', 'l
 const layoutSource = fs.readFileSync(path.join(appRoot, 'src', 'layouts', 'MainLayout.vue'), 'utf8')
 
 const requiredSidebarContracts = [
-  'sidebar-brand-mark',
-  "nav_section_clients', 'Client operations'",
-  "nav_section_compliance', 'Identity & compliance'",
-  "nav_section_money', 'Money movement'",
-  "nav_section_partners', 'Partner network'",
-  "nav_section_sales', 'Sales operations'",
-  "nav_section_analytics', 'Analytics'",
-  "nav_section_administration', 'Administration'",
-  "nav_clients', 'Clients'",
-  "nav_withdrawals', 'Withdrawals'",
-  "nav_partner_network', 'Partner network'",
-  "nav_sales_team', 'Sales team'",
-  "nav_user_accounts', 'User accounts'"
+  ['sidebar-brand-mark', /sidebar-brand-mark/],
+  ['Client operations', /nav_section_clients["']\s*,\s*["']Client operations["']/],
+  ['Identity & compliance', /nav_section_compliance["']\s*,\s*["']Identity & compliance["']/],
+  ['Money movement', /nav_section_money["']\s*,\s*["']Money movement["']/],
+  ['Partner network', /nav_section_partners["']\s*,\s*["']Partner network["']/],
+  ['Sales operations', /nav_section_sales["']\s*,\s*["']Sales operations["']/],
+  ['Analytics', /nav_section_analytics["']\s*,\s*["']Analytics["']/],
+  ['Administration', /nav_section_administration["']\s*,\s*["']Administration["']/],
+  ['Clients', /nav_clients["']\s*,\s*["']Clients["']/],
+  ['Withdrawals', /nav_withdrawals["']\s*,\s*["']Withdrawals["']/],
+  ['Partner network link', /nav_partner_network["']\s*,\s*["']Partner network["']/],
+  ['Sales team', /nav_sales_team["']\s*,\s*["']Sales team["']/],
+  ['User accounts', /nav_user_accounts["']\s*,\s*["']User accounts["']/]
 ]
 
 const requiredLayoutContracts = [
@@ -31,8 +31,8 @@ const requiredLayoutContracts = [
 
 const missing = [
   ...requiredSidebarContracts
-    .filter((contract) => !sidebarSource.includes(contract))
-    .map((contract) => `Sidebar contract missing: ${contract}`),
+    .filter(([, contract]) => !contract.test(sidebarSource))
+    .map(([name]) => `Sidebar contract missing: ${name}`),
   ...requiredLayoutContracts
     .filter((contract) => !layoutSource.includes(contract))
     .map((contract) => `Topbar brand contract missing: ${contract}`)
