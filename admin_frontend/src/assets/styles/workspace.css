@@ -1,0 +1,1329 @@
+/* Admin precision workspace: intentionally global so legacy route styles share one shell. */
+#app .workspace-shell {
+  --workspace-ink: var(--color-sidebar);
+  --workspace-cobalt: var(--color-brand);
+  --workspace-gold: var(--color-accent);
+  min-height: 100vh;
+  color: var(--color-ink);
+  background: var(--color-canvas);
+}
+
+#app .workspace-shell .workspace-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  gap: 16px;
+  padding: 0 clamp(16px, 2.5vw, 40px);
+  color: #fff;
+  background: var(--workspace-ink);
+  border-bottom: 1px solid var(--color-border);
+}
+
+#app .workspace-brand {
+  display: flex;
+  min-width: max-content;
+  align-items: center;
+  gap: 10px;
+}
+
+#app .workspace-brand-monogram {
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  color: #fff;
+  background: linear-gradient(
+    145deg,
+    var(--color-brand),
+    var(--color-brand-strong)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9px 3px 9px 3px;
+  box-shadow: 0 7px 16px rgba(4, 10, 22, 0.24);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: -0.08em;
+}
+#app .workspace-brand-copy {
+  display: grid;
+  gap: 2px;
+  line-height: 1;
+}
+#app .workspace-brand-copy strong {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 750;
+  letter-spacing: 0.01em;
+}
+#app .workspace-brand-copy small {
+  color: var(--color-muted);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+#app .workspace-navigate-button,
+#app .workspace-shell .sidebar .toggle-sidebar-btn {
+  display: inline-flex;
+  min-height: 34px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
+  color: #fff;
+  background: transparent;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+#app .workspace-navigate-button:hover,
+#app .workspace-shell .sidebar .toggle-sidebar-btn:hover {
+  border-color: var(--workspace-gold);
+  color: #fff;
+}
+#app .workspace-header-actions {
+  margin-left: auto;
+}
+#app .workspace-header-actions :is(button, a) {
+  color: #fff;
+}
+#app
+  .workspace-header-actions
+  :is(.theme-toggle, .user-guide-btn, .notification-btn) {
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+#app
+  .workspace-header-actions
+  :is(.theme-toggle, .user-guide-btn, .notification-btn):hover {
+  color: var(--color-brand);
+  background: var(--color-brand-soft);
+  border-color: var(--color-brand);
+}
+#app
+  .workspace-header-actions
+  :is(.theme-toggle, .user-guide-btn, .notification-btn):focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 2px;
+}
+
+#app .workspace-nav-backdrop {
+  position: fixed;
+  inset: 64px 0 0;
+  z-index: 320;
+  display: none;
+  width: 100%;
+  border: 0;
+  background: rgba(16, 24, 40, 0.42);
+}
+#app .workspace-nav-backdrop.is-visible {
+  display: block;
+}
+
+/* The drawer never participates in page layout. */
+#app .workspace-shell > .sidebar {
+  position: fixed;
+  top: 64px;
+  bottom: 0;
+  left: 0;
+  z-index: 330;
+  width: min(360px, 92vw);
+  height: auto;
+  margin: 0;
+  color: #fff;
+  background: var(--workspace-ink);
+  border: 0;
+  border-right: 1px solid var(--color-border);
+  box-shadow: 18px 0 42px rgba(16, 24, 40, 0.18);
+  transform: translateX(-101%);
+  transition: transform 150ms ease;
+}
+#app .workspace-shell > .sidebar.is-open {
+  transform: translateX(0);
+}
+#app .workspace-shell > .sidebar .sidebar-header {
+  min-height: 82px;
+  padding: 16px 18px;
+  background: linear-gradient(
+    135deg,
+    var(--color-sidebar-raised),
+    var(--color-sidebar)
+  );
+  border-bottom-color: var(--color-border);
+}
+#app .workspace-shell > .sidebar .menu-section {
+  margin: 0 0 6px;
+}
+#app .workspace-shell > .sidebar .menu-section-header {
+  border-radius: 8px;
+}
+#app .workspace-shell > .sidebar .menu-items {
+  border-left-color: var(--color-border-strong);
+}
+#app .workspace-shell > .sidebar .menu-item {
+  border-radius: 6px;
+}
+#app .workspace-shell > .sidebar .menu-item.active,
+#app .workspace-shell > .sidebar .menu-item.router-link-active {
+  color: #fff;
+  background: var(--color-brand-solid);
+  box-shadow: none;
+}
+
+#app .workspace-shell > .workspace-main {
+  width: 100%;
+  min-height: calc(100vh - 64px);
+  padding: clamp(18px, 2.5vw, 36px);
+  overflow-x: clip;
+  background: var(--color-canvas);
+}
+
+/* Shared route anatomy. These selectors deliberately win over per-view scoped CSS. */
+#app
+  .workspace-main
+  :is(
+    .ui-page,
+    .container,
+    .clients-list-page,
+    .deposit-management-page,
+    .withdrawal-management-page,
+    .internal-transfer-management-page,
+    .client-detail-page,
+    .kyc-list-page,
+    .transaction-settings-page,
+    .custom-report-page,
+    .ir-list-container
+  ) {
+  width: min(100%, 1720px);
+  margin: 0 auto;
+  padding: 0;
+  color: var(--color-ink);
+}
+
+#app .workspace-main :is(.page-header, .ir-list-page-header) {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 68px;
+  margin: 0 0 18px;
+  padding: 0 0 15px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+#app
+  .workspace-main
+  :is(.page-title h1, .page-header h1, .ir-list-page-title__heading) {
+  color: var(--color-ink);
+  font-size: clamp(22px, 2vw, 30px);
+  font-weight: 700;
+  letter-spacing: -0.035em;
+}
+#app
+  .workspace-main
+  :is(.page-title p, .page-header p, .ir-list-page-title__desc) {
+  margin-top: 4px;
+  color: var(--color-muted);
+  font-size: 13px;
+}
+#app .workspace-main :is(.page-actions, .ir-list-page-actions) {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#app .workspace-main :is(.stats-header, .summary-header) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 14px;
+  padding: 14px 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--workspace-cobalt);
+  border-radius: 0;
+  box-shadow: none;
+}
+#app .workspace-main .page-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+}
+#app .workspace-main .stat-badge {
+  min-height: 38px;
+  padding: 8px 12px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 0;
+  border-left: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: none;
+  font-size: 12px;
+  font-weight: 650;
+}
+#app .workspace-main .stat-badge:first-child {
+  border-left: 0;
+}
+#app .workspace-main .stat-badge i {
+  color: var(--workspace-cobalt);
+}
+#app .workspace-main .stat-badge.active {
+  color: var(--workspace-cobalt);
+  background: var(--color-brand-soft);
+}
+
+#app
+  .workspace-main
+  :is(.search-filter-section, .filter-section, .filters-section, .filter-bar) {
+  margin: 0 0 14px;
+  padding: 12px 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+#app .workspace-main :is(.search-filter-container, .filter-row, .filters-row) {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+#app .workspace-main :is(.search-input-wrapper, .search-box) {
+  min-height: 38px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 2px;
+  box-shadow: none;
+}
+#app .workspace-main :is(.search-input-wrapper input, .search-box input) {
+  min-height: 36px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+#app
+  .workspace-main
+  :is(
+    .clients-table-container,
+    .leads-table-container,
+    .deposit-table-container,
+    .withdrawal-table-container,
+    .internal-transfer-table-container,
+    .table-container,
+    .transaction-table-container,
+    .kyc-table-container,
+    .ir-list-table-container
+  ) {
+  overflow: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+#app
+  .workspace-main
+  :is(.table-header, .table-toolbar, .section-toolbar, .widget-type-bar) {
+  min-height: 52px;
+  padding: 9px 14px;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+}
+#app .workspace-main table {
+  min-width: max-content;
+  background: var(--color-surface);
+}
+#app .workspace-main table th {
+  position: sticky;
+  top: 64px;
+  z-index: 2;
+  height: 40px;
+  padding: 8px 12px;
+  color: var(--color-text);
+  background: var(--color-surface-soft);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+}
+#app
+  .workspace-main
+  :is(
+    .clients-table-container,
+    .leads-table-container,
+    .deposit-table-container,
+    .withdrawal-table-container,
+    .internal-transfer-table-container,
+    .table-container,
+    .transaction-table-container,
+    .kyc-table-container,
+    .ir-list-table-container,
+    .table-scroll
+  )
+  table
+  th {
+  top: 0;
+}
+#app .workspace-main table td {
+  padding: 10px 12px;
+  color: var(--color-text);
+  border-bottom-color: var(--color-surface-muted);
+}
+#app .workspace-main table tbody tr:hover td {
+  background: var(--color-surface-soft);
+}
+
+/* IB Report owns two independent scroll regions: the summary table and its wide nested breakdown. */
+#app .workspace-main .ib-report-page .ib-table-scroll > .ib-table {
+  width: 100%;
+  min-width: 940px;
+  table-layout: fixed;
+  font-family: var(--font-ui);
+}
+#app
+  .workspace-main
+  .ib-report-page
+  .detail-table-scroll--wide
+  > .detail-table--wide {
+  width: max-content;
+  min-width: 1800px;
+  table-layout: auto;
+  font-family: var(--font-ui);
+}
+#app .workspace-main .ib-report-page .ib-table > thead > tr > th,
+#app .workspace-main .ib-report-page .detail-table > thead > tr > th {
+  top: 0;
+  font-family: var(--font-ui);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: 0.04em;
+}
+#app .workspace-main .ib-report-page .ib-table > tbody > tr > td {
+  font-family: var(--font-ui);
+  font-size: 14px;
+  line-height: 1.4;
+}
+#app .workspace-main .ib-report-page .detail-table > tbody > tr > td {
+  font-family: var(--font-ui);
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Forms and settings are dense, flat working panels instead of decorative cards. */
+#app
+  .workspace-main
+  :is(
+    .settings-card,
+    .content-card,
+    .form-container,
+    .configuration-card,
+    .gateway-card,
+    .card
+  ) {
+  margin-bottom: 14px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0;
+  box-shadow: none;
+}
+#app
+  .workspace-main
+  :is(.card-header, .settings-card > .card-header, .section-header) {
+  min-height: 52px;
+  padding: 12px 16px;
+  background: var(--color-surface-soft);
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+}
+#app
+  .workspace-main
+  :is(
+    .card-body,
+    .settings-card > .card-body,
+    .form-body,
+    .configuration-body
+  ) {
+  padding: 16px;
+}
+#app .workspace-main .form-group {
+  margin-bottom: 16px;
+}
+#app .workspace-main .form-group > label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--color-text);
+  font-size: 12px;
+  font-weight: 700;
+}
+#app
+  .workspace-main
+  :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  min-height: 38px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 2px;
+  box-shadow: none;
+}
+#app .workspace-main textarea {
+  min-height: 96px;
+}
+#app .workspace-main :is(input, select, textarea):focus {
+  border-color: var(--workspace-cobalt);
+  box-shadow: 0 0 0 2px rgba(var(--color-brand-rgb), 0.15);
+}
+#app
+  .workspace-main
+  :is(
+    .btn,
+    .button,
+    .btn-primary,
+    .btn-secondary,
+    .btn-small,
+    .btn-bulk,
+    .filter-trigger,
+    .gateway-action-btn
+  ) {
+  min-height: 34px;
+  border-radius: 2px;
+  box-shadow: none;
+  font-size: 12px;
+  font-weight: 650;
+}
+#app .workspace-main :is(.btn-primary, .primary-button, .btn-bulk-approve) {
+  background: var(--workspace-cobalt);
+  border-color: var(--workspace-cobalt);
+}
+
+/* Existing dialogs and detail panes become right-side work surfaces when they use overlays. */
+#app :is(.modal-overlay, .export-modal-overlay) {
+  background: rgba(16, 24, 40, 0.42);
+}
+#app :is(.modal-content, .modal-card, .export-modal) {
+  border: 1px solid var(--color-border-strong);
+  border-radius: 0;
+  box-shadow: -18px 0 42px rgba(16, 24, 40, 0.16);
+}
+#app
+  .workspace-main
+  :is(.detail-panel, .detail-drawer, .gateway-detail-content) {
+  background: var(--color-surface-soft);
+  border-left: 3px solid var(--workspace-gold);
+  border-radius: 0;
+}
+
+/* Access routes are deliberately compact and have no marketing split panel. */
+#app :is(.login-page, .reset-password-page) {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  color: var(--color-ink);
+  background: var(--color-canvas);
+}
+#app .login-page::before,
+#app .login-page::after {
+  content: none !important;
+  display: none !important;
+}
+#app .login-page {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr);
+  justify-content: normal !important;
+  justify-items: center !important;
+  align-items: center !important;
+  padding: 24px !important;
+  overflow: visible !important;
+  background: var(--color-canvas) !important;
+}
+#app :is(.login-page, .reset-password-page) .login-visual {
+  display: none;
+}
+#app :is(.admin-login-container, .admin-reset-container) {
+  width: min(100%, 430px);
+  margin: 0;
+  padding: 28px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-top: 3px solid var(--workspace-cobalt);
+  border-radius: 0;
+  box-shadow: 0 12px 32px rgba(16, 24, 40, 0.08);
+}
+#app .login-page .admin-login-container {
+  justify-self: center !important;
+  align-self: center !important;
+  margin-inline: auto !important;
+}
+#app :is(.admin-login-lang, .admin-reset-lang) {
+  position: fixed;
+  top: 16px;
+  right: 20px;
+}
+#app :is(.admin-login-container, .admin-reset-container) .admin-header {
+  padding: 0 0 18px;
+  text-align: left;
+  border-bottom: 1px solid var(--color-border);
+}
+#app :is(.admin-login-container, .admin-reset-container) .admin-logo-text {
+  color: var(--color-ink);
+  font-size: 24px;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+#app :is(.admin-login-container, .admin-reset-container) .login-button {
+  min-height: 42px;
+  border-radius: 2px;
+}
+#app .login-page .captcha-row {
+  display: flex;
+  align-items: stretch;
+  gap: 8px;
+}
+#app .login-page .captcha-input-wrapper {
+  min-width: 0;
+  flex: 1;
+}
+#app .login-page .captcha-input-wrapper input {
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+#app .login-page .captcha-canvas-wrap {
+  display: grid;
+  width: 120px;
+  min-height: 38px;
+  padding: 0;
+  place-items: stretch;
+  overflow: hidden;
+  cursor: pointer;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border-strong);
+  border-radius: 2px;
+}
+#app .login-page .captcha-canvas-wrap:hover {
+  border-color: var(--workspace-cobalt);
+}
+#app .login-page .captcha-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#app .login-page .captcha-error {
+  margin: 6px 0 0;
+  color: var(--color-danger);
+  font-size: 12px;
+}
+
+/* The access form is a two-part workflow, not the former stacked login card. */
+#app .login-page .admin-login-container {
+  width: min(100%, 860px);
+  max-width: 860px;
+  padding: 0;
+  border: 1px solid var(--color-border);
+  border-top: 4px solid var(--workspace-cobalt);
+}
+#app .login-page .admin-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0;
+  padding: 28px 32px 22px;
+  border-bottom: 1px solid var(--color-border);
+}
+#app .login-page .admin-header p {
+  max-width: 32ch;
+  margin: 0;
+  color: var(--color-muted);
+  font-size: 13px;
+  text-align: right;
+}
+#app .login-page .access-form-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.82fr);
+  gap: 16px;
+  padding: 24px 32px;
+}
+#app .login-page .access-block {
+  min-width: 0;
+  padding: 18px;
+  background: var(--color-surface-soft);
+  border: 1px solid var(--color-border);
+  border-radius: 2px;
+}
+#app .login-page .access-block-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d9e1ec;
+}
+#app .login-page .access-step {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 auto;
+  place-items: center;
+  color: #fff;
+  background: var(--workspace-cobalt);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+#app .login-page .access-block-heading h2 {
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 13px;
+  font-weight: 750;
+  letter-spacing: 0.01em;
+  line-height: 1.35;
+}
+#app .login-page .access-block-heading p {
+  margin: 2px 0 0;
+  color: var(--color-muted);
+  font-size: 11px;
+}
+#app .login-page .access-fields {
+  display: grid;
+  gap: 14px;
+}
+#app .login-page .access-block .form-group {
+  margin: 0;
+}
+#app .login-page .access-block .form-group > label {
+  margin-bottom: 6px;
+}
+#app .login-page .form-options {
+  margin: 18px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
+#app .login-page .access-submit-rail {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: stretch;
+  gap: 16px;
+  padding: 16px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--workspace-gold);
+}
+#app .login-page .access-submit-rail .security-notice {
+  margin: 0;
+  padding: 0;
+  color: var(--color-text);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  font-size: 12px;
+}
+#app .login-page .access-submit-rail .security-notice strong {
+  margin-bottom: 4px;
+}
+#app .login-page .access-submit-rail .login-button {
+  min-width: 220px;
+  min-height: 48px;
+  align-self: center;
+  margin: 0;
+  padding-inline: 20px;
+}
+
+/* Theme overrides keep legacy route panels on the same dark workspace palette. */
+:root[data-theme="dark"] #app .workspace-shell,
+:root[data-theme="dark"] #app .workspace-shell > .workspace-main,
+:root[data-theme="dark"] #app :is(.login-page, .reset-password-page) {
+  color: var(--color-text);
+  background: var(--color-canvas);
+}
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(.stats-header, .summary-header),
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(.search-filter-section, .filter-section, .filters-section, .filter-bar),
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(
+    .clients-table-container,
+    .leads-table-container,
+    .deposit-table-container,
+    .withdrawal-table-container,
+    .internal-transfer-table-container,
+    .table-container,
+    .transaction-table-container,
+    .kyc-table-container,
+    .ir-list-table-container
+  ),
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(
+    .settings-card,
+    .content-card,
+    .form-container,
+    .configuration-card,
+    .gateway-card,
+    .card
+  ),
+:root[data-theme="dark"]
+  #app
+  :is(.admin-login-container, .admin-reset-container),
+:root[data-theme="dark"] #app .login-page .access-submit-rail {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(.card-header, .settings-card > .card-header, .section-header),
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(.table-header, .table-toolbar, .section-toolbar, .widget-type-bar),
+:root[data-theme="dark"] #app .workspace-main table th,
+:root[data-theme="dark"] #app .login-page .access-block {
+  color: var(--color-text);
+  background: var(--color-surface-soft);
+  border-color: var(--color-border);
+}
+:root[data-theme="dark"] #app .workspace-main table td,
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(.page-title h1, .page-header h1, .ir-list-page-title__heading),
+:root[data-theme="dark"]
+  #app
+  .workspace-main
+  :is(.card-header, .settings-card > .card-header, .section-header) {
+  color: var(--color-ink);
+  border-color: var(--color-border);
+}
+:root[data-theme="dark"] #app .workspace-main table tbody tr:hover td {
+  background: var(--color-surface-soft);
+}
+:root[data-theme="dark"] #app .workspace-main .stat-badge {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+#app .login-page .divider {
+  margin: 0 32px;
+}
+#app .login-page .support-link {
+  margin: 18px 32px 0;
+}
+#app .login-page .footer {
+  margin: 18px 32px 24px;
+}
+
+@media (max-width: 767px) {
+  #app .workspace-shell .workspace-topbar {
+    gap: 10px;
+    padding: 0 14px;
+  }
+  #app .workspace-brand span,
+  #app .workspace-navigate-button span {
+    display: none;
+  }
+  #app .workspace-navigate-button {
+    min-width: 36px;
+    justify-content: center;
+    padding: 0;
+  }
+  #app
+    .workspace-main
+    :is(.page-header, .ir-list-page-header, .stats-header, .summary-header) {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  #app .workspace-main .page-stats {
+    width: 100%;
+  }
+  #app .workspace-main .stat-badge {
+    flex: 1 1 130px;
+  }
+  #app .login-page .admin-login-container {
+    width: min(100%, 460px);
+    max-width: 460px;
+  }
+  #app .login-page .admin-header {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 24px 24px 18px;
+  }
+  #app .login-page .admin-header p {
+    max-width: none;
+    text-align: left;
+  }
+  #app .login-page .access-form-grid {
+    grid-template-columns: 1fr;
+    padding: 16px 24px;
+  }
+  #app .login-page .access-submit-rail {
+    grid-template-columns: 1fr;
+  }
+  #app .login-page .access-submit-rail .login-button {
+    width: 100%;
+    min-width: 0;
+  }
+  #app .login-page .divider {
+    margin-inline: 24px;
+  }
+  #app .login-page .support-link,
+  #app .login-page .footer {
+    margin-inline: 24px;
+  }
+}
+
+/* Final access composition: one branded panel and one conventional form. */
+#app .login-page .admin-login-container {
+  display: grid;
+  grid-template-columns: 310px minmax(0, 1fr);
+  width: min(100%, 920px);
+  max-width: 920px;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 22px 56px rgba(16, 24, 40, 0.14);
+}
+#app .login-page .admin-access-brand {
+  display: flex;
+  min-height: 620px;
+  flex-direction: column;
+  justify-content: center;
+  padding: 42px 34px;
+  color: #fff;
+  background: #101828;
+}
+#app .login-page .admin-access-kicker {
+  margin-bottom: 18px;
+  color: #e0a458;
+  font-size: 11px;
+  font-weight: 750;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+#app .login-page .admin-access-brand h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 42px;
+  font-weight: 720;
+  letter-spacing: -0.05em;
+}
+#app .login-page .admin-access-brand > p {
+  margin: 12px 0 0;
+  color: #cbd5e1;
+  font-size: 15px;
+  line-height: 1.6;
+}
+#app .login-page .admin-access-brand-note {
+  display: flex;
+  gap: 10px;
+  margin-top: 40px;
+  padding-top: 22px;
+  color: #98a2b3;
+  border-top: 1px solid #344054;
+  font-size: 12px;
+  line-height: 1.6;
+}
+#app .login-page .admin-access-brand-note i {
+  padding-top: 3px;
+  color: #e0a458;
+}
+#app .login-page .admin-access-form-panel {
+  min-width: 0;
+  padding: 36px 42px 28px;
+}
+#app .login-page .admin-access-form-panel .admin-header {
+  display: block;
+  margin: 0 0 26px;
+  padding: 0 0 18px;
+}
+#app .login-page .admin-access-form-panel .admin-header p {
+  max-width: none;
+  margin-top: 6px;
+  text-align: left;
+}
+#app .login-page .admin-access-form-panel .access-form-grid {
+  display: block;
+  padding: 0;
+}
+#app .login-page .admin-access-form-panel .access-block {
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+#app .login-page .admin-access-form-panel .access-block-heading {
+  display: none;
+}
+#app .login-page .admin-access-form-panel .access-verification {
+  margin-top: 18px;
+}
+#app .login-page .admin-access-form-panel .access-fields {
+  gap: 18px;
+}
+#app .login-page .admin-access-form-panel .access-block .form-group > label {
+  margin-bottom: 7px;
+  font-size: 13px;
+}
+#app .login-page .admin-access-form-panel .form-group input {
+  min-height: 48px;
+  border-radius: 7px;
+}
+#app .login-page .admin-access-form-panel .captcha-canvas-wrap {
+  height: 48px;
+  border-radius: 7px;
+}
+#app .login-page .admin-access-form-panel .form-options {
+  margin-top: 16px;
+  padding-top: 0;
+  border: 0;
+}
+#app .login-page .admin-access-form-panel .access-submit-rail {
+  display: block;
+  margin-top: 24px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+}
+#app .login-page .admin-access-form-panel .access-submit-rail .security-notice {
+  display: none;
+}
+#app .login-page .admin-access-form-panel .access-submit-rail .login-button {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 7px;
+}
+#app .login-page .admin-access-form-panel .divider {
+  margin: 28px 0 0;
+}
+#app .login-page .admin-access-form-panel .support-link {
+  margin: 18px 0 0;
+}
+#app .login-page .admin-access-form-panel .footer {
+  margin: 22px 0 0;
+}
+
+@media (max-width: 767px) {
+  #app .login-page .admin-login-container {
+    grid-template-columns: 1fr;
+    width: min(100%, 470px);
+    max-width: 470px;
+  }
+  #app .login-page .admin-access-brand {
+    min-height: 0;
+    padding: 28px 26px;
+  }
+  #app .login-page .admin-access-brand h1 {
+    font-size: 30px;
+  }
+  #app .login-page .admin-access-brand-note {
+    display: none;
+  }
+  #app .login-page .admin-access-form-panel {
+    padding: 28px 26px 24px;
+  }
+}
+
+/* Ensure legacy data grids inherit the active theme instead of the browser's white table canvas. */
+:root[data-theme="dark"] #app .workspace-main table {
+  background: var(--color-surface);
+}
+:root[data-theme="dark"] #app .workspace-main .clients-table__cell--sticky {
+  background: var(--color-surface);
+}
+:root[data-theme="dark"] #app .workspace-main .checkbox-checkmark {
+  background-color: var(--color-surface);
+}
+:root[data-theme="dark"] #app .workspace-main .table-scroll-wrapper::before {
+  background: linear-gradient(to right, var(--color-surface), transparent);
+}
+:root[data-theme="dark"] #app .workspace-main .table-scroll-wrapper::after {
+  background: linear-gradient(to left, var(--color-surface), transparent);
+}
+
+/* Commission/order grids keep their action column aligned while inheriting the active theme. */
+#app .workspace-main .ir-commission-order-page .ir-list-table-wrap {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+#app .workspace-main .ir-commission-order-page .ir-list-table-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  overscroll-behavior-inline: contain;
+}
+#app .workspace-main .ir-commission-order-page .ir-list-table {
+  width: max-content;
+  min-width: 100%;
+  table-layout: auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--color-surface);
+}
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > thead
+  > tr
+  > th {
+  color: var(--color-muted);
+  background: var(--color-surface-soft);
+  border-bottom-color: var(--color-border);
+}
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > tbody
+  > tr
+  > td {
+  color: var(--color-text);
+  background: var(--color-surface);
+  border-bottom-color: var(--color-surface-muted);
+}
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > tbody
+  > tr:hover
+  > td,
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > tbody
+  > tr:hover
+  > .ir-list-table__cell--sticky {
+  background: var(--color-surface-soft);
+}
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > thead
+  > tr
+  > .ir-list-table__th--sticky,
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > tbody
+  > tr
+  > .ir-list-table__cell--sticky {
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+}
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > thead
+  > tr
+  > .ir-list-table__th--sticky {
+  z-index: 4;
+  background: var(--color-surface-soft);
+}
+#app
+  .workspace-main
+  .ir-commission-order-page
+  .ir-list-table
+  > tbody
+  > tr
+  > .ir-list-table__cell--sticky {
+  z-index: 3;
+  background: var(--color-surface);
+  white-space: nowrap;
+}
+
+/* IB grids own their horizontal scroll region. Do not inherit the page-level vertical sticky header. */
+#app .workspace-main .ir-list-table > thead > tr > th {
+  position: static;
+  top: auto;
+  z-index: auto;
+}
+#app .workspace-main .ir-list-table > thead > tr > .ir-list-table__th--sticky {
+  position: sticky;
+  top: auto;
+  right: 0;
+  z-index: 4;
+  background: var(--color-surface-soft);
+}
+
+/* All IB list variants share the same sticky action cells; keep them theme-aware even when legacy scoped styles load later. */
+#app
+  .workspace-main
+  .ir-list-table
+  > tbody
+  > tr
+  > .ir-list-table__cell--sticky {
+  background: var(--color-surface);
+}
+#app
+  .workspace-main
+  .ir-list-table
+  > tbody
+  > tr:hover
+  > .ir-list-table__cell--sticky {
+  background: var(--color-surface-soft);
+}
+#app
+  .workspace-main
+  .ir-list-table
+  > tbody
+  > tr.ir-list-table__row--search-match
+  > .ir-list-table__cell--sticky,
+#app
+  .workspace-main
+  .ir-list-table
+  > tbody
+  > tr.ir-list-table__row--search-match:hover
+  > .ir-list-table__cell--sticky {
+  background: var(--color-warning-soft);
+}
+
+/* Keep every fixed action column on the same tokenized surface as its table.
+ * These selectors intentionally outrank legacy scoped page styles, which can
+ * otherwise leave the sticky layer white after a theme change. */
+#app .workspace-main .clients-table > thead > tr > .clients-table__th--sticky {
+  z-index: 4;
+  background: var(--color-surface-soft);
+}
+#app
+  .workspace-main
+  .clients-table
+  > tbody
+  > tr
+  > .clients-table__cell--sticky {
+  z-index: 3;
+  background: var(--color-surface);
+}
+#app
+  .workspace-main
+  .clients-table
+  > tbody
+  > tr:hover
+  > .clients-table__cell--sticky {
+  background: var(--color-surface-soft);
+}
+#app
+  .workspace-main
+  .clients-table
+  > tbody
+  > tr.expanded
+  > .clients-table__cell--sticky {
+  background: var(--color-brand-soft);
+}
+
+#app .workspace-main .leads-table > thead > tr > .leads-table__th--sticky {
+  z-index: 4;
+  background: var(--color-surface-soft);
+}
+#app .workspace-main .leads-table > tbody > tr > .leads-table__cell--sticky {
+  z-index: 3;
+  background: var(--color-surface);
+}
+#app
+  .workspace-main
+  .leads-table
+  > tbody
+  > tr:hover
+  > .leads-table__cell--sticky {
+  background: var(--color-surface-soft);
+}
+#app
+  .workspace-main
+  .leads-table
+  > tbody
+  > tr.expanded
+  > .leads-table__cell--sticky {
+  background: var(--color-brand-soft);
+}
+
+#app
+  .workspace-main
+  .ib-rules-table
+  > thead
+  > tr
+  > .ib-rules-table__th--sticky {
+  z-index: 4;
+  background: var(--color-surface-soft);
+}
+#app
+  .workspace-main
+  .ib-rules-table
+  > tbody
+  > tr
+  > .ib-rules-table__cell--sticky {
+  z-index: 3;
+  background: var(--color-surface);
+}
+#app
+  .workspace-main
+  .ib-rules-table
+  > tbody
+  > tr:hover
+  > .ib-rules-table__cell--sticky {
+  background: var(--color-surface-soft);
+}
+
+/* Client Detail is a composite legacy screen. Its scoped rules may be loaded
+ * after the global theme, so pin each structural surface to the active token. */
+#app .workspace-main .client-detail-page .client-detail-container {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+#app .workspace-main .client-detail-page .client-profile-card {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+#app .workspace-main .client-detail-page .tab-nav {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+#app .workspace-main .client-detail-page .tab-content-wrapper {
+  background: var(--color-surface);
+}
+#app .workspace-main .client-detail-page .data-card {
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
+#app
+  .workspace-main
+  .client-detail-page
+  :is(.data-card-header, .data-card > .data-card-title, .detail-table th) {
+  background: var(--color-surface-soft);
+  border-color: var(--color-border);
+}
+#app .workspace-main .client-detail-page .detail-table td {
+  background: var(--color-surface);
+  border-color: var(--color-surface-muted);
+}
+#app .workspace-main .client-detail-page :is(.data-input, select.data-input) {
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border-color: var(--color-border);
+}
