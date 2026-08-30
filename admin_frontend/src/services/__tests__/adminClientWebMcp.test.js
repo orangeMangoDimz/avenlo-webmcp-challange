@@ -315,6 +315,10 @@ describe("admin client WebMCP tools", () => {
       progressUrl: "/#/webmcp/export-progress?jobId=wmcp_client_42",
       opened: true,
       queued: true,
+      reused: false,
+      downloadRequested: false,
+      agentNextAction: "none",
+      retryPolicy: "Only retry after the user reports that no file appeared.",
     });
   });
 
@@ -356,6 +360,10 @@ describe("admin client WebMCP tools", () => {
       progressUrl: "/#/webmcp/export-progress?jobId=wmcp_transaction_42",
       opened: true,
       queued: true,
+      reused: false,
+      downloadRequested: false,
+      agentNextAction: "none",
+      retryPolicy: "Only retry after the user reports that no file appeared.",
     });
   });
 

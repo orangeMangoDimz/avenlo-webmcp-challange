@@ -71,6 +71,16 @@ class WebMcpClientExportService
             if (!flock($fp, LOCK_EX)) {
                 throw new RuntimeException('Unable to lock export progress.');
             }
+            rewind($fp);
+            $existing = json_decode((string)stream_get_contents($fp), true);
+            if (!is_array($existing)) {
+                $existing = [];
+            }
+            foreach (['inputFingerprint', 'completedAt', 'downloadRequestedAt', 'downloadRequestCount'] as $key) {
+                if (!array_key_exists($key, $data) && array_key_exists($key, $existing)) {
+                    $data[$key] = $existing[$key];
+                }
+            }
             $data['jobId'] = $jobId;
             $data['updatedAt'] = date('Y-m-d H:i:s');
             $json = json_encode($data, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -260,6 +270,7 @@ class WebMcpClientExportService
                 'total' => $total,
                 'message' => 'Export ready',
                 'downloadReady' => true,
+                'completedAt' => date('Y-m-d H:i:s'),
                 'file' => basename($csvFile),
                 'fileName' => (string)($data['fileName'] ?? ''),
             ]);

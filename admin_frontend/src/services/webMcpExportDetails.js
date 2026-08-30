@@ -43,3 +43,9 @@ const DEFAULT_EXPORT_DETAILS = {
 
 export const getExportDetails = (exportType) =>
   EXPORT_DETAILS[exportType] || DEFAULT_EXPORT_DETAILS;
+
+export const shouldAutoDownloadExport = ({
+  status,
+  downloadRequestedAt,
+  autoDownloadAttempted,
+}) => status === "done" && !downloadRequestedAt && !autoDownloadAttempted;

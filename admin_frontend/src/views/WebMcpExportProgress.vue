@@ -78,8 +78,16 @@
         </div>
         <div v-else-if="isDone" class="webmcp-export-alert is-ready">
           <i class="fas fa-circle-check" aria-hidden="true"></i>
-          Your download should start automatically.
-          <button type="button" @click="downloadNow">Download again</button>
+          <template v-if="isDownloading"
+            >Sending the download to your browser…</template
+          >
+          <template v-else-if="downloadRequestedAt">
+            Download sent to your browser. No further action is needed.
+            <button type="button" @click="retryDownload">
+              Retry only if no file appeared
+            </button>
+          </template>
+          <template v-else>Preparing the automatic download…</template>
         </div>
         <div v-else class="webmcp-export-alert is-running">
           <i class="fas fa-arrows-rotate" aria-hidden="true"></i>
@@ -96,7 +104,10 @@
 import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import { adminWebMcpApi } from "@/services/adminWebMcpApi";
-import { getExportDetails } from "@/services/webMcpExportDetails";
+import {
+  getExportDetails,
+  shouldAutoDownloadExport,
+} from "@/services/webMcpExportDetails";
 
 const route = useRoute();
 const jobId = computed(() => String(route.query.jobId || "").trim());
@@ -109,6 +120,9 @@ const processed = ref(0);
 const total = ref(0);
 const fileName = ref("");
 const isDownloading = ref(false);
+const downloadRequestedAt = ref("");
+const downloadRequestCount = ref(0);
+const autoDownloadAttempted = ref(false);
 let pollTimer = null;
 let pollInFlight = false;
 
@@ -154,8 +168,13 @@ const saveBlob = (blob) => {
   window.setTimeout(() => URL.revokeObjectURL(url), 0);
 };
 
-const downloadNow = async () => {
-  if (isDownloading.value || !isDone.value) return;
+const downloadNow = async ({ retry = false } = {}) => {
+  if (
+    isDownloading.value ||
+    !isDone.value ||
+    (!retry && downloadRequestedAt.value)
+  )
+    return;
   isDownloading.value = true;
   errorMessage.value = "";
   try {
@@ -165,12 +184,17 @@ const downloadNow = async () => {
       return;
     }
     saveBlob(blob);
+    downloadRequestedAt.value =
+      downloadRequestedAt.value || new Date().toISOString();
+    downloadRequestCount.value += 1;
   } catch {
     errorMessage.value = "Unable to download the export.";
   } finally {
     isDownloading.value = false;
   }
 };
+
+const retryDownload = () => downloadNow({ retry: true });
 
 const poll = async () => {
   if (invalidJob.value || pollInFlight || isDone.value || errorMessage.value)
@@ -185,10 +209,21 @@ const poll = async () => {
     processed.value = Number(payload?.processed) || 0;
     total.value = Number(payload?.total) || 0;
     fileName.value = payload?.fileName || "";
+    downloadRequestedAt.value = String(payload?.downloadRequestedAt || "");
+    downloadRequestCount.value = Number(payload?.downloadRequestCount) || 0;
 
     if (status.value === "done") {
       stopPolling();
-      await downloadNow();
+      if (
+        shouldAutoDownloadExport({
+          status: status.value,
+          downloadRequestedAt: downloadRequestedAt.value,
+          autoDownloadAttempted: autoDownloadAttempted.value,
+        })
+      ) {
+        autoDownloadAttempted.value = true;
+        await downloadNow();
+      }
     } else if (["error", "cancelled"].includes(status.value)) {
       stopPolling();
       errorMessage.value = payload?.message || "The export did not complete.";
@@ -257,7 +292,7 @@ onUnmounted(stopPolling);
 
 .webmcp-export-orbit::after {
   inset: 54px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border: 0;
   box-shadow: 0 0 0 8px rgba(45, 100, 214, 0.08);
 }

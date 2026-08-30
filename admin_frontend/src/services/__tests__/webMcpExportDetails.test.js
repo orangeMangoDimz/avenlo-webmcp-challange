@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { getExportDetails } from "../webMcpExportDetails";
+import {
+  getExportDetails,
+  shouldAutoDownloadExport,
+} from "../webMcpExportDetails";
 
 describe("getExportDetails", () => {
   it("describes a client export", () => {
@@ -46,5 +49,29 @@ describe("getExportDetails", () => {
       scope: "Access-controlled admin export",
       fields: [],
     });
+  });
+
+  it("does not repeat an automatic download after the server recorded one", () => {
+    expect(
+      shouldAutoDownloadExport({
+        status: "done",
+        downloadRequestedAt: "",
+        autoDownloadAttempted: false,
+      }),
+    ).toBe(true);
+    expect(
+      shouldAutoDownloadExport({
+        status: "done",
+        downloadRequestedAt: "2026-08-30 17:00:00",
+        autoDownloadAttempted: false,
+      }),
+    ).toBe(false);
+    expect(
+      shouldAutoDownloadExport({
+        status: "done",
+        downloadRequestedAt: "",
+        autoDownloadAttempted: true,
+      }),
+    ).toBe(false);
   });
 });

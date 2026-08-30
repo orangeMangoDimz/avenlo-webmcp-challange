@@ -809,6 +809,10 @@ const createExportTool = ({
       progressUrl,
       opened,
       queued: Boolean(exportJob?.queued),
+      reused: Boolean(exportJob?.reused),
+      downloadRequested: Boolean(exportJob?.downloadRequestedAt),
+      agentNextAction: "none",
+      retryPolicy: "Only retry after the user reports that no file appeared.",
     };
   },
 });

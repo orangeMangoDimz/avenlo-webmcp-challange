@@ -9,6 +9,7 @@ class WebMcpClientController {
     private const MAX_CLIENT_ID = 2147483647;
     private const MAX_EMAIL_LENGTH = 254;
     private const MAX_CODE_LENGTH = 64;
+    private const EXPORT_REUSE_SECONDS = 900;
     private const MAX_EXPORT_CLIENTS = 500;
     private const MAX_EXPORT_FILTER_LENGTH = 100;
 
@@ -948,7 +949,13 @@ class WebMcpClientController {
             $fileName = 'webmcp_export_' . date('Y-m-d') . '.xls';
         }
 
-        WebMcpClientExportService::clearActive($adminUserId);
+        WebMcpClientExportService::writeProgress($jobId, array_merge($progress, [
+            'downloadRequestedAt' => date('Y-m-d H:i:s'),
+            'downloadRequestCount' => max(0, (int)($progress['downloadRequestCount'] ?? 0)) + 1,
+        ]));
+        // Keep the completed export associated with this administrator briefly so
+        // a reconnected WebMCP session can reuse the same request instead of
+        // queuing a duplicate export.
         header('Content-Type: application/vnd.ms-excel; charset=utf-8');
         header('Content-Disposition: attachment; filename="' . $fileName . '"');
         header('Content-Length: ' . filesize($file));
@@ -979,9 +986,25 @@ class WebMcpClientController {
             Response::unauthorized('Invalid admin token.');
         }
 
+        $inputFingerprint = self::exportInputFingerprint(
+            $adminUserId,
+            $exportType,
+            $input,
+            $scope
+        );
         $active = WebMcpClientExportService::getActiveForAdmin($adminUserId);
         if ($active !== null && in_array((string)($active['status'] ?? ''), ['queued', 'running'], true)) {
             Response::error('An export is already in progress.', 409, $this->exportProgressPayload($active));
+        }
+        if (self::canReuseCompletedExport($active, $inputFingerprint)) {
+            Response::success([
+                'jobId' => (string)$active['jobId'],
+                'exportType' => $exportType,
+                'fileName' => (string)($active['fileName'] ?? ''),
+                'queued' => false,
+                'reused' => true,
+                'downloadRequestedAt' => $active['downloadRequestedAt'] ?? null,
+            ], 'Existing export remains available; no new export was queued.');
         }
 
         $jobId = 'wmcp_' . $exportType . '_' . bin2hex(random_bytes(12));
@@ -995,6 +1018,9 @@ class WebMcpClientController {
             'total' => 0,
             'message' => 'Queued',
             'downloadReady' => false,
+            'downloadRequestedAt' => null,
+            'downloadRequestCount' => 0,
+            'inputFingerprint' => $inputFingerprint,
             'file' => $jobId . '.xls',
             'fileName' => $fileName,
         ];
@@ -1065,6 +1091,43 @@ class WebMcpClientController {
         return is_array($body) ? $body : [];
     }
 
+    private static function exportInputFingerprint(
+        int $adminUserId,
+        string $exportType,
+        array $input,
+        array $scope
+    ): string {
+        $payload = json_encode([
+            'adminUserId' => $adminUserId,
+            'exportType' => $exportType,
+            'input' => $input,
+            'scope' => [
+                'scope' => (string)($scope['scope'] ?? 'none'),
+                'restrict_to_sales_id' => (int)($scope['restrict_to_sales_id'] ?? 0),
+            ],
+        ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if ($payload === false) {
+            throw new RuntimeException('Unable to fingerprint export input.');
+        }
+        return hash('sha256', $payload);
+    }
+
+    private static function canReuseCompletedExport(?array $progress, string $inputFingerprint): bool {
+        if (
+            $progress === null
+            || ($progress['status'] ?? '') !== 'done'
+            || !is_string($progress['inputFingerprint'] ?? null)
+            || !hash_equals((string)$progress['inputFingerprint'], $inputFingerprint)
+        ) {
+            return false;
+        }
+
+        $completedAt = strtotime((string)($progress['completedAt'] ?? $progress['updatedAt'] ?? ''));
+        return $completedAt !== false
+            && $completedAt > 0
+            && (time() - $completedAt) <= self::EXPORT_REUSE_SECONDS;
+    }
+
     private function dispatchSwooleTask(array $payload): void {
         $address = config_swoole_address();
         $errno = 0;
@@ -1101,6 +1164,8 @@ class WebMcpClientController {
             'total' => (int)($progress['total'] ?? 0),
             'message' => (string)($progress['message'] ?? ''),
             'downloadReady' => !empty($progress['downloadReady']) || (($progress['status'] ?? '') === 'done'),
+            'downloadRequestedAt' => $progress['downloadRequestedAt'] ?? null,
+            'downloadRequestCount' => max(0, (int)($progress['downloadRequestCount'] ?? 0)),
             'fileName' => (string)($progress['fileName'] ?? ''),
         ];
     }
