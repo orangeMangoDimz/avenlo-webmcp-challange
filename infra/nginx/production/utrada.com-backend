@@ -1,0 +1,71 @@
+map $http_origin $cors_origin_utrada {
+     # utrada.com is our main domain
+    "https://crm.utrada.com"    "https://crm.utrada.com";
+    "https://admin.utrada.com"    "https://admin.utrada.com";
+    # but we also must support utradaglobal.com
+    "https://crm.utradaglobal.com"    "https://crm.utradaglobal.com";
+    "https://admin.utradaglobal.com"    "https://admin.utradaglobal.com";
+}
+
+server {
+    server_name be-ut.utrada.com;
+
+    root /var/www/utrada/back-end;
+    index index.php index.html;
+
+    client_max_body_size 50m;
+
+    location / {
+        try_files $uri /index.php?$query_string;
+    }
+
+    location ~ \.php$ {
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        add_header Access-Control-Allow-Origin $cors_origin_utrada always;
+        add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Authorization, Content-Type, Accept" always;
+    }
+
+    location ~* ^/(logs|runtime|storage|database|config|vendor|composer\.(json|lock)|composer\.phar) {
+        deny all;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+
+    # Payment Gateway Callback support (FlashPay, CVPay)
+    # e.g https://{base_url}/api/callback/cvpay/deposit
+     location ~ ^/api/callback/[^/]+/(deposit|withdrawal)/?$ {
+         rewrite ^/(.*)$ /index.php?path=$1 last;
+     }
+
+    # Payment Gateway Callback support (FlashPay)
+    # location ~ ^/api/callback/flashpay/(deposit|withdrawal)/?$ {
+    #    rewrite ^/(.*)$ /index.php?path=$1 last;
+    # }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/be-ut.utrada.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/be-ut.utrada.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+
+server {
+    if ($host = be-ut.utrada.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name be-ut.utrada.com;
+    return 404; # managed by Certbot
+
+
+}

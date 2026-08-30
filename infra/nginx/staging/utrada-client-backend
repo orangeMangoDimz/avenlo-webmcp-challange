@@ -1,0 +1,90 @@
+map $http_origin $cors_origin_devcrm {
+    default "";
+    "https://devcrm.utrada.com"    "https://devcrm.utrada.com";
+    "https://devadmin.utrada.com"  "https://devadmin.utrada.com";
+}
+
+server {
+    server_name devcrm.utrada.com;
+
+    client_max_body_size 50m;
+
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types application/json text/css application/javascript image/svg+xml;
+
+
+    location ~ ^/(success|decline)/(callback|redirect)/?$ {
+        rewrite ^/(.*)$ /index.php?path=$1 last;
+    }
+
+
+    location ~ ^/index\.php {
+        root /var/www/utrada/back-end;
+        include snippets/fastcgi-php.conf;
+        fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+
+        add_header Access-Control-Allow-Origin $cors_origin_devcrm always;
+        add_header Access-Control-Allow-Methods "GET, POST, PUT, PATCH, DELETE, OPTIONS" always;
+        add_header Access-Control-Allow-Headers "Authorization, Content-Type, Accept" always;
+
+        if ($request_method = OPTIONS) {
+            return 204;
+        }
+    }
+
+    location ~* ^/(logs|runtime|storage|database|config|vendor|composer\.(json|lock)|composer\.phar) {
+        deny all;
+    }
+
+    location ~ /\.(?!well-known).* {
+        deny all;
+    }
+
+    # Payment Gateway Callback support (FlashPay, CVPay)
+    # e.g https://{base_url}/api/callback/cvpay/deposit
+    location ~ ^/api/callback/[^/]+/(deposit|withdrawal)/?$ {
+        rewrite ^/(.*)$ /index.php?path=$1 last;
+    }
+
+    # Payment Gateway Callback support (FlashPay)
+    # location ~ ^/api/callback/flashpay/(deposit|withdrawal)/?$ {
+    #    rewrite ^/(.*)$ /index.php?path=$1 last;
+    # }
+
+    location / {
+        root /var/www/utrada/client_frontend/dist;
+        index index.html;
+        try_files $uri $uri/ /index.html;
+    }
+
+    # 语言包体积 50-80KB，且内容随发版变化，用短期缓存而不是 immutable。
+    # 只用 expires，不再叠加 add_header，避免发出两个 Cache-Control 头。
+    location ~* ^/language-pack.*\.json$ {
+        expires 1h;
+    }
+
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/devcrm.utrada.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/devcrm.utrada.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+}
+
+
+server {
+    if ($host = devcrm.utrada.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name devcrm.utrada.com;
+    return 404; # managed by Certbot
+
+
+}

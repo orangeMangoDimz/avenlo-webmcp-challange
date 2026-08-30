@@ -1,0 +1,196 @@
+name: ${COMPOSE_PROJECT_NAME:-utrada-crm}
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file:
+      - ${BACKEND_ENV_FILE:-./backend.env}
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping -h 127.0.0.1 -uroot --silent",
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    networks:
+      - data
+
+  worker:
+    image: ${REGISTRY_IMAGE:?REGISTRY_IMAGE is required}/worker:${IMAGE_TAG:?IMAGE_TAG is required}
+    restart: unless-stopped
+    init: true
+    read_only: true
+    env_file:
+      - ${BACKEND_ENV_FILE:-./backend.env}
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      SWOOLE_BIND_HOST: 0.0.0.0
+      SWOOLE_PORT: 9530
+    tmpfs:
+      - /tmp
+      - /var/www/html/runtime:uid=33,gid=33,mode=0750
+    volumes:
+      - backend_uploads:/var/www/html/uploads
+      - backend_storage:/var/www/html/storage
+      - backend_logs:/var/www/html/logs
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "php",
+          "-r",
+          "$$s=@fsockopen('127.0.0.1',9530); if(!$$s){exit(1);} fclose($$s);",
+        ]
+      interval: 15s
+      timeout: 3s
+      retries: 10
+      start_period: 45s
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app
+      - data
+
+  api:
+    image: ${REGISTRY_IMAGE:?REGISTRY_IMAGE is required}/api:${IMAGE_TAG:?IMAGE_TAG is required}
+    restart: unless-stopped
+    init: true
+    read_only: true
+    env_file:
+      - ${BACKEND_ENV_FILE:-./backend.env}
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      SWOOLE_HOST: worker
+      SWOOLE_PORT: 9530
+    tmpfs:
+      - /tmp
+      - /usr/local/var/run:uid=33,gid=33,mode=0750
+      - /var/www/html/cache:uid=33,gid=33,mode=0750
+      - /var/www/html/runtime:uid=33,gid=33,mode=0750
+    volumes:
+      - backend_uploads:/var/www/html/uploads
+      - backend_storage:/var/www/html/storage
+      - backend_logs:/var/www/html/logs
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "php",
+          "-r",
+          "$$s=@fsockopen('127.0.0.1',9000); if(!$$s){exit(1);} fclose($$s);",
+        ]
+      interval: 15s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+    depends_on:
+      mysql:
+        condition: service_healthy
+      worker:
+        condition: service_healthy
+    networks:
+      - app
+      - data
+
+  admin:
+    image: ${REGISTRY_IMAGE:?REGISTRY_IMAGE is required}/admin:${IMAGE_TAG:?IMAGE_TAG is required}
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:uid=101,gid=101,mode=0750
+    networks:
+      - app
+
+  client:
+    image: ${REGISTRY_IMAGE:?REGISTRY_IMAGE is required}/client:${IMAGE_TAG:?IMAGE_TAG is required}
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:uid=101,gid=101,mode=0750
+    networks:
+      - app
+
+  gateway:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    read_only: true
+    environment:
+      ADMIN_ALT_ORIGIN: ${ADMIN_ALT_ORIGIN:-https://invalid-admin.example}
+      ADMIN_HOST: ${ADMIN_HOST:?ADMIN_HOST is required}
+      ADMIN_ORIGIN: ${ADMIN_ORIGIN:?ADMIN_ORIGIN is required}
+      API_HOST: ${API_HOST:?API_HOST is required}
+      CLIENT_ALT_ORIGIN: ${CLIENT_ALT_ORIGIN:-https://invalid-client.example}
+      CLIENT_HOST: ${CLIENT_HOST:?CLIENT_HOST is required}
+      CLIENT_ORIGIN: ${CLIENT_ORIGIN:?CLIENT_ORIGIN is required}
+      TLS_CERT_NAME: ${TLS_CERT_NAME:?TLS_CERT_NAME is required}
+    command:
+      - /bin/sh
+      - -ec
+      - |
+        envsubst '$$ADMIN_ALT_ORIGIN $$ADMIN_HOST $$ADMIN_ORIGIN $$API_HOST $$CLIENT_ALT_ORIGIN $$CLIENT_HOST $$CLIENT_ORIGIN $$TLS_CERT_NAME' \
+          < /etc/nginx/templates/gateway.conf.template \
+          > /etc/nginx/conf.d/default.conf
+        exec nginx -g 'daemon off;'
+    ports:
+      - "${HTTP_HOST_PORT:-80}:80"
+      - "${HTTPS_HOST_PORT:-443}:443"
+    tmpfs:
+      - /etc/nginx/conf.d
+      - /var/cache/nginx
+      - /var/run
+    volumes:
+      - ./nginx/gateway.conf.template:/etc/nginx/templates/gateway.conf.template:ro
+      - certbot_data:/etc/letsencrypt:ro
+      - certbot_web:/var/www/certbot:ro
+    healthcheck:
+      test:
+        ["CMD", "wget", "--no-check-certificate", "-qO-", "https://127.0.0.1/"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+    depends_on:
+      api:
+        condition: service_healthy
+      admin:
+        condition: service_healthy
+      client:
+        condition: service_healthy
+    networks:
+      - app
+
+  certbot:
+    image: certbot/certbot:v2.11.0
+    profiles: ["tls"]
+    ports:
+      - "${HTTP_HOST_PORT:-80}:80"
+    volumes:
+      - certbot_data:/etc/letsencrypt
+      - certbot_web:/var/www/certbot
+
+volumes:
+  mysql_data:
+  backend_uploads:
+  backend_storage:
+  backend_logs:
+  certbot_data:
+  certbot_web:
+
+networks:
+  app:
+  data:
+    internal: true

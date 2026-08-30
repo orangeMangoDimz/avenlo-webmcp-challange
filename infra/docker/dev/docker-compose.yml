@@ -1,0 +1,206 @@
+name: ${COMPOSE_PROJECT_NAME:-utrada-crm-dev}
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    ports:
+      - "${DB_HOST_PORT:-3306}:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping -h 127.0.0.1 -uroot --silent",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+    networks:
+      - data
+
+  worker:
+    build:
+      context: ../../..
+      dockerfile: infra/docker/images/backend.Dockerfile
+      target: worker
+    restart: unless-stopped
+    init: true
+    env_file:
+      - ../../../.env
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      SWOOLE_BIND_HOST: 0.0.0.0
+      SWOOLE_PORT: 9530
+    tmpfs:
+      - /var/www/html/runtime:uid=33,gid=33,mode=0750
+    volumes:
+      - ../../../back-end:/var/www/html
+      - backend_vendor:/var/www/html/vendor
+      - backend_uploads:/var/www/html/uploads
+      - backend_storage:/var/www/html/storage
+      - backend_logs:/var/www/html/logs
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "php",
+          "-r",
+          "$$s=@fsockopen('127.0.0.1',9530); if(!$$s){exit(1);} fclose($$s);",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 30s
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - app
+      - data
+
+  api:
+    build:
+      context: ../../..
+      dockerfile: infra/docker/images/backend.Dockerfile
+      target: api
+    restart: unless-stopped
+    init: true
+    env_file:
+      - ../../../.env
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+      SWOOLE_HOST: worker
+      SWOOLE_PORT: 9530
+    tmpfs:
+      - /var/www/html/cache:uid=33,gid=33,mode=0750
+      - /var/www/html/runtime:uid=33,gid=33,mode=0750
+    command: ["php", "-S", "0.0.0.0:8000", "-t", "/var/www/html"]
+    ports:
+      - "${API_HOST_PORT:-8000}:8000"
+    volumes:
+      - ../../../back-end:/var/www/html
+      - backend_vendor:/var/www/html/vendor
+      - backend_uploads:/var/www/html/uploads
+      - backend_storage:/var/www/html/storage
+      - backend_logs:/var/www/html/logs
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "php",
+          "-r",
+          "$$s=@fsockopen('127.0.0.1',8000); if(!$$s){exit(1);} fclose($$s);",
+        ]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 20s
+    depends_on:
+      mysql:
+        condition: service_healthy
+      worker:
+        condition: service_healthy
+    networks:
+      - app
+      - data
+
+  admin:
+    image: node:20-alpine
+    restart: unless-stopped
+    init: true
+    working_dir: /app
+    environment:
+      VITE_API_BASE_URL: /index.php?path=api
+      VITE_CLIENT_BASE_URL: http://localhost:${CLIENT_HOST_PORT:-3001}
+      VITE_PROXY_TARGET: http://api:8000
+    command:
+      [
+        "sh",
+        "-c",
+        "npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0 --port 3000 --strictPort",
+      ]
+    ports:
+      - "${ADMIN_HOST_PORT:-3000}:3000"
+    volumes:
+      - ../../../admin_frontend:/app
+      - admin_node_modules:/app/node_modules
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000/"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - app
+
+  client:
+    image: node:20-alpine
+    restart: unless-stopped
+    init: true
+    working_dir: /app
+    environment:
+      VITE_API_BASE_URL: /index.php?path=api
+      VITE_PROXY_TARGET: http://api:8000
+    command:
+      [
+        "sh",
+        "-c",
+        "npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0 --port 3001 --strictPort",
+      ]
+    ports:
+      - "${CLIENT_HOST_PORT:-3001}:3001"
+    volumes:
+      - ../../../client_frontend:/app
+      - client_node_modules:/app/node_modules
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3001/"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+    depends_on:
+      api:
+        condition: service_healthy
+    networks:
+      - app
+
+  phpmyadmin:
+    image: phpmyadmin:5-apache
+    profiles: ["tools"]
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "${PHPMYADMIN_HOST_PORT:-8080}:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - data
+
+volumes:
+  mysql_data:
+  backend_vendor:
+  backend_uploads:
+  backend_storage:
+  backend_logs:
+  admin_node_modules:
+  client_node_modules:
+
+networks:
+  app:
+  data:

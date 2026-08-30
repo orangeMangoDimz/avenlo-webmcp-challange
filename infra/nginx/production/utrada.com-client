@@ -1,0 +1,49 @@
+server {
+    server_name crm.utrada.com;
+
+    root /var/www/utrada/client_frontend/dist;
+    index index.html;
+
+    gzip on;
+    gzip_vary on;
+    gzip_min_length 1024;
+    gzip_types application/json text/css application/javascript image/svg+xml;
+
+    location / {
+        try_files $uri $uri/ /index.html;
+    }
+
+    location /index.php {
+        proxy_pass http://127.0.0.1:80;
+        proxy_set_header Host api.yourdomain.com;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+
+    # 语言包体积 50-80KB，且内容随发版变化，用短期缓存而不是 immutable。
+    # 只用 expires，不再叠加 add_header，避免发出两个 Cache-Control 头。
+    location ~* ^/language-pack.*\.json$ {
+        expires 1h;
+    }
+
+    listen 443 ssl; # managed by Certbot
+    ssl_certificate /etc/letsencrypt/live/crm.utrada.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/crm.utrada.com/privkey.pem; # managed by Certbot
+    include /etc/letsencrypt/options-ssl-nginx.conf; # managed by Certbot
+    ssl_dhparam /etc/letsencrypt/ssl-dhparams.pem; # managed by Certbot
+
+
+}
+server {
+    if ($host = crm.utrada.com) {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    listen 80;
+    server_name crm.utrada.com;
+    return 404; # managed by Certbot
+
+
+}
