@@ -1,0 +1,41 @@
+.env
+.env.*
+!.env.example
+.cache/
+.npm
+flashpay_merchant_*.pem
+scripts/dev/logs/
+back-end/logs/*.log
+scripts/dev/.pids
+scripts/dev/target-sql.sql
+scripts/dev/exports/
+scripts/dev/sql_backup/
+temp/
+back-end/storage/tokens/
+back-end/storage/exports/*
+!back-end/storage/exports/.gitkeep
+back-end/storage/geoip/*.mmdb
+back-end/composer.phar
+back-end/database/backup*.sql
+back-end/database/all_crm*.sql
+back-end/seeder/*.sql
+# Added by code-review-graph
+.code-review-graph/
+# Added by graphify
+.graphify_detect.json
+graphify-out/
+.code-review-graphignore
+# Cursor AI local state
+.cursor/agent-memory/
+.cursor/PROJECT_LOG.md
+tmp/
+# AI assistant config and rule files (kept locally, not tracked)
+.claude/
+.cursor/
+/.cursorrules
+/.mcp.json
+/AGENTS.md
+/CLAUDE.md
+.superpowers/
+docs/superpowers/
+@wsl.localhost/
