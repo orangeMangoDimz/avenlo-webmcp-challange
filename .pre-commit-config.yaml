@@ -98,6 +98,7 @@ repos:
         args:
           - --disable-version-check
           - --jobs=1
+          - --x-parmap
           - --skip-unknown-extensions
           - --error
           - --severity=ERROR
