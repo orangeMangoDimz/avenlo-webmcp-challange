@@ -29,13 +29,20 @@ const requiredLayoutContracts = [
   '>Menu<'
 ]
 
+const removedSidebarContracts = [
+  ['pin control', /sidebar-pin-btn|data-testid=["']sidebar-pin["']|toggle-pin|thumbtack/]
+]
+
 const missing = [
   ...requiredSidebarContracts
     .filter(([, contract]) => !contract.test(sidebarSource))
     .map(([name]) => `Sidebar contract missing: ${name}`),
   ...requiredLayoutContracts
     .filter((contract) => !layoutSource.includes(contract))
-    .map((contract) => `Topbar brand contract missing: ${contract}`)
+    .map((contract) => `Topbar brand contract missing: ${contract}`),
+  ...removedSidebarContracts
+    .filter(([, contract]) => contract.test(sidebarSource) || contract.test(layoutSource))
+    .map(([name]) => `Removed sidebar contract still present: ${name}`)
 ]
 
 if (missing.length) {
