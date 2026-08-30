@@ -1,0 +1,121 @@
+[
+  {
+    "currency": "VND",
+    "code": "ABBank",
+    "name": "An Binh Commercial Joint Stock  Bank"
+  },
+  { "currency": "VND", "code": "ACB", "name": "ACB Bank" },
+  {
+    "currency": "VND",
+    "code": "AGRIBANK",
+    "name": "Vietnam Bank for Agriculture and Rural Development"
+  },
+  {
+    "currency": "VND",
+    "code": "BacABank",
+    "name": "Bac A Commercial Joint Stock  (Bac A ) Bank"
+  },
+  { "currency": "VND", "code": "BAO VIET BANK", "name": "Bao Viet Bank" },
+  { "currency": "VND", "code": "BIDV", "name": "BIDV Bank" },
+  {
+    "currency": "VND",
+    "code": "CAKE DIGITAL BANK BY VPBANK",
+    "name": "CAKE BY VPBANK"
+  },
+  { "currency": "VND", "code": "CIMB", "name": "CIMB Bank Vietnam" },
+  { "currency": "VND", "code": "DONG A BANK", "name": "DONGA BANK" },
+  {
+    "currency": "VND",
+    "code": "EXIMBANK",
+    "name": "Vietnam Export – Import Commercial Joint Stock Bank (Eximbank)"
+  },
+  {
+    "currency": "VND",
+    "code": "GPBANK",
+    "name": "Global Petro Commercial Joint Stock  Bank"
+  },
+  {
+    "currency": "VND",
+    "code": "HDBank",
+    "name": "Ho Chi Minh City Development Joint Stock Commercial Bank"
+  },
+  {
+    "currency": "VND",
+    "code": "HLBANK",
+    "name": "Hong Leong Bank Vietnam Limited"
+  },
+  { "currency": "VND", "code": "HSBC", "name": "HSBC" },
+  { "currency": "VND", "code": "INDOVINA", "name": "Indovina Bank Ltd" },
+  { "currency": "VND", "code": "KIENLONGBANK", "name": "UMEE by Kienlongbank" },
+  {
+    "currency": "VND",
+    "code": "LIENVIETPOSTBANK",
+    "name": "LienViet Post Commercial Joint Stock  Bank"
+  },
+  { "currency": "VND", "code": "MARITIME BANK", "name": "Maritime Bank" },
+  {
+    "currency": "VND",
+    "code": "MB",
+    "name": "Military Commercial Joint Stock Bank (MB Bank)"
+  },
+  {
+    "currency": "VND",
+    "code": "NAM A BANK",
+    "name": "Nam A Commercial Joint Stock Bank (Nam A Bank)"
+  },
+  { "currency": "VND", "code": "NCB", "name": "National Citizens Bank" },
+  {
+    "currency": "VND",
+    "code": "OCB",
+    "name": "Orient Commercial Joint Stock  (OCB) Bank"
+  },
+  {
+    "currency": "VND",
+    "code": "Oceanbank",
+    "name": "OCEAN Commercial Joint Stock  Bank"
+  },
+  { "currency": "VND", "code": "PGBank", "name": "Petrolimex Group Bank" },
+  {
+    "currency": "VND",
+    "code": "PVCOMBANK",
+    "name": "Vietnam Public Bank (PVcomBank)"
+  },
+  { "currency": "VND", "code": "SACOMBANK", "name": "SACOM BANK" },
+  { "currency": "VND", "code": "SAIGONBANK", "name": "Saigon Bank" },
+  {
+    "currency": "VND",
+    "code": "SeABank",
+    "name": "Southeast Asia Commercial Joint Stock  (SeA ) Bank"
+  },
+  { "currency": "VND", "code": "SHB", "name": "Saigon Hanoi Bank" },
+  { "currency": "VND", "code": "SHINHANBANK", "name": "Shinhan  Bank" },
+  { "currency": "VND", "code": "TCB", "name": "TECHCOM Bank" },
+  { "currency": "VND", "code": "TPB", "name": "Tien Phong Bank" },
+  { "currency": "VND", "code": "UOB", "name": "UOB Vietnam Bank" },
+  {
+    "currency": "VND",
+    "code": "VIB",
+    "name": "Vietnam International Commercial Joint Stock Bank (VIB)"
+  },
+  { "currency": "VND", "code": "VIET A BANK", "name": "Viet A Bank" },
+  { "currency": "VND", "code": "VIETBANK", "name": "Vietnam Thoung Tin Bank" },
+  {
+    "currency": "VND",
+    "code": "VietCapitalBank",
+    "name": "Viet Capital Commercial Joint Stock  (Viet Capital ) Bank"
+  },
+  { "currency": "VND", "code": "VIETCOMBANK", "name": "VIETCOM BANK" },
+  { "currency": "VND", "code": "VietConstBank", "name": "Construction Bank" },
+  { "currency": "VND", "code": "VIETINBANK", "name": "VIETIN  Bank" },
+  {
+    "currency": "VND",
+    "code": "VIETNAM RUSSIA JOINT VENTURE BANK",
+    "name": "Vietnam – Russia Joint Venture Bank"
+  },
+  {
+    "currency": "VND",
+    "code": "VPCBank",
+    "name": "Vietnam Prosperity Joint Stock Commercial  (VP ) Bank "
+  },
+  { "currency": "VND", "code": "WOORI", "name": "Woori  Bank" }
+]
