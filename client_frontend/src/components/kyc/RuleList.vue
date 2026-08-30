@@ -6,7 +6,7 @@
         padding: 15px;
         border-radius: var(--radius-md);
         margin-bottom: 20px;
-        border-left: 4px solid var(--color-brand);
+        border-left: 1px solid var(--color-brand);
       "
     >
       <div
@@ -116,7 +116,7 @@
           <span
             :style="
               rule.actionType === 'jump_to'
-                ? 'background: #86efac; color: #166534;'
+                ? 'background: var(--color-success-soft); color: var(--color-success);'
                 : 'background: #fca5a5; color: #991b1b;'
             "
             style="
@@ -237,7 +237,7 @@ const handleDeleteRule = async (ruleId) => {
 }
 
 .rule-type {
-  background: var(--color-warning);
+  background: var(--color-warning-solid);
   color: white;
   padding: 3px 10px;
   border-radius: var(--radius-lg);
@@ -261,7 +261,7 @@ const handleDeleteRule = async (ruleId) => {
   height: 26px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background: white;
+  background: var(--color-surface);
   color: var(--color-muted);
   cursor: pointer;
   display: flex;

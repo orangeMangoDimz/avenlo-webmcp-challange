@@ -82,7 +82,7 @@ import { useLanguageStore } from "@/stores/language";
 const languageStore = useLanguageStore();
 const t = (key, fallback) => languageStore.t(key, fallback);
 
-const props = defineProps({
+defineProps({
   visible: {
     type: Boolean,
     default: false,
@@ -172,7 +172,7 @@ const formatTime = (value) => {
 }
 
 .notification-panel {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 16px 0 0 16px;
   width: min(420px, 100%);
   max-width: 100%;
@@ -245,11 +245,11 @@ const formatTime = (value) => {
 }
 
 .panel-list::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-surface-soft);
 }
 
 .panel-list::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-surface-muted);
   border-radius: 4px;
 }
 
@@ -275,7 +275,7 @@ const formatTime = (value) => {
 }
 
 .panel-item.unread {
-  background: #f1f5ff;
+  background: var(--color-brand-soft);
 }
 
 .panel-item.active {
@@ -325,7 +325,7 @@ const formatTime = (value) => {
 }
 
 .panel-pill {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   font-size: 11px;
   padding: 3px 8px;
@@ -341,7 +341,7 @@ const formatTime = (value) => {
   padding: 24px;
   text-align: center;
   font-size: 14px;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .panel-empty i,

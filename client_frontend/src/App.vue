@@ -30,7 +30,7 @@ input[type="month"],
 input[type="week"] {
   -webkit-appearance: none;
   appearance: none;
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   text-align: left;
 }
 

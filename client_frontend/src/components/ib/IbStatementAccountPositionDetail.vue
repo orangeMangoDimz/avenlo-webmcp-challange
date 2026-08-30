@@ -476,18 +476,18 @@ onMounted(() => {
   padding: 10px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: #ffffff;
+  background: var(--color-surface);
 }
 .stmt-pos-detail__card-label {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--color-muted);
 }
 .stmt-pos-detail__card-value {
   font-size: 16px;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-ink);
 }
 .stmt-pos-detail__link:hover {
   text-decoration: underline;
@@ -505,7 +505,7 @@ onMounted(() => {
   padding: 7px 14px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background: #ffffff;
+  background: var(--color-surface);
   color: var(--color-text);
   font-size: 12px;
   font-weight: 700;
@@ -531,7 +531,7 @@ onMounted(() => {
   overflow: auto;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: #ffffff;
+  background: var(--color-surface);
   min-height: 240px;
   height: 480px;
   max-height: 80vh;
@@ -546,7 +546,7 @@ onMounted(() => {
 .cth-table td {
   padding: 10px 12px;
   text-align: left;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
 }
 .cth-table th {
@@ -554,14 +554,14 @@ onMounted(() => {
   top: 0;
   z-index: 1;
   background: var(--color-surface-soft);
-  color: #64748b;
+  color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
   font-size: 11px;
 }
 .cth-empty {
   text-align: center;
-  color: #94a3b8;
+  color: var(--color-faint);
   padding: 24px;
 }
 .cth-empty--error {
@@ -570,7 +570,7 @@ onMounted(() => {
 .cth-retry-btn {
   margin-left: 8px;
   border: 1px solid var(--color-danger);
-  background: #ffffff;
+  background: var(--color-surface);
   color: var(--color-danger);
   padding: 3px 10px;
   border-radius: var(--radius-sm);
@@ -606,12 +606,12 @@ onMounted(() => {
 }
 .cth-page-btn {
   border: 1px solid var(--color-border);
-  background: #fff;
+  background: var(--color-surface);
   width: 32px;
   height: 32px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  color: #475569;
+  color: var(--color-text);
 }
 .cth-page-btn:disabled {
   opacity: 0.5;
@@ -619,6 +619,6 @@ onMounted(() => {
 }
 .cth-page-info {
   font-size: 13px;
-  color: #64748b;
+  color: var(--color-muted);
 }
 </style>

@@ -279,7 +279,7 @@ const emitFilesChanged = () => {
 }
 
 .file-upload-area {
-  border: 2px dashed var(--color-border-strong);
+  border: 1px dashed var(--color-border-strong);
   border-radius: var(--radius-md);
   padding: 40px 20px;
   text-align: center;
@@ -340,7 +340,7 @@ const emitFilesChanged = () => {
   align-items: center;
   justify-content: space-between;
   padding: 12px 16px;
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   transition: all 0.2s;

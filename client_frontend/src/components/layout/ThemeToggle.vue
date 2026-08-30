@@ -25,14 +25,14 @@ const toggleLabel = computed(() =>
 .theme-toggle {
   display: inline-grid;
   place-items: center;
-  width: 38px;
-  min-width: 38px;
-  height: 38px;
+  width: 44px;
+  min-width: 44px;
+  height: 44px;
   padding: 0;
-  color: #fff;
-  background: transparent;
-  border: 1px solid #475467;
-  border-radius: 50%;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -41,20 +41,16 @@ const toggleLabel = computed(() =>
 }
 
 .theme-toggle:hover {
-  background: var(--color-sidebar-raised);
-  border-color: var(--color-accent);
+  color: var(--color-brand);
+  background: var(--color-brand-soft);
+  border-color: var(--color-brand);
 }
 
 .theme-toggle:active {
   transform: scale(0.94);
 }
 
-.theme-toggle:focus-visible {
-  outline: 2px solid var(--color-accent);
-  outline-offset: 2px;
-}
-
 .theme-toggle i {
-  font-size: 14px;
+  font-size: 18px;
 }
 </style>

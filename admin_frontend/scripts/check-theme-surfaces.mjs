@@ -86,7 +86,7 @@ const tablePositionContracts = [
   ['IB grid headers stay within their scroll region', /#app\s+\.workspace-main\s+\.ir-list-table\s*>\s*thead\s*>\s*tr\s*>\s*th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;/s],
   ['IB sticky action header keeps horizontal pinning only', /#app\s+\.workspace-main\s+\.ir-list-table\s*>\s*thead\s*>\s*tr\s*>\s*\.ir-list-table__th--sticky\s*\{[^}]*position:\s*sticky;[^}]*top:\s*auto;[^}]*right:\s*0;[^}]*z-index:\s*4;/s]
 ]
-const darkThemeSource = fs.readFileSync(themeStylesheets[0], 'utf8').match(/:root\[data-theme='dark'\]\s*\{([\s\S]*?)\n\}/)?.[1] || ''
+const darkThemeSource = fs.readFileSync(themeStylesheets[0], 'utf8').match(/:root\[data-theme=(?:'dark'|"dark")\]\s*\{([\s\S]*?)\n\}/)?.[1] || ''
 const darkPaletteContracts = {
   '--color-brand': '#6688d8',
   '--color-brand-solid': '#315ca8',

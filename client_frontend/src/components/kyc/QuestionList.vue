@@ -47,7 +47,7 @@
           </button>
           <button
             class="btn btn-secondary btn-category-icon"
-            style="color: #f56565"
+            style="color: var(--color-danger)"
             @click="handleDeleteCategory(category.id)"
             title="Delete Category"
           >
@@ -259,7 +259,7 @@ const handleQuestionSave = () => {
 }
 
 .category-item {
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   margin-bottom: 12px;
@@ -300,7 +300,7 @@ const handleQuestionSave = () => {
 .category-indicator {
   width: 4px;
   height: 24px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: 2px;
 }
 
@@ -311,7 +311,7 @@ const handleQuestionSave = () => {
 }
 
 .category-count {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 4px 10px;
   border-radius: var(--radius-lg);
@@ -321,7 +321,7 @@ const handleQuestionSave = () => {
 }
 
 .category-collapse-btn {
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   color: var(--color-muted);
   width: 28px;
@@ -351,7 +351,7 @@ const handleQuestionSave = () => {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  background: white;
+  background: var(--color-surface);
 }
 
 .category-item.expanded .category-questions {
@@ -379,7 +379,7 @@ const handleQuestionSave = () => {
 .question-number {
   width: 30px;
   height: 30px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border-radius: 50%;
   display: flex;
@@ -419,7 +419,7 @@ const handleQuestionSave = () => {
 }
 
 .required-badge {
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
   color: white;
   padding: 4px 8px;
   border-radius: var(--radius-lg);
@@ -444,7 +444,7 @@ const handleQuestionSave = () => {
   justify-content: center;
   transition: all 0.3s ease;
   font-size: 12px;
-  background: white;
+  background: var(--color-surface);
 }
 
 .action-btn.edit {
@@ -466,7 +466,7 @@ const handleQuestionSave = () => {
 }
 
 .action-btn.duplicate:hover {
-  background: #f0fdf4;
+  background: var(--color-success-soft);
   border-color: var(--color-success);
   transform: scale(1.1);
 }
@@ -491,17 +491,17 @@ const handleQuestionSave = () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
 .btn-success {
-  background: var(--color-success);
+  background: var(--color-success-solid);
   color: white;
 }
 
 .btn-success:hover {
-  background: var(--color-success);
+  background: var(--color-success-solid);
 }
 
 .btn-secondary {

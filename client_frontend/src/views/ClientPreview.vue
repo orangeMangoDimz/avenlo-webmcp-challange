@@ -60,7 +60,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5f5;
+  background: var(--color-canvas);
 }
 .preview-loading,
 .preview-error {
@@ -70,14 +70,14 @@ onMounted(async () => {
 .preview-loading i,
 .preview-error i {
   font-size: 2rem;
-  color: #666;
+  color: var(--color-muted);
   margin-bottom: 1rem;
 }
 .preview-error i {
-  color: #c00;
+  color: var(--color-danger);
 }
 .preview-error p {
-  color: #333;
+  color: var(--color-ink);
   margin-bottom: 1rem;
 }
 .preview-link {

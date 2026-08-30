@@ -171,7 +171,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useLanguageStore } from "@/stores/language";
 import ibApplicationApi from "@/services/ibApplicationApi";
 
@@ -359,7 +359,7 @@ onMounted(() => {
 }
 
 .no-application {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 60px 40px;
   text-align: center;
@@ -384,7 +384,7 @@ onMounted(() => {
 }
 
 .status-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 40px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -397,7 +397,7 @@ onMounted(() => {
   align-items: flex-start;
   margin-bottom: 30px;
   padding-bottom: 30px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .status-header-left {
@@ -424,7 +424,7 @@ onMounted(() => {
 
 .status-icon-wrapper.in-review {
   background: var(--color-info-soft);
-  color: #3b82f6;
+  color: var(--color-brand);
 }
 
 .status-icon-wrapper.approved {
@@ -487,8 +487,8 @@ onMounted(() => {
 /* Status Message */
 .status-message {
   background: var(--color-info-soft);
-  border: 1px solid #0ea5e9;
-  border-left: 4px solid #0ea5e9;
+  border: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-bottom: 30px;
@@ -497,7 +497,7 @@ onMounted(() => {
 .status-message h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #0c4a6e;
+  color: var(--color-info);
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -505,7 +505,7 @@ onMounted(() => {
 }
 
 .status-message.success {
-  background: #f0fdf4;
+  background: var(--color-success-soft);
   border-color: var(--color-success);
 }
 
@@ -564,7 +564,7 @@ onMounted(() => {
 
 /* Rejection Card */
 .rejection-card {
-  border-left: 4px solid var(--color-danger);
+  border-left: 1px solid var(--color-danger);
   background: var(--color-danger-soft);
   border-radius: var(--radius-md);
   padding: 20px;
@@ -638,32 +638,28 @@ onMounted(() => {
   height: 12px;
   border-radius: 50%;
   background: var(--color-border-strong);
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px var(--color-border-strong);
+  border: 1px solid white;
+  box-shadow: none;
 }
 
 .timeline-item.completed .timeline-dot {
-  background: var(--color-success);
-  box-shadow: 0 0 0 2px var(--color-success);
+  background: var(--color-success-solid);
+  box-shadow: none;
 }
 
 .timeline-item.current .timeline-dot {
-  background: var(--color-brand);
-  box-shadow: 0 0 0 2px var(--color-brand);
+  background: var(--color-brand-solid);
+  box-shadow: none;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0%,
   100% {
-    box-shadow:
-      0 0 0 2px var(--color-brand),
-      0 0 0 4px rgba(var(--color-brand-rgb), 0.3);
+    box-shadow: none;
   }
   50% {
-    box-shadow:
-      0 0 0 2px var(--color-brand),
-      0 0 0 8px rgba(var(--color-brand-rgb), 0.1);
+    box-shadow: none;
   }
 }
 
@@ -710,7 +706,7 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }

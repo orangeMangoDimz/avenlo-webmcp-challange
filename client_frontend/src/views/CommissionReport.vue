@@ -1029,12 +1029,7 @@ import { ref, computed, onMounted, onUnmounted } from "vue";
 import CustomSelect from "@/components/common/CustomSelect.vue";
 import ExportProgressBanner from "@/components/common/ExportProgressBanner.vue";
 import { useLanguageStore } from "@/stores/language";
-import {
-  formatCurrency,
-  formatNumber,
-  formatDate,
-  getInitials,
-} from "@/utils/helpers";
+import { formatCurrency, formatNumber, getInitials } from "@/utils/helpers";
 import commissionReportService from "@/services/commissionReportService";
 import ibDashboardService from "@/services/ibDashboardService";
 
@@ -1392,7 +1387,7 @@ const selectPreset = (preset) => {
       startDate.value = formatDateForInput(today);
       endDate.value = formatDateForInput(today);
       break;
-    case "week":
+    case "week": {
       const weekStart = new Date(today);
       weekStart.setDate(today.getDate() - today.getDay());
       const weekEnd = new Date(weekStart);
@@ -1400,13 +1395,15 @@ const selectPreset = (preset) => {
       startDate.value = formatDateForInput(weekStart);
       endDate.value = formatDateForInput(weekEnd);
       break;
-    case "month":
+    }
+    case "month": {
       const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
       const monthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
       startDate.value = formatDateForInput(monthStart);
       endDate.value = formatDateForInput(monthEnd);
       break;
-    case "quarter":
+    }
+    case "quarter": {
       const quarterStart = new Date(
         today.getFullYear(),
         Math.floor(today.getMonth() / 3) * 3,
@@ -1420,12 +1417,14 @@ const selectPreset = (preset) => {
       startDate.value = formatDateForInput(quarterStart);
       endDate.value = formatDateForInput(quarterEnd);
       break;
-    case "year":
+    }
+    case "year": {
       const yearStart = new Date(today.getFullYear(), 0, 1);
       const yearEnd = new Date(today.getFullYear(), 11, 31);
       startDate.value = formatDateForInput(yearStart);
       endDate.value = formatDateForInput(yearEnd);
       break;
+    }
     case "custom":
       // Keep current dates
       break;
@@ -1503,6 +1502,7 @@ const formatExportCell = (value, field) => {
 };
 
 // 将 JSON 数据转换为 CSV
+// eslint-disable-next-line no-unused-vars
 const convertToCSV = (data, headers, fields = null) => {
   if (!data || data.length === 0) {
     return "";
@@ -1709,7 +1709,9 @@ const downloadExportFile = async (jobId) => {
     let parsed = null;
     try {
       parsed = JSON.parse(text);
-    } catch (_) {}
+    } catch (_) {
+      // Ignore malformed error payloads and use the generic message below.
+    }
     throw new Error(
       parsed?.message ||
         t("commExportFailed", "Failed to export report. Please try again."),
@@ -2072,7 +2074,7 @@ onMounted(async () => {
 
 .commission-ib-switcher__select :deep(.custom-select__trigger) {
   min-height: 40px;
-  border-color: #d8e0ea;
+  border-color: var(--color-border);
   border-radius: var(--radius-md);
 }
 
@@ -2085,7 +2087,7 @@ onMounted(async () => {
 }
 
 .stat-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -2126,30 +2128,38 @@ onMounted(async () => {
 .stat-card.total .stat-icon {
   background: linear-gradient(
     135deg,
-    var(--color-success) 0%,
-    var(--color-success) 100%
+    var(--color-success-solid) 0%,
+    var(--color-success-solid) 100%
   );
 }
 
 .stat-card.month .stat-icon,
 .stat-card.paid .stat-icon {
-  background: linear-gradient(135deg, #4299e1 0%, #3182ce 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-info-solid) 0%,
+    var(--color-info-solid) 100%
+  );
 }
 
 .stat-card.pending .stat-icon {
   background: linear-gradient(
     135deg,
-    var(--color-warning) 0%,
-    var(--color-warning) 100%
+    var(--color-warning-solid) 0%,
+    var(--color-warning-solid) 100%
   );
 }
 
 .stat-card.referrals .stat-icon {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
 }
 
 .stat-card.volume .stat-icon {
-  background: linear-gradient(135deg, #0bc5ea 0%, #0987a0 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-info-solid) 0%,
+    var(--color-info-solid) 100%
+  );
 }
 
 .stat-value {
@@ -2193,7 +2203,7 @@ onMounted(async () => {
 
 /* Date Filter Section */
 .date-filter-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 20px;
   margin-bottom: 30px;
@@ -2242,7 +2252,7 @@ onMounted(async () => {
 }
 
 .preset-btn.active {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border-color: transparent;
 }
@@ -2286,7 +2296,7 @@ onMounted(async () => {
 }
 
 .btn-apply-filter {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
@@ -2308,7 +2318,7 @@ onMounted(async () => {
 
 .export-status-text {
   font-size: 12px;
-  color: #64748b;
+  color: var(--color-muted);
   align-self: center;
   white-space: nowrap;
 }
@@ -2326,7 +2336,7 @@ onMounted(async () => {
 
 .export-modal {
   width: min(100%, 480px);
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 18px;
   box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2);
   overflow: hidden;
@@ -2347,7 +2357,7 @@ onMounted(async () => {
 .export-modal-header h3 {
   margin: 0;
   font-size: 18px;
-  color: #1e293b;
+  color: var(--color-ink);
 }
 
 .export-modal-close {
@@ -2356,7 +2366,7 @@ onMounted(async () => {
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .export-modal-body {
@@ -2365,7 +2375,7 @@ onMounted(async () => {
 
 .export-modal-text {
   margin: 0 0 16px;
-  color: #475569;
+  color: var(--color-text);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -2379,7 +2389,7 @@ onMounted(async () => {
 
 .export-modal-progress-bar {
   height: 100%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   transition: width 0.3s ease;
 }
 
@@ -2387,7 +2397,7 @@ onMounted(async () => {
   margin: 10px 0 0;
   font-size: 13px;
   font-weight: 600;
-  color: #334155;
+  color: var(--color-text);
 }
 
 .export-modal-footer {
@@ -2408,11 +2418,11 @@ onMounted(async () => {
 .export-modal-btn.secondary {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
-  color: #475569;
+  color: var(--color-text);
 }
 
 .export-modal-btn.primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: #fff;
 }
 
@@ -2423,7 +2433,7 @@ onMounted(async () => {
 
 /* Commission Table */
 .commission-table-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -2470,7 +2480,7 @@ onMounted(async () => {
   font-size: 13px;
   font-weight: 600;
   color: var(--color-text);
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
 }
 
@@ -2514,8 +2524,8 @@ onMounted(async () => {
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: white;
-  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 4px;
   transition:
     color 0.3s ease,
@@ -2529,7 +2539,7 @@ onMounted(async () => {
   border-color: var(--color-brand);
 }
 .custom-checkbox input[type="checkbox"]:checked ~ .checkbox-checkmark {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-color: var(--color-brand);
 }
 .checkbox-checkmark:after {
@@ -2595,7 +2605,7 @@ onMounted(async () => {
 }
 
 .commission-table tbody tr.row-child {
-  background: #fafbfc;
+  background: var(--color-surface-soft);
 }
 
 .detail-section-title {
@@ -2618,7 +2628,7 @@ onMounted(async () => {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   display: flex;
   align-items: center;
@@ -2651,7 +2661,7 @@ onMounted(async () => {
   padding: 2px 8px;
   border-radius: 999px;
   background: var(--color-success-soft);
-  color: #047857;
+  color: var(--color-success);
   font-size: 11px;
   font-weight: 700;
   line-height: 1.4;
@@ -2679,7 +2689,7 @@ onMounted(async () => {
 
 .type-badge.sub-ib {
   background: var(--color-brand-soft);
-  color: #7c3aed;
+  color: var(--color-purple);
 }
 
 .commission-amount {
@@ -2745,7 +2755,7 @@ onMounted(async () => {
 }
 
 .btn-detail {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border: none;
 }
@@ -2754,7 +2764,7 @@ onMounted(async () => {
   background: linear-gradient(
     135deg,
     var(--color-brand-strong) 0%,
-    var(--color-brand) 100%
+    var(--color-brand-solid) 100%
   );
 }
 
@@ -2794,10 +2804,10 @@ onMounted(async () => {
 }
 
 .detail-item {
-  background: white;
+  background: var(--color-surface);
   padding: 20px;
   border-radius: var(--radius-md);
-  border-left: 3px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
 }
 
 .detail-label {
@@ -2832,7 +2842,7 @@ onMounted(async () => {
   width: 100%;
   min-width: max-content;
   border-collapse: collapse;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   overflow: hidden;
 }
@@ -2932,7 +2942,7 @@ onMounted(async () => {
   min-height: 34px;
   padding: 6px 10px;
   border-radius: var(--radius-md);
-  border-color: #d8e0ea;
+  border-color: var(--color-border);
   font-size: 13px;
 }
 
@@ -2998,7 +3008,7 @@ onMounted(async () => {
 }
 
 .commission-pagination__btn:hover:not(:disabled) {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 

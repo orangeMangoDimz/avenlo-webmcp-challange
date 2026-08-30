@@ -1086,12 +1086,12 @@ onUnmounted(() => {
 
 .user-menu-trigger {
   width: 100%;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 12px;
   padding: 8px 12px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition:
@@ -1108,7 +1108,7 @@ onUnmounted(() => {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1155,7 +1155,7 @@ onUnmounted(() => {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   min-width: 220px;
@@ -1272,7 +1272,7 @@ onUnmounted(() => {
 }
 
 .dropdown-modal-content {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   width: 90%;
   max-width: 600px;
@@ -1297,7 +1297,7 @@ onUnmounted(() => {
 .dropdown-modal-header {
   background: var(--color-surface-soft);
   padding: 25px 30px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1378,7 +1378,7 @@ onUnmounted(() => {
   padding: 12px 14px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-strong);
-  background: #fff;
+  background: var(--color-surface);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -1396,8 +1396,7 @@ onUnmounted(() => {
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.2);
-  outline: none;
+  box-shadow: none;
 }
 
 .custom-select {
@@ -1410,7 +1409,7 @@ onUnmounted(() => {
   padding: 12px 14px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-strong);
-  background: #fff;
+  background: var(--color-surface);
   color: var(--color-ink);
   font-size: 14px;
   font-family: inherit;
@@ -1425,24 +1424,23 @@ onUnmounted(() => {
 }
 
 .custom-select-trigger.placeholder {
-  color: #94a3b8;
+  color: var(--color-faint);
 }
 
 .custom-select-trigger.open,
 .custom-select-trigger:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.2);
-  outline: none;
+  box-shadow: none;
 }
 
 .custom-select-trigger.field-error {
   border-color: var(--color-danger);
-  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.12);
+  box-shadow: none;
 }
 
 .custom-select-trigger i {
   font-size: 13px;
-  color: #64748b;
+  color: var(--color-muted);
   flex-shrink: 0;
 }
 
@@ -1452,8 +1450,8 @@ onUnmounted(() => {
   right: 0;
   bottom: calc(100% + 8px);
   z-index: 30;
-  background: #fff;
-  border: 1px solid #d8deea;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   box-shadow: 0 18px 35px rgba(15, 23, 42, 0.12);
   overflow: hidden;
@@ -1469,7 +1467,7 @@ onUnmounted(() => {
 }
 
 .custom-select-search i {
-  color: #94a3b8;
+  color: var(--color-faint);
 }
 
 .custom-select-search input {
@@ -1491,7 +1489,7 @@ onUnmounted(() => {
 .custom-select-option {
   width: 100%;
   border: 0;
-  background: #fff;
+  background: var(--color-surface);
   padding: 11px 14px;
   text-align: left;
   font-size: 14px;
@@ -1525,7 +1523,7 @@ onUnmounted(() => {
 .form-group textarea.field-error,
 .phone-input.field-error {
   border-color: var(--color-danger);
-  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.12);
+  box-shadow: none;
 }
 
 .form-group input.field-error:focus,
@@ -1533,7 +1531,7 @@ onUnmounted(() => {
 .form-group textarea.field-error:focus,
 .phone-input.field-error:focus {
   border-color: var(--color-danger);
-  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.16);
+  box-shadow: none;
 }
 
 .error-text {
@@ -1585,7 +1583,7 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 10px 20px rgba(var(--color-brand-rgb), 0.25);
 }
@@ -1640,7 +1638,7 @@ onUnmounted(() => {
   padding: 12px 14px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-strong);
-  background: #fff;
+  background: var(--color-surface);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -1651,8 +1649,7 @@ onUnmounted(() => {
 
 .phone-input:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.2);
-  outline: none;
+  box-shadow: none;
 }
 
 /* Password input with toggle button */
@@ -1667,7 +1664,7 @@ onUnmounted(() => {
   padding: 12px 45px 12px 14px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-strong);
-  background: #fff;
+  background: var(--color-surface);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -1678,8 +1675,7 @@ onUnmounted(() => {
 
 .password-input:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.2);
-  outline: none;
+  box-shadow: none;
 }
 
 .password-toggle-btn {
@@ -1710,7 +1706,6 @@ onUnmounted(() => {
 }
 
 .password-toggle-btn:focus {
-  outline: none;
   color: var(--color-brand);
   background: var(--color-brand-soft);
 }

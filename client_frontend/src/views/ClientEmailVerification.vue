@@ -206,7 +206,7 @@ onMounted(async () => {
 <style scoped>
 .verification-container {
   min-height: 100vh;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -216,7 +216,7 @@ onMounted(async () => {
 }
 
 .verification-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: 20px;
   padding: 50px;
   max-width: 600px;
@@ -245,7 +245,7 @@ onMounted(async () => {
 .logo h1 {
   font-size: 48px;
   font-weight: 900;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -283,7 +283,7 @@ onMounted(async () => {
   width: 60px;
   height: 60px;
   margin: 0 auto 20px;
-  border: 5px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-top-color: var(--color-brand);
   border-radius: 50%;
   animation: spin 1s linear infinite;
@@ -348,7 +348,7 @@ onMounted(async () => {
 
 .error-message {
   background: var(--color-danger-soft);
-  border-left: 4px solid var(--color-danger);
+  border-left: 1px solid var(--color-danger);
   padding: 15px 20px;
   border-radius: var(--radius-md);
   color: var(--color-danger);
@@ -379,7 +379,7 @@ onMounted(async () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }
@@ -390,9 +390,9 @@ onMounted(async () => {
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-text);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
@@ -487,7 +487,7 @@ onMounted(async () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: var(--radius-md);
   box-shadow: none;
 }

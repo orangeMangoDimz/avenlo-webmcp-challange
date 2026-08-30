@@ -78,7 +78,7 @@ const barWidth = computed(() =>
   gap: 16px;
   margin-bottom: 20px;
   padding: 16px 20px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -96,7 +96,7 @@ const barWidth = computed(() =>
   height: 40px;
   flex-shrink: 0;
   border-radius: var(--radius-md);
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: #fff;
   display: inline-flex;
   align-items: center;
@@ -104,7 +104,7 @@ const barWidth = computed(() =>
 }
 
 .export-progress-banner.is-cancelling .export-progress-banner__icon {
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
 }
 
 .export-progress-banner__copy {
@@ -145,12 +145,12 @@ const barWidth = computed(() =>
 
 .export-progress-banner__bar {
   height: 100%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   transition: width 0.3s ease;
 }
 
 .export-progress-banner.is-cancelling .export-progress-banner__bar {
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
 }
 
 .export-progress-banner__cancel {
@@ -158,7 +158,7 @@ const barWidth = computed(() =>
   padding: 12px 24px;
   border: none;
   border-radius: var(--radius-md);
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
   color: #fff;
   font-size: 14px;
   font-weight: 600;
@@ -167,7 +167,7 @@ const barWidth = computed(() =>
 }
 
 .export-progress-banner__cancel:hover:not(:disabled) {
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
 }
 
 .export-progress-banner__cancel:disabled {

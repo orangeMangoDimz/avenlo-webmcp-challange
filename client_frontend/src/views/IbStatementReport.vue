@@ -1697,7 +1697,7 @@ onUnmounted(() => {
 
 .commission-ib-switcher__select :deep(.custom-select__trigger) {
   min-height: 40px;
-  border-color: #d8e0ea;
+  border-color: var(--color-border);
   border-radius: var(--radius-md);
 }
 
@@ -1707,7 +1707,7 @@ onUnmounted(() => {
   align-items: center;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .page-title h1 {
@@ -1735,11 +1735,11 @@ onUnmounted(() => {
 }
 
 .stat-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 25px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border-left: 4px solid transparent;
+  border-left: 1px solid transparent;
 }
 
 .stat-card.total {
@@ -1809,7 +1809,7 @@ onUnmounted(() => {
 }
 
 .date-filter-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 25px 30px;
   margin-bottom: 30px;
@@ -1839,9 +1839,9 @@ onUnmounted(() => {
 
 .preset-btn {
   padding: 8px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: white;
+  background: var(--color-surface);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -1862,7 +1862,7 @@ onUnmounted(() => {
 }
 
 .preset-btn.active {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border-color: var(--color-brand);
 }
@@ -1875,7 +1875,7 @@ onUnmounted(() => {
 }
 
 .search-filter-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 25px 30px;
   margin-bottom: 30px;
@@ -1933,17 +1933,17 @@ onUnmounted(() => {
 .ib-select-search__input {
   width: 100%;
   padding: 10px 12px 10px 40px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   color: var(--color-ink);
-  outline: none;
-  background: white;
+
+  background: var(--color-surface);
 }
 
 .ib-select-search__input:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .ib-select-search__input::placeholder {
@@ -1956,8 +1956,8 @@ onUnmounted(() => {
   right: 0;
   top: 100%;
   margin-top: 4px;
-  background: white;
-  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   z-index: 1100;
@@ -1983,7 +1983,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 12px;
   cursor: pointer;
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .ib-select-option:last-child {
@@ -2002,8 +2002,8 @@ onUnmounted(() => {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--color-brand);
-  color: #ffffff;
+  background: var(--color-brand-solid);
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2072,7 +2072,7 @@ onUnmounted(() => {
 }
 
 .btn-apply-filter {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border: none;
 }
@@ -2089,9 +2089,9 @@ onUnmounted(() => {
 }
 
 .btn-export {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-brand);
-  border: 2px solid var(--color-brand);
+  border: 1px solid var(--color-brand);
   position: relative;
 }
 
@@ -2104,7 +2104,7 @@ onUnmounted(() => {
   position: absolute;
   top: calc(100% + 5px);
   left: 0;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   min-width: 150px;
@@ -2138,7 +2138,7 @@ onUnmounted(() => {
 }
 
 .export-option.csv:hover {
-  background: #f0fdf4;
+  background: var(--color-success-soft);
   color: var(--color-success);
 }
 
@@ -2148,7 +2148,7 @@ onUnmounted(() => {
 }
 
 .transaction-table-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   margin-bottom: 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -2175,13 +2175,13 @@ onUnmounted(() => {
   position: sticky;
   bottom: 0;
   z-index: 2;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .table-header {
   padding: 25px 30px;
   background: var(--color-surface-soft);
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2223,10 +2223,10 @@ onUnmounted(() => {
 
 .filter-field select {
   padding: 10px 15px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
-  outline: none;
+
   transition:
     color 0.3s ease,
     background-color 0.3s ease,
@@ -2234,14 +2234,14 @@ onUnmounted(() => {
     box-shadow 0.3s ease,
     opacity 0.3s ease,
     transform 0.3s ease;
-  background: white;
+  background: var(--color-surface);
   cursor: pointer;
   color: var(--color-ink);
 }
 
 .filter-field select:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .week-filter-field {
@@ -2271,7 +2271,7 @@ onUnmounted(() => {
   color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .transaction-table tbody tr {
@@ -2300,7 +2300,7 @@ onUnmounted(() => {
   font-size: 14px;
   color: var(--color-ink);
   background: var(--color-surface-soft);
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
 .pagination {
@@ -2308,7 +2308,7 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 20px 30px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
 .pagination-info {
@@ -2323,9 +2323,9 @@ onUnmounted(() => {
 
 .pagination-btn {
   padding: 8px 12px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: white;
+  background: var(--color-surface);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -2354,7 +2354,7 @@ onUnmounted(() => {
 }
 
 .pagination-btn.active {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border-color: var(--color-brand);
 }
@@ -2375,7 +2375,7 @@ onUnmounted(() => {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -2402,18 +2402,18 @@ onUnmounted(() => {
   border-radius: 4px;
   font-size: 12px;
   font-weight: 600;
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--color-surface-soft);
+  color: var(--color-text);
 }
 
 .type-badge.ib {
   background: var(--color-info-soft);
-  color: #1d4ed8;
+  color: var(--color-brand);
 }
 
 .type-badge.sub-ib {
   background: var(--color-brand-soft);
-  color: #7c3aed;
+  color: var(--color-purple);
 }
 
 .type-badge.direct-client {
@@ -2478,7 +2478,7 @@ onUnmounted(() => {
 }
 
 .btn-detail {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border: none;
 }
@@ -2487,7 +2487,7 @@ onUnmounted(() => {
   background: linear-gradient(
     135deg,
     var(--color-brand-strong) 0%,
-    var(--color-brand) 100%
+    var(--color-brand-solid) 100%
   );
 }
 
@@ -2579,10 +2579,10 @@ onUnmounted(() => {
 
 .search-box input {
   padding: 10px 40px 10px 15px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
-  outline: none;
+
   transition:
     color 0.3s ease,
     background-color 0.3s ease,
@@ -2595,7 +2595,7 @@ onUnmounted(() => {
 
 .search-box input:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .search-icon {
@@ -2610,7 +2610,7 @@ onUnmounted(() => {
 div.empty-state {
   text-align: center;
   padding: 60px 20px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   color: var(--color-muted);
@@ -2648,7 +2648,7 @@ div.empty-state i,
 
 .export-modal {
   width: min(100%, 480px);
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 18px;
   box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2);
   overflow: hidden;
@@ -2669,7 +2669,7 @@ div.empty-state i,
 .export-modal-header h3 {
   margin: 0;
   font-size: 18px;
-  color: #1e293b;
+  color: var(--color-ink);
 }
 
 .export-modal-close {
@@ -2678,7 +2678,7 @@ div.empty-state i,
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .export-modal-body {
@@ -2687,7 +2687,7 @@ div.empty-state i,
 
 .export-modal-text {
   margin: 0 0 16px;
-  color: #475569;
+  color: var(--color-text);
   font-size: 14px;
 }
 
@@ -2700,14 +2700,14 @@ div.empty-state i,
 
 .export-modal-progress-bar {
   height: 100%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
 }
 
 .export-modal-percent {
   margin: 10px 0 0;
   font-size: 13px;
   font-weight: 600;
-  color: #334155;
+  color: var(--color-text);
 }
 
 .export-modal-footer {
@@ -2728,11 +2728,11 @@ div.empty-state i,
 .export-modal-btn.secondary {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
-  color: #475569;
+  color: var(--color-text);
 }
 
 .export-modal-btn.primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: #fff;
 }
 

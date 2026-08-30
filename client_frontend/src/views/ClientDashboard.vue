@@ -21,20 +21,12 @@
       "
       class="kyc-notice-card"
       :style="{
-        background:
-          noticeConfig.display.backgroundColor || 'var(--color-brand-soft)',
-        borderColor: noticeConfig.display.borderColor || 'var(--color-brand)',
+        '--notice-accent':
+          noticeConfig.display.borderColor || 'var(--color-brand)',
       }"
     >
       <div class="kyc-notice-header">
-        <div
-          v-if="noticeConfig.display.showIcon"
-          class="kyc-notice-icon"
-          :style="{
-            background:
-              noticeConfig.display.borderColor || 'var(--color-brand)',
-          }"
-        >
+        <div v-if="noticeConfig.display.showIcon" class="kyc-notice-icon">
           <i :class="noticeConfig.display.iconClass || 'fas fa-id-card'"></i>
         </div>
         <div class="kyc-notice-title">
@@ -172,8 +164,6 @@ import VerifiedDashboardSummary from "@/components/client/VerifiedDashboardSumma
 const router = useRouter();
 const clientAuthStore = useClientAuthStore();
 const languageStore = useLanguageStore();
-
-const user = computed(() => clientAuthStore.user);
 
 // KYC Status State
 const loadingKycStatus = ref(false);
@@ -316,10 +306,6 @@ const handleSecondaryAction = () => {
   }
 };
 
-// Legacy functions (kept for compatibility)
-const startVerification = handlePrimaryAction;
-const learnMore = handleSecondaryAction;
-
 // Load trading accounts (used in parallel with KYC for initial view decision)
 const loadAccounts = async () => {
   try {
@@ -371,7 +357,7 @@ onMounted(async () => {
 .loading-notice {
   text-align: center;
   padding: 60px 20px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   margin-bottom: 30px;
@@ -380,7 +366,7 @@ onMounted(async () => {
 /* Info Message */
 .info-message {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 40px 30px;
   margin-bottom: 30px;
@@ -402,7 +388,10 @@ onMounted(async () => {
 
 /* KYC Notice Card */
 .kyc-notice-card {
-  border: 2px solid;
+  --notice-accent: var(--color-brand);
+  color: var(--color-text);
+  background: var(--color-brand-soft);
+  border: 1px solid var(--notice-accent);
   border-radius: var(--radius-lg);
   padding: 30px;
   margin-bottom: 30px;
@@ -431,7 +420,8 @@ onMounted(async () => {
   align-items: center;
   justify-content: center;
   font-size: 28px;
-  color: white;
+  color: #fff;
+  background: var(--color-brand-solid);
   flex-shrink: 0;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -462,7 +452,7 @@ onMounted(async () => {
 }
 
 .kyc-requirements {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-top: 20px;
@@ -548,7 +538,7 @@ onMounted(async () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }
@@ -559,9 +549,9 @@ onMounted(async () => {
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-text);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
@@ -571,7 +561,7 @@ onMounted(async () => {
 
 .info-alert {
   background: var(--color-brand-soft);
-  border-left: 4px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
   padding: 15px 20px;
   border-radius: var(--radius-md);
   margin-top: 20px;

@@ -182,7 +182,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, watch } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useLanguageStore } from "@/stores/language";
 import tradingAccountService from "@/services/tradingAccountService";
 import { formatNumber } from "@/utils/helpers";
@@ -469,7 +469,7 @@ onUnmounted(() => {
 }
 
 .positions-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -478,7 +478,7 @@ onUnmounted(() => {
 /* Tab Navigation */
 .positions-tabs {
   display: flex;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   gap: 0;
 }
 
@@ -513,7 +513,7 @@ onUnmounted(() => {
   right: 0;
   bottom: -2px;
   height: 3px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: 3px 3px 0 0;
 }
 
@@ -522,7 +522,7 @@ onUnmounted(() => {
 }
 
 .tab-counter {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
@@ -552,7 +552,7 @@ onUnmounted(() => {
 .positions-table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  background: var(--color-surface);
 }
 
 .positions-table thead {
@@ -569,7 +569,7 @@ onUnmounted(() => {
   font-size: 13px;
   font-weight: 700;
   color: var(--color-ink);
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
 }
 
@@ -621,12 +621,12 @@ onUnmounted(() => {
 
 .trade-label.market {
   background-color: rgba(107, 114, 128, 0.15);
-  color: #374151;
+  color: var(--color-text);
 }
 
 .trade-label.stop-limit {
   background-color: rgba(168, 85, 247, 0.15);
-  color: #6b21a8;
+  color: var(--color-purple);
 }
 
 .pnl-cell {

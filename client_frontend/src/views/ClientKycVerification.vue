@@ -137,7 +137,7 @@ const handleRestart = async () => {
   padding: 12px 24px;
   border: none;
   border-radius: var(--radius-md);
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: #fff;
   font-size: 14px;
   font-weight: 600;

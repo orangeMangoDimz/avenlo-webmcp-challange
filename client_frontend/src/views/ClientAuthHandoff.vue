@@ -101,7 +101,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f5f5f5;
+  background: var(--color-canvas);
 }
 .handoff-loading,
 .handoff-error {
@@ -111,21 +111,21 @@ onMounted(async () => {
 .handoff-loading i,
 .handoff-error i {
   font-size: 2rem;
-  color: #666;
+  color: var(--color-muted);
   margin-bottom: 1rem;
 }
 .handoff-error i {
-  color: #c00;
+  color: var(--color-danger);
 }
 .handoff-error p {
-  color: #333;
+  color: var(--color-ink);
   margin-bottom: 1rem;
 }
 .handoff-link {
   display: inline-block;
   padding: 0.5rem 1rem;
   border-radius: 4px;
-  background: #1f6feb;
+  background: var(--color-brand-solid);
   color: #fff;
   text-decoration: none;
 }

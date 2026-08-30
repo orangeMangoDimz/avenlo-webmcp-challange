@@ -964,7 +964,6 @@ const withdrawalTemplatePayments = ref([]);
 const withdrawalTemplateMeta = ref(null);
 const loadingWithdrawalTemplatePayments = ref(false);
 const withdrawalTemplatePaymentsError = ref("");
-const selectedGateway = ref(null);
 const selectedWithdrawalAddress = ref(null);
 const withdrawalConfirmation = ref(null);
 const withdrawView = ref("pre-kyc");
@@ -3279,6 +3278,7 @@ const loadDepositCryptos = async () => {
 };
 
 // 加载Withdraw币种列表
+// eslint-disable-next-line no-unused-vars
 const loadWithdrawCryptos = async () => {
   if (!withdrawForm.value.gatewayKey) {
     console.log("loadWithdrawCryptos: No gatewayKey selected");
@@ -3326,6 +3326,7 @@ const loadSavedWallets = async () => {
 };
 
 // 过滤保存的钱包（根据选择的币种）
+// eslint-disable-next-line no-unused-vars
 const filteredSavedWallets = computed(() => {
   if (!selectedWithdrawCryptoInfo.value) {
     return savedWallets.value;
@@ -3472,6 +3473,7 @@ const onDepositPlatformAccountChange = (targetAccountType) => {
 };
 
 // Deposit币种选择
+// eslint-disable-next-line no-unused-vars
 const selectDepositCrypto = (cryptoId) => {
   // 在打开弹窗前先验证金额
   if (!depositForm.value.amount) {
@@ -3682,6 +3684,7 @@ const handleViewTransactionHistory = () => {
 };
 
 // Withdraw币种变更
+// eslint-disable-next-line no-unused-vars
 const onWithdrawCryptoChange = async () => {
   withdrawForm.value.savedWalletId = null;
   withdrawForm.value.destinationAddress = "";
@@ -4061,6 +4064,7 @@ const handleInternalTransfer = async () => {
 };
 
 // Handle deposit
+// eslint-disable-next-line no-unused-vars
 const handleDeposit = async () => {
   if (!depositForm.value.gatewayKey) {
     alert(t("transAlertSelectPaymentMethod", "Please select a payment method"));
@@ -4371,6 +4375,7 @@ const confirmDeposit = async () => {
 };
 
 // Deposit币种变更
+// eslint-disable-next-line no-unused-vars
 const onDepositCryptoChange = () => {
   // 币种变更时，更新显示
 };
@@ -4685,6 +4690,7 @@ const formatDateTime = (datetime) => {
   });
 };
 
+// eslint-disable-next-line no-unused-vars
 const getStatusLabel = (status) => {
   const labels = {
     pending: t("transStatusPending", "Pending"),
@@ -4744,7 +4750,6 @@ const loadSecuritySettings = async () => {
     // 前端 API 拦截器已经提取了 response.data，所以这里 response 就是 { success: true, data: {...} }
     if (response.success) {
       // 确保正确映射设置字段，并显式转换布尔值
-      const data = response.data || {};
       securitySettings.value = {
         withdrawalOtpRequired: response.data.withdrawalOtpRequired || false,
         requireVerifiedWalletOnly:
@@ -5345,7 +5350,7 @@ onUnmounted(() => {
 
 /* Balance Card */
 .balance-card {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: var(--radius-xl);
   padding: 30px;
   margin-bottom: 30px;
@@ -5401,7 +5406,7 @@ onUnmounted(() => {
 
 .balance-btn {
   padding: 12px 24px;
-  border: 2px solid white;
+  border: 1px solid white;
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.2);
   color: white;
@@ -5430,7 +5435,7 @@ onUnmounted(() => {
   display: flex;
   gap: 10px;
   margin-bottom: 30px;
-  background: white;
+  background: var(--color-surface);
   padding: 10px;
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -5439,9 +5444,9 @@ onUnmounted(() => {
 .tab-btn {
   flex: 1;
   padding: 14px 20px;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-md);
-  background: white;
+  background: var(--color-surface);
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
@@ -5469,7 +5474,7 @@ onUnmounted(() => {
 }
 
 .tab-btn.active {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 12px rgba(var(--color-brand-rgb), 0.3);
 }
@@ -5487,7 +5492,7 @@ onUnmounted(() => {
 }
 
 .transaction-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 25px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -5522,7 +5527,7 @@ onUnmounted(() => {
   justify-content: space-between;
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid var(--color-surface-soft);
+  border-bottom: 1px solid var(--color-surface-soft);
 }
 
 .card-title {
@@ -5574,7 +5579,7 @@ onUnmounted(() => {
   gap: 4px;
   min-width: 0;
   font-size: 13px;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .transfer-inline-summary-side strong {
@@ -5655,7 +5660,7 @@ onUnmounted(() => {
 .form-select {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition:
@@ -5669,9 +5674,8 @@ onUnmounted(() => {
 
 .form-input:focus,
 .form-select:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .form-help {
@@ -5689,7 +5693,7 @@ onUnmounted(() => {
 
 .input-error {
   border-color: var(--color-danger) !important;
-  box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.12);
+  box-shadow: none;
 }
 
 .redirect-modal {
@@ -5729,7 +5733,7 @@ onUnmounted(() => {
   padding: 12px 14px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-strong);
-  background: #fff;
+  background: var(--color-surface);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -5741,8 +5745,7 @@ onUnmounted(() => {
 
 .phone-country-code:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.2);
-  outline: none;
+  box-shadow: none;
 }
 
 .phone-input {
@@ -5750,7 +5753,7 @@ onUnmounted(() => {
   padding: 12px 14px;
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border-strong);
-  background: #fff;
+  background: var(--color-surface);
   transition:
     border-color 0.2s ease,
     box-shadow 0.2s ease;
@@ -5761,8 +5764,7 @@ onUnmounted(() => {
 
 .phone-input:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.2);
-  outline: none;
+  box-shadow: none;
 }
 
 .input-with-icon {
@@ -5791,7 +5793,7 @@ onUnmounted(() => {
 
 .payment-method {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 16px 12px;
   text-align: center;
@@ -5842,7 +5844,7 @@ onUnmounted(() => {
 
 .crypto-option {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 16px 12px;
   text-align: center;
@@ -5893,7 +5895,7 @@ onUnmounted(() => {
 
 .wallet-item {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 15px;
   display: flex;
@@ -5923,7 +5925,7 @@ onUnmounted(() => {
   width: 40px;
   height: 40px;
   border-radius: var(--radius-md);
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5981,16 +5983,16 @@ onUnmounted(() => {
 }
 
 .btn-add-wallet-inline:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
 .btn-use-new-address {
   width: 100%;
   padding: 12px;
-  border: 2px dashed var(--color-border);
+  border: 1px dashed var(--color-border);
   border-radius: var(--radius-md);
-  background: white;
+  background: var(--color-surface);
   color: var(--color-brand);
   font-size: 13px;
   font-weight: 600;
@@ -6020,7 +6022,7 @@ onUnmounted(() => {
   padding: 15px;
   background: var(--color-surface-soft);
   border-radius: var(--radius-md);
-  border-left: 3px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
   display: flex;
   gap: 12px;
   align-items: start;
@@ -6048,7 +6050,7 @@ onUnmounted(() => {
 /* Info Box */
 .info-box {
   background: var(--color-brand-soft);
-  border-left: 4px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
   padding: 12px 16px;
   border-radius: var(--radius-md);
   margin-bottom: 20px;
@@ -6087,7 +6089,7 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }
@@ -6103,9 +6105,9 @@ onUnmounted(() => {
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-brand);
-  border: 2px solid var(--color-brand);
+  border: 1px solid var(--color-brand);
 }
 
 .btn-secondary:hover {
@@ -6150,7 +6152,7 @@ onUnmounted(() => {
 }
 
 .modal-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   width: 90%;
@@ -6161,8 +6163,8 @@ onUnmounted(() => {
 
 .modal-header {
   padding: 25px 30px;
-  border-bottom: 2px solid var(--color-border);
-  background: var(--color-brand);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-brand-solid);
   color: white;
   display: flex;
   align-items: center;
@@ -6212,7 +6214,7 @@ onUnmounted(() => {
 
 .modal-footer {
   padding: 20px 30px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   gap: 12px;
   justify-content: flex-end;
@@ -6251,7 +6253,7 @@ onUnmounted(() => {
 }
 
 .support-questions-title i {
-  color: #6a7cff;
+  color: var(--color-brand);
 }
 
 .qr-code-display {
@@ -6265,8 +6267,8 @@ onUnmounted(() => {
 .qr-placeholder {
   width: 200px;
   height: 200px;
-  background: white;
-  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -6278,7 +6280,7 @@ onUnmounted(() => {
 
 .crypto-address-display {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 12px 16px;
   font-family: "Courier New", monospace;
@@ -6293,7 +6295,7 @@ onUnmounted(() => {
   right: 10px;
   top: 50%;
   transform: translateY(-50%);
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border: none;
   padding: 6px 12px;
@@ -6321,7 +6323,7 @@ onUnmounted(() => {
 
 .security-notice {
   background: var(--color-brand-soft);
-  border-left: 4px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
   padding: 16px 20px;
   border-radius: var(--radius-md);
   display: flex;
@@ -6352,8 +6354,8 @@ onUnmounted(() => {
 
 .otp-request-box,
 .otp-verify-box {
-  background: white;
-  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 25px;
   text-align: center;
@@ -6367,7 +6369,7 @@ onUnmounted(() => {
 
 .otp-sent-notice {
   background: var(--color-success-soft);
-  border-left: 4px solid var(--color-success);
+  border-left: 1px solid var(--color-success);
   padding: 12px 16px;
   border-radius: var(--radius-md);
   margin-bottom: 20px;
@@ -6422,7 +6424,7 @@ onUnmounted(() => {
 }
 
 .btn-verify-otp {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border: none;
 }
@@ -6466,7 +6468,7 @@ onUnmounted(() => {
 
 .payment-account-form {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-top: 10px;
@@ -6497,7 +6499,7 @@ onUnmounted(() => {
 /* Account Verification Styles */
 .verification-required-box {
   background: var(--color-danger-soft);
-  border: 2px solid var(--color-danger-border);
+  border: 1px solid var(--color-danger-border);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-bottom: 20px;
@@ -6539,7 +6541,7 @@ onUnmounted(() => {
 
 .verified-account-item {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 16px;
   display: flex;
@@ -6570,7 +6572,7 @@ onUnmounted(() => {
   width: 50px;
   height: 50px;
   border-radius: var(--radius-md);
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -6626,7 +6628,7 @@ onUnmounted(() => {
   color: var(--color-ink);
   margin-bottom: 20px;
   padding-bottom: 12px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -6639,7 +6641,7 @@ onUnmounted(() => {
 .form-file-input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px dashed var(--color-border);
+  border: 1px dashed var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   cursor: pointer;
@@ -6655,14 +6657,13 @@ onUnmounted(() => {
 
 .form-file-input:hover {
   border-color: var(--color-border-strong);
-  background: white;
+  background: var(--color-surface);
 }
 
 .form-file-input:focus {
-  outline: none;
   border-color: var(--color-brand);
   border-style: solid;
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .file-preview {
@@ -6685,7 +6686,7 @@ onUnmounted(() => {
 .form-textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition:
@@ -6700,14 +6701,13 @@ onUnmounted(() => {
 }
 
 .form-textarea:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .info-banner {
   background: var(--color-brand-soft);
-  border-left: 4px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
   padding: 16px 20px;
   border-radius: var(--radius-md);
   margin-bottom: 25px;

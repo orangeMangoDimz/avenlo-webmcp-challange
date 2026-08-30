@@ -2,7 +2,7 @@
 #app .workspace-shell {
   min-height: 100vh;
   color: var(--color-text);
-  background: #f4f7fb;
+  background: var(--color-canvas);
   font-family: var(--font-ui);
 }
 #app .workspace-topbar {
@@ -16,7 +16,7 @@
   padding: 0 clamp(16px, 3vw, 44px);
   color: #fff;
   background: var(--color-sidebar);
-  border-bottom: 1px solid #344054;
+  border-bottom: 1px solid var(--color-border);
 }
 #app .workspace-brand,
 #app .workspace-actions,
@@ -38,35 +38,49 @@
   place-items: center;
   color: var(--color-sidebar);
   background: var(--color-accent);
-  border: 1px solid #f6ce91;
+  border: 1px solid var(--color-warning-border, var(--color-warning));
   border-radius: 4px;
   font-weight: 800;
 }
-#app .workspace-navigate-button,
-#app .workspace-action {
+#app .workspace-navigate-button {
   min-height: 36px;
   gap: 8px;
   padding: 0 10px;
   color: #fff;
   background: transparent;
-  border: 1px solid #475467;
+  border: 1px solid var(--color-border-strong);
   border-radius: 4px;
   font-size: 12px;
   font-weight: 650;
 }
-#app .workspace-navigate-button:hover,
+#app .workspace-navigate-button:hover {
+  background: var(--color-sidebar-raised);
+  border-color: var(--color-border-strong);
+}
+#app .workspace-action {
+  min-height: 44px;
+  gap: 8px;
+  padding: 0 12px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 13px;
+  font-weight: 650;
+}
 #app .workspace-action:hover {
-  background: #1d2939;
-  border-color: #98a2b3;
+  color: var(--color-brand);
+  background: var(--color-brand-soft);
+  border-color: var(--color-brand);
 }
 #app .workspace-context {
   min-width: 0;
   gap: 9px;
   padding-left: 16px;
-  border-left: 1px solid #475467;
+  border-left: 1px solid var(--color-border-strong);
 }
 #app .workspace-context span {
-  color: #98a2b3;
+  color: var(--color-faint);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -87,6 +101,35 @@
 #app .workspace-actions .language-switcher {
   position: relative;
 }
+#app .workspace-actions .language-switcher-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 14px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+}
+#app .workspace-actions .language-switcher-trigger:hover {
+  color: var(--color-ink);
+  background: var(--color-surface-soft);
+  border-color: var(--color-border-strong);
+}
+#app .workspace-actions .language-trigger-flag {
+  flex-shrink: 0;
+}
+#app .workspace-actions .language-arrow {
+  color: var(--color-muted);
+  font-size: 10px;
+}
 #app .workspace-actions .language-dropdown {
   position: absolute;
   top: calc(100% + 8px);
@@ -94,32 +137,39 @@
   min-width: 180px;
   padding: 4px;
   color: var(--color-ink);
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border-strong);
   border-radius: 6px;
   box-shadow: var(--shadow-md);
 }
 #app .workspace-actions .language-option {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
-  min-height: 36px;
-  padding: 0 10px;
+  min-height: 0;
+  padding: 10px 14px;
   color: var(--color-text);
-  background: #fff;
+  background: var(--color-surface);
   border: 0;
-  border-radius: 3px;
+  border-radius: 0;
+  font-size: 14px;
   text-align: left;
 }
 #app .workspace-actions .language-option:hover,
 #app .workspace-actions .language-option.active {
-  color: var(--color-brand);
-  background: var(--color-brand-soft);
+  color: var(--color-ink);
+  background: var(--color-surface-soft);
+}
+#app .workspace-actions .language-option.active {
+  font-weight: 600;
+  background: var(--color-surface-muted);
 }
 #app .workspace-preview-banner {
   padding: 7px var(--content-padding);
-  color: #175cd3;
-  background: #eff6ff;
-  border-bottom: 1px solid #b2ddff;
+  color: var(--color-brand);
+  background: var(--color-brand-soft);
+  border-bottom: 1px solid var(--color-border);
   font-size: 12px;
   font-weight: 600;
 }
@@ -157,9 +207,9 @@
 #app .workspace-tier {
   margin-left: auto;
   padding: 4px 8px;
-  color: #9a6700;
-  background: #fff7d6;
-  border: 1px solid #f5d88b;
+  color: var(--color-warning);
+  background: var(--color-warning-soft);
+  border: 1px solid var(--color-warning-border, var(--color-warning));
   border-radius: 4px;
   font-size: 11px;
   font-weight: 700;
@@ -182,18 +232,25 @@
   height: 100dvh;
   padding-bottom: 24px;
   background: var(--color-sidebar);
-  border-right: 1px solid #344054;
+  border-right: 1px solid var(--color-border);
   box-shadow: var(--shadow-lg);
   transform: translateX(-102%);
 }
 #app .workspace-shell .sidebar.mobile-open {
   transform: translateX(0);
 }
+#app .workspace-shell .sidebar.is-pinned {
+  top: 64px;
+  bottom: auto;
+  height: calc(100dvh - 64px);
+  transform: translateX(0);
+  box-shadow: none;
+}
 #app .workspace-shell .sidebar-header {
   min-height: 64px;
   padding: 0 18px;
-  background: #101828;
-  border-bottom: 1px solid #344054;
+  background: var(--color-sidebar);
+  border-bottom: 1px solid var(--color-border);
 }
 #app .workspace-shell .sidebar-sheet-title {
   color: #fff;
@@ -214,11 +271,43 @@
 }
 #app .workspace-shell .sidebar .menu-items {
   margin-left: 20px;
-  border-left-color: #475467;
+  border-left-color: var(--color-border-strong);
 }
 #app .workspace-shell .sidebar .menu-item {
   min-height: 38px;
   border-radius: 4px;
+}
+
+@media (min-width: 1001px) {
+  #app .workspace-shell.sidebar-pinned {
+    --sidebar-width: min(380px, calc(100vw - 28px));
+  }
+  #app .workspace-shell.sidebar-pinned > .workspace-main {
+    width: calc(100% - var(--sidebar-width));
+    max-width: none;
+    margin-left: var(--sidebar-width);
+  }
+  #app .workspace-shell.sidebar-pinned > .workspace-preview-banner {
+    margin-left: var(--sidebar-width);
+  }
+}
+
+@media (max-width: 1000px) {
+  #app .workspace-shell .sidebar.is-pinned {
+    top: 0;
+    bottom: auto;
+    height: 100dvh;
+    transform: translateX(-102%);
+  }
+  #app .workspace-shell .sidebar.is-pinned.mobile-open {
+    transform: translateX(0);
+    box-shadow: 2px 0 20px rgba(0, 0, 0, 0.3);
+  }
+  #app .workspace-shell.sidebar-pinned > .workspace-main,
+  #app .workspace-shell.sidebar-pinned > .workspace-preview-banner {
+    width: auto;
+    margin-left: 0;
+  }
 }
 
 /* Page contracts: unedited views inherit data-first surfaces, forms, panels, and tables. */
@@ -243,7 +332,7 @@
   flex-wrap: wrap;
   gap: 12px;
   padding: 14px 16px;
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: none;
@@ -265,7 +354,7 @@
 #app .workspace-main :is(.stat-card, .cth-summary-card) {
   min-width: 0;
   padding: 16px;
-  background: #fff;
+  background: var(--color-surface);
   border: 0;
   border-radius: 0;
   box-shadow: none;
@@ -297,7 +386,7 @@
     .documents-grid,
     .info-box
   ) {
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: none;
@@ -326,7 +415,7 @@
   top: 0;
   z-index: 1;
   color: var(--color-muted);
-  background: #f1f4f9;
+  background: var(--color-surface-soft);
   border-bottom: 1px solid var(--color-border);
   font-size: 11px;
   font-weight: 700;
@@ -334,7 +423,7 @@
   text-transform: uppercase;
 }
 #app .workspace-main table td {
-  border-bottom-color: #e8edf5;
+  border-bottom-color: var(--color-surface-muted);
   font-variant-numeric: tabular-nums;
 }
 #app
@@ -353,7 +442,7 @@
 /* Auth and reset use the same quiet canvas without promotional hero treatment. */
 #app :is(.utrada-login-page) {
   min-height: 100vh;
-  background: #f4f7fb;
+  background: var(--color-canvas);
 }
 #app :is(.utrada-login-page) .login-left {
   display: none;
@@ -368,7 +457,7 @@
   width: min(100%, 460px);
 }
 #app :is(.utrada-login-page) .form-panel {
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 8px;
   box-shadow: none;
@@ -381,7 +470,7 @@
 }
 #app .utrada-login-page .form-panel {
   padding: 28px 32px;
-  border-top: 3px solid var(--color-brand);
+  border-top: 1px solid var(--color-brand);
 }
 #app .utrada-login-page .client-access-form {
   display: grid;
@@ -392,7 +481,7 @@
 #app .utrada-login-page .client-access-section {
   min-width: 0;
   padding: 18px;
-  background: #f8fafc;
+  background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   border-radius: 3px;
 }
@@ -411,7 +500,7 @@
   flex: 0 0 auto;
   place-items: center;
   color: #fff;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   font-size: 11px;
   font-weight: 800;
 }
@@ -450,9 +539,9 @@
   align-items: center;
   gap: 16px;
   padding: 16px;
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border-strong);
-  border-left: 3px solid var(--color-accent);
+  border-left: 1px solid var(--color-accent);
 }
 #app .utrada-login-page .client-submit-rail .btn-continue {
   width: min(100%, 280px);
@@ -472,7 +561,8 @@
   #app .workspace-context {
     display: none;
   }
-  #app .workspace-action span {
+  #app .workspace-action .language-text,
+  #app .workspace-action .language-arrow {
     display: none;
   }
   #app .workspace-main {
@@ -534,7 +624,7 @@
   justify-content: center;
   padding: 42px 34px;
   color: #fff;
-  background: #101828;
+  background: var(--color-sidebar);
   border-radius: 12px 0 0 12px;
 }
 #app .utrada-login-page .client-auth-brand-logo {
@@ -546,7 +636,7 @@
 }
 #app .utrada-login-page .client-auth-eyebrow {
   margin: 44px 0 8px;
-  color: #e0a458;
+  color: var(--color-warning);
   font-size: 11px;
   font-weight: 750;
   letter-spacing: 0.12em;
@@ -562,7 +652,7 @@
 #app .utrada-login-page .client-auth-brand > p:last-of-type {
   max-width: 25ch;
   margin: 12px 0 0;
-  color: #cbd5e1;
+  color: var(--color-brand);
   font-size: 15px;
   line-height: 1.6;
 }
@@ -570,7 +660,7 @@
   width: 72px;
   height: 3px;
   margin-top: 36px;
-  background: #e0a458;
+  background: var(--color-warning-solid);
 }
 #app .utrada-login-page .login-right {
   width: 100%;
@@ -708,8 +798,11 @@
 }
 :root[data-theme="dark"] #app .workspace-actions .language-option:hover,
 :root[data-theme="dark"] #app .workspace-actions .language-option.active {
-  color: var(--color-brand);
-  background: var(--color-brand-soft);
+  color: var(--color-ink);
+  background: var(--color-surface-soft);
+}
+:root[data-theme="dark"] #app .workspace-actions .language-option.active {
+  background: var(--color-surface-muted);
 }
 :root[data-theme="dark"] #app .workspace-page-context h1,
 :root[data-theme="dark"]

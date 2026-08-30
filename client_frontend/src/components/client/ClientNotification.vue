@@ -758,8 +758,8 @@ onUnmounted(() => {
 
 .notification-btn {
   position: relative;
-  background: white;
-  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
@@ -773,7 +773,6 @@ onUnmounted(() => {
     color 0.3s ease;
   font-size: 18px;
   color: var(--color-text);
-  outline: none;
 }
 
 .notification-btn:hover {
@@ -786,7 +785,7 @@ onUnmounted(() => {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
   color: white;
   width: 20px;
   height: 20px;
@@ -796,14 +795,14 @@ onUnmounted(() => {
   justify-content: center;
   font-size: 11px;
   font-weight: 600;
-  border: 2px solid var(--color-canvas);
+  border: 1px solid var(--color-canvas);
 }
 
 .notification-dropdown {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   width: 360px;
@@ -953,7 +952,7 @@ onUnmounted(() => {
 .notification-empty {
   padding: 40px 20px;
   text-align: center;
-  color: #94a3b8;
+  color: var(--color-faint);
   font-size: 14px;
 }
 
@@ -984,7 +983,7 @@ onUnmounted(() => {
 }
 
 .btn-view-all:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
@@ -1014,7 +1013,7 @@ onUnmounted(() => {
 }
 
 .notification-panel {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 16px 0 0 16px;
   width: min(420px, 100%);
   max-width: 100%;
@@ -1087,11 +1086,11 @@ onUnmounted(() => {
 }
 
 .panel-list::-webkit-scrollbar-track {
-  background: #f1f5f9;
+  background: var(--color-surface-soft);
 }
 
 .panel-list::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--color-surface-muted);
   border-radius: 4px;
 }
 
@@ -1132,7 +1131,7 @@ onUnmounted(() => {
 }
 
 .panel-item-icon.withdrawal_document_request {
-  background: #fed7aa;
+  background: var(--color-warning-soft);
   color: var(--color-warning);
 }
 
@@ -1165,7 +1164,7 @@ onUnmounted(() => {
 }
 
 .panel-item.unread {
-  background: #f1f5ff;
+  background: var(--color-brand-soft);
 }
 
 .panel-item.active {
@@ -1215,7 +1214,7 @@ onUnmounted(() => {
 }
 
 .panel-pill {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   font-size: 11px;
   padding: 3px 8px;
@@ -1231,7 +1230,7 @@ onUnmounted(() => {
   padding: 24px;
   text-align: center;
   font-size: 14px;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .panel-empty i,
@@ -1255,7 +1254,7 @@ onUnmounted(() => {
 
 .notification-detail-modal {
   width: min(520px, 100%);
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 28px 32px;
   box-shadow: 0 35px 70px rgba(15, 23, 42, 0.3);
@@ -1281,12 +1280,12 @@ onUnmounted(() => {
   display: block;
   margin-top: 6px;
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--color-faint);
 }
 
 .detail-body {
   font-size: 14px;
-  color: #475569;
+  color: var(--color-text);
   line-height: 1.6;
   white-space: pre-line;
 }
@@ -1294,7 +1293,7 @@ onUnmounted(() => {
 .modal-loading {
   text-align: center;
   padding: 20px;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .modal-loading i {
@@ -1359,7 +1358,7 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 

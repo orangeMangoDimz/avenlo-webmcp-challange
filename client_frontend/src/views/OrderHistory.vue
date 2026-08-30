@@ -433,18 +433,6 @@ const getOrderSide = (order) => {
   return sideMap[order.Cmd] || "UNKNOWN";
 };
 
-const getOrderType = (order) => {
-  const typeMap = {
-    0: t("tradingMarket", "Market"),
-    1: t("tradingMarket", "Market"),
-    2: t("tradingLimit", "Limit"),
-    3: t("tradingLimit", "Limit"),
-    4: t("tradingStop", "Stop"),
-    5: t("tradingStop", "Stop"),
-  };
-  return typeMap[order.Cmd] || t("tradingMarket", "Market");
-};
-
 const formatDateTime = (timestamp) => {
   if (!timestamp) return "";
   const date = new Date(timestamp * 1000);
@@ -486,13 +474,14 @@ const fetchOrderHistory = async (page = 1, append = false) => {
       case "daily":
         params.periodFrom = todayStart.toISOString().split("T")[0];
         break;
-      case "weekly":
+      case "weekly": {
         const weekStart = new Date(
           todayStart.getTime() - (now.getDay() - 1) * 24 * 60 * 60 * 1000,
         );
         params.periodFrom = weekStart.toISOString().split("T")[0];
         break;
-      case "monthly":
+      }
+      case "monthly": {
         const monthStart = new Date(
           todayStart.getFullYear(),
           todayStart.getMonth(),
@@ -500,12 +489,14 @@ const fetchOrderHistory = async (page = 1, append = false) => {
         );
         params.periodFrom = monthStart.toISOString().split("T")[0];
         break;
-      case "quarterly":
+      }
+      case "quarterly": {
         const quarterStart = new Date(
           todayStart.getTime() - 90 * 24 * 60 * 60 * 1000,
         );
         params.periodFrom = quarterStart.toISOString().split("T")[0];
         break;
+      }
     }
 
     const response = await tradingAccountService.getOrderHistory(params);
@@ -626,35 +617,6 @@ const exportCsv = () => {
   document.body.removeChild(link);
 };
 
-const showOrderDetail = (order) => {
-  const lang = languageStore.currentLanguage || "en";
-  if (lang === "zh") {
-    alert(
-      `订单详情:\n订单号: #OR-${order.Id}\n交易品种: ${order.Symbol}\n类型: ${order.SideName}\n盈亏: $${order.Profit.toFixed(2)}`,
-    );
-  } else {
-    alert(
-      `Order Details:\nOrder ID: #OR-${order.Id}\nSymbol: ${order.Symbol}\nType: ${order.SideName}\nProfit/Loss: $${order.Profit.toFixed(2)}`,
-    );
-  }
-};
-
-const repeatTrade = (order) => {
-  const lang = languageStore.currentLanguage || "en";
-  const confirmMsg =
-    lang === "zh"
-      ? `确定要重复交易 ${order.Symbol} 吗？`
-      : `Are you sure you want to repeat trade ${order.Symbol}?`;
-  const alertMsg =
-    lang === "zh"
-      ? "重复交易功能将在后续实现"
-      : "Repeat trade feature will be implemented later";
-
-  if (confirm(confirmMsg)) {
-    alert(alertMsg);
-  }
-};
-
 // 滚动到底部加载更多
 const handleScroll = () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -692,7 +654,7 @@ onUnmounted(() => {
 }
 
 .history-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 30px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -712,7 +674,7 @@ onUnmounted(() => {
     var(--color-surface-muted) 100%
   );
   border-radius: var(--radius-lg);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   flex-wrap: wrap;
 }
 
@@ -739,7 +701,7 @@ onUnmounted(() => {
 .history-search input {
   flex: 1;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   border-top-left-radius: 8px;
@@ -750,16 +712,15 @@ onUnmounted(() => {
     border-color 0.3s ease,
     background-color 0.3s ease,
     box-shadow 0.3s ease;
-  background: white;
+  background: var(--color-surface);
   color: var(--color-ink);
   height: 44px;
   box-sizing: border-box;
 }
 
 .history-search input:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .history-search input::placeholder {
@@ -767,8 +728,8 @@ onUnmounted(() => {
 }
 
 .search-btn {
-  background: var(--color-brand);
-  border: 2px solid var(--color-brand);
+  background: var(--color-brand-solid);
+  border: 1px solid var(--color-brand);
   border-left: none;
   padding: 0 20px;
   color: white;
@@ -799,8 +760,8 @@ onUnmounted(() => {
 .history-filter select {
   width: 100%;
   padding: 12px 16px;
-  background-color: white;
-  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   color: var(--color-ink);
   font-size: 14px;
@@ -819,8 +780,8 @@ onUnmounted(() => {
 
 .history-filter select:focus {
   border-color: var(--color-brand);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+
+  box-shadow: none;
 }
 
 /* Date Range - Integrated in header */
@@ -828,10 +789,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: white;
+  background: var(--color-surface);
   padding: 0;
   border-radius: var(--radius-md);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   transition:
     border-color 0.3s ease,
     box-shadow 0.3s ease;
@@ -860,7 +821,7 @@ onUnmounted(() => {
 
 .date-range input {
   padding: 10px 12px;
-  background-color: white;
+  background-color: var(--color-surface);
   border: none;
   border-radius: 0;
   color: var(--color-ink);
@@ -873,7 +834,6 @@ onUnmounted(() => {
 }
 
 .date-range input:focus {
-  outline: none;
   background-color: var(--color-surface-soft);
 }
 
@@ -885,7 +845,7 @@ onUnmounted(() => {
 }
 
 .apply-btn {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border: none;
   color: white;
   padding: 0 18px;
@@ -910,8 +870,8 @@ onUnmounted(() => {
 }
 
 .export-btn {
-  background: white;
-  border: 2px solid var(--color-brand);
+  background: var(--color-surface);
+  border: 1px solid var(--color-brand);
   color: var(--color-brand);
   padding: 12px 20px;
   border-radius: var(--radius-md);
@@ -931,7 +891,7 @@ onUnmounted(() => {
 }
 
 .export-btn:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(var(--color-brand-rgb), 0.3);
@@ -944,7 +904,7 @@ onUnmounted(() => {
     var(--color-surface-soft) 0%,
     var(--color-surface-muted) 100%
   );
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   margin-bottom: 25px;
   padding: 25px;
@@ -974,7 +934,7 @@ onUnmounted(() => {
 .summary-item {
   display: flex;
   flex-direction: column;
-  background: white;
+  background: var(--color-surface);
   padding: 15px;
   border-radius: var(--radius-md);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
@@ -1011,7 +971,7 @@ onUnmounted(() => {
 .chart-container {
   flex-grow: 1;
   height: 40px;
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
@@ -1028,8 +988,8 @@ onUnmounted(() => {
 .chart-bar.positive {
   background: linear-gradient(
     90deg,
-    var(--color-success) 0%,
-    var(--color-success) 100%
+    var(--color-success-solid) 0%,
+    var(--color-success-solid) 100%
   );
   left: 0;
 }
@@ -1038,7 +998,7 @@ onUnmounted(() => {
   background: linear-gradient(
     90deg,
     var(--color-danger-border) 0%,
-    var(--color-danger) 100%
+    var(--color-danger-solid) 100%
   );
   right: 0;
 }
@@ -1065,7 +1025,7 @@ onUnmounted(() => {
 }
 
 .chart-indicator.positive {
-  background-color: var(--color-success);
+  background-color: var(--color-success-solid);
 }
 
 .chart-indicator.negative {
@@ -1076,7 +1036,7 @@ onUnmounted(() => {
 .history-tabs {
   display: flex;
   margin-bottom: 20px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   overflow-x: auto;
   overflow-y: hidden;
 }
@@ -1110,7 +1070,7 @@ onUnmounted(() => {
   right: 0;
   bottom: -2px;
   height: 3px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: 3px 3px 0 0;
 }
 
@@ -1125,7 +1085,7 @@ onUnmounted(() => {
 .history-table {
   width: 100%;
   border-collapse: collapse;
-  background: white;
+  background: var(--color-surface);
 }
 
 .history-table thead {
@@ -1142,7 +1102,7 @@ onUnmounted(() => {
   font-size: 13px;
   font-weight: 700;
   color: var(--color-ink);
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
 }
 
@@ -1290,7 +1250,7 @@ onUnmounted(() => {
 }
 
 .table-action:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   transform: translateY(-2px);
 }

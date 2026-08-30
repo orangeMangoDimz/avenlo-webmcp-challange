@@ -480,10 +480,6 @@ import { useLanguageStore } from "@/stores/language";
 import { useClientAuthStore } from "@/stores/clientAuth";
 import tradingAccountService from "@/services/tradingAccountService";
 import { formatNumber } from "@/utils/helpers";
-import fpIcon from "@/assets/platform-icons/fp.png";
-import mt4Icon from "@/assets/platform-icons/mt4.png";
-import mt5Icon from "@/assets/platform-icons/mt5.png";
-
 const languageStore = useLanguageStore();
 const t = (key, fallback = "") => languageStore.t(key, fallback);
 
@@ -503,13 +499,6 @@ const actionModal = ref({
 });
 let actionModalTimer = null;
 let actionModalCountdownTimer = null;
-
-const platformIconMap = {
-  mt4: mt4Icon,
-  mt5: mt5Icon,
-  fp: fpIcon,
-  financepro: fpIcon,
-};
 
 const normalizePlatformKey = (account) => {
   const rawKey = String(
@@ -532,11 +521,6 @@ const normalizePlatformKey = (account) => {
     return "financepro";
 
   return compactKey;
-};
-
-const getPlatformIcon = (account) => {
-  const platformKey = normalizePlatformKey(account);
-  return platformIconMap[platformKey] || fpIcon;
 };
 
 const getPlatformLinkConfig = (account) => {
@@ -1047,7 +1031,7 @@ onUnmounted(() => {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 24px;
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.06);
@@ -1089,8 +1073,8 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
-  color: #ffffff;
+  background: var(--color-brand-solid);
+  color: #fff;
   box-shadow: 0 6px 18px rgba(var(--color-brand-rgb), 0.35);
 }
 
@@ -1105,7 +1089,7 @@ onUnmounted(() => {
 }
 
 .state-card {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 40px 24px;
   text-align: center;
@@ -1131,7 +1115,7 @@ onUnmounted(() => {
 }
 
 .accounts-table-wrapper {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   box-shadow: 0 6px 16px rgba(15, 23, 42, 0.08);
   overflow: hidden;
@@ -1209,7 +1193,7 @@ onUnmounted(() => {
 }
 
 .platform-icon-button:hover {
-  background: #f1f5f9;
+  background: var(--color-surface-soft);
   transform: translateY(-1px);
 }
 
@@ -1226,7 +1210,7 @@ onUnmounted(() => {
 
 .action-modal-card {
   width: min(100%, 360px);
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 20px;
   padding: 28px 24px;
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
@@ -1249,12 +1233,12 @@ onUnmounted(() => {
 .action-modal-card h3 {
   margin: 0 0 10px;
   font-size: 22px;
-  color: #1f2937;
+  color: var(--color-ink);
 }
 
 .action-modal-card p {
   margin: 0;
-  color: #64748b;
+  color: var(--color-muted);
   line-height: 1.6;
 }
 
@@ -1288,7 +1272,7 @@ onUnmounted(() => {
   border-radius: inherit;
   background: linear-gradient(
     90deg,
-    var(--color-brand) 0%,
+    var(--color-brand-solid) 0%,
     var(--color-brand-strong) 100%
   );
   transition: width 1s linear;
@@ -1317,7 +1301,7 @@ onUnmounted(() => {
 
 .status-pill.pending {
   background: rgba(251, 191, 36, 0.18);
-  color: #b7791f;
+  color: var(--color-warning);
 }
 
 .status-pill.closed {
@@ -1358,7 +1342,7 @@ onUnmounted(() => {
   position: fixed;
   transform: translateX(-100%);
   min-width: 200px;
-  background: #fff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.16);
@@ -1380,20 +1364,20 @@ onUnmounted(() => {
   text-align: left;
 }
 .account-action-item:hover {
-  background: #f1f5f9;
+  background: var(--color-surface-soft);
   color: var(--color-brand);
 }
 .account-action-item i {
   width: 16px;
   text-align: center;
-  color: #94a3b8;
+  color: var(--color-faint);
 }
 .account-action-item:hover i {
   color: var(--color-brand);
 }
 
 .form-modal-card {
-  background: #fff;
+  background: var(--color-surface);
   border-radius: 18px;
   padding: 32px;
   width: 520px;
@@ -1427,7 +1411,7 @@ onUnmounted(() => {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 15px;
-  background: #fff;
+  background: var(--color-surface);
   box-sizing: border-box;
 }
 .form-modal-field label {
@@ -1484,7 +1468,7 @@ onUnmounted(() => {
   gap: 6px;
 }
 .form-btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: #fff;
 }
 .form-btn-primary:disabled {

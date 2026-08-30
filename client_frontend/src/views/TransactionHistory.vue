@@ -814,7 +814,7 @@ const loadHistory = async (page = 1, append = false) => {
 // 监听搜索关键词变化，添加防抖
 watch(
   () => search.value.keywords,
-  (newVal) => {
+  () => {
     if (searchTimer) {
       clearTimeout(searchTimer);
       searchTimer = null;
@@ -1205,11 +1205,11 @@ onUnmounted(() => {
 }
 
 .history-container {
-  background: rgba(255, 255, 255, 0.94);
-  border-radius: 24px;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
   padding: 28px;
-  border: 1px solid rgba(226, 232, 240, 0.9);
-  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  border: 1px solid var(--color-border);
+  box-shadow: none;
 }
 
 /* Header */
@@ -1226,7 +1226,7 @@ onUnmounted(() => {
     var(--color-surface-muted) 100%
   );
   border-radius: var(--radius-lg);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   flex-wrap: wrap;
 }
 
@@ -1254,7 +1254,7 @@ onUnmounted(() => {
 .history-search input {
   width: 100%;
   padding: 12px 16px 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition:
@@ -1267,9 +1267,8 @@ onUnmounted(() => {
 }
 
 .history-search input:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .history-search input::placeholder {
@@ -1283,8 +1282,8 @@ onUnmounted(() => {
 .history-filter select {
   width: 100%;
   padding: 12px 16px;
-  background-color: white;
-  border: 2px solid var(--color-border);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   color: var(--color-ink);
   font-size: 14px;
@@ -1307,8 +1306,8 @@ onUnmounted(() => {
 
 .history-filter select:focus {
   border-color: var(--color-brand);
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+
+  box-shadow: none;
 }
 
 /* Date Range */
@@ -1317,10 +1316,10 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 12px;
-  background: white;
+  background: var(--color-surface);
   padding: 0;
   border-radius: var(--radius-md);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   transition:
     color 0.3s ease,
     background-color 0.3s ease,
@@ -1353,7 +1352,7 @@ onUnmounted(() => {
 
 .date-range input {
   padding: 10px 12px;
-  background-color: white;
+  background-color: var(--color-surface);
   border: none;
   border-radius: 0;
   color: var(--color-ink);
@@ -1370,7 +1369,6 @@ onUnmounted(() => {
 }
 
 .date-range input:focus {
-  outline: none;
   background-color: var(--color-surface-soft);
 }
 
@@ -1382,7 +1380,7 @@ onUnmounted(() => {
 }
 
 .apply-btn {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border: none;
   color: white;
   padding: 0 18px;
@@ -1411,8 +1409,8 @@ onUnmounted(() => {
 }
 
 .export-btn {
-  background: white;
-  border: 2px solid var(--color-brand);
+  background: var(--color-surface);
+  border: 1px solid var(--color-brand);
   color: var(--color-brand);
   padding: 12px 20px;
   border-radius: var(--radius-md);
@@ -1436,7 +1434,7 @@ onUnmounted(() => {
 }
 
 .export-btn:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(var(--color-brand-rgb), 0.3);
@@ -1461,23 +1459,27 @@ onUnmounted(() => {
     border-color 0.3s ease;
   font-size: 13px;
   font-weight: 700;
-  color: #64748b;
+  color: var(--color-muted);
   white-space: nowrap;
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  background: #fff;
+  background: var(--color-surface);
 }
 
 .history-tab:hover {
-  color: #1d4ed8;
-  border-color: #bfdbfe;
-  background: #f8fbff;
+  color: var(--color-brand);
+  border-color: var(--color-border);
+  background: var(--color-surface-soft);
 }
 
 .history-tab.active {
-  color: #1d4ed8;
-  border-color: #93c5fd;
-  background: linear-gradient(135deg, #eff6ff 0%, var(--color-brand-soft) 100%);
+  color: var(--color-brand);
+  border-color: var(--color-border);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-soft) 0%,
+    var(--color-brand-soft) 100%
+  );
   box-shadow: inset 0 0 0 1px rgba(147, 197, 253, 0.4);
 }
 
@@ -1506,18 +1508,14 @@ onUnmounted(() => {
   flex-direction: column;
   gap: 14px;
   padding: 22px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.96) 0%,
-    rgba(248, 250, 252, 0.96) 100%
-  );
+  background: var(--color-surface);
   border-radius: 20px;
   border: 1px solid var(--color-border);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
     border-color 0.2s ease;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.04);
+  box-shadow: none;
 }
 
 /* 原来 .history-item 自己当 flex 横向布局；现在它改成纵向，把横向规则下放到 .history-item-row */
@@ -1570,7 +1568,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 16px;
   padding: 14px 16px;
-  background: #ffffff;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
 }
@@ -1582,7 +1580,7 @@ onUnmounted(() => {
 }
 .history-detail-flow__label {
   font-size: 11px;
-  color: #64748b;
+  color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.3px;
@@ -1592,7 +1590,7 @@ onUnmounted(() => {
 }
 .history-detail-flow__account {
   font-size: 13px;
-  color: #1e293b;
+  color: var(--color-ink);
   font-weight: 600;
   word-break: break-all;
 }
@@ -1601,13 +1599,13 @@ onUnmounted(() => {
   font-weight: 700;
 }
 .history-detail-flow__amount.positive {
-  color: #047857;
+  color: var(--color-success);
 }
 .history-detail-flow__amount.negative {
-  color: #b91c1c;
+  color: var(--color-danger);
 }
 .history-detail-flow__arrow {
-  color: #94a3b8;
+  color: var(--color-faint);
   font-size: 18px;
 }
 
@@ -1630,23 +1628,23 @@ onUnmounted(() => {
   grid-column: 1 / -1;
 }
 .history-detail-label {
-  color: #64748b;
+  color: var(--color-muted);
   font-weight: 500;
   flex-shrink: 0;
 }
 .history-detail-value {
-  color: #1e293b;
+  color: var(--color-ink);
   font-weight: 600;
   text-align: right;
   word-break: break-word;
   min-width: 0;
 }
 .history-detail-field.is-emphasized .history-detail-value {
-  color: #0f172a;
+  color: var(--color-ink-strong);
   font-size: 15px;
 }
 .history-detail-field.is-danger .history-detail-value {
-  color: #b91c1c;
+  color: var(--color-danger);
   font-weight: 600;
 }
 
@@ -1665,7 +1663,7 @@ onUnmounted(() => {
 
 .history-item:hover {
   transform: translateY(-1px);
-  border-color: #cbd5e1;
+  border-color: var(--color-border);
   box-shadow: 0 16px 36px rgba(15, 23, 42, 0.08);
 }
 
@@ -1689,8 +1687,8 @@ onUnmounted(() => {
 }
 
 .history-icon.deposit {
-  background: #e6fffa;
-  color: #38b2ac;
+  background: var(--color-info-soft);
+  color: var(--color-info);
 }
 
 .history-icon.withdrawal {
@@ -1704,8 +1702,8 @@ onUnmounted(() => {
 }
 
 .history-icon.transfer-in {
-  background: #e6fffa;
-  color: #38b2ac;
+  background: var(--color-info-soft);
+  color: var(--color-info);
 }
 
 .history-icon.transfer {
@@ -1719,8 +1717,8 @@ onUnmounted(() => {
 }
 
 .history-icon.credit {
-  background: #fefcbf;
-  color: #b7791f;
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
 }
 
 .history-info {
@@ -1741,13 +1739,13 @@ onUnmounted(() => {
 .history-title {
   font-size: 17px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-ink-strong);
   margin-bottom: 6px;
 }
 
 .history-date {
   font-size: 13px;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .history-meta {
@@ -1768,7 +1766,7 @@ onUnmounted(() => {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   font-size: 12px;
-  color: #475569;
+  color: var(--color-text);
 }
 
 .history-platform-pair {
@@ -1791,35 +1789,35 @@ onUnmounted(() => {
 .history-platform-pill.wallet {
   background: var(--color-surface-soft);
   border-color: var(--color-border);
-  color: #475569;
+  color: var(--color-text);
 }
 
 .history-platform-pill.mt5 {
-  background: #e0f2fe;
+  background: var(--color-info-soft);
   border-color: var(--color-info-border);
   color: var(--color-info);
 }
 
 .history-platform-pill.mt4 {
   background: var(--color-brand-soft);
-  border-color: #ddd6fe;
-  color: #6d28d9;
+  border-color: var(--color-border);
+  color: var(--color-purple);
 }
 
 .history-platform-pill.financepro {
-  background: #ecfccb;
-  border-color: #d9f99d;
-  color: #4d7c0f;
+  background: var(--color-success-soft);
+  border-color: var(--color-success-border, var(--color-success));
+  color: var(--color-success);
 }
 
 .history-platform-pill.default {
-  background: #f1f5f9;
+  background: var(--color-surface-soft);
   border-color: var(--color-border);
-  color: #334155;
+  color: var(--color-text);
 }
 
 .meta-label {
-  color: #94a3b8;
+  color: var(--color-faint);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   font-size: 11px;
@@ -1848,31 +1846,31 @@ onUnmounted(() => {
 .history-account-chip.wallet {
   background: var(--color-surface-soft);
   border-color: var(--color-border);
-  color: #475569;
+  color: var(--color-text);
 }
 
 .history-account-chip.mt5 {
-  background: #e0f2fe;
+  background: var(--color-info-soft);
   border-color: var(--color-info-border);
   color: var(--color-info);
 }
 
 .history-account-chip.mt4 {
   background: var(--color-brand-soft);
-  border-color: #ddd6fe;
-  color: #6d28d9;
+  border-color: var(--color-border);
+  color: var(--color-purple);
 }
 
 .history-account-chip.financepro {
-  background: #ecfccb;
-  border-color: #d9f99d;
-  color: #4d7c0f;
+  background: var(--color-success-soft);
+  border-color: var(--color-success-border, var(--color-success));
+  color: var(--color-success);
 }
 
 .history-account-chip.default {
-  background: #f1f5f9;
+  background: var(--color-surface-soft);
   border-color: var(--color-border);
-  color: #334155;
+  color: var(--color-text);
 }
 
 .history-account-arrow {
@@ -1880,7 +1878,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: center;
   width: 24px;
-  color: #94a3b8;
+  color: var(--color-faint);
 }
 
 .history-account-arrow i {
@@ -1892,7 +1890,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   padding: 0 2px 0 0;
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 12px;
   font-weight: 700;
   line-height: 1;
@@ -1906,7 +1904,7 @@ onUnmounted(() => {
   font-size: 11px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: var(--color-faint);
   font-weight: 700;
 }
 
@@ -1919,7 +1917,7 @@ onUnmounted(() => {
 }
 
 .history-amount.deposit {
-  color: #38b2ac;
+  color: var(--color-info);
 }
 
 .history-amount.withdrawal {
@@ -1927,7 +1925,7 @@ onUnmounted(() => {
 }
 
 .history-amount.neutral {
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .history-side {
@@ -1982,8 +1980,8 @@ onUnmounted(() => {
 }
 
 .history-status.cancelled {
-  background: #f1f5f9;
-  color: #64748b;
+  background: var(--color-surface-soft);
+  color: var(--color-muted);
   border: 1px solid var(--color-border);
 }
 
@@ -2014,7 +2012,7 @@ onUnmounted(() => {
     opacity 0.15s ease,
     transform 0.15s ease;
   border: 1px solid transparent;
-  background: #ffffff;
+  background: var(--color-surface);
   min-width: 108px;
   line-height: 1;
 }
@@ -2023,29 +2021,28 @@ onUnmounted(() => {
 }
 
 .history-action-btn--ghost {
-  border-color: #cbd5e1;
-  color: #475569;
+  border-color: var(--color-border);
+  color: var(--color-text);
 }
 .history-action-btn--ghost:hover {
-  background: #f1f5f9;
-  border-color: #94a3b8;
-  color: #1e293b;
+  background: var(--color-surface-soft);
+  border-color: var(--color-border-strong);
+  color: var(--color-ink);
 }
 
 .history-action-btn--danger {
   border-color: var(--color-danger-border);
   background: var(--color-danger-soft);
-  color: #b91c1c;
+  color: var(--color-danger);
 }
 .history-action-btn--danger:hover {
   background: var(--color-danger-soft);
-  border-color: #f87171;
+  border-color: var(--color-danger-border, var(--color-danger));
   color: var(--color-danger);
 }
 
 .history-action-btn:focus-visible {
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(148, 163, 184, 0.18);
+  box-shadow: none;
 }
 
 .cancel-modal-overlay {
@@ -2061,7 +2058,7 @@ onUnmounted(() => {
 
 .cancel-modal {
   width: min(100%, 520px);
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 18px;
   box-shadow: 0 25px 60px rgba(15, 23, 42, 0.2);
   overflow: hidden;
@@ -2082,13 +2079,13 @@ onUnmounted(() => {
 .cancel-modal-header h3 {
   margin: 0;
   font-size: 18px;
-  color: #1e293b;
+  color: var(--color-ink);
 }
 
 .cancel-modal-close {
   border: none;
   background: transparent;
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 24px;
   line-height: 1;
   cursor: pointer;
@@ -2100,26 +2097,25 @@ onUnmounted(() => {
 
 .cancel-modal-text {
   margin: 0 0 14px;
-  color: #475569;
+  color: var(--color-text);
   font-size: 14px;
 }
 
 .cancel-modal-textarea {
   width: 100%;
   min-height: 120px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 14px 16px;
   font-size: 14px;
-  color: #1e293b;
+  color: var(--color-ink);
   resize: vertical;
   box-sizing: border-box;
 }
 
 .cancel-modal-textarea:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.12);
+  box-shadow: none;
 }
 
 .cancel-modal-meta {
@@ -2137,7 +2133,7 @@ onUnmounted(() => {
 
 .cancel-modal-count {
   margin-left: auto;
-  color: #94a3b8;
+  color: var(--color-faint);
   font-size: 12px;
 }
 
@@ -2165,15 +2161,19 @@ onUnmounted(() => {
 
 .cancel-modal-btn.secondary {
   background: var(--color-border);
-  color: #334155;
+  color: var(--color-text);
 }
 
 .cancel-modal-btn.secondary:hover:not(:disabled) {
-  background: #cbd5e1;
+  background: var(--color-surface-muted);
 }
 
 .cancel-modal-btn.danger {
-  background: linear-gradient(135deg, #475569 0%, #334155 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-surface-muted) 0%,
+    var(--color-brand-solid) 100%
+  );
   color: #fff;
 }
 
@@ -2206,7 +2206,7 @@ onUnmounted(() => {
 
 .loading-more i {
   font-size: 18px;
-  color: #2563eb;
+  color: var(--color-brand);
 }
 
 .no-more p {

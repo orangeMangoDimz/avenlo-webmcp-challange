@@ -349,23 +349,6 @@ const statusConfig = computed(() => {
   return configs[status] || configs.draft;
 });
 
-// 显示条件
-const showProgress = computed(() => {
-  return (
-    props.kycStatus.submissionStatus === "incomplete" &&
-    props.kycStatus.hasKycRecord
-  );
-});
-
-const showSubmissionDetails = computed(() => {
-  return (
-    props.kycStatus.hasKycRecord &&
-    ["under_review", "approved", "rejected", "pending"].includes(
-      props.kycStatus.submissionStatus,
-    )
-  );
-});
-
 const showTimeline = computed(() => {
   return [
     "incomplete",
@@ -389,12 +372,6 @@ const showContinueButton = computed(() => {
 
 const showRestartButton = computed(() => {
   return props.kycStatus.submissionStatus === "rejected";
-});
-
-const showContactButton = computed(() => {
-  return ["rejected", "pending", "under_review"].includes(
-    props.kycStatus.submissionStatus,
-  );
 });
 
 // 时间线数据
@@ -627,11 +604,6 @@ const restartKyc = async () => {
   }
 };
 
-const saveAndExit = () => {
-  // 返回到Dashboard页面
-  router.push("/client/dashboard");
-};
-
 const contactSupport = () => {
   // 实现联系支持逻辑
   window.open(`mailto:${branding.value.supportEmail}`, "_blank");
@@ -669,7 +641,7 @@ onMounted(async () => {
 <style scoped>
 /* Status Card */
 .status-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   padding: 40px;
@@ -682,7 +654,7 @@ onMounted(async () => {
   justify-content: space-between;
   margin-bottom: 30px;
   padding-bottom: 25px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .status-header-left {
@@ -702,27 +674,47 @@ onMounted(async () => {
 }
 
 .status-icon-wrapper.incomplete {
-  background: linear-gradient(135deg, #fbbf24 0%, var(--color-warning) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-warning-solid) 0%,
+    var(--color-warning-solid) 100%
+  );
   color: white;
 }
 
 .status-icon-wrapper.in-review {
-  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-solid) 0%,
+    var(--color-brand-solid) 100%
+  );
   color: white;
 }
 
 .status-icon-wrapper.approved {
-  background: linear-gradient(135deg, #34d399 0%, var(--color-success) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-success-solid) 0%,
+    var(--color-success-solid) 100%
+  );
   color: white;
 }
 
 .status-icon-wrapper.rejected {
-  background: linear-gradient(135deg, #f87171 0%, var(--color-danger) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-danger-solid) 0%,
+    var(--color-danger-solid) 100%
+  );
   color: white;
 }
 
 .status-icon-wrapper.pending {
-  background: linear-gradient(135deg, #a78bfa 0%, var(--color-accent) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-solid) 0%,
+    var(--color-accent) 100%
+  );
   color: white;
 }
 
@@ -866,7 +858,7 @@ onMounted(async () => {
 
 .progress-fill {
   height: 100%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   transition: width 0.3s ease;
 }
 
@@ -894,7 +886,7 @@ onMounted(async () => {
 
 /* Rejection Card */
 .rejection-card {
-  border-left: 4px solid var(--color-danger);
+  border-left: 1px solid var(--color-danger);
   background: var(--color-danger-soft);
 }
 
@@ -906,8 +898,8 @@ onMounted(async () => {
 /* Status Message */
 .status-message {
   background: var(--color-info-soft);
-  border: 1px solid #0ea5e9;
-  border-left: 4px solid #0ea5e9;
+  border: 1px solid var(--color-border);
+  border-left: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-bottom: 30px;
@@ -916,7 +908,7 @@ onMounted(async () => {
 .status-message h3 {
   font-size: 16px;
   font-weight: 700;
-  color: #0c4a6e;
+  color: var(--color-info);
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -924,7 +916,7 @@ onMounted(async () => {
 }
 
 .status-message.success {
-  background: #f0fdf4;
+  background: var(--color-success-soft);
   border-color: var(--color-success);
 }
 
@@ -1015,32 +1007,28 @@ onMounted(async () => {
   height: 12px;
   border-radius: 50%;
   background: var(--color-border-strong);
-  border: 3px solid white;
-  box-shadow: 0 0 0 2px var(--color-border-strong);
+  border: 1px solid white;
+  box-shadow: none;
 }
 
 .timeline-item.completed .timeline-dot {
-  background: var(--color-success);
-  box-shadow: 0 0 0 2px var(--color-success);
+  background: var(--color-success-solid);
+  box-shadow: none;
 }
 
 .timeline-item.current .timeline-dot {
-  background: var(--color-brand);
-  box-shadow: 0 0 0 2px var(--color-brand);
+  background: var(--color-brand-solid);
+  box-shadow: none;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0%,
   100% {
-    box-shadow:
-      0 0 0 2px var(--color-brand),
-      0 0 0 4px rgba(var(--color-brand-rgb), 0.3);
+    box-shadow: none;
   }
   50% {
-    box-shadow:
-      0 0 0 2px var(--color-brand),
-      0 0 0 8px rgba(var(--color-brand-rgb), 0.1);
+    box-shadow: none;
   }
 }
 
@@ -1099,7 +1087,7 @@ onMounted(async () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }
@@ -1110,9 +1098,9 @@ onMounted(async () => {
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-text);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {

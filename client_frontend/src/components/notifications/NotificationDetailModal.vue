@@ -31,7 +31,7 @@ import { useLanguageStore } from "@/stores/language";
 const languageStore = useLanguageStore();
 const t = (key, fallback) => languageStore.t(key, fallback);
 
-const props = defineProps({
+defineProps({
   notification: {
     type: Object,
     default: null,
@@ -107,7 +107,7 @@ const formatTime = (value) => {
 .notification-detail-modal {
   width: min(520px, 100%);
   max-height: 70vh;
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 28px 32px;
   box-shadow: 0 35px 70px rgba(15, 23, 42, 0.3);
@@ -134,7 +134,7 @@ const formatTime = (value) => {
   display: block;
   margin-top: 6px;
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--color-faint);
 }
 
 .btn-text {
@@ -158,7 +158,7 @@ const formatTime = (value) => {
 
 .detail-body {
   font-size: 14px;
-  color: #475569;
+  color: var(--color-text);
   line-height: 1.6;
   white-space: pre-line;
   overflow-y: auto;

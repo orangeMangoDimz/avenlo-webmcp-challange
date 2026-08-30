@@ -16,6 +16,8 @@
   --color-border: #d9e1ec;
   --color-border-strong: #b8c5d6;
   --color-brand: #2457d6;
+  --color-brand-solid: #2457d6;
+  --color-brand-solid-hover: #1d47b3;
   --color-brand-hover: #1d47b3;
   --color-brand-strong: #173b91;
   --color-brand-soft: #e9efff;
@@ -30,17 +32,25 @@
   --color-text-subtle: var(--color-faint);
   --color-focus-ring: rgba(var(--color-brand-rgb), 0.34);
   --color-success: #087443;
+  --color-success-solid: #087443;
   --color-success-soft: #e9f9ee;
   --color-success-border: #a9e6be;
   --color-warning: #9a6700;
+  --color-warning-solid: #9a6700;
   --color-warning-soft: #fff7d6;
   --color-warning-border: #f5d88b;
   --color-danger: #b42318;
+  --color-danger-solid: #b42318;
   --color-danger-soft: #fff0ef;
   --color-danger-border: #f9b9b5;
   --color-info: #175cd3;
+  --color-info-solid: #175cd3;
   --color-info-soft: #eff6ff;
   --color-info-border: #b2ddff;
+  --color-purple: #805ad5;
+  --color-purple-solid: #6b46c1;
+  --color-purple-soft: #f3ebff;
+  --color-purple-border: #d6bbfb;
   --chart-series-1: #2457d6;
   --chart-series-2: #087443;
   --chart-series-3: #e0a458;
@@ -97,42 +107,52 @@
   --color-faint: #71839a;
   --color-border: #33445a;
   --color-border-strong: #4a5e77;
-  --color-brand: #7da2ff;
-  --color-brand-hover: #a8c0ff;
-  --color-brand-strong: #5b86f5;
-  --color-brand-soft: #1d315d;
-  --color-brand-soft-strong: #284477;
-  --color-brand-rgb: 125, 162, 255;
-  --color-accent: #f0b968;
-  --color-accent-soft: #3f2f1b;
+  --color-brand: #6688d8;
+  --color-brand-solid: #315ca8;
+  --color-brand-solid-hover: #2a4f92;
+  --color-brand-hover: #789be8;
+  --color-brand-strong: #2a4f92;
+  --color-brand-soft: #192747;
+  --color-brand-soft-strong: #22365e;
+  --color-brand-rgb: 102, 136, 216;
+  --color-accent: #c9984a;
+  --color-accent-soft: #342716;
   --color-sidebar: #0d1624;
   --color-sidebar-raised: #182437;
   --color-focus-ring: rgba(var(--color-brand-rgb), 0.52);
-  --color-success: #5dd697;
-  --color-success-soft: #123b2b;
-  --color-success-border: #28764d;
-  --color-warning: #f3c86a;
-  --color-warning-soft: #443619;
-  --color-warning-border: #876923;
-  --color-danger: #ff9c97;
-  --color-danger-soft: #482324;
-  --color-danger-border: #854244;
-  --color-info: #8cb7ff;
-  --color-info-soft: #17365e;
-  --color-info-border: #356ba9;
-  --chart-series-1: #7da2ff;
-  --chart-series-2: #5dd697;
-  --chart-series-3: #f0b968;
-  --chart-series-4: #ff8ab2;
-  --chart-series-5: #a9b6c6;
+  --color-success: #36a76c;
+  --color-success-solid: #176b44;
+  --color-success-soft: #102f23;
+  --color-success-border: #236a47;
+  --color-warning: #bf8f3f;
+  --color-warning-solid: #72531d;
+  --color-warning-soft: #362914;
+  --color-warning-border: #6e521c;
+  --color-danger: #cb686e;
+  --color-danger-solid: #833943;
+  --color-danger-soft: #351b22;
+  --color-danger-border: #71323c;
+  --color-info: #628bd4;
+  --color-info-solid: #2c558c;
+  --color-info-soft: #132c4e;
+  --color-info-border: #2a5b96;
+  --color-purple: #b878ac;
+  --color-purple-solid: #613d6e;
+  --color-purple-soft: #2f2036;
+  --color-purple-border: #68436f;
+  --chart-series-1: #6688d8;
+  --chart-series-2: #36a76c;
+  --chart-series-3: #c9984a;
+  --chart-series-4: #b878ac;
+  --chart-series-5: #93a2b5;
 
   --el-color-primary: var(--color-brand);
-  --el-color-primary-light-3: #a4bdff;
-  --el-color-primary-light-5: #769bf7;
-  --el-color-primary-light-7: #4c70c0;
-  --el-color-primary-light-8: #39589e;
+  --el-color-primary-light-3: #819ce0;
+  --el-color-primary-light-5: #6688d8;
+  --el-color-primary-light-7: #4c67a9;
+  --el-color-primary-light-8: #385082;
   --el-color-primary-light-9: var(--color-brand-soft);
-  --el-color-primary-dark-2: #a8c0ff;
+  --el-color-primary-dark-2: #789be8;
   --el-border-color: var(--color-border);
   --el-border-color-light: #2a3a4f;
   --el-border-color-lighter: #233247;
@@ -205,10 +225,10 @@ a {
 
 ::selection {
   color: #fff;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
 }
 :focus-visible {
-  outline: 3px solid var(--color-focus-ring);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }
 
@@ -234,7 +254,7 @@ a {
   z-index: 10000;
   padding: 10px 14px;
   color: #fff;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: var(--radius-sm);
   transform: translateY(calc(-100% - var(--space-5)));
   transition: transform var(--transition-fast);
@@ -363,14 +383,14 @@ a {
 #app :where(input, select, textarea)::placeholder {
   color: var(--color-faint);
 }
-#app :where(input, select, textarea):focus {
+#app :where(input, select, textarea):focus-visible {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.12);
+  box-shadow: none;
 }
 #app :where(.btn-primary, .primary-button, .login-button, .submit-button) {
   color: #fff;
-  background: var(--color-brand);
-  border-color: var(--color-brand);
+  background: var(--color-brand-solid);
+  border-color: var(--color-brand-solid);
   border-radius: var(--radius-sm);
   box-shadow: none;
 }
@@ -381,8 +401,8 @@ a {
     .login-button,
     .submit-button
   ):hover:not(:disabled) {
-  background: var(--color-brand-hover);
-  border-color: var(--color-brand-hover);
+  background: var(--color-brand-solid-hover);
+  border-color: var(--color-brand-solid-hover);
 }
 #app :where(.btn-secondary, .secondary-button) {
   color: var(--color-ink);
@@ -419,7 +439,7 @@ a {
   border-bottom: 1px solid var(--color-surface-muted);
 }
 #app table tbody tr:hover td {
-  background: #f8faff;
+  background: var(--color-brand-soft);
 }
 .ui-number {
   font-variant-numeric: tabular-nums;

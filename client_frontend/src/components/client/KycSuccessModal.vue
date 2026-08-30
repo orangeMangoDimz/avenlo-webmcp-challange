@@ -64,7 +64,7 @@ import { computed, ref, onMounted, onUnmounted } from "vue";
 import { useRoute } from "vue-router";
 import { useLanguageStore } from "@/stores/language";
 
-const props = defineProps({
+defineProps({
   // 'submitted'：刚提交完，等审核；'approved'：用户已通过，本次只是落地提示
   variant: {
     type: String,
@@ -131,7 +131,7 @@ onUnmounted(() => {
 
 /* 卡片尺寸 / 排版与 KycRequiredNotice 保持一致，pending / rejected / success 视觉统一 */
 .success-modal {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   padding: 36px 28px;
@@ -158,8 +158,8 @@ onUnmounted(() => {
   height: 72px;
   background: linear-gradient(
     135deg,
-    var(--color-success) 0%,
-    var(--color-success) 100%
+    var(--color-success-solid) 0%,
+    var(--color-success-solid) 100%
   );
   border-radius: 50%;
   display: flex;
@@ -225,7 +225,7 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }

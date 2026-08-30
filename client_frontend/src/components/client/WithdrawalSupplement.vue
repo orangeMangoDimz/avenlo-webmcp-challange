@@ -76,7 +76,7 @@
             </h3>
 
             <div
-              v-for="(item, index) in documentRequest.items"
+              v-for="item in documentRequest.items"
               :key="item.id"
               class="resubmit-item"
             >
@@ -336,8 +336,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { ref, onMounted } from "vue";
+import { useRouter } from "vue-router";
 import { useLanguageStore } from "@/stores/language";
 import withdrawalService from "@/services/withdrawalService";
 import WithdrawalFileUpload from "./WithdrawalFileUpload.vue";
@@ -354,7 +354,6 @@ const props = defineProps({
 
 const emit = defineEmits(["submitted", "close"]);
 
-const route = useRoute();
 const router = useRouter();
 
 const loading = ref(true);
@@ -791,7 +790,7 @@ onMounted(() => {
 }
 
 .success-state {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 60px 40px;
   max-width: 600px;
@@ -882,7 +881,7 @@ onMounted(() => {
 }
 
 .kyc-form-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 40px;
@@ -949,7 +948,7 @@ onMounted(() => {
 .form-textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition: all 0.2s;
@@ -957,9 +956,8 @@ onMounted(() => {
 
 .form-input:focus,
 .form-textarea:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .form-textarea {
@@ -980,7 +978,7 @@ onMounted(() => {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.2s;
@@ -1031,7 +1029,7 @@ onMounted(() => {
   gap: 12px;
   margin-top: 32px;
   padding-top: 24px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
 }
 
 .btn {
@@ -1048,7 +1046,7 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
@@ -1063,9 +1061,9 @@ onMounted(() => {
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-muted);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {

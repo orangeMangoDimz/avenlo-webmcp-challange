@@ -217,8 +217,8 @@ const handlePrimaryAction = () => {
   display: flex;
   align-items: center;
   gap: 16px;
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 18px;
   padding: 18px 22px;
 }
@@ -227,14 +227,14 @@ const handlePrimaryAction = () => {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #94a3b8;
+  color: var(--color-faint);
   font-weight: 700;
   white-space: nowrap;
 }
 
 .step-item.complete,
 .step-item.active {
-  color: #3d4b63;
+  color: var(--color-text);
 }
 
 .step-index {
@@ -245,34 +245,34 @@ const handlePrimaryAction = () => {
   align-items: center;
   justify-content: center;
   background: var(--color-border);
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 14px;
   font-weight: 800;
 }
 
 .step-item.complete .step-index {
-  background: #43b66f;
-  color: #ffffff;
+  background: var(--color-success-solid);
+  color: #fff;
 }
 
 .step-item.active .step-index {
-  background: var(--color-brand);
-  color: #ffffff;
+  background: var(--color-brand-solid);
+  color: #fff;
 }
 
 .step-line {
   flex: 1;
   height: 2px;
-  background: #d6dee8;
+  background: var(--color-surface-muted);
 }
 
 .step-line.complete {
-  background: #43b66f;
+  background: var(--color-success-solid);
 }
 
 .confirm-card {
-  background: #ffffff;
-  border: 1px solid #e5e7eb;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 22px;
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
   padding: 48px 24px;
@@ -287,19 +287,19 @@ const handlePrimaryAction = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #41b86c;
-  color: #ffffff;
+  background: var(--color-success-solid);
+  color: #fff;
   font-size: 38px;
   box-shadow: 0 18px 30px rgba(65, 184, 108, 0.2);
 }
 
 .confirm-icon.fail {
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
   box-shadow: 0 18px 30px rgba(239, 68, 68, 0.2);
 }
 
 .confirm-icon.pending {
-  background: var(--color-warning);
+  background: var(--color-warning-solid);
   box-shadow: 0 18px 30px rgba(245, 158, 11, 0.22);
 }
 
@@ -307,13 +307,13 @@ const handlePrimaryAction = () => {
   margin: 0 0 14px;
   font-size: 24px;
   font-weight: 800;
-  color: #2f3a4c;
+  color: var(--color-ink);
 }
 
 .confirm-copy {
   max-width: 560px;
   margin: 0 auto 26px;
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 15px;
   line-height: 1.7;
 }
@@ -329,12 +329,12 @@ const handlePrimaryAction = () => {
 }
 
 .reference-label {
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 14px;
 }
 
 .reference-value {
-  color: #2f3a4c;
+  color: var(--color-ink);
   font-size: 16px;
   font-weight: 800;
 }
@@ -353,7 +353,7 @@ const handlePrimaryAction = () => {
   justify-content: space-between;
   gap: 16px;
   padding: 6px 0;
-  color: #3d4b63;
+  color: var(--color-text);
   font-size: 15px;
 }
 
@@ -377,7 +377,7 @@ const handlePrimaryAction = () => {
 .summary-section-title {
   display: block;
   width: 100%;
-  color: #2f3a4c;
+  color: var(--color-ink);
   font-size: 14px;
   font-weight: 800;
   text-align: left;
@@ -409,7 +409,7 @@ const handlePrimaryAction = () => {
   width: min(100%, 220px);
   height: auto;
   border-radius: var(--radius-lg);
-  background: #ffffff;
+  background: var(--color-surface);
   padding: 10px;
   box-sizing: border-box;
 }
@@ -418,10 +418,10 @@ const handlePrimaryAction = () => {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  border: 1px solid #d7dfeb;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  background: #ffffff;
-  color: #536277;
+  background: var(--color-surface);
+  color: var(--color-text);
   font-size: 12px;
   font-weight: 700;
   padding: 4px 8px;
@@ -448,10 +448,10 @@ const handlePrimaryAction = () => {
   border-radius: var(--radius-lg);
   background: linear-gradient(
     135deg,
-    var(--color-brand) 0%,
+    var(--color-brand-solid) 0%,
     var(--color-brand-strong) 100%
   );
-  color: #ffffff;
+  color: #fff;
   font-size: 15px;
   font-weight: 800;
   box-shadow: 0 14px 28px rgba(var(--color-brand-rgb), 0.2);
@@ -460,10 +460,10 @@ const handlePrimaryAction = () => {
 .secondary-action {
   min-width: 200px;
   min-height: 46px;
-  border: 1px solid #d7dfeb;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  background: #eef2f7;
-  color: #536277;
+  background: var(--color-surface-muted);
+  color: var(--color-text);
   font-size: 15px;
   font-weight: 800;
 }

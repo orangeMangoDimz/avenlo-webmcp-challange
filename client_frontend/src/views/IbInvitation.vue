@@ -170,7 +170,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   padding: 20px;
 }
 
@@ -198,7 +198,7 @@ onMounted(async () => {
 
 .error-container,
 .success-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 40px;
   max-width: 600px;
@@ -272,7 +272,7 @@ onMounted(async () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 

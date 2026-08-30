@@ -79,7 +79,7 @@
         <div
           class="detail-field"
           style="
-            border-top: 2px solid var(--color-border);
+            border-top: 1px solid var(--color-border);
             padding-top: 15px;
             margin-top: 10px;
           "
@@ -230,7 +230,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, nextTick } from "vue";
+import { ref, reactive, onMounted, nextTick } from "vue";
 import { kycTemplateService } from "@/services/kycTemplateService";
 import QuestionList from "./QuestionList.vue";
 import RuleList from "./RuleList.vue";
@@ -496,10 +496,10 @@ onMounted(() => {
 }
 
 .detail-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 25px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .detail-section h3 {
@@ -507,7 +507,7 @@ onMounted(() => {
   color: var(--color-ink);
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .section-header {
@@ -539,7 +539,7 @@ onMounted(() => {
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .detail-field:last-child {
@@ -566,8 +566,8 @@ onMounted(() => {
 }
 
 .detail-value.editable {
-  border: 2px solid var(--color-border);
-  background: white;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
   cursor: text;
   padding: 4px 8px;
   border-radius: 4px;
@@ -575,9 +575,8 @@ onMounted(() => {
 }
 
 .detail-value.editable:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .detail-value[contenteditable="true"] {
@@ -623,7 +622,7 @@ onMounted(() => {
 }
 
 .btn-save.active {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(var(--color-brand-rgb), 0.3);
 }
@@ -649,7 +648,7 @@ onMounted(() => {
 }
 
 .btn-edit-section:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   transform: translateY(-1px);
 }
@@ -689,7 +688,7 @@ onMounted(() => {
 }
 
 .toggle-switch.active {
-  background: var(--color-success);
+  background: var(--color-success-solid);
 }
 
 .toggle-switch::after {
@@ -699,7 +698,7 @@ onMounted(() => {
   left: 3px;
   width: 20px;
   height: 20px;
-  background: white;
+  background: var(--color-surface);
   border-radius: 50%;
   transition: all 0.3s ease;
 }
@@ -755,13 +754,13 @@ onMounted(() => {
 }
 
 .btn-success {
-  background: var(--color-success);
+  background: var(--color-success-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(72, 187, 120, 0.3);
 }
 
 .btn-success:hover {
-  background: var(--color-success);
+  background: var(--color-success-solid);
   transform: translateY(-2px);
 }
 

@@ -17,7 +17,7 @@
             padding: 12px;
             border-radius: var(--radius-md);
             margin-bottom: 20px;
-            border-left: 4px solid var(--color-brand);
+            border-left: 1px solid var(--color-brand);
           "
         >
           <div style="display: flex; align-items: center; gap: 8px">
@@ -73,7 +73,7 @@
 
           <div
             style="
-              border: 2px solid var(--color-border);
+              border: 1px solid var(--color-border);
               border-radius: var(--radius-md);
               padding: 20px;
               margin-bottom: 20px;
@@ -161,7 +161,7 @@
 
           <div
             style="
-              border: 2px solid var(--color-border);
+              border: 1px solid var(--color-border);
               border-radius: var(--radius-md);
               padding: 20px;
               margin-bottom: 20px;
@@ -181,8 +181,8 @@
             >
               <span
                 style="
-                  background: #86efac;
-                  color: #166534;
+                  background: var(--color-success-soft);
+                  color: var(--color-success);
                   padding: 4px 10px;
                   border-radius: 4px;
                   font-size: 12px;
@@ -396,7 +396,7 @@ const handleSubmit = async () => {
 }
 
 .modal {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 0;
   width: 90%;
@@ -419,7 +419,7 @@ const handleSubmit = async () => {
 
 .modal-header {
   padding: 25px 30px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -456,7 +456,7 @@ const handleSubmit = async () => {
 }
 
 .modal-close:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
@@ -481,19 +481,18 @@ const handleSubmit = async () => {
 .form-textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-surface);
 }
 
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .form-textarea {
@@ -521,7 +520,7 @@ const handleSubmit = async () => {
 
 .modal-footer {
   padding: 20px 30px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -542,7 +541,7 @@ const handleSubmit = async () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(var(--color-brand-rgb), 0.3);
 }

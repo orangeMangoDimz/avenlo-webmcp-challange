@@ -173,8 +173,8 @@ onUnmounted(() => {
 
 .notification-btn {
   position: relative;
-  background: white;
-  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   width: 44px;
   height: 44px;
   border-radius: var(--radius-md);
@@ -185,7 +185,6 @@ onUnmounted(() => {
   transition: all 0.3s ease;
   font-size: 18px;
   color: var(--color-text);
-  outline: none;
 }
 
 .notification-btn:hover {
@@ -198,7 +197,7 @@ onUnmounted(() => {
   position: absolute;
   top: -5px;
   right: -5px;
-  background: var(--color-danger);
+  background: var(--color-danger-solid);
   color: white;
   width: 20px;
   height: 20px;
@@ -208,7 +207,7 @@ onUnmounted(() => {
   justify-content: center;
   font-size: 11px;
   font-weight: 600;
-  border: 2px solid var(--color-canvas);
+  border: 1px solid var(--color-canvas);
 }
 
 .notification-panel {
@@ -217,7 +216,7 @@ onUnmounted(() => {
   right: 20px;
   width: 400px;
   max-width: calc(100vw - 40px);
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   z-index: 1000;
@@ -240,7 +239,7 @@ onUnmounted(() => {
 
 .notification-header {
   padding: 20px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -315,7 +314,7 @@ onUnmounted(() => {
 
 .notification-item {
   padding: 15px 20px;
-  border-bottom: 1px solid #f1f3f5;
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   gap: 12px;
   cursor: pointer;
@@ -338,7 +337,7 @@ onUnmounted(() => {
   top: 0;
   bottom: 0;
   width: 4px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
 }
 
 .notification-icon {
@@ -424,7 +423,7 @@ onUnmounted(() => {
 
 .notification-footer {
   padding: 15px 20px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   gap: 10px;

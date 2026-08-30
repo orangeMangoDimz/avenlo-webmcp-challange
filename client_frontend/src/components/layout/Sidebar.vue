@@ -366,7 +366,7 @@ onMounted(() => {
 }
 
 .menu-item.active {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   font-weight: 600;
 }

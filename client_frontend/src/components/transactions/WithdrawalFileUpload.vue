@@ -340,7 +340,7 @@ watch(
 
 <style scoped>
 .file-upload-area {
-  border: 2px dashed var(--color-border-strong);
+  border: 1px dashed var(--color-border-strong);
   border-radius: var(--radius-md);
   padding: 30px;
   text-align: center;

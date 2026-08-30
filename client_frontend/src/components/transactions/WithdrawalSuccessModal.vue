@@ -62,8 +62,8 @@ const emit = defineEmits(["close"]);
 
 .success-modal {
   width: min(100%, 460px);
-  background: #ffffff;
-  border: 1px solid #e7ebf3;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: 20px;
   box-shadow: 0 24px 64px rgba(15, 23, 42, 0.22);
   padding: 32px 28px;
@@ -78,20 +78,24 @@ const emit = defineEmits(["close"]);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #34d399, var(--color-success));
-  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--color-success-solid),
+    var(--color-success-solid)
+  );
+  color: #fff;
   font-size: 28px;
 }
 
 h3 {
   margin: 0 0 10px;
-  color: #25324a;
+  color: var(--color-brand);
   font-size: 24px;
 }
 
 p {
   margin: 0;
-  color: #5b667a;
+  color: var(--color-muted);
   line-height: 1.6;
 }
 
@@ -100,8 +104,12 @@ p {
   border: none;
   border-radius: var(--radius-md);
   padding: 12px 20px;
-  background: linear-gradient(135deg, var(--color-brand), #8c63c9);
-  color: #ffffff;
+  background: linear-gradient(
+    135deg,
+    var(--color-brand-solid),
+    var(--color-purple-solid)
+  );
+  color: #fff;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;

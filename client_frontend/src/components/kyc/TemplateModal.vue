@@ -163,7 +163,7 @@ const handleSubmit = () => {
 }
 
 .modal {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   padding: 0;
   max-width: 600px;
@@ -187,7 +187,7 @@ const handleSubmit = () => {
 
 .modal-header {
   padding: 25px 30px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -224,7 +224,7 @@ const handleSubmit = () => {
 }
 
 .modal-close:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
@@ -249,7 +249,7 @@ const handleSubmit = () => {
 .form-textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition: all 0.3s ease;
@@ -258,9 +258,8 @@ const handleSubmit = () => {
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .form-textarea {
@@ -270,7 +269,7 @@ const handleSubmit = () => {
 
 .modal-footer {
   padding: 20px 30px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -291,7 +290,7 @@ const handleSubmit = () => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(var(--color-brand-rgb), 0.3);
 }

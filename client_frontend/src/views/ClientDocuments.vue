@@ -387,7 +387,7 @@ const downloadDocument = (doc) => {
           text-align: center;
           margin-bottom: 30px;
           padding-bottom: 20px;
-          border-bottom: 3px solid var(--color-brand);
+          border-bottom: 1px solid var(--color-brand);
         }
 
         .header h1 {
@@ -432,8 +432,8 @@ const downloadDocument = (doc) => {
         .signature-section {
           margin-top: 40px;
           padding: 25px;
-          background: #fff9e6;
-          border: 2px solid #f6b93b;
+          background: var(--color-warning-soft);
+          border: 1px solid var(--color-warning-border, var(--color-warning));
           border-radius: var(--radius-md);
           page-break-inside: avoid;
         }
@@ -479,7 +479,7 @@ const downloadDocument = (doc) => {
         .footer {
           margin-top: 40px;
           padding-top: 20px;
-          border-top: 2px solid var(--color-border);
+          border-top: 1px solid var(--color-border);
           text-align: center;
           font-size: 12px;
           color: var(--color-muted);
@@ -535,7 +535,7 @@ const downloadDocument = (doc) => {
       </div>
 
       <div class="no-print" style="margin-top: 30px; text-align: center;">
-        <button onclick="window.print()" style="padding: 12px 30px; background: var(--color-brand); color: white; border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 600; cursor: pointer; margin-right: 10px;">
+        <button onclick="window.print()" style="padding: 12px 30px; background: var(--color-brand-solid); color: white; border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 600; cursor: pointer; margin-right: 10px;">
           Print / Save as PDF
         </button>
         <button onclick="window.close()" style="padding: 12px 30px; background: var(--color-border); color: var(--color-text); border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 600; cursor: pointer;">
@@ -574,7 +574,7 @@ const downloadCurrentDocument = () => {
   justify-content: space-between;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .documents-header-left h2 {
@@ -623,8 +623,8 @@ const downloadCurrentDocument = () => {
 }
 
 .document-card {
-  background: white;
-  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   padding: 25px;
   transition:
@@ -650,7 +650,7 @@ const downloadCurrentDocument = () => {
 .document-icon {
   width: 50px;
   height: 50px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -759,7 +759,7 @@ const downloadCurrentDocument = () => {
 }
 
 .btn-view:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 
@@ -794,7 +794,7 @@ const downloadCurrentDocument = () => {
 /* Info Box */
 .info-box {
   background: var(--color-brand-soft);
-  border-left: 4px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
   padding: 20px;
   border-radius: var(--radius-md);
   margin-top: 30px;
@@ -841,7 +841,7 @@ const downloadCurrentDocument = () => {
 }
 
 .modal-content {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   margin: 3% auto;
   padding: 0;
   border-radius: var(--radius-lg);
@@ -866,7 +866,7 @@ const downloadCurrentDocument = () => {
 }
 
 .modal-header {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 20px 30px;
   border-radius: 12px 12px 0 0;
@@ -904,7 +904,7 @@ const downloadCurrentDocument = () => {
 
 .document-preview {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 30px;
   margin-bottom: 25px;
@@ -918,7 +918,7 @@ const downloadCurrentDocument = () => {
 }
 
 .document-preview-content {
-  background: white;
+  background: var(--color-surface);
   padding: 30px;
   border-radius: var(--radius-md);
   line-height: 1.8;
@@ -948,8 +948,8 @@ const downloadCurrentDocument = () => {
 }
 
 .document-signature {
-  background: #fff9e6;
-  border: 2px solid #f6b93b;
+  background: var(--color-warning-soft);
+  border: 1px solid var(--color-warning-border, var(--color-warning));
   border-radius: var(--radius-md);
   padding: 20px;
   margin-top: 20px;
@@ -965,7 +965,7 @@ const downloadCurrentDocument = () => {
 }
 
 .document-signature h4 i {
-  color: #f6b93b;
+  color: var(--color-warning);
 }
 
 .signature-info-row {
@@ -1020,7 +1020,7 @@ const downloadCurrentDocument = () => {
 }
 
 .btn-modal-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 

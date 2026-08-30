@@ -48,7 +48,9 @@ async function recordVisitAndRedirect() {
   }
   try {
     sessionStorage.setItem(IB_REFERRAL_REF_KEY, suffix);
-  } catch (e) {}
+  } catch (e) {
+    // Referral storage is optional and may be unavailable in private mode.
+  }
   router
     .replace({ path: "/client/login", query: { mode: "signup" } })
     .catch(() => {
@@ -102,7 +104,7 @@ onMounted(() => {
   display: inline-block;
   padding: 10px 20px;
   border-radius: var(--radius-md);
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   text-decoration: none;
   font-weight: 600;

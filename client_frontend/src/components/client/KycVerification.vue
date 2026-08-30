@@ -752,9 +752,7 @@ const isFirstTimeResume = ref(false); // 标记是否是首次恢复incomplete�
 const isResubmitMode = ref(false); // 是否为重新提交模式
 const resubmitRequest = ref(null); // 重新提交请求信息
 const resubmitAnswers = ref([]); // 重新提交的答案
-const resubmitFiles = ref({}); // 重新提交的文件
 const templateDocuments = ref([]); // 模板文档列表
-const documentSignatures = ref({}); // 文档签名状态（保留用于API）
 const allDocumentsAgreed = ref(false); // 是否同意所有文档
 const requireDocumentSignature = ref(false); // 是否需要文档签名
 const showDocumentModal = ref(false); // 显示文档弹窗
@@ -2163,7 +2161,7 @@ onMounted(() => {
 .error-state {
   text-align: center;
   padding: 60px 20px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
@@ -2192,7 +2190,7 @@ onMounted(() => {
  * 通过 wrapper 上的 .wrapper-third-party 修饰类让它撑满父容器，再用 flex 让 card 吃掉所有可用高度。
  */
 .third-party-kyc-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 16px;
@@ -2248,7 +2246,7 @@ onMounted(() => {
 
 .progress-bar-fill {
   height: 100%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: 20px;
   transition: width 0.5s ease;
   position: relative;
@@ -2281,7 +2279,7 @@ onMounted(() => {
 
 /* Form Card */
 .kyc-form-card {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   padding: 40px;
@@ -2293,13 +2291,13 @@ onMounted(() => {
   gap: 15px;
   margin-bottom: 30px;
   padding-bottom: 20px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .category-icon {
   width: 50px;
   height: 50px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
@@ -2358,7 +2356,7 @@ onMounted(() => {
 .form-textarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition: all 0.3s ease;
@@ -2368,9 +2366,8 @@ onMounted(() => {
 .form-input:focus,
 .form-select:focus,
 .form-textarea:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .form-textarea {
@@ -2392,7 +2389,7 @@ onMounted(() => {
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2457,7 +2454,7 @@ onMounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }
@@ -2648,7 +2645,7 @@ onMounted(() => {
 }
 
 .modal-content {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   max-width: 500px;
   width: 90%;
@@ -2684,7 +2681,7 @@ onMounted(() => {
   background: none;
   border: none;
   font-size: 24px;
-  color: #9ca3af;
+  color: var(--color-faint);
   cursor: pointer;
   padding: 0;
   width: 32px;
@@ -2697,8 +2694,8 @@ onMounted(() => {
 }
 
 .close-btn:hover {
-  background: #f3f4f6;
-  color: #6b7280;
+  background: var(--color-surface-soft);
+  color: var(--color-muted);
 }
 
 .reject-modal .modal-body {
@@ -2712,14 +2709,14 @@ onMounted(() => {
 
 .reject-message {
   font-size: 16px;
-  color: #374151;
+  color: var(--color-text);
   margin-bottom: 12px;
   line-height: 1.5;
 }
 
 .reject-note {
   font-size: 14px;
-  color: #6b7280;
+  color: var(--color-muted);
   margin-bottom: 0;
 }
 
@@ -2739,12 +2736,12 @@ onMounted(() => {
 }
 
 .reject-modal .btn-primary {
-  background: #3b82f6;
+  background: var(--color-brand-solid);
   color: white;
 }
 
 .reject-modal .btn-primary:hover {
-  background: #2563eb;
+  background: var(--color-brand-solid);
 }
 
 /* Resubmit Required Styles */
@@ -2885,7 +2882,7 @@ onMounted(() => {
   padding: 20px 25px;
   background: var(--color-surface-soft);
   border-radius: var(--radius-md);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   position: relative;
 }
 
@@ -2944,7 +2941,7 @@ onMounted(() => {
 }
 
 .legal-modal .modal-header {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 25px 30px;
   display: flex;
@@ -2978,7 +2975,7 @@ onMounted(() => {
 
 .legal-modal .modal-footer {
   padding: 20px 40px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   text-align: center;
 }
 

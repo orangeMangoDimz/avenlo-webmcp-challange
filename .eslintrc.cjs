@@ -24,5 +24,11 @@ module.exports = {
         jest: true,
       },
     },
+    {
+      files: ['client_frontend/src/components/layout/Notification.vue', 'client_frontend/src/components/layout/Sidebar.vue'],
+      rules: {
+        'vue/multi-word-component-names': 'off',
+      },
+    },
   ],
 }

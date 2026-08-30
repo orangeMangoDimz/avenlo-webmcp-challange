@@ -561,7 +561,7 @@ onMounted(async () => {
   padding: 7px 14px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  background: #ffffff;
+  background: var(--color-surface);
   color: var(--color-text);
   font-size: 12px;
   font-weight: 700;
@@ -589,8 +589,8 @@ onMounted(async () => {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 12px;
-  color: #1e293b;
-  background: #ffffff;
+  color: var(--color-ink);
+  background: var(--color-surface);
 }
 .cth-input--select {
   cursor: pointer;
@@ -600,8 +600,8 @@ onMounted(async () => {
   padding: 0 12px;
   border: 1px solid var(--color-brand);
   border-radius: var(--radius-sm);
-  background: var(--color-brand);
-  color: #ffffff;
+  background: var(--color-brand-solid);
+  color: #fff;
   font-size: 12px;
   font-weight: 600;
   cursor: pointer;
@@ -614,7 +614,7 @@ onMounted(async () => {
   cursor: not-allowed;
 }
 .cth-btn--ghost {
-  background: #ffffff;
+  background: var(--color-surface);
   color: var(--color-text);
   border-color: var(--color-border);
 }
@@ -633,18 +633,18 @@ onMounted(async () => {
   background: var(--color-surface-soft);
 }
 .cth-summary-card--muted {
-  background: #ffffff;
+  background: var(--color-surface);
 }
 .cth-summary-label {
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
-  color: #64748b;
+  color: var(--color-muted);
 }
 .cth-summary-value {
   font-size: 18px;
   font-weight: 700;
-  color: #1e293b;
+  color: var(--color-ink);
 }
 .cth-amount--up {
   color: var(--color-success);
@@ -666,12 +666,12 @@ onMounted(async () => {
 .cth-table td {
   padding: 10px 12px;
   text-align: left;
-  border-bottom: 1px solid #f1f5f9;
+  border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
 }
 .cth-table th {
   background: var(--color-surface-soft);
-  color: #64748b;
+  color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
   font-size: 11px;
@@ -681,7 +681,7 @@ onMounted(async () => {
 }
 .cth-empty {
   text-align: center;
-  color: #94a3b8;
+  color: var(--color-faint);
   padding: 24px;
 }
 .cth-empty--error {
@@ -690,7 +690,7 @@ onMounted(async () => {
 .cth-retry-btn {
   margin-left: 8px;
   border: 1px solid var(--color-danger);
-  background: #ffffff;
+  background: var(--color-surface);
   color: var(--color-danger);
   padding: 3px 10px;
   border-radius: var(--radius-sm);
@@ -699,8 +699,8 @@ onMounted(async () => {
   cursor: pointer;
 }
 .cth-retry-btn:hover {
-  background: var(--color-danger);
-  color: #ffffff;
+  background: var(--color-danger-solid);
+  color: #fff;
 }
 .cth-badge {
   display: inline-block;
@@ -730,12 +730,12 @@ onMounted(async () => {
 }
 .cth-page-btn {
   border: 1px solid var(--color-border);
-  background: #fff;
+  background: var(--color-surface);
   width: 32px;
   height: 32px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  color: #475569;
+  color: var(--color-text);
 }
 .cth-page-btn:disabled {
   opacity: 0.5;
@@ -743,7 +743,7 @@ onMounted(async () => {
 }
 .cth-page-info {
   font-size: 13px;
-  color: #64748b;
+  color: var(--color-muted);
 }
 @media (max-width: 768px) {
   .commission-ib-switcher {

@@ -116,7 +116,7 @@
 import { ref, computed } from "vue";
 import { useAuthStore } from "@/stores/auth";
 
-const props = defineProps({
+defineProps({
   modelValue: {
     type: Boolean,
     default: false,
@@ -190,7 +190,7 @@ const confirm = () => {
 }
 
 .bulk-assignment-modal-content {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   max-width: 700px;
   width: 90%;
@@ -201,7 +201,7 @@ const confirm = () => {
 
 .bulk-assignment-modal-header {
   padding: 25px 30px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -249,7 +249,7 @@ const confirm = () => {
 
 .selected-leads-list {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-bottom: 25px;
@@ -268,7 +268,7 @@ const confirm = () => {
 }
 
 .count-badge {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 2px 10px;
   border-radius: var(--radius-lg);
@@ -285,7 +285,7 @@ const confirm = () => {
   align-items: center;
   gap: 12px;
   padding: 10px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   margin-bottom: 8px;
   border: 1px solid var(--color-border);
@@ -299,7 +299,7 @@ const confirm = () => {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -326,7 +326,7 @@ const confirm = () => {
 }
 
 .bulk-assignment-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
 }
 
@@ -351,18 +351,18 @@ const confirm = () => {
 .bulk-assignment-field select,
 .bulk-assignment-field textarea {
   padding: 10px 14px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
-  outline: none;
+
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-surface);
 }
 
 .bulk-assignment-field select:focus,
 .bulk-assignment-field textarea:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .bulk-assignment-field textarea {
@@ -403,7 +403,7 @@ const confirm = () => {
 
 .bulk-assignment-modal-footer {
   padding: 20px 30px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -433,7 +433,7 @@ const confirm = () => {
 }
 
 .btn-modal-bulk-assign {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(var(--color-brand-rgb), 0.3);
 }

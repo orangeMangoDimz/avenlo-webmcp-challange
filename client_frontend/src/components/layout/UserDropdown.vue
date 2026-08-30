@@ -423,8 +423,8 @@ onUnmounted(() => {
   align-items: center;
   gap: 12px;
   padding: 8px 12px;
-  background: white;
-  border: 2px solid var(--color-border);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all 0.3s ease;
@@ -478,7 +478,7 @@ onUnmounted(() => {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   min-width: 220px;
@@ -598,7 +598,7 @@ onUnmounted(() => {
 }
 
 .modal-content {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   width: 90%;
   max-width: 600px;
@@ -620,7 +620,7 @@ onUnmounted(() => {
 
 .modal-header {
   padding: 25px 30px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -675,22 +675,21 @@ onUnmounted(() => {
 .form-group input {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-surface);
 }
 
 .form-group input:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .info-box {
   background: var(--color-brand-soft);
-  border-left: 4px solid var(--color-brand);
+  border-left: 1px solid var(--color-brand);
   padding: 15px 20px;
   border-radius: var(--radius-md);
   margin-top: 15px;
@@ -709,7 +708,7 @@ onUnmounted(() => {
 
 .modal-footer {
   padding: 20px 30px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   justify-content: flex-end;
   gap: 12px;
@@ -729,7 +728,7 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 4px 15px rgba(var(--color-brand-rgb), 0.4);
 }
@@ -740,9 +739,9 @@ onUnmounted(() => {
 }
 
 .btn-secondary {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-text);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .btn-secondary:hover {
@@ -761,17 +760,16 @@ onUnmounted(() => {
 .password-input {
   width: 100%;
   padding: 12px 45px 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-surface);
 }
 
 .password-input:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .password-toggle-btn {
@@ -800,7 +798,6 @@ onUnmounted(() => {
 }
 
 .password-toggle-btn:focus {
-  outline: none;
   color: var(--color-brand);
   background: var(--color-brand-soft);
 }

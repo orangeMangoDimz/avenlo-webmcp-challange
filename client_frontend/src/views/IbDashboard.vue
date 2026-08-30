@@ -97,14 +97,12 @@
 
 <script setup>
 import { ref, onMounted } from "vue";
-import { useRouter } from "vue-router";
 import { useClientAuthStore } from "@/stores/clientAuth";
 import { useLanguageStore } from "@/stores/language";
 import ibDocumentApi from "@/services/ibDocumentApi";
 import ibApplicationApi from "@/services/ibApplicationApi";
 import IbStatusCard from "@/components/client/IbStatusCard.vue";
 
-const router = useRouter();
 const clientAuthStore = useClientAuthStore();
 const languageStore = useLanguageStore();
 const t = (key, fallback = "") => languageStore.t(key, fallback);
@@ -295,7 +293,7 @@ onMounted(async () => {
 
 /* IB Locked Banner */
 .ib-locked-banner {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: var(--radius-xl);
   padding: 50px;
   color: white;
@@ -357,7 +355,7 @@ onMounted(async () => {
   padding: 18px;
   background: rgba(255, 255, 255, 0.15);
   border-radius: var(--radius-md);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
 }
 
@@ -394,7 +392,7 @@ onMounted(async () => {
 }
 
 .btn-white {
-  background: white;
+  background: var(--color-surface);
   color: var(--color-brand);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
@@ -439,7 +437,7 @@ onMounted(async () => {
 .legal-modal .modal-content {
   max-width: 800px;
   max-height: 85vh;
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   margin: 5% auto;
   padding: 0;
   border-radius: 20px;
@@ -465,7 +463,7 @@ onMounted(async () => {
 }
 
 .modal-header {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 30px;
   border-radius: 20px 20px 0 0;
@@ -565,7 +563,7 @@ onMounted(async () => {
 .modal-button {
   width: 100%;
   padding: 16px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   border: none;
   border-radius: var(--radius-md);

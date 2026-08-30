@@ -809,13 +809,6 @@ const hideActionModal = () => {
   actionModal.value.visible = false;
 };
 
-const formatCurrency = (value) => {
-  return new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-  }).format(Number(value || 0));
-};
-
 const setAccountCurrency = (currencyCode = "USD") => {
   const normalizedCurrency =
     String(currencyCode || "USD")
@@ -1313,7 +1306,7 @@ onUnmounted(() => {
 }
 
 .state-card {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 40px 30px;
   text-align: center;
@@ -1344,11 +1337,11 @@ onUnmounted(() => {
 }
 
 .platform-card {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 35px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  border: 3px solid transparent;
+  border: 1px solid transparent;
   cursor: pointer;
   transition:
     border-color 0.3s ease,
@@ -1378,8 +1371,8 @@ onUnmounted(() => {
 /*  position: absolute;*/
 /*  top: 20px;*/
 /*  right: 20px;*/
-/*  background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);*/
-/*  color: #ffffff;*/
+/*  background: linear-gradient(135deg, var(--color-warning-solid) 0%, var(--color-warning-solid) 100%);*/
+/*  color: #fff;*/
 /*  padding: 4px 12px;*/
 /*  border-radius: 999px;*/
 /*  font-size: 12px;*/
@@ -1405,12 +1398,12 @@ onUnmounted(() => {
 }
 
 .platform-card.selected .select-indicator {
-  background: var(--color-brand);
-  color: #ffffff;
+  background: var(--color-brand-solid);
+  color: #fff;
 }
 
 .platform-card.selected .select-indicator i {
-  color: #ffffff;
+  color: #fff;
 }
 
 .platform-card-header {
@@ -1421,14 +1414,14 @@ onUnmounted(() => {
 .platform-icon {
   width: 80px;
   height: 80px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
   font-size: 36px;
-  color: #ffffff;
+  color: #fff;
   transition: color 0.3s ease;
 }
 
@@ -1481,7 +1474,7 @@ onUnmounted(() => {
 
 .action-modal-card {
   width: min(100%, 360px);
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 20px;
   padding: 28px 24px;
   box-shadow: 0 24px 60px rgba(15, 23, 42, 0.2);
@@ -1504,12 +1497,12 @@ onUnmounted(() => {
 .action-modal-card h3 {
   margin: 0 0 10px;
   font-size: 22px;
-  color: #1f2937;
+  color: var(--color-ink);
 }
 
 .action-modal-card p {
   margin: 0;
-  color: #64748b;
+  color: var(--color-muted);
   line-height: 1.6;
 }
 
@@ -1543,7 +1536,7 @@ onUnmounted(() => {
   border-radius: inherit;
   background: linear-gradient(
     90deg,
-    var(--color-brand) 0%,
+    var(--color-brand-solid) 0%,
     var(--color-brand-strong) 100%
   );
   transition: width 1s linear;
@@ -1578,7 +1571,7 @@ onUnmounted(() => {
 .leverage-select {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   transition:
@@ -1586,14 +1579,13 @@ onUnmounted(() => {
     background-color 0.3s ease,
     box-shadow 0.3s ease;
   font-family: inherit;
-  background: #ffffff;
+  background: var(--color-surface);
   cursor: pointer;
 }
 
 .leverage-select:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .platform-card.selected .leverage-select {
@@ -1601,7 +1593,7 @@ onUnmounted(() => {
 }
 
 .account-details-section {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 40px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -1658,7 +1650,7 @@ onUnmounted(() => {
 .form-group select {
   padding: 12px 16px;
   border-radius: var(--radius-md);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   font-size: 14px;
   transition:
     border-color 0.2s ease,
@@ -1667,9 +1659,8 @@ onUnmounted(() => {
 
 .form-group input:focus,
 .form-group select:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.2);
+  box-shadow: none;
 }
 
 .form-group .readonly {
@@ -1720,8 +1711,8 @@ onUnmounted(() => {
 }
 
 .btn-primary {
-  background: var(--color-brand);
-  color: #ffffff;
+  background: var(--color-brand-solid);
+  color: #fff;
   box-shadow: 0 14px 32px rgba(var(--color-brand-rgb), 0.35);
 }
 
@@ -1769,7 +1760,7 @@ onUnmounted(() => {
 
 .create-modal,
 .success-modal {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 18px;
   max-width: 500px;
   width: 100%;
@@ -1791,13 +1782,13 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 22px 24px;
-  border-bottom: 1px solid #e5e7eb;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .create-modal-header h2 {
   margin: 0;
   font-size: 22px;
-  color: #1f2937;
+  color: var(--color-ink);
 }
 
 .create-modal-body {
@@ -1810,7 +1801,7 @@ onUnmounted(() => {
 .modal-close-btn {
   border: none;
   background: transparent;
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 28px;
   line-height: 1;
   cursor: pointer;
@@ -1822,13 +1813,13 @@ onUnmounted(() => {
   border-radius: 50%;
   background: linear-gradient(
     135deg,
-    var(--color-success) 0%,
-    var(--color-success) 100%
+    var(--color-success-solid) 0%,
+    var(--color-success-solid) 100%
   );
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: #fff;
   font-size: 36px;
   margin: 0 auto 24px;
   box-shadow: 0 12px 30px rgba(56, 161, 105, 0.4);
@@ -1901,7 +1892,7 @@ onUnmounted(() => {
   transform: translateY(-50%);
   border: none;
   background: transparent;
-  color: #64748b;
+  color: var(--color-muted);
   cursor: pointer;
 }
 
@@ -1912,7 +1903,7 @@ onUnmounted(() => {
   padding: 12px 14px;
   border-radius: var(--radius-lg);
   background: var(--color-surface-soft);
-  color: #475569;
+  color: var(--color-text);
   font-size: 14px;
   line-height: 1.5;
 }
@@ -1932,7 +1923,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 14px;
 }
 
@@ -2032,7 +2023,7 @@ onUnmounted(() => {
     line-height: 1.3;
     margin: 0;
     align-self: start;
-    color: #94a3b8;
+    color: var(--color-faint);
     /* 单行截断：横向布局空间有限，长 description 直接省略 */
     display: -webkit-box;
     -webkit-line-clamp: 1;

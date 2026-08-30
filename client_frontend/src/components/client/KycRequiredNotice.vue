@@ -112,7 +112,7 @@ const message = computed(() => {
 .content-card {
   width: 100%;
   max-width: 480px;
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   padding: 36px 28px;
@@ -131,7 +131,7 @@ const message = computed(() => {
 }
 
 .status-icon.icon-pending {
-  background: #fff7e6;
+  background: var(--color-warning-soft);
   color: var(--color-warning);
 }
 

@@ -182,7 +182,7 @@ const confirm = () => {
 }
 
 .bulk-tag-modal-content {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-lg);
   max-width: 600px;
   width: 90%;
@@ -193,7 +193,7 @@ const confirm = () => {
 
 .bulk-tag-modal-header {
   padding: 25px 30px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -255,10 +255,10 @@ const confirm = () => {
 .bulk-tag-input-section input {
   width: 100%;
   padding: 10px 14px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
-  outline: none;
+
   transition: all 0.3s ease;
   margin-bottom: 10px;
 }
@@ -266,7 +266,7 @@ const confirm = () => {
 .tag-select:focus,
 .bulk-tag-input-section input:focus {
   border-color: var(--color-warning);
-  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  box-shadow: none;
 }
 
 .bulk-tag-input-section input:disabled {
@@ -276,7 +276,7 @@ const confirm = () => {
 
 .bulk-tag-preview {
   background: var(--color-warning-soft);
-  border: 2px solid var(--color-warning-border);
+  border: 1px solid var(--color-warning-border);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-bottom: 25px;
@@ -297,7 +297,7 @@ const confirm = () => {
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  background: var(--color-warning);
+  background: var(--color-warning-solid);
   color: white;
   border-radius: var(--radius-xl);
   font-size: 13px;
@@ -306,7 +306,7 @@ const confirm = () => {
 
 .selected-leads-list {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 20px;
 }
@@ -324,7 +324,7 @@ const confirm = () => {
 }
 
 .count-badge {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 2px 10px;
   border-radius: var(--radius-lg);
@@ -341,7 +341,7 @@ const confirm = () => {
   align-items: center;
   gap: 12px;
   padding: 10px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   margin-bottom: 8px;
   border: 1px solid var(--color-border);
@@ -355,7 +355,7 @@ const confirm = () => {
   width: 36px;
   height: 36px;
   border-radius: 50%;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,7 +383,7 @@ const confirm = () => {
 
 .bulk-tag-modal-footer {
   padding: 20px 30px;
-  border-top: 2px solid var(--color-border);
+  border-top: 1px solid var(--color-border);
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -413,13 +413,13 @@ const confirm = () => {
 }
 
 .btn-modal-tag-add {
-  background: var(--color-warning);
+  background: var(--color-warning-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
 }
 
 .btn-modal-tag-add:hover:not(:disabled) {
-  background: var(--color-warning);
+  background: var(--color-warning-solid);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(245, 158, 11, 0.4);
 }

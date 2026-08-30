@@ -489,7 +489,7 @@ const downloadDocument = () => {
           text-align: center;
           margin-bottom: 30px;
           padding-bottom: 20px;
-          border-bottom: 3px solid var(--color-brand);
+          border-bottom: 1px solid var(--color-brand);
         }
 
         .header h1 {
@@ -547,8 +547,8 @@ const downloadDocument = () => {
         .signature-section {
           margin-top: 40px;
           padding: 25px;
-          background: #fff9e6;
-          border: 2px solid #f6b93b;
+          background: var(--color-warning-soft);
+          border: 1px solid var(--color-warning-border, var(--color-warning));
           border-radius: var(--radius-md);
           page-break-inside: avoid;
         }
@@ -596,7 +596,7 @@ const downloadDocument = () => {
         .footer {
           margin-top: 40px;
           padding-top: 20px;
-          border-top: 2px solid var(--color-border);
+          border-top: 1px solid var(--color-border);
           text-align: center;
           font-size: 12px;
           color: var(--color-muted);
@@ -656,7 +656,7 @@ const downloadDocument = () => {
       </div>
 
       <div class="no-print" style="margin-top: 30px; text-align: center;">
-        <button onclick="window.print()" style="padding: 12px 30px; background: var(--color-brand); color: white; border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 600; cursor: pointer; margin-right: 10px;">
+        <button onclick="window.print()" style="padding: 12px 30px; background: var(--color-brand-solid); color: white; border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 600; cursor: pointer; margin-right: 10px;">
           Print / Save as PDF
         </button>
         <button onclick="window.close()" style="padding: 12px 30px; background: var(--color-border); color: var(--color-text); border: none; border-radius: var(--radius-md); font-size: 16px; font-weight: 600; cursor: pointer;">
@@ -715,10 +715,10 @@ const getDocumentContent = (type) => {
 }
 
 .detail-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 25px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .detail-section h3 {
@@ -726,7 +726,7 @@ const getDocumentContent = (type) => {
   color: var(--color-ink);
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -769,7 +769,7 @@ const getDocumentContent = (type) => {
 }
 
 .btn-save.active {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(var(--color-brand-rgb), 0.3);
 }
@@ -784,7 +784,7 @@ const getDocumentContent = (type) => {
   justify-content: space-between;
   align-items: center;
   padding: 12px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid var(--color-border);
 }
 
 .detail-field:last-child {
@@ -816,15 +816,14 @@ const getDocumentContent = (type) => {
 }
 
 .detail-value.editable {
-  border: 2px solid var(--color-border);
-  background: white;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
   transition: all 0.3s ease;
 }
 
 .detail-value.editable:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 /* Status Badge */
@@ -859,10 +858,10 @@ const getDocumentContent = (type) => {
 
 /* Documents Section */
 .documents-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 25px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   margin-bottom: 30px;
 }
 
@@ -871,7 +870,7 @@ const getDocumentContent = (type) => {
   color: var(--color-ink);
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -889,7 +888,7 @@ const getDocumentContent = (type) => {
 
 .document-card-mini {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 15px;
   transition: all 0.3s ease;
@@ -911,7 +910,7 @@ const getDocumentContent = (type) => {
 .document-icon-mini {
   width: 36px;
   height: 36px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   border-radius: var(--radius-md);
   display: flex;
   align-items: center;
@@ -993,7 +992,7 @@ const getDocumentContent = (type) => {
 }
 
 .btn-view-doc:hover {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   transform: translateY(-1px);
 }
@@ -1008,10 +1007,10 @@ const getDocumentContent = (type) => {
 
 /* Sales Assignment Section */
 .sales-assignment-section {
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: 25px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
 }
 
 .sales-assignment-section h3 {
@@ -1019,7 +1018,7 @@ const getDocumentContent = (type) => {
   color: var(--color-ink);
   margin-bottom: 20px;
   padding-bottom: 15px;
-  border-bottom: 2px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
 }
 
 .sales-assignment-section h3 i {
@@ -1048,19 +1047,19 @@ const getDocumentContent = (type) => {
 .assignment-field input,
 .assignment-field textarea {
   padding: 10px 14px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
-  outline: none;
+
   transition: all 0.3s ease;
-  background: white;
+  background: var(--color-surface);
 }
 
 .assignment-field select:focus,
 .assignment-field input:focus,
 .assignment-field textarea:focus {
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .assignment-field textarea {
@@ -1130,7 +1129,7 @@ const getDocumentContent = (type) => {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   box-shadow: 0 2px 8px rgba(var(--color-brand-rgb), 0.3);
 }
@@ -1162,7 +1161,7 @@ const getDocumentContent = (type) => {
 }
 
 .modal-content {
-  background-color: #ffffff;
+  background-color: var(--color-surface);
   margin: 3% auto;
   padding: 0;
   border-radius: var(--radius-lg);
@@ -1187,7 +1186,7 @@ const getDocumentContent = (type) => {
 }
 
 .modal-header {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
   padding: 20px 30px;
   border-radius: 12px 12px 0 0;
@@ -1225,7 +1224,7 @@ const getDocumentContent = (type) => {
 
 .document-preview {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 30px;
   margin-bottom: 25px;
@@ -1239,7 +1238,7 @@ const getDocumentContent = (type) => {
 }
 
 .document-preview-content {
-  background: white;
+  background: var(--color-surface);
   padding: 30px;
   border-radius: var(--radius-md);
   line-height: 1.8;
@@ -1269,8 +1268,8 @@ const getDocumentContent = (type) => {
 }
 
 .document-signature {
-  background: #fff9e6;
-  border: 2px solid #f6b93b;
+  background: var(--color-warning-soft);
+  border: 1px solid var(--color-warning-border, var(--color-warning));
   border-radius: var(--radius-md);
   padding: 20px;
   margin-top: 20px;
@@ -1286,7 +1285,7 @@ const getDocumentContent = (type) => {
 }
 
 .document-signature h4 i {
-  color: #f6b93b;
+  color: var(--color-warning);
 }
 
 .signature-info-row {
@@ -1339,7 +1338,7 @@ const getDocumentContent = (type) => {
 }
 
 .btn-modal-primary {
-  background: var(--color-brand);
+  background: var(--color-brand-solid);
   color: white;
 }
 

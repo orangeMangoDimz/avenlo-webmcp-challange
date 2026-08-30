@@ -105,8 +105,6 @@ const props = defineProps({
   },
 });
 
-const emit = defineEmits(["refresh"]);
-
 const isEnabled = ref(props.documents.length > 0);
 const localDocuments = ref([...props.documents]);
 
@@ -160,7 +158,7 @@ const updateContent = (index, event) => {
 
 .document-required-toggle {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 15px 20px;
   margin-bottom: 20px;
@@ -186,7 +184,7 @@ const updateContent = (index, event) => {
 }
 
 .toggle-switch.active {
-  background: var(--color-success);
+  background: var(--color-success-solid);
 }
 
 .toggle-switch::after {
@@ -196,7 +194,7 @@ const updateContent = (index, event) => {
   left: 3px;
   width: 20px;
   height: 20px;
-  background: white;
+  background: var(--color-surface);
   border-radius: 50%;
   transition: all 0.3s ease;
 }
@@ -227,7 +225,7 @@ const updateContent = (index, event) => {
 
 .legal-document-item {
   background: var(--color-surface-soft);
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: 20px;
   margin-bottom: 15px;
@@ -249,19 +247,18 @@ const updateContent = (index, event) => {
 .document-title-input {
   flex: 1;
   padding: 10px 14px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
-  background: white;
+  background: var(--color-surface);
   margin-right: 10px;
 }
 
 .document-title-input:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .btn-small {
@@ -292,14 +289,14 @@ const updateContent = (index, event) => {
   gap: 8px;
   margin-bottom: 10px;
   padding: 10px;
-  background: white;
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   border: 1px solid var(--color-border);
 }
 
 .editor-btn {
   padding: 6px 10px;
-  background: white;
+  background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
@@ -318,18 +315,17 @@ const updateContent = (index, event) => {
   width: 100%;
   min-height: 150px;
   padding: 15px;
-  border: 2px solid var(--color-border);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   font-size: 14px;
-  background: white;
+  background: var(--color-surface);
   line-height: 1.6;
   transition: all 0.3s ease;
 }
 
 .document-editor:focus {
-  outline: none;
   border-color: var(--color-brand);
-  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+  box-shadow: none;
 }
 
 .document-editor:empty:before {
@@ -355,12 +351,12 @@ const updateContent = (index, event) => {
   width: 100%;
   justify-content: center;
   padding: 12px 20px;
-  background: var(--color-success);
+  background: var(--color-success-solid);
   color: white;
 }
 
 .btn-add-document:hover {
-  background: var(--color-success);
+  background: var(--color-success-solid);
 }
 
 .btn {

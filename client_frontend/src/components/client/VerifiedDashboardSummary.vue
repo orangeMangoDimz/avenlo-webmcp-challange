@@ -212,8 +212,6 @@ const panelLoading = ref(false);
 const panelError = ref("");
 const panelInitialized = ref(false);
 const selectedNotification = ref(null);
-const panelListRef = ref(null);
-
 // Total assets 数据，来自 /trading/accounts/summary
 const accountSummary = ref({
   Total: "0",
@@ -605,7 +603,7 @@ onMounted(async () => {
 }
 
 .overview-card {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 28px;
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
@@ -624,7 +622,7 @@ onMounted(async () => {
 .overview-card-title {
   font-size: 18px;
   font-weight: 700;
-  color: #1f2937;
+  color: var(--color-ink);
   margin: 0;
   display: flex;
   align-items: center;
@@ -642,14 +640,14 @@ onMounted(async () => {
 }
 
 .overview-card-link:hover {
-  color: #1f2937;
+  color: var(--color-ink);
 }
 
 /* Total assets card */
 .visibility-toggle {
   background: transparent;
   border: none;
-  color: #94a3b8;
+  color: var(--color-faint);
   cursor: pointer;
   padding: 4px;
   font-size: 14px;
@@ -658,7 +656,7 @@ onMounted(async () => {
 }
 
 .visibility-toggle:hover {
-  color: #1f2937;
+  color: var(--color-ink);
 }
 
 .assets-amount {
@@ -670,14 +668,14 @@ onMounted(async () => {
 .assets-value {
   font-size: 36px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-ink-strong);
   line-height: 1.1;
 }
 
 .assets-currency {
   font-size: 14px;
   font-weight: 600;
-  color: #64748b;
+  color: var(--color-muted);
 }
 
 .assets-actions {
@@ -691,8 +689,8 @@ onMounted(async () => {
   padding: 9px 18px;
   border-radius: 999px;
   border: none;
-  background: #f1f5f9;
-  color: #1f2937;
+  background: var(--color-surface-soft);
+  color: var(--color-ink);
   font-size: 13px;
   font-weight: 600;
   cursor: pointer;
@@ -707,18 +705,18 @@ onMounted(async () => {
 }
 
 .asset-btn--primary {
-  background: #0f172a;
-  color: #ffffff;
+  background: var(--color-sidebar);
+  color: #fff;
 }
 
 .asset-btn--primary:hover {
-  background: #1f2937;
+  background: var(--color-sidebar-raised);
 }
 
 /* Trading accounts card */
 .accounts-state {
   font-size: 14px;
-  color: #94a3b8;
+  color: var(--color-faint);
   padding: 24px 0;
   text-align: center;
 }
@@ -739,11 +737,11 @@ onMounted(async () => {
   gap: 12px;
   padding: 10px 0;
   font-size: 14px;
-  color: #1f2937;
+  color: var(--color-ink);
 }
 
 .accounts-item + .accounts-item {
-  border-top: 1px solid #f1f5f9;
+  border-top: 1px solid var(--color-border);
   padding-top: 16px;
 }
 
@@ -754,15 +752,15 @@ onMounted(async () => {
   min-width: 44px;
   padding: 4px 8px;
   border-radius: var(--radius-sm);
-  background: #f1f5f9;
-  color: #475569;
+  background: var(--color-surface-soft);
+  color: var(--color-text);
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
 
 .account-id {
-  color: #1f2937;
+  color: var(--color-ink);
   font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -771,17 +769,17 @@ onMounted(async () => {
 
 .account-balance {
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-ink-strong);
 }
 
 .account-currency {
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 13px;
   font-weight: 600;
 }
 
 .account-group {
-  color: #64748b;
+  color: var(--color-muted);
   font-size: 13px;
   text-align: right;
   min-width: 90px;
@@ -795,7 +793,7 @@ onMounted(async () => {
 }
 
 .stat-card {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: var(--radius-xl);
   padding: 22px 20px;
   box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08);
@@ -817,28 +815,28 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: #fff;
   font-size: 18px;
   flex-shrink: 0;
 }
 
 .stat-card-icon.blue {
-  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 100%);
+  background: var(--color-brand-solid);
 }
 .stat-card-icon.green {
-  background: linear-gradient(135deg, #38bdf8 0%, #22d3ee 100%);
+  background: var(--color-success-solid);
 }
 .stat-card-icon.orange {
-  background: linear-gradient(135deg, #fb923c 0%, #f97316 100%);
+  background: var(--color-warning-solid);
 }
 .stat-card-icon.red {
-  background: linear-gradient(135deg, #f87171 0%, var(--color-danger) 100%);
+  background: var(--color-danger-solid);
 }
 
 .stat-card-label {
   font-size: 14px;
   font-weight: 600;
-  color: #475569;
+  color: var(--color-text);
   flex: 1;
 }
 
@@ -849,7 +847,7 @@ onMounted(async () => {
 .stat-card-value {
   font-size: 24px;
   font-weight: 700;
-  color: #0f172a;
+  color: var(--color-ink-strong);
   word-break: break-word;
 }
 
@@ -889,7 +887,7 @@ onMounted(async () => {
 }
 
 .notifications-panel {
-  background: #ffffff;
+  background: var(--color-surface);
   border-radius: 20px;
   padding: 32px;
   box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
@@ -905,7 +903,7 @@ onMounted(async () => {
   margin-bottom: 15px;
   transition: all 0.2s ease;
   cursor: pointer;
-  border-left: 4px solid transparent;
+  border-left: 1px solid transparent;
 }
 
 .notification-item.unread {
@@ -926,7 +924,7 @@ onMounted(async () => {
 .notification-empty {
   padding: 40px 20px;
   text-align: center;
-  color: #94a3b8;
+  color: var(--color-faint);
   font-size: 14px;
 }
 
@@ -943,7 +941,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #ffffff;
+  color: #fff;
   font-size: 18px;
   flex-shrink: 0;
 }
@@ -954,45 +952,37 @@ onMounted(async () => {
 }
 
 .notification-icon.blue {
-  background: linear-gradient(
-    135deg,
-    #6366f1 0%,
-    var(--color-brand-strong) 100%
-  );
+  background: var(--color-brand-solid);
 }
 .notification-icon.green {
-  background: linear-gradient(135deg, #22c55e 0%, var(--color-success) 100%);
+  background: var(--color-success-solid);
 }
 .notification-icon.orange {
-  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  background: var(--color-warning-solid);
 }
 .notification-icon.info {
-  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  background: var(--color-info-solid);
 }
 .notification-icon.error {
-  background: linear-gradient(
-    135deg,
-    var(--color-danger) 0%,
-    var(--color-danger) 100%
-  );
+  background: var(--color-danger-solid);
 }
 
 .notification-title {
   font-weight: 600;
-  color: #1f2937;
+  color: var(--color-ink);
   margin-bottom: 4px;
 }
 
 .notification-text {
   font-size: 14px;
-  color: #475569;
+  color: var(--color-text);
   line-height: 1.6;
   margin-bottom: 6px;
 }
 
 .notification-time {
   font-size: 12px;
-  color: #94a3b8;
+  color: var(--color-faint);
 }
 
 @media (max-width: 960px) {
