@@ -323,6 +323,7 @@ onMounted(() => {
 }
 
 .menu-arrow {
+  /* @font-floor-exempt: visual-only navigation glyph */
   font-size: 12px;
   transition:
     transform 0.3s ease,

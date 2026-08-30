@@ -1165,7 +1165,7 @@ onMounted(async () => {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -1223,7 +1223,7 @@ onMounted(async () => {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1253,7 +1253,7 @@ onMounted(async () => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1274,7 +1274,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1298,7 +1298,7 @@ onMounted(async () => {
   padding: 6px 32px 6px 12px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
@@ -1355,14 +1355,14 @@ onMounted(async () => {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-warning);
   font-weight: 600;
   margin-left: 8px;
 }
 
 .status-change-indicator i {
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .toggle-switch {
@@ -1424,7 +1424,7 @@ onMounted(async () => {
   background: var(--color-warning-soft);
   border: 1px solid var(--color-warning-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-warning);
 }
 
@@ -1452,7 +1452,7 @@ onMounted(async () => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.15s ease;
@@ -1533,7 +1533,7 @@ onMounted(async () => {
 
 .tpk-form-group label {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 6px;
@@ -1563,7 +1563,7 @@ onMounted(async () => {
 
 .tpk-hint {
   margin: 6px 0 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1619,7 +1619,7 @@ onMounted(async () => {
   color: var(--color-brand);
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;

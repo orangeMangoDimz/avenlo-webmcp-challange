@@ -122,7 +122,7 @@ const barWidth = computed(() =>
 }
 
 .export-progress-banner__copy span {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   flex-shrink: 0;
 }

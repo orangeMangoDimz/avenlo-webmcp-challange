@@ -991,7 +991,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-brand-solid);
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1034,7 +1034,7 @@ onUnmounted(() => {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1044,7 +1044,7 @@ onUnmounted(() => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1052,7 +1052,7 @@ onUnmounted(() => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1106,7 +1106,7 @@ onUnmounted(() => {
   color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
   background: var(--color-surface);
@@ -1274,7 +1274,7 @@ onUnmounted(() => {
   min-width: 40px;
   padding: 0 12px;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1340,7 +1340,7 @@ onUnmounted(() => {
   top: 50%;
   transform: translateY(-50%);
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .filter-property-search input {
@@ -1349,7 +1349,7 @@ onUnmounted(() => {
   padding: 8px 10px 8px 30px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
 }
 
@@ -1381,7 +1381,7 @@ onUnmounted(() => {
   padding: 8px 10px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border: 1px solid transparent;
 }
@@ -1415,7 +1415,7 @@ onUnmounted(() => {
 }
 
 .column-drag-handle i {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .column-toggle-item:hover .column-drag-handle {
@@ -1444,7 +1444,7 @@ onUnmounted(() => {
   justify-content: center;
   min-width: 18px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1486,7 +1486,7 @@ onUnmounted(() => {
   padding: 16px 20px;
   padding-right: 42px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1643,7 +1643,7 @@ onUnmounted(() => {
   background: transparent;
   color: var(--color-brand);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   padding: 4px 0;
 }
@@ -1663,7 +1663,7 @@ onUnmounted(() => {
 .filter-empty-hint {
   margin: 8px 4px;
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .btn {
@@ -1687,7 +1687,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 

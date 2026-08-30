@@ -431,7 +431,7 @@ watch(
   color: white;
   padding: 2px 10px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .selected-items-container {
@@ -464,7 +464,7 @@ watch(
   justify-content: center;
   color: white;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -480,7 +480,7 @@ watch(
 }
 
 .selected-item-email {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -518,7 +518,7 @@ watch(
 .bulk-assignment-field label {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .bulk-assignment-field select,
@@ -565,7 +565,7 @@ watch(
 .bulk-assignment-info-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .bulk-assignment-info-value {

@@ -873,7 +873,7 @@ if (props.isExpanded) {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -895,7 +895,7 @@ if (props.isExpanded) {
   gap: 6px;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -910,13 +910,13 @@ if (props.isExpanded) {
   gap: 6px;
   padding: 6px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1;
 }
 
 .platform-badge i {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .platform-wallet {
@@ -946,11 +946,11 @@ if (props.isExpanded) {
 .account-number {
   font-weight: 600;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .account-nickname {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 2px;
 }
@@ -959,7 +959,7 @@ if (props.isExpanded) {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1004,7 +1004,7 @@ if (props.isExpanded) {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1049,7 +1049,7 @@ if (props.isExpanded) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   padding-top: 8px;
   border-top: 1px solid var(--color-border);
@@ -1064,7 +1064,7 @@ if (props.isExpanded) {
 
 .note-author i,
 .note-time i {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .timeline {
@@ -1140,12 +1140,12 @@ if (props.isExpanded) {
 }
 
 .timeline-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
 .timeline-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 5px;
 }

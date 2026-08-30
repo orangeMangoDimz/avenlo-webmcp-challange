@@ -558,7 +558,7 @@ function goToPage(page) {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -568,7 +568,7 @@ function goToPage(page) {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -576,7 +576,7 @@ function goToPage(page) {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -628,7 +628,7 @@ function goToPage(page) {
 .ls-table__th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -698,7 +698,7 @@ function goToPage(page) {
   gap: 6px;
   padding: 6px 14px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -786,7 +786,7 @@ function goToPage(page) {
 
 .ls-btn--pagination {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-border);
   color: var(--color-text);
   border: none;

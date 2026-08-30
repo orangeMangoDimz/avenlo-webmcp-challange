@@ -548,7 +548,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   border: 2px solid var(--color-canvas);
 }
@@ -760,14 +760,14 @@ onUnmounted(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
   margin-bottom: 6px;
 }
 
 .notification-time {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .notification-delete {
@@ -808,7 +808,7 @@ onUnmounted(() => {
   background: none;
   border: none;
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   padding: 8px 12px;
@@ -889,7 +889,7 @@ onUnmounted(() => {
 }
 
 .panel-subtitle {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -988,7 +988,7 @@ onUnmounted(() => {
 
 .panel-item-message {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1005,7 +1005,7 @@ onUnmounted(() => {
 }
 
 .panel-item-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
   white-space: nowrap;
 }
@@ -1013,7 +1013,7 @@ onUnmounted(() => {
 .panel-pill {
   background: var(--color-brand-solid);
   color: white;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
@@ -1108,7 +1108,7 @@ onUnmounted(() => {
 }
 
 .detail-time {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

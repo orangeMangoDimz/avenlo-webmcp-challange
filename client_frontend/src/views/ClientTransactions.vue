@@ -5578,7 +5578,7 @@ onUnmounted(() => {
   flex-direction: column;
   gap: 4px;
   min-width: 0;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -5588,7 +5588,7 @@ onUnmounted(() => {
 }
 
 .transfer-inline-summary-kicker {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -5634,7 +5634,7 @@ onUnmounted(() => {
   color: var(--color-brand);
   padding: 4px 12px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -5679,14 +5679,14 @@ onUnmounted(() => {
 }
 
 .form-help {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 6px;
   display: block;
 }
 
 .error-text {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-danger);
   margin-top: 6px;
 }
@@ -5824,14 +5824,14 @@ onUnmounted(() => {
 }
 
 .payment-method-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
   margin-bottom: 2px;
 }
 
 .payment-method-sublabel {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -5875,14 +5875,14 @@ onUnmounted(() => {
 }
 
 .crypto-option-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
   margin-bottom: 2px;
 }
 
 .crypto-option-sublabel {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -5946,7 +5946,7 @@ onUnmounted(() => {
 }
 
 .wallet-address {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   font-family: "Courier New", monospace;
   overflow: hidden;
@@ -5959,7 +5959,7 @@ onUnmounted(() => {
   color: var(--color-success);
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -5970,7 +5970,7 @@ onUnmounted(() => {
   color: var(--color-brand);
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -5994,7 +5994,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -6042,7 +6042,7 @@ onUnmounted(() => {
 }
 
 .tip-item p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 0;
 }
@@ -6058,7 +6058,7 @@ onUnmounted(() => {
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
 }
@@ -6284,7 +6284,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   padding: 12px 16px;
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   word-break: break-all;
   position: relative;
@@ -6301,7 +6301,7 @@ onUnmounted(() => {
   padding: 6px 12px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   transition:
     color 0.3s ease,
@@ -6346,7 +6346,7 @@ onUnmounted(() => {
 }
 
 .security-notice p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   margin: 0;
   line-height: 1.6;
@@ -6594,7 +6594,7 @@ onUnmounted(() => {
 }
 
 .account-identifier {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-family: "Courier New", monospace;
   overflow: hidden;
@@ -6611,11 +6611,12 @@ onUnmounted(() => {
   color: var(--color-success);
   padding: 3px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .verified-badge i {
+  /* @font-floor-exempt: visual-only status glyph */
   font-size: 10px;
 }
 
@@ -6767,7 +6768,7 @@ onUnmounted(() => {
   }
 
   .balance-label {
-    font-size: 12px;
+    font-size: 14px;
     margin-bottom: 4px;
   }
 
@@ -6790,7 +6791,7 @@ onUnmounted(() => {
     flex-direction: column;
     gap: 6px;
     border-radius: var(--radius-lg);
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.2;
     text-align: center;
   }

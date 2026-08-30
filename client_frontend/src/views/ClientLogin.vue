@@ -879,7 +879,7 @@
       </button>
       <div class="modal-body legal-body">
         <div
-          class="legal-document-content"
+          class="legal-document-content font-floor-content"
           v-html="activeLegalDoc.content"
         ></div>
         <div class="legal-footer">
@@ -2403,7 +2403,7 @@ if (typeof window !== "undefined") {
 .field-error {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-danger);
 }
 
@@ -2436,7 +2436,7 @@ if (typeof window !== "undefined") {
 .password-hint {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2507,7 +2507,7 @@ if (typeof window !== "undefined") {
 .btn-continue-icon {
   width: auto;
   height: auto;
-  font-size: 13px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -2757,7 +2757,7 @@ if (typeof window !== "undefined") {
 }
 
 .modal-custom-select-trigger i {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   flex-shrink: 0;
 }
@@ -2823,7 +2823,7 @@ if (typeof window !== "undefined") {
 
 .modal-custom-select-empty {
   padding: 14px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2842,7 +2842,7 @@ if (typeof window !== "undefined") {
   display: block;
   margin-top: 5px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* Password requirement hint */
@@ -2856,7 +2856,7 @@ if (typeof window !== "undefined") {
   border-left: 1px solid var(--color-brand);
   border-radius: var(--radius-sm);
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -2892,7 +2892,7 @@ if (typeof window !== "undefined") {
 
 .terms {
   margin-top: 20px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   text-align: center;
 }
@@ -3048,7 +3048,7 @@ if (typeof window !== "undefined") {
   font-family: "Work Sans", sans-serif;
   font-style: normal;
   font-weight: 400;
-  font-size: 10px;
+  font-size: 14px;
   line-height: 15px;
   color: var(--color-faint);
 }
@@ -3105,7 +3105,7 @@ if (typeof window !== "undefined") {
   font-family: "Work Sans", sans-serif;
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 130%;
   text-align: center;
   color: #fff;
@@ -3158,7 +3158,7 @@ if (typeof window !== "undefined") {
     width: 120px;
   }
   .feature-text {
-    font-size: 13px;
+    font-size: 14px;
   }
   .journey-title {
     font-size: 36px;
@@ -3350,7 +3350,7 @@ if (typeof window !== "undefined") {
 
 .feature-text {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .journey-title {

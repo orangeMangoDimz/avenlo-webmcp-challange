@@ -431,7 +431,7 @@ onMounted(async () => {
   bottom: 20px;
   text-align: center;
   color: white;
-  font-size: 13px;
+  font-size: 14px;
   opacity: 0.9;
 }
 

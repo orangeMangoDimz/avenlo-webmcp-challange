@@ -293,7 +293,7 @@ const getTierName = (tierId) => {
   display: flex;
   align-items: start;
   gap: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-danger);
 }
 
@@ -413,7 +413,7 @@ const getTierName = (tierId) => {
 }
 
 .rule-meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

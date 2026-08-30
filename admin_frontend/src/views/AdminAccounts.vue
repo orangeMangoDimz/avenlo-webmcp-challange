@@ -844,7 +844,7 @@ onMounted(async () => {
 
 .btn-pagination {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-border);
   color: var(--color-text);
   border: none;
@@ -936,7 +936,7 @@ thead {
 thead th {
   padding: 18px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-text);
   text-transform: uppercase;
@@ -990,7 +990,7 @@ tbody td {
 }
 
 .account-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1004,7 +1004,7 @@ tbody td {
 }
 
 .username-cell i {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1012,7 +1012,7 @@ tbody td {
   display: inline-block;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1043,7 +1043,7 @@ tbody td {
   gap: 6px;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1309,7 +1309,7 @@ input:checked + .toggle-slider:before {
 }
 
 .toggle-option-info p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1363,7 +1363,7 @@ input:checked + .toggle-slider:before {
   display: block;
   margin-top: 8px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-style: normal;
 }
 
@@ -1403,7 +1403,7 @@ input:checked + .toggle-slider:before {
   }
 
   table {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   tbody td {

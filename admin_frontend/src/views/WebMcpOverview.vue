@@ -188,7 +188,7 @@ onUnmounted(() => {
 .webmcp-eyebrow {
   margin: 0 0 8px;
   color: var(--color-brand);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -213,7 +213,7 @@ onUnmounted(() => {
   max-width: 560px;
   margin: 7px 0 0;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .webmcp-overview-grid {
@@ -260,7 +260,7 @@ onUnmounted(() => {
   max-width: 620px;
   margin: 7px 0 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -274,7 +274,7 @@ onUnmounted(() => {
   background: var(--color-surface-muted);
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 750;
   white-space: nowrap;
 }
@@ -321,7 +321,7 @@ onUnmounted(() => {
   max-width: 600px;
   margin: 5px 0 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -393,7 +393,7 @@ onUnmounted(() => {
 
 .webmcp-metric span {
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -440,7 +440,7 @@ onUnmounted(() => {
   gap: 8px;
   margin-top: 24px;
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 750;
   text-decoration: none;
 }

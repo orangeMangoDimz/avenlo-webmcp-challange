@@ -1273,7 +1273,7 @@ onMounted(async () => {
 }
 
 .recipient-id {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1315,7 +1315,7 @@ onMounted(async () => {
 }
 
 .recipient-bulk-hint {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-success);
   margin-left: auto;
 }
@@ -1350,7 +1350,7 @@ onMounted(async () => {
   background: var(--color-info-soft);
   color: var(--color-info);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1365,7 +1365,7 @@ onMounted(async () => {
 
 .recipient-bulk-item-name {
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1444,7 +1444,7 @@ onMounted(async () => {
 }
 
 .type-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1513,14 +1513,14 @@ onMounted(async () => {
 }
 
 .character-count {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
 .error-message,
 .error-text {
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 8px;
   display: flex;
   align-items: center;
@@ -1612,7 +1612,7 @@ onMounted(async () => {
 }
 
 .schedule-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1660,7 +1660,7 @@ onMounted(async () => {
   padding: 10px 20px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
   display: flex;
@@ -1728,7 +1728,7 @@ onMounted(async () => {
 .general-error-message {
   margin-right: auto;
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: 14px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1738,7 +1738,7 @@ onMounted(async () => {
 .template-helper {
   margin-top: 6px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .btn {
@@ -1902,7 +1902,7 @@ onMounted(async () => {
 }
 
 .notification-preview-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 

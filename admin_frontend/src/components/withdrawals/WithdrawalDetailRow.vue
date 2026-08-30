@@ -1178,7 +1178,7 @@ if (props.isExpanded) {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -1229,7 +1229,7 @@ if (props.isExpanded) {
 
 .crypto-address {
   font-family: "Courier New", monospace;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-brand);
   background: var(--color-brand-soft);
   padding: 8px 12px;
@@ -1431,16 +1431,16 @@ if (props.isExpanded) {
 
 .file-date {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .timeline-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
 .timeline-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 5px;
 }

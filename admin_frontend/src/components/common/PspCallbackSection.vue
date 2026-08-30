@@ -195,7 +195,7 @@ watch(
   color: var(--color-text);
   border-radius: 999px;
   padding: 2px 10px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -231,7 +231,7 @@ watch(
   display: inline-block;
   padding: 2px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-surface-muted);
   color: var(--color-ink);
@@ -261,7 +261,7 @@ watch(
 .psp-callback-field {
   display: flex;
   flex-direction: column;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .psp-callback-field-full {
@@ -270,7 +270,7 @@ watch(
 
 .psp-callback-label {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   margin-bottom: 2px;
 }
 
@@ -289,7 +289,7 @@ watch(
 
 .psp-callback-payload-label {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
 }
@@ -300,7 +300,7 @@ watch(
   border-radius: 4px;
   padding: 10px 12px;
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   max-height: 320px;
   overflow: auto;
   white-space: pre-wrap;

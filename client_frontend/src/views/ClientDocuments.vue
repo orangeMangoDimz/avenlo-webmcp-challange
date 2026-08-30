@@ -117,7 +117,7 @@
               {{ currentDocument ? getDocumentTitle(currentDocument) : "" }}
             </h3>
             <div
-              class="document-preview-content"
+              class="document-preview-content font-floor-content"
               v-html="getDocumentContent(currentDocument)"
             ></div>
           </div>
@@ -462,7 +462,7 @@ const downloadDocument = (doc) => {
 
         .signature-item label {
           display: block;
-          font-size: 11px;
+          font-size: 14px;
           color: var(--color-muted);
           text-transform: uppercase;
           font-weight: 600;
@@ -481,7 +481,7 @@ const downloadDocument = (doc) => {
           padding-top: 20px;
           border-top: 1px solid var(--color-border);
           text-align: center;
-          font-size: 12px;
+          font-size: 14px;
           color: var(--color-muted);
         }
 
@@ -677,7 +677,7 @@ const downloadCurrentDocument = () => {
 }
 
 .document-date {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   display: flex;
   align-items: center;
@@ -685,6 +685,7 @@ const downloadCurrentDocument = () => {
 }
 
 .document-date i {
+  /* @font-floor-exempt: visual-only metadata glyph */
   font-size: 12px;
 }
 
@@ -699,7 +700,7 @@ const downloadCurrentDocument = () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   padding: 6px 12px;
   background: var(--color-surface-soft);
@@ -717,7 +718,7 @@ const downloadCurrentDocument = () => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -728,6 +729,7 @@ const downloadCurrentDocument = () => {
 }
 
 .document-status i {
+  /* @font-floor-exempt: visual-only status glyph */
   font-size: 12px;
 }
 
@@ -981,7 +983,7 @@ const downloadCurrentDocument = () => {
 }
 
 .signature-field label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   text-transform: uppercase;
   font-weight: 600;

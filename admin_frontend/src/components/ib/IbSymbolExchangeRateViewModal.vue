@@ -214,7 +214,7 @@ const formatDateTime = (value) => {
 
 .detail-row dt {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -228,7 +228,7 @@ const formatDateTime = (value) => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -244,7 +244,7 @@ const formatDateTime = (value) => {
 
 .view-placeholder-note {
   margin: 16px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 

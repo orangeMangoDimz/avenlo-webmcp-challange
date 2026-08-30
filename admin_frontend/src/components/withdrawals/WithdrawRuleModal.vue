@@ -27,10 +27,10 @@
         >
           <div style="display: flex; align-items: center; gap: 8px">
             <i class="fas fa-lightbulb" style="color: var(--color-brand)"></i>
-            <strong style="color: var(--color-ink); font-size: 13px">{{
+            <strong style="color: var(--color-ink); font-size: 14px">{{
               t("withdrawKycRuleModal_simpleRules")
             }}</strong>
-            <span style="color: var(--color-text); font-size: 13px">{{
+            <span style="color: var(--color-text); font-size: 14px">{{
               tParams(
                 "withdrawKycRuleModal_tipLine",
                 "Jump to a question or reject the {label} based on answer choice",
@@ -60,7 +60,7 @@
             <small
               style="
                 color: var(--color-muted);
-                font-size: 12px;
+                font-size: 14px;
                 margin-top: 5px;
                 display: block;
               "
@@ -109,7 +109,7 @@
                   color: var(--color-brand-strong);
                   padding: 4px 10px;
                   border-radius: 4px;
-                  font-size: 12px;
+                  font-size: 14px;
                 "
                 >{{ t("withdrawKycRuleModal_ifBadge") }}</span
               >
@@ -170,7 +170,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 5px;
                   display: block;
                 "
@@ -206,7 +206,7 @@
                   color: var(--color-success);
                   padding: 4px 10px;
                   border-radius: 4px;
-                  font-size: 12px;
+                  font-size: 14px;
                 "
                 >{{ t("withdrawKycRuleModal_thenBadge") }}</span
               >
@@ -239,7 +239,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 5px;
                   display: block;
                 "
@@ -266,7 +266,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 5px;
                   display: block;
                 "

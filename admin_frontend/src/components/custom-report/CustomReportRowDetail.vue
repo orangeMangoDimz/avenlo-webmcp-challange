@@ -272,7 +272,7 @@ const { t, tParams } = useAdminI18n();
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   background: var(--color-brand-solid);
@@ -312,7 +312,7 @@ const { t, tParams } = useAdminI18n();
 .report-detail-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -382,7 +382,7 @@ const { t, tParams } = useAdminI18n();
 
 .report-detail-page-btn {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   border: none;
   border-radius: var(--radius-md);
   background: var(--color-border);
@@ -407,7 +407,7 @@ const { t, tParams } = useAdminI18n();
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }

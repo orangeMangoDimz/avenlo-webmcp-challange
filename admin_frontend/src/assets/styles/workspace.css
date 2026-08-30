@@ -61,7 +61,7 @@
 }
 #app .workspace-brand-copy small {
   color: var(--color-muted);
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -78,7 +78,7 @@
   background: transparent;
   border: 1px solid var(--color-border-strong);
   border-radius: 2px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -265,7 +265,7 @@
   :is(.page-title p, .page-header p, .ir-list-page-title__desc) {
   margin-top: 4px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 #app .workspace-main :is(.page-actions, .ir-list-page-actions) {
   display: flex;
@@ -300,7 +300,7 @@
   border-left: 1px solid var(--color-border);
   border-radius: 0;
   box-shadow: none;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
 }
 #app .workspace-main .stat-badge:first-child {
@@ -386,7 +386,7 @@
   background: var(--color-surface-soft);
   border-bottom: 1px solid var(--color-border);
   border-radius: 0;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 750;
   letter-spacing: 0.07em;
 }
@@ -443,7 +443,7 @@
 #app .workspace-main .ib-report-page .detail-table > thead > tr > th {
   top: 0;
   font-family: var(--font-ui);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: 0.04em;
@@ -455,7 +455,7 @@
 }
 #app .workspace-main .ib-report-page .detail-table > tbody > tr > td {
   font-family: var(--font-ui);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
 }
 
@@ -502,7 +502,7 @@
   display: block;
   margin-bottom: 6px;
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 #app
@@ -535,7 +535,7 @@
   min-height: 34px;
   border-radius: 2px;
   box-shadow: none;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 650;
 }
 #app .workspace-main :is(.btn-primary, .primary-button, .btn-bulk-approve) {
@@ -658,7 +658,7 @@
 #app .login-page .captcha-error {
   margin: 6px 0 0;
   color: var(--color-danger);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 /* The access form is a two-part workflow, not the former stacked login card. */
@@ -682,7 +682,7 @@
   max-width: 32ch;
   margin: 0;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   text-align: right;
 }
 #app .login-page .access-form-grid {
@@ -714,14 +714,14 @@
   place-items: center;
   color: #fff;
   background: var(--workspace-cobalt);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.04em;
 }
 #app .login-page .access-block-heading h2 {
   margin: 0;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 750;
   letter-spacing: 0.01em;
   line-height: 1.35;
@@ -729,7 +729,7 @@
 #app .login-page .access-block-heading p {
   margin: 2px 0 0;
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: 14px;
 }
 #app .login-page .access-fields {
   display: grid;
@@ -764,7 +764,7 @@
   background: transparent;
   border: 0;
   border-radius: 0;
-  font-size: 12px;
+  font-size: 14px;
 }
 #app .login-page .access-submit-rail .security-notice strong {
   margin-bottom: 4px;
@@ -952,7 +952,7 @@
 #app .login-page .admin-access-kicker {
   margin-bottom: 18px;
   color: #e0a458;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 750;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -977,7 +977,7 @@
   padding-top: 22px;
   color: #98a2b3;
   border-top: 1px solid #344054;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 #app .login-page .admin-access-brand-note i {
@@ -1018,7 +1018,7 @@
 }
 #app .login-page .admin-access-form-panel .access-block .form-group > label {
   margin-bottom: 7px;
-  font-size: 13px;
+  font-size: 14px;
 }
 #app .login-page .admin-access-form-panel .form-group input {
   min-height: 48px;

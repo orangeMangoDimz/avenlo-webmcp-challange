@@ -2068,7 +2068,7 @@ watch(showSendNotificationModal, (visible) => {
   right: 12px;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -2086,7 +2086,7 @@ watch(showSendNotificationModal, (visible) => {
   align-items: center;
   gap: 10px;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -2187,7 +2187,7 @@ watch(showSendNotificationModal, (visible) => {
 
 .kyc-option-card p {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   line-height: 1.6;
 }
@@ -2256,7 +2256,7 @@ watch(showSendNotificationModal, (visible) => {
 
 .error-message {
   margin: 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-danger);
 }
 
@@ -2368,7 +2368,7 @@ watch(showSendNotificationModal, (visible) => {
 }
 
 .tags-header h4 {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   font-weight: 600;
   text-transform: uppercase;
@@ -2379,7 +2379,7 @@ watch(showSendNotificationModal, (visible) => {
   padding: 4px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2420,7 +2420,7 @@ watch(showSendNotificationModal, (visible) => {
   background: var(--color-brand-solid);
   color: white;
   border-radius: var(--radius-xl);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition:
@@ -2450,7 +2450,7 @@ watch(showSendNotificationModal, (visible) => {
 }
 
 .search-tag i {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .tag-remove {
@@ -2479,7 +2479,7 @@ watch(showSendNotificationModal, (visible) => {
 
 .empty-tags-message {
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -2643,7 +2643,7 @@ watch(showSendNotificationModal, (visible) => {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -2653,7 +2653,7 @@ watch(showSendNotificationModal, (visible) => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2661,7 +2661,7 @@ watch(showSendNotificationModal, (visible) => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2733,7 +2733,7 @@ watch(showSendNotificationModal, (visible) => {
   height: 20px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .btn-bulk-notification .btn-bulk-notification-text {
@@ -2773,7 +2773,7 @@ watch(showSendNotificationModal, (visible) => {
     width 0.2s ease,
     max-height 0.2s ease,
     filter 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -2866,7 +2866,7 @@ watch(showSendNotificationModal, (visible) => {
 .leads-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -3094,7 +3094,7 @@ watch(showSendNotificationModal, (visible) => {
 }
 
 .client-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   white-space: nowrap;
 }
@@ -3102,7 +3102,7 @@ watch(showSendNotificationModal, (visible) => {
 /* Lead ID */
 .lead-id {
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-brand);
   background: var(--color-brand-soft);
@@ -3116,7 +3116,7 @@ watch(showSendNotificationModal, (visible) => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -3146,7 +3146,7 @@ watch(showSendNotificationModal, (visible) => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   white-space: nowrap;
@@ -3193,7 +3193,7 @@ watch(showSendNotificationModal, (visible) => {
   background: var(--color-warning-soft);
   color: var(--color-warning);
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   position: relative;
@@ -3201,6 +3201,7 @@ watch(showSendNotificationModal, (visible) => {
 }
 
 .lead-tag i {
+  /* @font-floor-exempt: visual-only tag glyph */
   font-size: 9px;
 }
 
@@ -3248,7 +3249,7 @@ watch(showSendNotificationModal, (visible) => {
 
 .no-tags {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -3257,7 +3258,7 @@ watch(showSendNotificationModal, (visible) => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -3555,7 +3556,7 @@ watch(showSendNotificationModal, (visible) => {
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(var(--color-brand-rgb), 0.3);
   animation: bounceRight 2s infinite;

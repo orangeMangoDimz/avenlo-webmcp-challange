@@ -169,7 +169,7 @@ const confirm = () => {
   display: block;
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 8px;
 }
 
@@ -191,7 +191,7 @@ const confirm = () => {
 .help-text {
   display: block;
   margin-top: 5px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-style: italic;
 }

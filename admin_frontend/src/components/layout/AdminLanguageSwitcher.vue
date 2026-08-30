@@ -84,6 +84,7 @@ onUnmounted(() => {
 }
 
 .language-arrow {
+  /* @font-floor-exempt: visual-only dropdown glyph */
   font-size: 10px;
   color: var(--color-muted);
 }

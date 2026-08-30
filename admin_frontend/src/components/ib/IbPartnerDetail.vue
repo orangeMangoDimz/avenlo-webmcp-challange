@@ -130,7 +130,7 @@
                 style="
                   color: var(--color-brand);
                   font-family: &quot;Courier New&quot;, monospace;
-                  font-size: 13px;
+                  font-size: 14px;
                 "
                 >{{
                   localIb.referralUrl ||
@@ -166,7 +166,7 @@
             >
               <div
                 style="
-                  font-size: 11px;
+                  font-size: 14px;
                   color: var(--color-text);
                   line-height: 1.5;
                 "
@@ -527,7 +527,7 @@
                     step="0.01"
                     min="0"
                   />
-                  <span style="color: var(--color-muted); font-size: 13px"
+                  <span style="color: var(--color-muted); font-size: 14px"
                     >USD</span
                   >
                 </div>
@@ -1073,7 +1073,7 @@
           <div class="document-preview">
             <h3>{{ currentDocument ? currentDocument.title : "" }}</h3>
             <div
-              class="document-preview-content"
+              class="document-preview-content font-floor-content"
               v-html="currentDocument ? currentDocument.content : ''"
             ></div>
           </div>
@@ -1255,7 +1255,7 @@
                     class="fas fa-ellipsis-h"
                     style="font-size: 16px; margin-bottom: 4px"
                   ></i>
-                  <div style="font-weight: 600; font-size: 12px">
+                  <div style="font-weight: 600; font-size: 14px">
                     +{{ networkTree.length - 3 }} More
                   </div>
                 </div>
@@ -2110,7 +2110,7 @@ const downloadDocument = (doc) => {
         }
 
         .signature-field label {
-          font-size: 12px;
+          font-size: 14px;
           color: var(--color-muted);
           font-weight: 600;
           display: block;
@@ -2864,7 +2864,7 @@ if (typeof document !== "undefined") {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2914,7 +2914,7 @@ if (typeof document !== "undefined") {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -3023,7 +3023,7 @@ if (typeof document !== "undefined") {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -3051,7 +3051,7 @@ if (typeof document !== "undefined") {
   border-radius: var(--radius-sm);
   margin-bottom: 15px;
   border-left: 3px solid var(--color-warning);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-warning);
 }
 
@@ -3138,7 +3138,7 @@ if (typeof document !== "undefined") {
 }
 
 .rule-meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -3209,7 +3209,7 @@ if (typeof document !== "undefined") {
 }
 
 .payment-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -3219,7 +3219,7 @@ if (typeof document !== "undefined") {
   padding: 10px 12px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   transition: all 0.3s ease;
 }
 
@@ -3234,7 +3234,7 @@ if (typeof document !== "undefined") {
   padding: 10px 12px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   transition: all 0.3s ease;
 }
 
@@ -3270,7 +3270,7 @@ if (typeof document !== "undefined") {
   background: var(--color-surface-soft);
   padding: 10px 12px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border: 1px solid var(--color-border);
@@ -3278,7 +3278,7 @@ if (typeof document !== "undefined") {
 
 .product-commission-table td {
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border: 1px solid var(--color-border);
 }
@@ -3287,7 +3287,7 @@ if (typeof document !== "undefined") {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -3350,7 +3350,7 @@ if (typeof document !== "undefined") {
 }
 
 .toggle-additional-rules p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 8px;
   margin-bottom: 0;
@@ -3398,7 +3398,7 @@ if (typeof document !== "undefined") {
   background: var(--color-brand-solid);
   color: white;
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .btn-manage-tiers:hover:not(:disabled) {
@@ -3569,7 +3569,7 @@ if (typeof document !== "undefined") {
 }
 
 .tier-edit-field label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -3668,7 +3668,7 @@ if (typeof document !== "undefined") {
 }
 
 .rule-meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -3733,12 +3733,12 @@ if (typeof document !== "undefined") {
 }
 
 .document-size {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .document-date {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -3748,7 +3748,7 @@ if (typeof document !== "undefined") {
   border: none;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -3810,14 +3810,14 @@ if (typeof document !== "undefined") {
 }
 
 .rule-preview-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .preview-status-badge {
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   flex-shrink: 0;
@@ -3867,7 +3867,7 @@ if (typeof document !== "undefined") {
 }
 
 .rule-info-label {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -3887,7 +3887,7 @@ if (typeof document !== "undefined") {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   font-weight: 600;
 }
@@ -3911,7 +3911,7 @@ if (typeof document !== "undefined") {
 .additional-header {
   font-weight: 600;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -3931,7 +3931,7 @@ if (typeof document !== "undefined") {
 }
 
 .additional-content {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -3967,7 +3967,7 @@ if (typeof document !== "undefined") {
 }
 
 .empty-subtitle {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-faint);
   margin-top: 5px !important;
 }
@@ -3998,7 +3998,7 @@ if (typeof document !== "undefined") {
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -4188,7 +4188,7 @@ if (typeof document !== "undefined") {
 }
 
 .node-subtitle {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.85;
   margin-bottom: 6px;
 }
@@ -4202,7 +4202,7 @@ if (typeof document !== "undefined") {
   padding: 3px 8px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -4216,7 +4216,7 @@ if (typeof document !== "undefined") {
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 11px;
+  font-size: 14px;
   flex-wrap: wrap;
 }
 
@@ -4287,7 +4287,7 @@ if (typeof document !== "undefined") {
 }
 
 .summary-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 4px;
 }
@@ -4400,7 +4400,7 @@ if (typeof document !== "undefined") {
 }
 
 .document-date {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   display: flex;
   align-items: center;
@@ -4408,6 +4408,7 @@ if (typeof document !== "undefined") {
 }
 
 .document-date i {
+  /* @font-floor-exempt: visual-only metadata glyph */
   font-size: 11px;
 }
 
@@ -4422,7 +4423,7 @@ if (typeof document !== "undefined") {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   padding: 4px 10px;
   background: var(--color-surface-soft);
@@ -4431,6 +4432,7 @@ if (typeof document !== "undefined") {
 
 .document-meta-item i {
   color: var(--color-brand);
+  /* @font-floor-exempt: visual-only metadata glyph */
   font-size: 12px;
 }
 
@@ -4440,7 +4442,7 @@ if (typeof document !== "undefined") {
   gap: 5px;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -4451,6 +4453,7 @@ if (typeof document !== "undefined") {
 }
 
 .document-status i {
+  /* @font-floor-exempt: visual-only status glyph */
   font-size: 11px;
 }
 
@@ -4463,7 +4466,7 @@ if (typeof document !== "undefined") {
   flex: 1;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -4669,7 +4672,7 @@ if (typeof document !== "undefined") {
 }
 
 .signature-field label {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   text-transform: uppercase;
   font-weight: 600;

@@ -319,7 +319,7 @@ const emitFilesChanged = () => {
 
 .file-upload-types {
   margin-top: 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -386,13 +386,13 @@ const emitFilesChanged = () => {
 }
 
 .file-size {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 4px;
 }
 
 .file-status {
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 6px;

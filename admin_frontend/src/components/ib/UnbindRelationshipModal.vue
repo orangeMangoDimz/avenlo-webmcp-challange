@@ -339,7 +339,7 @@ const onConfirm = async () => {
 }
 
 .ir-modal__section--info .ir-modal__label {
-  font-size: 11px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--color-muted);
@@ -413,7 +413,7 @@ const onConfirm = async () => {
   background: linear-gradient(135deg, var(--color-danger) 0%, #9b2c2c 100%);
   color: white;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -482,7 +482,7 @@ const onConfirm = async () => {
 
 .ir-modal__list-item-tier {
   flex: 0 0 104px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   text-align: right;
 }
@@ -490,7 +490,7 @@ const onConfirm = async () => {
 .ir-modal__list-item-hint {
   flex: 0 0 110px;
   min-width: 110px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-danger);
 }
 

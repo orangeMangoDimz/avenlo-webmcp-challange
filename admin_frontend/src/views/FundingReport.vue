@@ -1093,7 +1093,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1101,7 +1101,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1148,7 +1148,7 @@ onMounted(() => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1175,7 +1175,7 @@ onMounted(() => {
 }
 
 .date-input-wrapper label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   white-space: nowrap;
@@ -1293,7 +1293,7 @@ onMounted(() => {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1303,7 +1303,7 @@ onMounted(() => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1311,7 +1311,7 @@ onMounted(() => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1361,7 +1361,7 @@ onMounted(() => {
   color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -1432,7 +1432,7 @@ onMounted(() => {
 .transaction-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1547,13 +1547,13 @@ onMounted(() => {
 }
 
 .client-id {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .time-small {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   margin-top: 2px;
 }
@@ -1564,7 +1564,7 @@ onMounted(() => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1604,7 +1604,7 @@ onMounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1636,7 +1636,7 @@ onMounted(() => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1691,7 +1691,7 @@ onMounted(() => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1820,7 +1820,7 @@ onMounted(() => {
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -1834,7 +1834,7 @@ onMounted(() => {
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -1913,7 +1913,7 @@ onMounted(() => {
   }
 
   .transaction-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .transaction-table th,

@@ -519,7 +519,7 @@ onUnmounted(() => {
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   z-index: 10;
   pointer-events: none;
@@ -609,14 +609,14 @@ onUnmounted(() => {
 
 .node-subtitle {
   opacity: 0.9;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .node-badge {
   background: rgba(255, 255, 255, 0.25);
   padding: 3px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -629,7 +629,7 @@ onUnmounted(() => {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 11px;
+  font-size: 14px;
   flex-wrap: wrap;
 }
 
@@ -682,7 +682,7 @@ onUnmounted(() => {
   margin-left: 24px;
   padding: 12px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .sales-zoom-controls {

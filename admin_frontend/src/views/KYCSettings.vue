@@ -481,7 +481,7 @@ onMounted(async () => {
   display: block;
   color: var(--color-muted);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -540,7 +540,7 @@ onMounted(async () => {
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
 }

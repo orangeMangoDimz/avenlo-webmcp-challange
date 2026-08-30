@@ -1085,7 +1085,7 @@ onMounted(async () => {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1095,7 +1095,7 @@ onMounted(async () => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1103,7 +1103,7 @@ onMounted(async () => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1180,7 +1180,7 @@ onMounted(async () => {
   color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -1232,7 +1232,7 @@ onMounted(async () => {
 .ib-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1358,7 +1358,7 @@ onMounted(async () => {
 }
 
 .applicant-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1366,7 +1366,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1384,7 +1384,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1419,7 +1419,7 @@ onMounted(async () => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

@@ -703,7 +703,7 @@ onMounted(() => {
 }
 
 .ir-modal__section--info .ir-modal__label {
-  font-size: 11px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.03em;
   color: var(--color-muted);
@@ -743,7 +743,7 @@ onMounted(() => {
 }
 
 .ir-modal__label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -778,7 +778,7 @@ onMounted(() => {
   align-items: center;
   gap: 10px;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   padding: 10px 12px;
   border-bottom: 1px solid #f0f4f8;
@@ -813,7 +813,7 @@ onMounted(() => {
 
 .ir-modal__filter-chip {
   padding: 4px 12px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   background: var(--color-surface-soft);
@@ -841,7 +841,7 @@ onMounted(() => {
 /* group 所属平台标签 */
 .ir-modal__group-platform {
   flex-shrink: 0;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   background: var(--color-surface-soft);
@@ -890,7 +890,7 @@ onMounted(() => {
 
 .ir-modal__alert-hint {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-warning);
   margin-top: 4px;
 }

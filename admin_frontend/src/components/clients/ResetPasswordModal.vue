@@ -393,7 +393,7 @@ export default {
 }
 
 .strength-requirements-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 10px;
@@ -411,7 +411,7 @@ export default {
 }
 
 .strength-requirements-list li {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-faint);
   padding: 3px 0;
   transition: color 0.2s;
@@ -424,7 +424,7 @@ export default {
 .strength-requirements-list li i {
   width: 16px;
   margin-right: 6px;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .form-field {
@@ -433,7 +433,7 @@ export default {
 
 .form-field label {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 6px;
@@ -512,7 +512,7 @@ export default {
 .field-error {
   display: block;
   color: var(--color-danger);
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 4px;
 }
 

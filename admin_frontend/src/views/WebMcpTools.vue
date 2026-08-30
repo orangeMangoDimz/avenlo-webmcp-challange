@@ -369,7 +369,7 @@ onUnmounted(() => {
 .webmcp-eyebrow {
   margin: 0 0 8px;
   color: var(--color-brand);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -394,7 +394,7 @@ onUnmounted(() => {
   max-width: 580px;
   margin: 7px 0 0;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .webmcp-catalog-panel {
@@ -431,7 +431,7 @@ onUnmounted(() => {
   max-width: 680px;
   margin: 7px 0 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -454,7 +454,7 @@ onUnmounted(() => {
 .webmcp-catalog-count span {
   margin-top: 5px;
   color: var(--color-brand-strong);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -530,7 +530,7 @@ onUnmounted(() => {
 
 .webmcp-section-copy .webmcp-eyebrow {
   margin-bottom: 3px;
-  font-size: 9px;
+  font-size: 14px;
 }
 
 .webmcp-section-copy strong {
@@ -542,7 +542,7 @@ onUnmounted(() => {
   overflow: hidden;
   margin-top: 3px;
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: 14px;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -553,7 +553,7 @@ onUnmounted(() => {
   flex: 0 0 auto;
   gap: 12px;
   color: var(--color-muted);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -601,7 +601,7 @@ onUnmounted(() => {
   color: var(--color-brand);
   background: var(--color-brand-soft);
   border-radius: 6px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .webmcp-tool-copy {
@@ -618,7 +618,7 @@ onUnmounted(() => {
 .webmcp-tool-name-line strong {
   overflow: hidden;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 750;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -630,7 +630,7 @@ onUnmounted(() => {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -643,7 +643,7 @@ onUnmounted(() => {
   background: var(--color-success-soft);
   border: 1px solid var(--color-success-border);
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 750;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -665,7 +665,7 @@ onUnmounted(() => {
   background: var(--color-surface-muted);
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 750;
   white-space: nowrap;
 }
@@ -711,6 +711,7 @@ onUnmounted(() => {
 .webmcp-tool-chevron {
   width: 16px;
   color: var(--color-muted);
+  /* @font-floor-exempt: visual-only disclosure glyph */
   font-size: 10px;
   text-align: center;
 }
@@ -740,7 +741,7 @@ onUnmounted(() => {
   display: block;
   margin-bottom: 6px;
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -749,7 +750,7 @@ onUnmounted(() => {
 .webmcp-tool-detail p {
   margin: 0;
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.55;
 }
 
@@ -769,7 +770,7 @@ onUnmounted(() => {
   min-width: 680px;
   border-collapse: collapse;
   color: var(--color-text);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .webmcp-arguments-table th,
@@ -786,7 +787,7 @@ onUnmounted(() => {
   z-index: auto;
   color: var(--color-muted);
   background: var(--color-surface-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -805,7 +806,7 @@ onUnmounted(() => {
 .webmcp-arguments-table code {
   color: var(--color-ink);
   font-family: var(--font-ui);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 750;
 }
 
@@ -814,7 +815,7 @@ onUnmounted(() => {
   padding: 3px 6px;
   border: 1px solid var(--color-border);
   border-radius: 999px;
-  font-size: 9px;
+  font-size: 14px;
   font-weight: 750;
   line-height: 1;
 }
@@ -846,7 +847,7 @@ onUnmounted(() => {
   border-left: 2px solid var(--color-brand);
   border-radius: 4px;
   font-family: var(--font-ui);
-  font-size: 11px;
+  font-size: 14px;
   line-height: 1.55;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -870,7 +871,7 @@ onUnmounted(() => {
   justify-content: space-between;
   gap: 14px;
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .webmcp-tool-detail-footer > span {

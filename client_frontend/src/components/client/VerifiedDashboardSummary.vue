@@ -631,7 +631,7 @@ onMounted(async () => {
 
 .overview-card-link {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   display: inline-flex;
@@ -691,7 +691,7 @@ onMounted(async () => {
   border: none;
   background: var(--color-surface-soft);
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -754,7 +754,7 @@ onMounted(async () => {
   border-radius: var(--radius-sm);
   background: var(--color-surface-soft);
   color: var(--color-text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
 }
@@ -774,13 +774,13 @@ onMounted(async () => {
 
 .account-currency {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .account-group {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   text-align: right;
   min-width: 90px;
 }
@@ -981,7 +981,7 @@ onMounted(async () => {
 }
 
 .notification-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 

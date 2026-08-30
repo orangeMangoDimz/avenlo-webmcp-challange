@@ -295,7 +295,7 @@ watch(() => props.client, syncFromClient, { immediate: true });
 .assignment-field label {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .assignment-field select,
@@ -355,7 +355,7 @@ watch(() => props.client, syncFromClient, { immediate: true });
 .assignment-info-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .assignment-info-value {
@@ -365,7 +365,7 @@ watch(() => props.client, syncFromClient, { immediate: true });
 }
 
 .assignment-helper {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -373,7 +373,7 @@ watch(() => props.client, syncFromClient, { immediate: true });
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }

@@ -309,6 +309,7 @@ onMounted(async () => {
 }
 
 .menu-arrow {
+  /* @font-floor-exempt: visual-only navigation glyph */
   font-size: 12px;
   transition:
     transform 0.3s ease,
@@ -384,7 +385,7 @@ onMounted(async () => {
   color: white;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;

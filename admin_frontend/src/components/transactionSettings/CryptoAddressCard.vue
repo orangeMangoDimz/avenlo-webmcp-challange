@@ -301,7 +301,7 @@ watch(
 }
 
 .crypto-network {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -314,7 +314,7 @@ watch(
 .crypto-status-badge {
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -381,7 +381,7 @@ watch(
   display: block;
   color: var(--color-muted);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -410,7 +410,7 @@ watch(
 .address-input-group input {
   padding-right: 100px;
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .copy-btn {
@@ -424,7 +424,7 @@ watch(
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
 }
@@ -474,7 +474,7 @@ watch(
 }
 
 .qr-code-info p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 12px;
 }
@@ -486,7 +486,7 @@ watch(
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
 }

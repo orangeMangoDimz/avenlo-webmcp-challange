@@ -979,7 +979,7 @@ watch(
   gap: 6px;
 }
 .ib-cr-stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .ib-cr-stat-value {
@@ -995,7 +995,7 @@ watch(
 .ib-cr-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
 }
 .ib-cr-table th,
 .ib-cr-table td {
@@ -1009,7 +1009,7 @@ watch(
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 14px;
 }
 .ib-cr-row-child {
   background: var(--color-surface-soft);
@@ -1030,7 +1030,7 @@ watch(
   border-radius: 50%;
   background: var(--color-info-soft);
   color: var(--color-info);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   display: flex;
   align-items: center;
@@ -1047,19 +1047,19 @@ watch(
 .ib-cr-self {
   background: var(--color-info-soft);
   color: var(--color-info);
-  font-size: 10px;
+  font-size: 14px;
   padding: 1px 6px;
   border-radius: var(--radius-md);
 }
 .ib-cr-referral-code {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 .ib-cr-type {
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-surface-soft);
   color: var(--color-text);
@@ -1097,7 +1097,7 @@ watch(
   cursor: not-allowed;
 }
 .ib-cr-page-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1107,7 +1107,7 @@ watch(
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-info);
   background: var(--color-info-soft);
   border: 1px solid #bfdbfe;
@@ -1146,7 +1146,7 @@ watch(
   border-radius: var(--radius-md);
 }
 .ib-cr-detail-stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .ib-cr-detail-stat-value {
@@ -1175,7 +1175,7 @@ watch(
 .ib-cr-detail-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
 }
 .ib-cr-detail-table th,
@@ -1193,11 +1193,11 @@ watch(
   padding: 16px;
   text-align: center;
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
 }
 .ib-cr-detail-total {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
 }
 .ib-cr-detail-pagination {
@@ -1211,7 +1211,7 @@ watch(
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 12px;
+  font-size: 14px;
   text-transform: capitalize;
   background: var(--color-surface-soft);
   color: var(--color-text);
@@ -1305,7 +1305,7 @@ watch(
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -1319,7 +1319,7 @@ watch(
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;

@@ -993,7 +993,7 @@ if (props.isExpanded) {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -1025,7 +1025,7 @@ if (props.isExpanded) {
 
 .crypto-address {
   font-family: "Courier New", monospace;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-brand);
   background: var(--color-brand-soft);
   padding: 8px 12px;
@@ -1138,12 +1138,12 @@ if (props.isExpanded) {
 }
 
 .timeline-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
 .timeline-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 5px;
 }
@@ -1240,7 +1240,7 @@ if (props.isExpanded) {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1287,7 +1287,7 @@ if (props.isExpanded) {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   padding-top: 8px;
   border-top: 1px solid var(--color-border);
@@ -1302,7 +1302,7 @@ if (props.isExpanded) {
 
 .note-author i,
 .note-time i {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .notes-empty {

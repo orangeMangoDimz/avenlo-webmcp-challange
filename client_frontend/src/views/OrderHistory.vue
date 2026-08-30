@@ -805,7 +805,7 @@ onUnmounted(() => {
 
 .date-range label {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   padding: 0 12px;
@@ -825,7 +825,7 @@ onUnmounted(() => {
   border: none;
   border-radius: 0;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
@@ -839,7 +839,7 @@ onUnmounted(() => {
 
 .date-separator {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   padding: 0 4px;
 }
@@ -858,7 +858,7 @@ onUnmounted(() => {
     background-color 0.3s ease,
     color 0.3s ease;
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   height: 100%;
   box-shadow: none;
@@ -941,7 +941,7 @@ onUnmounted(() => {
 }
 
 .summary-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 8px;
   font-weight: 600;
@@ -1099,7 +1099,7 @@ onUnmounted(() => {
 .history-table th {
   padding: 15px 12px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-ink);
   border-bottom: 1px solid var(--color-border);
@@ -1134,6 +1134,7 @@ onUnmounted(() => {
 
 .sort-icon {
   margin-left: 8px;
+  /* @font-floor-exempt: visual-only sort glyph */
   font-size: 12px;
   opacity: 0.5;
   transition: opacity 0.2s ease;
@@ -1154,7 +1155,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   min-width: 70px;
   font-weight: 600;
@@ -1185,7 +1186,7 @@ onUnmounted(() => {
 
 .order-id {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 4px;
 }
 
@@ -1207,6 +1208,7 @@ onUnmounted(() => {
     var(--color-brand-soft) 100%
   );
   border-radius: var(--radius-sm);
+  /* @font-floor-exempt: visual-only symbol mark */
   font-size: 11px;
   font-weight: 700;
   color: var(--color-brand);
@@ -1224,7 +1226,7 @@ onUnmounted(() => {
 }
 
 .symbol-fullname {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

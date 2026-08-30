@@ -1225,7 +1225,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 5px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1242,7 +1242,7 @@ onMounted(async () => {
 }
 
 .stat-period {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -1282,7 +1282,7 @@ onMounted(async () => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1309,7 +1309,7 @@ onMounted(async () => {
 }
 
 .date-input-wrapper label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   white-space: nowrap;
@@ -1398,7 +1398,7 @@ onMounted(async () => {
 }
 
 .search-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -1438,7 +1438,7 @@ onMounted(async () => {
 }
 
 .filter-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -1557,7 +1557,7 @@ onMounted(async () => {
 .ib-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1616,7 +1616,7 @@ onMounted(async () => {
 }
 
 .ib-code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-family: var(--font-ui);
   font-variant-numeric: tabular-nums;
@@ -1633,7 +1633,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1663,7 +1663,7 @@ onMounted(async () => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1726,7 +1726,7 @@ onMounted(async () => {
 }
 
 .detail-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -1773,7 +1773,7 @@ onMounted(async () => {
 .detail-table th {
   padding: 10px 12px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border-bottom: 1px solid var(--color-border);
@@ -1782,7 +1782,7 @@ onMounted(async () => {
 
 .detail-table td {
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
@@ -1820,7 +1820,7 @@ onMounted(async () => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1959,7 +1959,7 @@ onMounted(async () => {
   }
 
   .ib-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .ib-table th,
@@ -2045,7 +2045,7 @@ onMounted(async () => {
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -2059,7 +2059,7 @@ onMounted(async () => {
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;

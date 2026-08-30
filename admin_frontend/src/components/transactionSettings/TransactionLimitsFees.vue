@@ -159,7 +159,7 @@ watch(
   display: block;
   color: var(--color-muted);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 5px;
 }
 

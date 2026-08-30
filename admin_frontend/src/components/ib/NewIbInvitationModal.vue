@@ -712,7 +712,7 @@ const submitInvitation = async () => {
   background: var(--color-brand-solid);
   color: white;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -740,7 +740,7 @@ const submitInvitation = async () => {
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   flex-shrink: 0;
   transition: all 0.2s;
 }
@@ -813,7 +813,7 @@ const submitInvitation = async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   transition:
     background 0.2s,
     color 0.2s;
@@ -845,7 +845,7 @@ const submitInvitation = async () => {
 .ib-inv-client-select__empty {
   padding: 20px;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -871,7 +871,7 @@ const submitInvitation = async () => {
 .ib-inv-client-select__loading-more {
   padding: 12px;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-brand);
   border-top: 1px solid var(--color-border);
 }
@@ -908,7 +908,7 @@ const submitInvitation = async () => {
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 13px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -927,7 +927,7 @@ const submitInvitation = async () => {
 }
 
 .ib-inv-client-option__email {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -985,7 +985,7 @@ const submitInvitation = async () => {
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   flex-shrink: 0;
   transition: all 0.2s;
@@ -1026,7 +1026,7 @@ const submitInvitation = async () => {
   background: var(--color-danger-soft);
   color: var(--color-danger);
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
 }
@@ -1035,7 +1035,7 @@ const submitInvitation = async () => {
   text-align: center;
   padding: 24px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .ib-inv-docs__empty i {
@@ -1053,7 +1053,7 @@ const submitInvitation = async () => {
   margin: 14px 0 0 0;
   padding-top: 12px;
   border-top: 1px solid var(--color-border-strong);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.5;
 }

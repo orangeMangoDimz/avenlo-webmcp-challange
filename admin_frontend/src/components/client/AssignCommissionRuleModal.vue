@@ -255,7 +255,7 @@ watch(
 .meta-box span {
   display: block;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 .meta-box strong {
   font-size: 14px;

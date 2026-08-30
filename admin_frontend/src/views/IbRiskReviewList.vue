@@ -589,7 +589,7 @@ onMounted(() => {
 .ir-list-table__th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -668,7 +668,7 @@ onMounted(() => {
 }
 
 .ir-list-ib__code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-family: "Courier New", monospace;
 }
@@ -677,7 +677,7 @@ onMounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -701,7 +701,7 @@ onMounted(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -764,7 +764,7 @@ onMounted(() => {
 
 .ir-list-btn--pagination {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-border);
   color: var(--color-text);
 }

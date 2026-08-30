@@ -824,7 +824,7 @@ onMounted(() => {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -882,7 +882,7 @@ onMounted(() => {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -912,7 +912,7 @@ onMounted(() => {
   padding: 6px 32px 6px 12px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
@@ -965,7 +965,7 @@ onMounted(() => {
   display: inline-flex;
   align-items: center;
   gap: 4px;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-warning);
   font-weight: 600;
   margin-left: 8px;
@@ -1022,7 +1022,7 @@ onMounted(() => {
   background: var(--color-warning-soft);
   border: 1px solid var(--color-warning-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-warning);
 }
 
@@ -1043,7 +1043,7 @@ onMounted(() => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-info-soft);
   color: var(--color-info);

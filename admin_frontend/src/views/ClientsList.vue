@@ -2243,7 +2243,7 @@ export default {
 .add-client-modal-body .form-field label {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .add-client-modal-body .form-field label .required {
@@ -2282,7 +2282,7 @@ export default {
 }
 
 .add-client-modal-body .field-hint {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-style: italic;
   margin-top: -4px;
@@ -2300,7 +2300,7 @@ export default {
   cursor: pointer;
   font-weight: 500;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   user-select: none;
 }
 
@@ -2431,7 +2431,7 @@ export default {
 }
 
 .kyc-option-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2611,7 +2611,7 @@ export default {
 }
 
 .tags-header h4 {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   font-weight: 600;
   text-transform: uppercase;
@@ -2622,7 +2622,7 @@ export default {
   padding: 4px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2663,7 +2663,7 @@ export default {
   background: var(--color-brand-solid);
   color: white;
   border-radius: var(--radius-xl);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition:
@@ -2693,7 +2693,7 @@ export default {
 }
 
 .search-tag i {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .tag-remove {
@@ -2722,7 +2722,7 @@ export default {
 
 .empty-tags-message {
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -2786,7 +2786,7 @@ export default {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -2796,7 +2796,7 @@ export default {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2804,7 +2804,7 @@ export default {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2876,7 +2876,7 @@ export default {
   height: 20px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .btn-bulk-notification .btn-bulk-notification-text {
@@ -2922,7 +2922,7 @@ export default {
     width 0.2s ease,
     max-height 0.2s ease,
     filter 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -3221,7 +3221,7 @@ export default {
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   box-shadow: 0 4px 12px rgba(var(--color-brand-rgb), 0.3);
   animation: bounceRight 2s infinite;
@@ -3283,7 +3283,7 @@ export default {
 .clients-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -3340,6 +3340,7 @@ export default {
 }
 
 .sort-icon i {
+  /* @font-floor-exempt: visual-only sort glyph */
   font-size: 10px;
   line-height: 1;
 }
@@ -3562,7 +3563,7 @@ export default {
 }
 
 .client-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -3582,7 +3583,7 @@ export default {
   background: var(--color-warning-soft);
   color: var(--color-warning);
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   position: relative;
@@ -3590,6 +3591,7 @@ export default {
 }
 
 .client-tag i {
+  /* @font-floor-exempt: visual-only tag glyph */
   font-size: 9px;
 }
 
@@ -3637,7 +3639,7 @@ export default {
 
 .no-tags {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -3646,7 +3648,7 @@ export default {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   white-space: nowrap;
@@ -3682,12 +3684,12 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .login-status i {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .login-status.logged-in {
@@ -3717,7 +3719,7 @@ export default {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:

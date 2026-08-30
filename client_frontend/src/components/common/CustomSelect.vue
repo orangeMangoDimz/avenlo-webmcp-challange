@@ -297,6 +297,7 @@ onBeforeUnmount(() => {
 }
 
 .custom-select__trigger-icon {
+  /* @font-floor-exempt: visual-only select glyph */
   font-size: 13px;
   color: var(--color-muted);
   flex-shrink: 0;
@@ -349,7 +350,7 @@ onBeforeUnmount(() => {
 
 .custom-select__group {
   padding: 10px 14px 6px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -363,7 +364,7 @@ onBeforeUnmount(() => {
   background: var(--color-surface);
   padding: 11px 14px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   cursor: pointer;
   transition:
@@ -384,7 +385,7 @@ onBeforeUnmount(() => {
 
 .custom-select__empty {
   padding: 14px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 </style>

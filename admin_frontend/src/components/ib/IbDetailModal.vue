@@ -804,7 +804,7 @@ onUnmounted(() => {
 }
 
 .ib-detail-label {
-  font-size: 11px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   color: var(--color-muted);
@@ -831,20 +831,20 @@ onUnmounted(() => {
 .ib-detail-value--url {
   word-break: break-all;
   font-family: "Courier New", monospace;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 .ib-referral-prefix {
   font-family: "Courier New", monospace;
   color: var(--color-text);
   word-break: break-all;
-  font-size: 13px;
+  font-size: 14px;
 }
 .ib-referral-suffix-input {
   padding: 6px 10px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   min-width: 120px;
 }
 .ib-referral-suffix-input:focus {
@@ -857,7 +857,7 @@ onUnmounted(() => {
 }
 .ib-referral-error {
   color: var(--color-danger);
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   margin-top: 4px;
 }
@@ -865,7 +865,7 @@ onUnmounted(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -898,7 +898,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: var(--radius-md);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -966,7 +966,7 @@ onUnmounted(() => {
 }
 
 .level-selector label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   white-space: nowrap;
 }
@@ -975,7 +975,7 @@ onUnmounted(() => {
   padding: 6px 10px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .btn-collapse-all {
@@ -983,7 +983,7 @@ onUnmounted(() => {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   color: var(--color-text);
 }
@@ -1001,7 +1001,7 @@ onUnmounted(() => {
   background: var(--color-surface-muted);
   border-radius: var(--radius-md);
   margin-bottom: 12px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -1022,7 +1022,7 @@ onUnmounted(() => {
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   z-index: 10;
   pointer-events: none;
@@ -1109,7 +1109,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.25);
   padding: 3px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .network-branch--root .node-stats {
@@ -1118,7 +1118,7 @@ onUnmounted(() => {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 11px;
+  font-size: 14px;
   flex-wrap: wrap;
 }
 
@@ -1172,7 +1172,7 @@ onUnmounted(() => {
   margin-left: 24px;
   padding: 12px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .network-summary {
@@ -1204,7 +1204,7 @@ onUnmounted(() => {
 }
 
 .network-summary .summary-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   text-align: center;
   margin-top: 2px;

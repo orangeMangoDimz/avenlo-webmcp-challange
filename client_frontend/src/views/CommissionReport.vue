@@ -2177,7 +2177,7 @@ onMounted(async () => {
 }
 
 .stat-change {
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -2197,7 +2197,7 @@ onMounted(async () => {
 }
 
 .stat-period {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -2234,7 +2234,7 @@ onMounted(async () => {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   cursor: pointer;
   transition:
@@ -2264,7 +2264,7 @@ onMounted(async () => {
 }
 
 .date-input-wrapper label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2272,14 +2272,14 @@ onMounted(async () => {
   padding: 8px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .btn-apply-filter,
 .btn-export {
   padding: 10px 20px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: flex;
@@ -2317,7 +2317,7 @@ onMounted(async () => {
 }
 
 .export-status-text {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   align-self: center;
   white-space: nowrap;
@@ -2395,7 +2395,7 @@ onMounted(async () => {
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -2409,7 +2409,7 @@ onMounted(async () => {
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -2477,7 +2477,7 @@ onMounted(async () => {
 .commission-table th {
   padding: 12px 16px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border-bottom: 1px solid var(--color-border);
@@ -2662,13 +2662,13 @@ onMounted(async () => {
   border-radius: 999px;
   background: var(--color-success-soft);
   color: var(--color-success);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1.4;
 }
 
 .referral-code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2677,7 +2677,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2701,7 +2701,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2734,7 +2734,7 @@ onMounted(async () => {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   cursor: pointer;
   display: inline-flex;
@@ -2811,7 +2811,7 @@ onMounted(async () => {
 }
 
 .detail-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -2861,7 +2861,7 @@ onMounted(async () => {
 .detail-table th {
   padding: 10px 12px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border-bottom: 1px solid var(--color-border);
@@ -2870,7 +2870,7 @@ onMounted(async () => {
 
 .detail-table td {
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border-bottom: 1px solid var(--color-border);
   white-space: nowrap;
@@ -2943,7 +2943,7 @@ onMounted(async () => {
   padding: 6px 10px;
   border-radius: var(--radius-md);
   border-color: var(--color-border);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .commission-show-rows__select :deep(.custom-select__trigger-text) {
@@ -2993,7 +2993,7 @@ onMounted(async () => {
 
 .commission-pagination__btn {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-border);
   color: var(--color-text);
   border: none;
@@ -3047,7 +3047,7 @@ onMounted(async () => {
   }
 
   .date-filter-label {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .date-filter-presets {
@@ -3060,7 +3060,7 @@ onMounted(async () => {
   .preset-btn {
     text-align: center;
     padding: 8px 12px;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .date-input-wrapper {
@@ -3076,11 +3076,11 @@ onMounted(async () => {
     width: 100%;
     justify-content: center;
     padding: 10px 16px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .commission-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .commission-table th,

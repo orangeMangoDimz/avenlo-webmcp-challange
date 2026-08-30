@@ -1054,7 +1054,7 @@ thead {
 thead th {
   padding: 18px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1086,7 +1086,7 @@ tbody td {
 .role-badge {
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-block;
 }
@@ -1124,7 +1124,7 @@ tbody td {
   background: var(--color-warning-soft);
   color: var(--color-warning);
   border-radius: 4px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1136,7 +1136,7 @@ tbody td {
 .status-badge {
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-block;
 }

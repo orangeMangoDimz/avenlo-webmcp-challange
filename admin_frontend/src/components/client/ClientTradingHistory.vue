@@ -498,7 +498,7 @@ watch(
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -523,7 +523,7 @@ watch(
   padding: 0 10px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-ink);
   background: var(--color-surface);
 }
@@ -537,7 +537,7 @@ watch(
   border-radius: var(--radius-sm);
   background: var(--color-brand-solid);
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -571,7 +571,7 @@ watch(
   background: var(--color-surface);
 }
 .cth-summary-label {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--color-muted);
@@ -595,7 +595,7 @@ watch(
 .cth-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
 }
 .cth-table th,
 .cth-table td {
@@ -609,7 +609,7 @@ watch(
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 14px;
 }
 .cth-table tbody tr:hover {
   background: var(--color-surface-soft);
@@ -629,7 +629,7 @@ watch(
   color: var(--color-danger);
   padding: 3px 10px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -641,7 +641,7 @@ watch(
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 .cth-badge--buy {
@@ -677,7 +677,7 @@ watch(
   cursor: not-allowed;
 }
 .cth-page-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 </style>

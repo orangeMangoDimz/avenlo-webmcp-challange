@@ -262,7 +262,7 @@ watch(
   display: block;
   margin-top: 8px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .tag-modal-footer {

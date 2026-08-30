@@ -3660,7 +3660,7 @@ const measureHeaderWidth = (label) => {
       "top:0",
       "visibility:hidden",
       "white-space:nowrap",
-      "font-size:13px",
+      "font-size:14px",
       "font-weight:600",
       "text-transform:uppercase",
       "letter-spacing:0.5px",
@@ -7614,7 +7614,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-brand-solid);
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -7671,7 +7671,7 @@ onUnmounted(() => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -7711,7 +7711,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   overflow: hidden;
@@ -7754,7 +7754,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   cursor: pointer;
@@ -7806,7 +7806,7 @@ onUnmounted(() => {
   border-radius: 999px;
   background: var(--color-surface-muted);
   color: var(--color-text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
@@ -7833,7 +7833,7 @@ onUnmounted(() => {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -7884,7 +7884,7 @@ onUnmounted(() => {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -7894,7 +7894,7 @@ onUnmounted(() => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -7902,7 +7902,7 @@ onUnmounted(() => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -7956,7 +7956,7 @@ onUnmounted(() => {
   color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
   background: var(--color-surface);
@@ -8128,12 +8128,12 @@ onUnmounted(() => {
 }
 
 .chip-icon {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.85;
 }
 
 .chip-chevron {
-  font-size: 9px;
+  font-size: 14px;
   opacity: 0.7;
 }
 
@@ -8210,7 +8210,7 @@ onUnmounted(() => {
 }
 
 .chip-count {
-  font-size: 11px;
+  font-size: 14px;
   opacity: 0.85;
 }
 
@@ -8284,7 +8284,7 @@ onUnmounted(() => {
   min-width: 40px;
   padding: 0 12px;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -8468,7 +8468,7 @@ onUnmounted(() => {
   padding: 8px 10px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border: 1px solid transparent;
 }
@@ -8502,7 +8502,7 @@ onUnmounted(() => {
 }
 
 .column-drag-handle i {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .column-toggle-item:hover .column-drag-handle {
@@ -8617,7 +8617,7 @@ onUnmounted(() => {
   top: 50%;
   transform: translateY(-50%);
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .filter-property-search input {
@@ -8626,7 +8626,7 @@ onUnmounted(() => {
   padding: 8px 10px 8px 30px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
 }
 
@@ -8666,7 +8666,7 @@ onUnmounted(() => {
 
 .filter-selected-check {
   margin-left: auto;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-info);
 }
 
@@ -8688,7 +8688,7 @@ onUnmounted(() => {
 }
 
 .filter-focused-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
   white-space: nowrap;
@@ -8837,7 +8837,7 @@ onUnmounted(() => {
   width: 22px;
   text-align: center;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -8845,7 +8845,7 @@ onUnmounted(() => {
 .filter-empty-hint {
   padding: 16px 14px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -8884,7 +8884,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   padding: 7px 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   outline: none;
 }
@@ -8919,7 +8919,7 @@ onUnmounted(() => {
   border: none;
   background: transparent;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -8971,7 +8971,7 @@ onUnmounted(() => {
 .transaction-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -9050,7 +9050,7 @@ onUnmounted(() => {
 }
 
 .header-filter-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-ink);
 }
@@ -9076,7 +9076,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   padding: 4px 2px;
   cursor: pointer;
@@ -9148,7 +9148,7 @@ onUnmounted(() => {
 }
 
 .sort-icon i {
-  font-size: 10px;
+  font-size: 14px;
   line-height: 1;
 }
 
@@ -9192,7 +9192,7 @@ onUnmounted(() => {
   padding: 8px 14px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -9244,13 +9244,13 @@ onUnmounted(() => {
 }
 
 .client-id {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .time-small {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   margin-top: 2px;
 }
@@ -9261,7 +9261,7 @@ onUnmounted(() => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -9301,7 +9301,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -9342,7 +9342,7 @@ onUnmounted(() => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -9434,7 +9434,7 @@ onUnmounted(() => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   color: var(--color-text);
@@ -9486,14 +9486,14 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   padding: 7px 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   cursor: pointer;
   text-align: left;
 }
 
 .chart-picker-trigger i {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -9535,7 +9535,7 @@ onUnmounted(() => {
   border: none;
   background: var(--color-surface);
   padding: 9px 14px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   cursor: pointer;
   text-align: left;
@@ -9563,7 +9563,7 @@ onUnmounted(() => {
 }
 
 .chart-range-custom-heading {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
 }
@@ -9582,7 +9582,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   padding: 0 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
 }
 
@@ -9600,7 +9600,7 @@ onUnmounted(() => {
 }
 
 .chart-picker-item i {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-brand);
 }
 
@@ -9612,7 +9612,7 @@ onUnmounted(() => {
 
 .chart-settings-label,
 .chart-settings-heading {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-text);
   text-transform: uppercase;
@@ -9639,7 +9639,7 @@ onUnmounted(() => {
   border-radius: 999px;
   background: var(--color-surface-muted);
   color: var(--color-text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 18px;
   text-align: center;
@@ -9723,7 +9723,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -9738,7 +9738,7 @@ onUnmounted(() => {
   border: none;
   border-bottom: 1px solid var(--color-surface-muted);
   background: transparent;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   cursor: pointer;
   text-align: left;
@@ -9763,7 +9763,7 @@ onUnmounted(() => {
 .chart-field-left i {
   width: 14px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -9780,7 +9780,7 @@ onUnmounted(() => {
 }
 
 .chart-field-right i {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -9852,7 +9852,7 @@ onUnmounted(() => {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .chart-tooltip-row {
@@ -9919,7 +9919,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 8px;
   padding-top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -9982,7 +9982,7 @@ onUnmounted(() => {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   min-width: 36px;
   text-align: right;
@@ -10041,7 +10041,7 @@ onUnmounted(() => {
   transform: translateY(-100%);
   padding-bottom: 2px;
   text-align: center;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
   line-height: 1.2;
@@ -10089,7 +10089,7 @@ onUnmounted(() => {
 
 .chart-x-label {
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   max-width: 100%;
   overflow: hidden;
@@ -10112,7 +10112,7 @@ onUnmounted(() => {
 
 .chart-truncated-hint {
   margin: 8px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -10124,7 +10124,7 @@ onUnmounted(() => {
 }
 
 .chart-h-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -10159,7 +10159,7 @@ onUnmounted(() => {
 }
 
 .chart-h-value {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   text-align: right;
 }
@@ -10171,7 +10171,7 @@ onUnmounted(() => {
   justify-content: center;
   gap: 16px;
   margin-top: 16px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -10246,7 +10246,7 @@ onUnmounted(() => {
   border: none;
   background: var(--color-surface);
   padding: 9px 14px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   cursor: pointer;
   text-align: left;
@@ -10361,7 +10361,7 @@ onUnmounted(() => {
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -10375,7 +10375,7 @@ onUnmounted(() => {
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -10455,12 +10455,12 @@ onUnmounted(() => {
 }
 
 .export-column-mode-copy strong {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .export-column-mode-copy small {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-muted);
   line-height: 1.4;

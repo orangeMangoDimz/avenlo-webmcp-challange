@@ -1275,7 +1275,7 @@ onBeforeUnmount(() => {
 .crypto-card-code {
   margin-top: 4px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .form-label {
@@ -1417,7 +1417,7 @@ onBeforeUnmount(() => {
 .option-meta,
 .selected-method-supported {
   flex-basis: 100%;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 500;
 }
@@ -1475,7 +1475,7 @@ onBeforeUnmount(() => {
   background: var(--color-brand-soft);
   border-bottom: 1px solid var(--color-border);
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -1492,7 +1492,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
 }
 
@@ -1576,7 +1576,7 @@ onBeforeUnmount(() => {
 
 .address-empty-note {
   margin-top: 12px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1665,7 +1665,7 @@ onBeforeUnmount(() => {
 }
 
 .address-value {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-family: monospace;
   white-space: nowrap;
@@ -1702,7 +1702,7 @@ onBeforeUnmount(() => {
 .address-badge {
   padding: 3px 10px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   display: inline-flex;
   align-items: center;
@@ -1855,7 +1855,7 @@ onBeforeUnmount(() => {
   color: #fff;
   border-radius: var(--radius-md);
   padding: 7px 12px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -1883,7 +1883,7 @@ onBeforeUnmount(() => {
 }
 
 .kyc-info-banner p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   line-height: 1.6;
   margin: 0;

@@ -1402,7 +1402,7 @@ onUnmounted(() => {
   width: 150px;
 }
 .sd-perf-tz {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   background: var(--color-surface-muted);
   border-radius: 999px;
@@ -1413,7 +1413,7 @@ onUnmounted(() => {
   cursor: help;
 }
 .sd-perf-note {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   background: var(--color-success-soft);
   border: 1px solid var(--color-success-soft);
@@ -1433,7 +1433,7 @@ onUnmounted(() => {
   padding: 10px 14px;
   border-radius: var(--radius-md);
   margin-bottom: 14px;
-  font-size: 13px;
+  font-size: 14px;
 }
 .sd-perf-grid {
   display: grid;
@@ -1465,7 +1465,7 @@ onUnmounted(() => {
   border-left-color: #319795;
 }
 .sd-perf-label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   text-transform: uppercase;
@@ -1479,7 +1479,7 @@ onUnmounted(() => {
   margin-bottom: 4px;
 }
 .sd-perf-sub {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 .sd-perf-positive {
@@ -1526,7 +1526,7 @@ onUnmounted(() => {
   margin: 0 0 3px 0;
 }
 .sd-url-card-title p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 0;
 }
@@ -1553,7 +1553,7 @@ onUnmounted(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -1585,7 +1585,7 @@ onUnmounted(() => {
   margin-bottom: 4px;
 }
 .sd-url-stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1673,7 +1673,7 @@ onUnmounted(() => {
 .sales-detail-table th {
   padding: 14px 18px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1703,7 +1703,7 @@ onUnmounted(() => {
 }
 .sales-detail-ib-alias {
   margin-left: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .sales-detail-name-cell {
@@ -1720,7 +1720,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 20px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1740,7 +1740,7 @@ onUnmounted(() => {
   color: var(--color-text);
   font-weight: 600;
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -1797,7 +1797,7 @@ onUnmounted(() => {
   padding: 8px 14px;
   border: none;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   background: var(--color-border);
@@ -1865,7 +1865,7 @@ onUnmounted(() => {
   color: white;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   z-index: 10;
   pointer-events: none;
@@ -1942,7 +1942,7 @@ onUnmounted(() => {
   background: rgba(255, 255, 255, 0.25);
   padding: 3px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
 }
 .sales-network-graph .node-card.tier1.sales-root-card .node-stats {
   display: flex;
@@ -1950,7 +1950,7 @@ onUnmounted(() => {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
-  font-size: 11px;
+  font-size: 14px;
   flex-wrap: wrap;
 }
 .sales-network-graph .node-card.tier1.sales-root-card .node-stat {
@@ -1997,7 +1997,7 @@ onUnmounted(() => {
   margin-left: 24px;
   padding: 12px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 .sales-zoom-controls {
   position: absolute;

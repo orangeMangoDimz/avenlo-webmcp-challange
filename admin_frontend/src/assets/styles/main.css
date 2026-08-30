@@ -3,6 +3,7 @@
 :root {
   color-scheme: light;
   --font-ui: "Work Sans", "Avenir Next", "Segoe UI", sans-serif;
+  --font-size-min: 14px;
   --font-display: var(--font-ui);
   --color-canvas: #f7f8fb;
   --color-surface: #ffffff;
@@ -86,6 +87,9 @@
   --el-border-color: var(--color-border);
   --el-border-color-light: var(--color-surface-muted);
   --el-border-radius-base: var(--radius-sm);
+  --el-font-size-extra-small: var(--font-size-min);
+  --el-font-size-small: var(--font-size-min);
+  --el-font-size-base: var(--font-size-min);
   --el-text-color-primary: var(--color-ink);
   --el-text-color-regular: var(--color-text);
   --el-fill-color-light: var(--color-surface-soft);
@@ -187,11 +191,18 @@ body {
   color: var(--color-text);
   background: var(--color-canvas);
   font-family: var(--font-ui);
-  font-size: 14px;
+  font-size: var(--font-size-min);
+  --el-font-size-extra-small: var(--font-size-min);
+  --el-font-size-small: var(--font-size-min);
+  --el-font-size-base: var(--font-size-min);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-tap-highlight-color: rgba(var(--color-brand-rgb), 0.16);
+}
+
+body small {
+  font-size: var(--font-size-min);
 }
 
 button,
@@ -217,6 +228,37 @@ a {
 }
 #app {
   min-height: 100vh;
+}
+
+/* Readable content may come from stored HTML and can contain inline font sizes. */
+body .font-floor-content {
+  font-size: var(--font-size-min) !important;
+}
+body
+  .font-floor-content
+  :where(p, span, div, li, a, label, td, th, blockquote, pre) {
+  font-size: var(--font-size-min) !important;
+}
+
+/* Element Plus mounts these surfaces outside #app, so keep their text readable. */
+body
+  :where(
+    .el-popper,
+    .el-popper p,
+    .el-popper span,
+    .el-popper li,
+    .el-popper button,
+    .el-popper input,
+    .el-picker-panel__btn,
+    .el-time-spinner__item,
+    .el-time-panel__btn,
+    .el-message-box__content,
+    .el-message-box__errormsg,
+    .el-notification__content,
+    .el-color-picker__empty,
+    .el-color-predefine
+  ) {
+  font-size: var(--font-size-min) !important;
 }
 
 ::selection {
@@ -424,7 +466,7 @@ a {
   color: var(--color-muted);
   background: var(--color-surface-soft);
   border-bottom: 1px solid var(--color-border);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -458,7 +500,7 @@ a {
   border-radius: var(--radius-sm);
   color: var(--color-text);
   background: var(--color-surface-soft);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.02em;
   line-height: 1;

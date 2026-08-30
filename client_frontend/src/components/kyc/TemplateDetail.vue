@@ -549,7 +549,7 @@ onMounted(() => {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -606,7 +606,7 @@ onMounted(() => {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -636,7 +636,7 @@ onMounted(() => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -657,7 +657,7 @@ onMounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -713,7 +713,7 @@ onMounted(() => {
   background: var(--color-warning-soft);
   border: 1px solid var(--color-warning-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-warning);
 }
 
@@ -733,7 +733,7 @@ onMounted(() => {
   color: var(--color-brand);
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;

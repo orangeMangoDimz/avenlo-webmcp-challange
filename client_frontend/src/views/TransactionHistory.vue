@@ -1336,7 +1336,7 @@ onUnmounted(() => {
 
 .date-range label {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   padding: 0 12px;
@@ -1356,7 +1356,7 @@ onUnmounted(() => {
   border: none;
   border-radius: 0;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   transition:
     color 0.3s ease,
     background-color 0.3s ease,
@@ -1374,7 +1374,7 @@ onUnmounted(() => {
 
 .date-separator {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   padding: 0 4px;
 }
@@ -1397,7 +1397,7 @@ onUnmounted(() => {
     opacity 0.3s ease,
     transform 0.3s ease;
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   height: 100%;
   box-shadow: none;
@@ -1457,7 +1457,7 @@ onUnmounted(() => {
     color 0.3s ease,
     background-color 0.3s ease,
     border-color 0.3s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-muted);
   white-space: nowrap;
@@ -1543,10 +1543,11 @@ onUnmounted(() => {
   background: var(--color-brand-soft);
   color: var(--color-brand-strong);
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .history-gateway-inline i {
+  /* @font-floor-exempt: visual-only gateway glyph */
   font-size: 11px;
 }
 
@@ -1579,7 +1580,7 @@ onUnmounted(() => {
   min-width: 0;
 }
 .history-detail-flow__label {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -1589,7 +1590,7 @@ onUnmounted(() => {
   gap: 6px;
 }
 .history-detail-flow__account {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   font-weight: 600;
   word-break: break-all;
@@ -1620,7 +1621,7 @@ onUnmounted(() => {
   justify-content: space-between;
   align-items: baseline;
   gap: 10px;
-  font-size: 13px;
+  font-size: 14px;
   padding: 4px 0;
   min-width: 0;
 }
@@ -1744,7 +1745,7 @@ onUnmounted(() => {
 }
 
 .history-date {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1765,7 +1766,7 @@ onUnmounted(() => {
   border-radius: 999px;
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -1782,7 +1783,7 @@ onUnmounted(() => {
   padding: 8px 12px;
   border-radius: 999px;
   border: 1px solid transparent;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -1820,7 +1821,7 @@ onUnmounted(() => {
   color: var(--color-faint);
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .history-transfer-info {
@@ -1828,6 +1829,7 @@ onUnmounted(() => {
 }
 
 .history-transfer-info i {
+  /* @font-floor-exempt: visual-only transfer glyph */
   font-size: 10px;
 }
 
@@ -1838,7 +1840,7 @@ onUnmounted(() => {
   padding: 7px 12px;
   border-radius: 999px;
   border: 1px solid transparent;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1;
 }
@@ -1882,6 +1884,7 @@ onUnmounted(() => {
 }
 
 .history-account-arrow i {
+  /* @font-floor-exempt: visual-only account glyph */
   font-size: 11px;
 }
 
@@ -1891,17 +1894,18 @@ onUnmounted(() => {
   gap: 6px;
   padding: 0 2px 0 0;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   line-height: 1;
 }
 
 .history-direction-chip i {
+  /* @font-floor-exempt: visual-only direction glyph */
   font-size: 11px;
 }
 
 .history-amount-label {
-  font-size: 11px;
+  font-size: 14px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--color-faint);
@@ -1951,7 +1955,7 @@ onUnmounted(() => {
 .history-status {
   padding: 8px 12px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   min-width: 108px;
@@ -2001,7 +2005,7 @@ onUnmounted(() => {
   gap: 6px;
   border-radius: 999px;
   padding: 8px 14px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2017,6 +2021,7 @@ onUnmounted(() => {
   line-height: 1;
 }
 .history-action-btn i {
+  /* @font-floor-exempt: visual-only action glyph */
   font-size: 11px;
 }
 
@@ -2128,13 +2133,13 @@ onUnmounted(() => {
 
 .cancel-modal-error {
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .cancel-modal-count {
   margin-left: auto;
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .cancel-modal-footer {
@@ -2337,29 +2342,29 @@ onUnmounted(() => {
 
   .history-search input {
     padding: 10px 12px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .history-filter select {
     padding: 10px 12px;
-    font-size: 13px;
+    font-size: 14px;
     height: 40px;
   }
 
   .date-range label {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .date-range input {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .apply-btn {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .export-btn {
-    font-size: 13px;
+    font-size: 14px;
     padding: 10px 16px;
   }
 
@@ -2374,7 +2379,7 @@ onUnmounted(() => {
 
   .history-tab {
     padding: 7px 12px;
-    font-size: 12px;
+    font-size: 14px;
     white-space: nowrap;
   }
 
@@ -2402,7 +2407,7 @@ onUnmounted(() => {
   }
 
   .history-date {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .history-topline {
@@ -2419,12 +2424,12 @@ onUnmounted(() => {
 
   .history-transaction-id,
   .history-transfer-info {
-    font-size: 12px;
+    font-size: 14px;
     padding: 4px 8px;
   }
 
   .history-status {
-    font-size: 11px;
+    font-size: 14px;
     padding: 5px 10px;
     min-width: 80px;
   }
@@ -2434,7 +2439,7 @@ onUnmounted(() => {
   }
 
   .history-cancel-btn {
-    font-size: 12px;
+    font-size: 14px;
     padding: 8px 12px;
   }
 

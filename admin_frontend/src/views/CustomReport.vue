@@ -1255,7 +1255,7 @@ watch(
 .transaction-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1280,7 +1280,7 @@ watch(
   border: none;
   border-radius: var(--radius-sm);
   padding: 8px 14px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   letter-spacing: 0.4px;
@@ -1300,7 +1300,7 @@ watch(
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1433,7 +1433,7 @@ watch(
 .modal-label {
   display: block;
   margin: 0 0 8px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }

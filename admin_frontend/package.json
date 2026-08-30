@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "test:font-size": "node ../scripts/ci/check-font-size.mjs",
     "test:theme": "node scripts/check-theme-surfaces.mjs",
     "test:sidebar": "node scripts/check-sidebar-navigation.mjs",
     "test:webmcp": "node scripts/check-webmcp-layout.mjs",

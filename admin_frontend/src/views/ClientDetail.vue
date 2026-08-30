@@ -1969,7 +1969,7 @@
           <div class="document-preview">
             <h3>{{ currentDocument ? currentDocument.title : "" }}</h3>
             <div
-              class="document-preview-content"
+              class="document-preview-content font-floor-content"
               v-html="currentDocument ? currentDocument.content : ''"
             ></div>
           </div>
@@ -3941,7 +3941,7 @@ const downloadDocument = (doc) => {
         }
         .signature-item label {
           display: block;
-          font-size: 11px;
+          font-size: 14px;
           color: var(--color-muted);
           text-transform: uppercase;
           font-weight: 700;
@@ -3954,7 +3954,7 @@ const downloadDocument = (doc) => {
           border-top: 2px solid var(--color-border);
           text-align: center;
           color: var(--color-muted);
-          font-size: 12px;
+          font-size: 14px;
         }
         .no-print { margin-top: 30px; text-align: center; }
         .no-print button {
@@ -4992,7 +4992,7 @@ onUnmounted(() => {
 .search-input {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   background: var(--color-surface);
 }
@@ -5015,7 +5015,7 @@ onUnmounted(() => {
 }
 
 .search-field label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-ink);
 }
@@ -5035,7 +5035,7 @@ onUnmounted(() => {
   color: #ffffff;
   border: 0;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s ease;
@@ -5077,7 +5077,7 @@ onUnmounted(() => {
 }
 
 .badge-client {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   padding: 2px 8px;
   border-radius: 4px;
@@ -5095,7 +5095,7 @@ onUnmounted(() => {
 }
 
 .client-profile-id {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -5140,7 +5140,7 @@ onUnmounted(() => {
 
 .tab-nav-item {
   padding: 14px 18px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-muted);
   cursor: pointer;
@@ -5216,7 +5216,7 @@ onUnmounted(() => {
 .detail-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-table th {
@@ -5261,7 +5261,7 @@ onUnmounted(() => {
 }
 
 .profile-section-title {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-muted);
   letter-spacing: 0.04em;
@@ -5341,12 +5341,12 @@ onUnmounted(() => {
 
 .data-label {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .data-value {
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   min-width: 0;
 }
 
@@ -5371,7 +5371,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .btn-save-profile,
@@ -5382,7 +5382,7 @@ onUnmounted(() => {
   gap: 7px;
   border: 0;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -5444,7 +5444,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-brand-solid);
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -5471,7 +5471,7 @@ onUnmounted(() => {
   gap: 6px;
   padding: 5px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -5486,7 +5486,7 @@ onUnmounted(() => {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1;
 }
 
@@ -5538,7 +5538,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -5599,7 +5599,7 @@ onUnmounted(() => {
 
 .ib-stat-title {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
 }
 
@@ -5677,12 +5677,12 @@ onUnmounted(() => {
 
 .comm-type {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
 }
 
 .comm-preview {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 3px;
   overflow-wrap: anywhere;
@@ -5760,7 +5760,7 @@ onUnmounted(() => {
   border-radius: 999px;
   background: var(--color-surface-muted);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: capitalize;
 }
@@ -5774,13 +5774,13 @@ onUnmounted(() => {
   border-radius: 999px;
   background: var(--color-brand-soft);
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.3px;
 }
 
 .kyc-third-party-pill i {
-  font-size: 11px;
+  font-size: 14px;
 }
 
 /* KYC 卡片 header 上的"跳第三方后台"按钮 */
@@ -5792,7 +5792,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-brand-soft);
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-decoration: none;
   transition: background 0.15s ease;
@@ -5924,14 +5924,14 @@ onUnmounted(() => {
 .kyc-list-item-main small,
 .kyc-list-item-meta {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .kyc-list-item-value {
   max-width: 45%;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   text-align: right;
   overflow-wrap: anywhere;
@@ -6005,7 +6005,7 @@ onUnmounted(() => {
   color: var(--color-brand);
   background: var(--color-brand-soft);
   border-radius: 999px;
-  font-size: 10px;
+  font-size: 14px;
   text-transform: uppercase;
 }
 
@@ -6033,7 +6033,7 @@ onUnmounted(() => {
   border: none;
   border-radius: var(--radius-sm);
   padding: 9px 16px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -6058,7 +6058,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   height: 30px;
   padding: 0 10px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -6070,6 +6070,7 @@ onUnmounted(() => {
   background: var(--color-info-soft);
 }
 .ta-manage-caret {
+  /* @font-floor-exempt: visual-only dropdown glyph */
   font-size: 10px;
 }
 
@@ -6090,7 +6091,7 @@ onUnmounted(() => {
   border: none;
   border-radius: var(--radius-sm);
   padding: 9px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   cursor: pointer;
   display: flex;
@@ -6126,7 +6127,7 @@ onUnmounted(() => {
 }
 
 .funding-stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 8px;
 }
@@ -6173,7 +6174,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -6243,7 +6244,7 @@ onUnmounted(() => {
   flex-wrap: wrap;
   gap: 8px 14px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -6260,7 +6261,7 @@ onUnmounted(() => {
   gap: 6px;
   min-width: 0;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .withdraw-method-value-label {
@@ -6281,7 +6282,7 @@ onUnmounted(() => {
 .withdraw-method-empty-detail {
   margin-top: 10px;
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -6328,7 +6329,7 @@ onUnmounted(() => {
   border-radius: 999px;
   background: var(--color-surface-muted);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -6359,7 +6360,7 @@ onUnmounted(() => {
   border-radius: 999px;
   background: var(--color-surface-muted);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: capitalize;
 }
@@ -6397,7 +6398,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-brand-soft);
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -6425,7 +6426,7 @@ onUnmounted(() => {
   gap: 8px;
   min-height: 90px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -6506,12 +6507,12 @@ onUnmounted(() => {
 
 .funding-detail-label {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .funding-detail-value {
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   overflow-wrap: anywhere;
 }
@@ -6535,7 +6536,7 @@ onUnmounted(() => {
 .funding-pagination-info,
 .funding-pagination-page {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .funding-pagination-controls {
@@ -6553,7 +6554,7 @@ onUnmounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-border);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -6596,7 +6597,7 @@ onUnmounted(() => {
   align-items: center;
   gap: 6px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .document-list {
@@ -6659,7 +6660,7 @@ onUnmounted(() => {
 
 .doc-date {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .doc-meta-list {
@@ -6668,7 +6669,7 @@ onUnmounted(() => {
   gap: 12px;
   flex-wrap: wrap;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .doc-meta-item {
@@ -6699,7 +6700,7 @@ onUnmounted(() => {
   background: var(--color-success-soft);
   border-radius: 999px;
   padding: 3px 8px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -6721,7 +6722,7 @@ onUnmounted(() => {
   border: 0;
   border-radius: var(--radius-sm);
   padding: 7px 10px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -6877,7 +6878,7 @@ onUnmounted(() => {
 }
 
 .signature-field label {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   text-transform: uppercase;
   font-weight: 700;

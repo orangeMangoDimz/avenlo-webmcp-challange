@@ -743,7 +743,7 @@ onUnmounted(() => {
   border: none;
   background: transparent;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   padding: 8px 18px;
   border-radius: var(--radius-sm);
@@ -764,7 +764,7 @@ onUnmounted(() => {
 }
 
 .ib-exchange-rates__mode-readonly {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   padding: 6px 12px;
@@ -776,7 +776,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   white-space: nowrap;
 }
@@ -817,7 +817,7 @@ onUnmounted(() => {
   position: absolute;
   left: 12px;
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   pointer-events: none;
   z-index: 1;
 }
@@ -862,7 +862,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 14px;
   transition:
     color 0.2s,
     background 0.2s;
@@ -999,7 +999,7 @@ onUnmounted(() => {
 .ib-exchange-rates__table th {
   padding: 16px 24px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border-bottom: 2px solid var(--color-border);
@@ -1052,7 +1052,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
 }
@@ -1135,7 +1135,7 @@ onUnmounted(() => {
 }
 
 .ib-exchange-rates__pagination-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 500;
 }

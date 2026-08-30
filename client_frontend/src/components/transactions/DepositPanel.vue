@@ -50,7 +50,10 @@
           <div class="gateway-content-title">
             {{ t("transPaymentDetails", "Payment Details") }}
           </div>
-          <div class="gateway-content" v-html="gatewayContentHtml"></div>
+          <div
+            class="gateway-content font-floor-content"
+            v-html="gatewayContentHtml"
+          ></div>
         </div>
 
         <form class="details-form" @submit.prevent="onSubmit">
@@ -716,7 +719,7 @@ onBeforeUnmount(() => {
 
 .details-select-trigger i {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -737,7 +740,7 @@ onBeforeUnmount(() => {
 
 .details-select-group {
   padding: 10px 14px 6px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -751,7 +754,7 @@ onBeforeUnmount(() => {
   background: var(--color-surface);
   padding: 11px 14px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   cursor: pointer;
   transition:
@@ -775,7 +778,7 @@ onBeforeUnmount(() => {
 
 .account-balance-preview-title {
   margin-bottom: 10px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-text);
 }
@@ -785,7 +788,7 @@ onBeforeUnmount(() => {
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -856,7 +859,7 @@ onBeforeUnmount(() => {
 .gateway-content-title {
   margin-bottom: 10px;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -948,7 +951,7 @@ onBeforeUnmount(() => {
 .currency-card-code {
   margin-top: 4px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .section-label {

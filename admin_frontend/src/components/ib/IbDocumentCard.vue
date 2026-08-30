@@ -38,7 +38,7 @@
             :for="`doc-required-${localDocument.id}`"
             @click.stop
             style="
-              font-size: 12px;
+              font-size: 14px;
               color: var(--color-text);
               font-weight: 600;
               cursor: pointer;
@@ -386,7 +386,7 @@ watch(
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
   display: flex;
@@ -418,7 +418,7 @@ watch(
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
   display: flex;
@@ -452,7 +452,7 @@ watch(
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.3s ease;
   display: flex;
@@ -474,7 +474,7 @@ watch(
   padding: 12px 25px;
   background: var(--color-surface-soft);
   border-bottom: 1px solid var(--color-border);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -504,7 +504,7 @@ watch(
 .ib-document-stats {
   display: flex;
   gap: 20px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

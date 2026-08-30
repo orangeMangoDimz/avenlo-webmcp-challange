@@ -369,7 +369,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 8px;
                   display: block;
                 "
@@ -897,7 +897,7 @@ const confirm = () => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -935,7 +935,7 @@ const confirm = () => {
   text-align: center;
   padding: 40px 20px;
   color: var(--color-warning);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -1036,7 +1036,7 @@ const confirm = () => {
 
 .selectable-question-title,
 .selectable-document-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
   margin-bottom: 4px;
@@ -1048,7 +1048,7 @@ const confirm = () => {
   color: var(--color-brand);
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   margin-top: 4px;
 }
@@ -1083,7 +1083,7 @@ const confirm = () => {
   border: none;
   border-radius: var(--radius-sm);
   padding: 6px 10px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1165,7 +1165,7 @@ const confirm = () => {
 
 .summary-empty {
   color: var(--color-warning);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -1177,7 +1177,7 @@ const confirm = () => {
   background: var(--color-warning-solid);
   color: white;
   border-radius: var(--radius-xl);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -1385,7 +1385,7 @@ const confirm = () => {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
   transition: all 0.3s ease;
 }
@@ -1401,7 +1401,7 @@ const confirm = () => {
   border: none;
   border-radius: 4px;
   padding: 0px 16px;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -1424,7 +1424,7 @@ const confirm = () => {
   border: none;
   border-radius: var(--radius-sm);
   padding: 8px 12px;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;

@@ -342,7 +342,7 @@ const formatOptionLabel = (option) => {
 }
 
 .btn-category-action {
-  font-size: 12px;
+  font-size: 14px;
   padding: 6px 12px;
 }
 
@@ -415,7 +415,7 @@ const formatOptionLabel = (option) => {
   color: white;
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(var(--color-brand-rgb), 0.3);
 }
@@ -432,7 +432,7 @@ const formatOptionLabel = (option) => {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 12px;
 }
 
@@ -470,7 +470,7 @@ const formatOptionLabel = (option) => {
   border-radius: var(--radius-md);
   background: var(--color-warning-soft);
   color: var(--color-warning);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -512,7 +512,7 @@ const formatOptionLabel = (option) => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(var(--color-brand-rgb), 0.3);
@@ -524,14 +524,14 @@ const formatOptionLabel = (option) => {
 }
 
 .question-text {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-ink);
   margin-bottom: 3px;
 }
 
 .question-help {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 2px;
 }
@@ -541,7 +541,7 @@ const formatOptionLabel = (option) => {
   color: var(--color-brand);
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   border: 1px solid var(--color-brand-soft);
 }
@@ -551,7 +551,7 @@ const formatOptionLabel = (option) => {
   color: white;
   padding: 4px 8px;
   border-radius: var(--radius-lg);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   box-shadow: 0 1px 4px rgba(245, 101, 101, 0.3);
 }
@@ -559,7 +559,7 @@ const formatOptionLabel = (option) => {
 .status-badge {
   padding: 4px 8px;
   border-radius: var(--radius-lg);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
@@ -591,7 +591,7 @@ const formatOptionLabel = (option) => {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  font-size: 12px;
+  font-size: 14px;
   background: var(--color-surface);
 }
 
@@ -633,7 +633,7 @@ const formatOptionLabel = (option) => {
 }
 
 .info-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
 }
@@ -643,7 +643,7 @@ const formatOptionLabel = (option) => {
   color: var(--color-text);
   padding: 4px 8px;
   border-radius: var(--radius-lg);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -661,7 +661,7 @@ const formatOptionLabel = (option) => {
   background: var(--color-surface);
   border: 1px solid #dbe3f0;
   color: var(--color-text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -670,7 +670,7 @@ const formatOptionLabel = (option) => {
   flex-wrap: wrap;
   gap: 12px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 @media (max-width: 768px) {

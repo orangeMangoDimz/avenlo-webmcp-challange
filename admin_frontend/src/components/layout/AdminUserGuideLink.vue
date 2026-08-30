@@ -62,7 +62,7 @@ const guideUrl = computed(() => {
   padding: 8px 12px;
   background: var(--color-ink);
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.4;
   white-space: nowrap;

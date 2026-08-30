@@ -681,7 +681,7 @@ onMounted(() => {
 }
 
 .filter-group label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -747,7 +747,7 @@ onMounted(() => {
   padding: 15px;
   text-align: left;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -780,7 +780,7 @@ onMounted(() => {
 
 .template-key-badge {
   font-family: monospace;
-  font-size: 12px;
+  font-size: 14px;
   background: var(--color-surface-soft);
   padding: 4px 8px;
   border-radius: 4px;
@@ -791,7 +791,7 @@ onMounted(() => {
 .badge {
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-block;
 }
@@ -826,7 +826,7 @@ onMounted(() => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -930,7 +930,7 @@ onMounted(() => {
 }
 
 .detail-item label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   text-transform: uppercase;
@@ -1001,14 +1001,14 @@ onMounted(() => {
 
 .variable-key {
   font-family: monospace;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-brand);
   margin-bottom: 5px;
 }
 
 .variable-desc {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

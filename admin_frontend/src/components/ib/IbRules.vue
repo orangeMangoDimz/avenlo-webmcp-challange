@@ -974,14 +974,14 @@ onBeforeUnmount(() => {
 }
 
 .sync-products-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 0;
   line-height: 1.5;
 }
 
 .sync-platforms-empty {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 0;
   font-style: italic;
@@ -1048,13 +1048,13 @@ onBeforeUnmount(() => {
 }
 
 .sync-platform-code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .btn-sync-platform {
   padding: 8px 16px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-brand);
   background: var(--color-brand-soft);
@@ -1089,7 +1089,7 @@ onBeforeUnmount(() => {
 }
 
 .sync-status-text {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1106,7 +1106,7 @@ onBeforeUnmount(() => {
 .ib-rules-table th,
 .ib-rules-table td {
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
 }
 
@@ -1133,7 +1133,7 @@ onBeforeUnmount(() => {
   color: var(--color-text);
   padding: 3px 8px;
   border-radius: var(--radius-md);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.3;
   white-space: nowrap;
@@ -1142,7 +1142,7 @@ onBeforeUnmount(() => {
 
 .ib-rule-product-more {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   padding: 3px 2px;
   white-space: nowrap;
@@ -1188,7 +1188,7 @@ onBeforeUnmount(() => {
 }
 
 .ib-rules-pagination-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   font-weight: 500;
 }
@@ -1200,14 +1200,14 @@ onBeforeUnmount(() => {
 }
 
 .ib-rules-pagination-page {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   font-weight: 500;
 }
 
 .btn-pagination {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-surface);
   color: var(--color-text);
   border: 1px solid var(--color-border);
@@ -1364,7 +1364,7 @@ onBeforeUnmount(() => {
 .package-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1407,7 +1407,7 @@ onBeforeUnmount(() => {
 }
 
 .package-description {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1415,7 +1415,7 @@ onBeforeUnmount(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1463,7 +1463,7 @@ onBeforeUnmount(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

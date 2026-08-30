@@ -540,7 +540,7 @@ const handleSubmit = () => {
   margin-bottom: 8px;
   padding-right: 82px;
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -564,7 +564,7 @@ const handleSubmit = () => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .option-input-single {
@@ -583,7 +583,7 @@ const handleSubmit = () => {
   border: none;
   border-radius: 4px;
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -598,7 +598,7 @@ const handleSubmit = () => {
   border: none;
   border-radius: var(--radius-sm);
   padding: 8px 12px;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   margin-top: 10px;
   transition: all 0.3s ease;
@@ -619,7 +619,7 @@ const handleSubmit = () => {
   display: block;
   margin-top: 6px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .form-checkbox {

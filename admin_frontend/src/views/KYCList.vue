@@ -1149,7 +1149,7 @@ export default {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1159,7 +1159,7 @@ export default {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1167,7 +1167,7 @@ export default {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1236,7 +1236,7 @@ export default {
   color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -1303,7 +1303,7 @@ export default {
 .kyc-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1439,7 +1439,7 @@ export default {
 }
 
 .client-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1447,7 +1447,7 @@ export default {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1460,7 +1460,7 @@ export default {
   margin-left: 8px;
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.3px;
   background: var(--color-brand-soft);
@@ -1468,6 +1468,7 @@ export default {
 }
 
 .third-party-badge i {
+  /* @font-floor-exempt: visual-only status glyph */
   font-size: 10px;
 }
 
@@ -1518,7 +1519,7 @@ export default {
 }
 
 .progress-text {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
 }
@@ -1537,7 +1538,7 @@ export default {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

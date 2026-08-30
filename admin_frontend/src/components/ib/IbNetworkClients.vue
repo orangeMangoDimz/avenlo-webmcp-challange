@@ -358,7 +358,7 @@ watch(
   align-items: center;
   gap: 6px;
   padding: 6px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-info);
   background: var(--color-info-soft);
   border: 1px solid #bfdbfe;
@@ -385,7 +385,7 @@ watch(
 .ib-nc-count {
   background: var(--color-info-soft);
   color: var(--color-info);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   padding: 2px 8px;
   border-radius: var(--radius-md);
@@ -398,7 +398,7 @@ watch(
 .ib-nc-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
 }
 .ib-nc-table th,
 .ib-nc-table td {
@@ -412,7 +412,7 @@ watch(
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 14px;
 }
 .ib-nc-table tbody tr:hover {
   background: var(--color-surface-soft);
@@ -426,7 +426,7 @@ watch(
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: capitalize;
 }
@@ -452,7 +452,7 @@ watch(
   background: var(--color-surface);
   padding: 4px 10px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -483,7 +483,7 @@ watch(
   cursor: not-allowed;
 }
 .ib-nc-page-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -554,7 +554,7 @@ watch(
 
 .export-modal-percent {
   margin: 8px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

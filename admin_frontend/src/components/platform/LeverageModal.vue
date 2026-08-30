@@ -301,7 +301,7 @@ const handleSubmit = () => {
 .form-hint {
   display: block;
   margin-top: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -328,7 +328,7 @@ const handleSubmit = () => {
   background: var(--color-danger-soft);
   border: 1px solid var(--color-danger-border);
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .btn {

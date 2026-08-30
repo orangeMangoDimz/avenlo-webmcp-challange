@@ -111,7 +111,7 @@
           >
             <span class="detail-label">{{ answer.questionText }}</span>
             <span
-              class="detail-value"
+              class="detail-value font-floor-content"
               v-if="
                 answer.questionType === 'file_upload' &&
                 answer.files &&
@@ -134,7 +134,7 @@
             </span>
             <span
               v-else
-              class="detail-value"
+              class="detail-value font-floor-content"
               v-html="formatAnswerValue(answer)"
             ></span>
           </div>
@@ -790,7 +790,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 8px;
                   display: block;
                 "
@@ -1911,7 +1911,7 @@ export default {
 }
 
 .approved-detail-meta-sub {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.55;
   margin: 0;
@@ -2015,7 +2015,7 @@ export default {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2056,7 +2056,7 @@ export default {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   min-width: 180px;
 }
 
@@ -2136,7 +2136,7 @@ export default {
   color: var(--color-brand);
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2169,7 +2169,7 @@ export default {
 .resubmit-file-link {
   color: var(--color-brand);
   text-decoration: none;
-  font-size: 13px;
+  font-size: 14px;
   transition: color 0.2s ease;
 }
 
@@ -2201,7 +2201,7 @@ export default {
 .resubmit-no-answer {
   color: var(--color-faint);
   font-style: italic;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .resubmit-notes {
@@ -2213,7 +2213,7 @@ export default {
 .resubmit-notes-label {
   font-weight: 600;
   color: var(--color-warning);
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -2275,7 +2275,7 @@ export default {
 }
 
 .approval-progress-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   display: flex;
@@ -2288,7 +2288,7 @@ export default {
 }
 
 .approval-progress-count {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   padding: 4px 12px;
@@ -2486,7 +2486,7 @@ export default {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2543,7 +2543,7 @@ export default {
   text-align: center;
   padding: 30px 20px;
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -2688,7 +2688,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -2708,7 +2708,7 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -2722,7 +2722,7 @@ export default {
 }
 
 .selectable-document-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
 }
@@ -2737,7 +2737,7 @@ export default {
   display: block;
   font-weight: 600;
   color: var(--color-warning);
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -2802,13 +2802,13 @@ export default {
   background: var(--color-warning-solid);
   color: white;
   border-radius: var(--radius-xl);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .need-docs-summary-empty {
   color: var(--color-warning);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -2969,7 +2969,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 12px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -3108,7 +3108,7 @@ export default {
   border: 2px solid var(--color-danger-soft);
   border-radius: var(--radius-md);
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .reject-warning i {
@@ -3327,7 +3327,7 @@ export default {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
   transition: all 0.3s ease;
 }
@@ -3343,7 +3343,7 @@ export default {
   border: none;
   border-radius: 4px;
   padding: 0px 16px;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: flex;
@@ -3366,7 +3366,7 @@ export default {
   border: none;
   border-radius: var(--radius-sm);
   padding: 8px 12px;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-flex;
@@ -3460,7 +3460,7 @@ export default {
 }
 
 .selectable-question-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
   margin-bottom: 4px;
@@ -3472,7 +3472,7 @@ export default {
   color: var(--color-brand);
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 

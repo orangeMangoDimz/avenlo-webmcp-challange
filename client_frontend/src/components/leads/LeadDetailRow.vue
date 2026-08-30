@@ -200,7 +200,7 @@
                   }}
                 </h3>
                 <div
-                  class="document-preview-content"
+                  class="document-preview-content font-floor-content"
                   v-html="getDocumentContent(currentDocument?.documentType)"
                 ></div>
               </div>
@@ -579,7 +579,7 @@ const downloadDocument = () => {
 
         .signature-item label {
           display: block;
-          font-size: 11px;
+          font-size: 14px;
           color: var(--color-muted);
           text-transform: uppercase;
           font-weight: 600;
@@ -598,7 +598,7 @@ const downloadDocument = () => {
           padding-top: 20px;
           border-top: 1px solid var(--color-border);
           text-align: center;
-          font-size: 12px;
+          font-size: 14px;
           color: var(--color-muted);
         }
 
@@ -753,7 +753,7 @@ const getDocumentContent = (type) => {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -794,7 +794,7 @@ const getDocumentContent = (type) => {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value-wrapper {
@@ -831,7 +831,7 @@ const getDocumentContent = (type) => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -930,7 +930,7 @@ const getDocumentContent = (type) => {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .document-date-mini {
@@ -944,7 +944,7 @@ const getDocumentContent = (type) => {
   border-radius: var(--radius-md);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .document-signature-info {
@@ -957,7 +957,7 @@ const getDocumentContent = (type) => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 6px 0;
 }
@@ -965,6 +965,7 @@ const getDocumentContent = (type) => {
 .signature-line i {
   color: var(--color-faint);
   width: 14px;
+  /* @font-floor-exempt: visual-only signature glyph */
   font-size: 10px;
 }
 
@@ -979,7 +980,7 @@ const getDocumentContent = (type) => {
   margin-top: 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1040,7 +1041,7 @@ const getDocumentContent = (type) => {
 .assignment-field label {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .assignment-field select,
@@ -1090,7 +1091,7 @@ const getDocumentContent = (type) => {
 .assignment-info-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .assignment-info-value {
@@ -1103,7 +1104,7 @@ const getDocumentContent = (type) => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1301,7 +1302,7 @@ const getDocumentContent = (type) => {
 }
 
 .signature-field label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   text-transform: uppercase;
   font-weight: 600;

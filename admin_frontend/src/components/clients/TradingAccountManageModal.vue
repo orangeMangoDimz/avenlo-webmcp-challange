@@ -358,11 +358,11 @@ onMounted(() => {
   color: var(--color-brand);
   border-radius: var(--radius-sm);
   padding: 4px 10px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .account-login {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -371,7 +371,7 @@ onMounted(() => {
   color: var(--color-info);
   border-radius: var(--radius-sm);
   padding: 12px 14px;
-  font-size: 13px;
+  font-size: 14px;
   margin: 0;
   display: flex;
   gap: 8px;
@@ -383,14 +383,14 @@ onMounted(() => {
 }
 .form-label {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 8px;
 }
 .manage-current {
   margin: 0 0 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .form-input {
@@ -409,7 +409,7 @@ onMounted(() => {
   color: var(--color-danger);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -420,7 +420,7 @@ onMounted(() => {
   color: var(--color-success);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -430,7 +430,7 @@ onMounted(() => {
   padding: 9px 18px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;

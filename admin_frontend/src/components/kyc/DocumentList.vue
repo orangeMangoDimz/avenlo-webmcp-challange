@@ -92,7 +92,7 @@
           </button>
         </div>
         <div
-          class="document-editor"
+          class="document-editor font-floor-content"
           :contenteditable="true"
           :ref="(el) => setEditorRef(el, idx)"
           @input="updateContent(idx, $event)"
@@ -567,7 +567,7 @@ const saveDocument = async (index) => {
 .btn-small {
   padding: 8px 16px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -618,7 +618,7 @@ const saveDocument = async (index) => {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   transition: all 0.2s ease;
   color: var(--color-text);
 }

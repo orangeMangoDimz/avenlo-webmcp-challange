@@ -842,7 +842,7 @@ onMounted(async () => {
 }
 
 .olr-filter-field label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -1104,7 +1104,7 @@ onMounted(async () => {
 .olr-table th {
   padding: 14px 16px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1157,7 +1157,7 @@ onMounted(async () => {
   border-radius: 50%;
   background: var(--color-brand-solid);
   color: white;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   display: flex;
   align-items: center;
@@ -1175,7 +1175,7 @@ onMounted(async () => {
 }
 
 .olr-target-meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 2px;
 }
@@ -1184,7 +1184,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-border);
   color: var(--color-text);
@@ -1279,7 +1279,7 @@ onMounted(async () => {
 
 .olr-btn--pagination {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-border);
   color: var(--color-text);
 }
@@ -1366,7 +1366,7 @@ onMounted(async () => {
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -1380,7 +1380,7 @@ onMounted(async () => {
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;

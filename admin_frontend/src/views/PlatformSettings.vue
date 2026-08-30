@@ -1153,7 +1153,7 @@ onMounted(() => {
   display: block;
   color: var(--color-muted);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -1238,7 +1238,7 @@ onMounted(() => {
 }
 
 .platform-selection-code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -1256,7 +1256,7 @@ onMounted(() => {
 .no-platform-hint {
   margin-top: 10px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .section-toolbar {
@@ -1366,7 +1366,7 @@ onMounted(() => {
   color: white;
   padding: 2px 8px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -1381,7 +1381,7 @@ onMounted(() => {
 }
 
 .group-detail {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1396,7 +1396,7 @@ onMounted(() => {
   border: none;
   border-radius: var(--radius-md);
   padding: 10px 14px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -1474,7 +1474,7 @@ onMounted(() => {
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
 }
@@ -1590,7 +1590,7 @@ onMounted(() => {
 }
 
 .account-settings-code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1609,7 +1609,7 @@ onMounted(() => {
 .account-settings-fields .form-group label {
   display: block;
   margin-bottom: 6px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
 }

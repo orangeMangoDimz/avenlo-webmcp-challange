@@ -956,14 +956,14 @@ onMounted(async () => {
 .password-hint {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .field-error {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-danger);
 }
 
@@ -1035,7 +1035,7 @@ onMounted(async () => {
     width: 120px;
   }
   .feature-text {
-    font-size: 13px;
+    font-size: 14px;
   }
   .journey-title {
     font-size: 28px;
@@ -1173,7 +1173,7 @@ onMounted(async () => {
 
 .feature-text {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .feature-icon-img {

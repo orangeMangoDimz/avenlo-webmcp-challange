@@ -1894,7 +1894,7 @@ onUnmounted(() => {
 
 .stat-footer {
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -1932,7 +1932,7 @@ onUnmounted(() => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1982,7 +1982,7 @@ onUnmounted(() => {
 }
 
 .search-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -2052,7 +2052,7 @@ onUnmounted(() => {
 .ib-select-search__empty {
   padding: 20px;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2091,7 +2091,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -2114,7 +2114,7 @@ onUnmounted(() => {
 }
 
 .ib-select-option__code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -2128,7 +2128,7 @@ onUnmounted(() => {
 }
 
 .date-input-wrapper label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   white-space: nowrap;
@@ -2215,7 +2215,7 @@ onUnmounted(() => {
   gap: 10px;
   color: var(--color-text);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -2284,7 +2284,7 @@ onUnmounted(() => {
 }
 
 .filter-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -2328,7 +2328,7 @@ onUnmounted(() => {
 .transaction-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -2382,7 +2382,7 @@ onUnmounted(() => {
   border: 2px solid var(--color-border);
   border-radius: var(--radius-md);
   background: var(--color-surface);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2450,7 +2450,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-surface-soft);
   color: var(--color-text);
@@ -2472,12 +2472,12 @@ onUnmounted(() => {
 }
 
 .client-id {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .unfunded-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   cursor: help;
   border-bottom: 1px dotted currentColor;
@@ -2488,7 +2488,7 @@ onUnmounted(() => {
   align-items: center;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   font-family: "Courier New", monospace;
   background: var(--color-info-soft);
@@ -2694,7 +2694,7 @@ div.empty-state i,
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -2708,7 +2708,7 @@ div.empty-state i,
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -2760,7 +2760,7 @@ div.empty-state i,
   }
 
   .transaction-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .transaction-table th,

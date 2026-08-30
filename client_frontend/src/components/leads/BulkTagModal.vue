@@ -247,7 +247,7 @@ const confirm = () => {
   display: block;
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 8px;
 }
 
@@ -300,7 +300,7 @@ const confirm = () => {
   background: var(--color-warning-solid);
   color: white;
   border-radius: var(--radius-xl);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -328,7 +328,7 @@ const confirm = () => {
   color: white;
   padding: 2px 10px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .selected-leads-container {
@@ -361,7 +361,7 @@ const confirm = () => {
   justify-content: center;
   color: white;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -377,7 +377,7 @@ const confirm = () => {
 }
 
 .selected-lead-email {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

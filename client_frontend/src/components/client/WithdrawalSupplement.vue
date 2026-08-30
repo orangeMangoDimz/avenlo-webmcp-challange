@@ -1009,7 +1009,7 @@ onMounted(() => {
 }
 
 .resubmit-item .help-text {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 8px;
   display: flex;

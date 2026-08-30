@@ -422,7 +422,7 @@ const handlePrimaryAction = () => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   padding: 4px 8px;
   cursor: pointer;

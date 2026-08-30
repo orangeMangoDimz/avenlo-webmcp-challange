@@ -56,7 +56,7 @@
             <small
               style="
                 color: var(--color-muted);
-                font-size: 12px;
+                font-size: 14px;
                 margin-top: 5px;
                 display: block;
               "

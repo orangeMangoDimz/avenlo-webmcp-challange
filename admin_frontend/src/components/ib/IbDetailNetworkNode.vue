@@ -126,7 +126,7 @@ defineEmits(["toggle"]);
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-size: 12px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -146,11 +146,11 @@ defineEmits(["toggle"]);
 .ib-detail-node-name {
   font-weight: 600;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .ib-detail-node-code {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   font-family: "Courier New", monospace;
   margin-top: 2px;
@@ -161,7 +161,7 @@ defineEmits(["toggle"]);
   margin-top: 4px;
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-brand-solid);
   color: white;

@@ -1065,7 +1065,7 @@ onMounted(() => {
 
 .form-hint {
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .form-hint--warn {
@@ -1138,7 +1138,7 @@ onMounted(() => {
 }
 
 .multi-select-summary {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   flex: 1;
   min-width: 0;
@@ -1156,7 +1156,7 @@ onMounted(() => {
   border: none;
   background: transparent;
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -1197,7 +1197,7 @@ onMounted(() => {
 .multi-select-empty {
   padding: 12px 10px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -1234,7 +1234,7 @@ onMounted(() => {
   background: var(--color-surface-soft);
   padding: 10px 12px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border: 1px solid var(--color-border);

@@ -358,7 +358,7 @@ onMounted(loadIbList);
 
 .multi-ib-modal__subtitle {
   margin: 6px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   opacity: 0.9;
   line-height: 1.4;
 }
@@ -493,7 +493,7 @@ onMounted(loadIbList);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   transition:
     background 0.2s,
     color 0.2s;
@@ -525,7 +525,7 @@ onMounted(loadIbList);
 .multi-ib-select-search__empty {
   padding: 20px;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -551,7 +551,7 @@ onMounted(loadIbList);
 .multi-ib-select-search__loading-more {
   padding: 12px;
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-brand);
   border-top: 1px solid var(--color-border);
 }
@@ -587,7 +587,7 @@ onMounted(loadIbList);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   flex-shrink: 0;
 }
@@ -610,7 +610,7 @@ onMounted(loadIbList);
 }
 
 .multi-ib-option__email {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   overflow: hidden;
   text-overflow: ellipsis;

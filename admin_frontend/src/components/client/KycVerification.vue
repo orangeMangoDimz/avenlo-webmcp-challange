@@ -690,7 +690,7 @@ onMounted(() => {
 }
 
 .form-help {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 6px;
   display: flex;

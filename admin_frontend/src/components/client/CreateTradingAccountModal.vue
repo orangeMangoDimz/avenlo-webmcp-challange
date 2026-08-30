@@ -842,7 +842,7 @@ watch(accountTypeOptions, (options) => {
 
 .form-field label {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -961,7 +961,7 @@ watch(accountTypeOptions, (options) => {
 
 .created-account-row span {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 

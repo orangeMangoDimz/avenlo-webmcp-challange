@@ -314,7 +314,7 @@
               </div>
               <div class="strength-description">{{ level.description }}</div>
               <div
-                class="strength-requirements"
+                class="strength-requirements font-floor-content"
                 v-html="level.requirements"
               ></div>
             </label>
@@ -1712,7 +1712,7 @@ onMounted(() => {
 }
 
 .country-count {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1756,7 +1756,7 @@ onMounted(() => {
 
 .country-col.phone {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .country-flag {
@@ -1877,7 +1877,7 @@ onMounted(() => {
   display: block;
   color: var(--color-muted);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -1980,7 +1980,7 @@ onMounted(() => {
   padding: 8px 16px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   transition: all 0.2s ease;
 }
@@ -2102,7 +2102,7 @@ onMounted(() => {
 .field-description-input {
   width: 100%;
   border: none;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   background: transparent;
   padding: 0;
@@ -2117,7 +2117,7 @@ onMounted(() => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   margin-left: 8px;
   white-space: nowrap;
@@ -2292,7 +2292,7 @@ input:checked + .toggle-slider:before {
   display: inline-block;
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2313,14 +2313,14 @@ input:checked + .toggle-slider:before {
 }
 
 .strength-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.5;
 }
 
 .strength-requirements {
   margin-top: 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   line-height: 1.6;
 }
@@ -2440,7 +2440,7 @@ input:checked + .toggle-slider:before {
 }
 
 .language-pack-meta {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2453,7 +2453,7 @@ input:checked + .toggle-slider:before {
 .language-pack-status {
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2481,7 +2481,7 @@ input:checked + .toggle-slider:before {
 }
 
 .toggle-option-info p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.5;
 }
@@ -2519,7 +2519,7 @@ input:checked + .toggle-slider:before {
 .btn-small {
   padding: 8px 16px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2626,7 +2626,7 @@ input:checked + .toggle-slider:before {
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
 }

@@ -889,7 +889,7 @@ onMounted(() => {
 }
 
 .stat-title {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   text-transform: uppercase;
@@ -1016,7 +1016,7 @@ onMounted(() => {
   top: 50%;
   transform: translateY(-50%);
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .filter-property-search input {
@@ -1025,7 +1025,7 @@ onMounted(() => {
   padding: 8px 10px 8px 30px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   outline: none;
 }
 
@@ -1057,7 +1057,7 @@ onMounted(() => {
   padding: 8px 10px;
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border: 1px solid transparent;
 }
@@ -1079,14 +1079,14 @@ onMounted(() => {
   justify-content: center;
   min-width: 18px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .filter-empty-hint {
   margin: 8px 4px;
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .modal-actions {
@@ -1195,7 +1195,7 @@ onMounted(() => {
 
 .export-modal-percent {
   margin: 10px 0 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -1209,7 +1209,7 @@ onMounted(() => {
 .export-modal-btn {
   padding: 10px 16px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   border: none;
@@ -1289,12 +1289,12 @@ onMounted(() => {
 }
 
 .export-column-mode-copy strong {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .export-column-mode-copy small {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-muted);
   line-height: 1.4;

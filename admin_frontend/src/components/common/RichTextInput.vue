@@ -320,7 +320,7 @@ watch(
   </div>
   <div
     ref="editorRef"
-    class="document-editor"
+    class="document-editor font-floor-content"
     :class="{ 'document-editor-disabled': disabled }"
     :contenteditable="!disabled"
     :data-placeholder="resolvedPlaceholder"
@@ -347,7 +347,7 @@ watch(
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   transition: all 0.2s ease;
   color: var(--color-text);
 }
@@ -382,7 +382,7 @@ watch(
 }
 
 .color-group-label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }

@@ -230,7 +230,7 @@
               step="0.01"
               min="0"
             />
-            <span style="color: var(--color-muted); font-size: 13px">USD</span>
+            <span style="color: var(--color-muted); font-size: 14px">USD</span>
           </div>
         </div>
         <div class="detail-field">
@@ -1940,7 +1940,7 @@ onMounted(() => {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1981,7 +1981,7 @@ onMounted(() => {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -1996,7 +1996,7 @@ onMounted(() => {
   border: 2px solid var(--color-border);
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   width: 200px;
   transition: all 0.3s ease;
 }
@@ -2017,7 +2017,7 @@ onMounted(() => {
 
 .btn {
   padding: 8px 16px;
-  font-size: 13px;
+  font-size: 14px;
   border: none;
   border-radius: var(--radius-md);
   font-weight: 600;
@@ -2064,7 +2064,7 @@ onMounted(() => {
   background: var(--color-surface-soft);
   padding: 10px 12px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border: 1px solid var(--color-border);
@@ -2072,7 +2072,7 @@ onMounted(() => {
 
 .product-commission-table td {
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border: 1px solid var(--color-border);
 }
@@ -2088,7 +2088,7 @@ onMounted(() => {
   padding: 8px 12px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   transition: all 0.3s ease;
   font-family: inherit;
 }
@@ -2108,7 +2108,7 @@ onMounted(() => {
 
 .form-label {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 6px;
@@ -2151,7 +2151,7 @@ onMounted(() => {
   padding: 15px;
   background: var(--color-brand-soft);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   border-left: 4px solid var(--color-brand);
 }
@@ -2188,7 +2188,7 @@ onMounted(() => {
   align-items: flex-start;
   gap: 8px;
   margin-bottom: 6px;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -2208,7 +2208,7 @@ onMounted(() => {
   padding: 2px 6px;
   border-radius: 3px;
   font-family: "Courier New", monospace;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .toggle-additional-rules {
@@ -2232,7 +2232,7 @@ onMounted(() => {
 }
 
 .toggle-additional-rules p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 8px;
   margin-bottom: 0;
@@ -2296,7 +2296,7 @@ onMounted(() => {
   background: var(--color-warning-soft);
   border-radius: var(--radius-sm);
   border-left: 3px solid var(--color-warning);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-warning);
   display: flex;
   align-items: center;
@@ -2309,7 +2309,7 @@ onMounted(() => {
 
 .btn-manage-tiers {
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   background: var(--color-brand-solid);
   color: white;
@@ -2329,7 +2329,7 @@ onMounted(() => {
 
 .btn-disabled {
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 14px;
   width: 100%;
   background: var(--color-border);
   color: var(--color-faint);
@@ -2457,7 +2457,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -2525,7 +2525,7 @@ onMounted(() => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2552,7 +2552,7 @@ onMounted(() => {
 
 .form-group label {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 6px;

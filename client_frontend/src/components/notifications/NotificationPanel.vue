@@ -205,7 +205,7 @@ const formatTime = (value) => {
 .panel-subtitle {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -219,7 +219,7 @@ const formatTime = (value) => {
   background: none;
   border: none;
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   padding: 6px 8px;
@@ -304,7 +304,7 @@ const formatTime = (value) => {
 }
 
 .panel-item-message {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -320,14 +320,14 @@ const formatTime = (value) => {
 }
 
 .panel-item-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
 .panel-pill {
   background: var(--color-brand-solid);
   color: white;
-  font-size: 11px;
+  font-size: 14px;
   padding: 3px 8px;
   border-radius: 999px;
   font-weight: 600;

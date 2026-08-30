@@ -1164,7 +1164,7 @@ const saveTierCount = async () => {
 .tier-table th {
   padding: 16px 20px;
   text-align: center;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1212,7 +1212,7 @@ const saveTierCount = async () => {
 }
 
 .tier-description {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1239,7 +1239,7 @@ const saveTierCount = async () => {
 .permission-badge {
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1267,7 +1267,7 @@ const saveTierCount = async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1298,7 +1298,7 @@ const saveTierCount = async () => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1423,7 +1423,7 @@ const saveTierCount = async () => {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1464,7 +1464,7 @@ const saveTierCount = async () => {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .detail-value {
@@ -1479,7 +1479,7 @@ const saveTierCount = async () => {
   border: 2px solid var(--color-border);
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   width: 200px;
   transition: all 0.3s ease;
 }
@@ -1526,7 +1526,7 @@ const saveTierCount = async () => {
 }
 
 .permission-desc {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1717,6 +1717,7 @@ const saveTierCount = async () => {
 
 .tier-level-dropdown__arrow {
   flex-shrink: 0;
+  /* @font-floor-exempt: visual-only dropdown glyph */
   font-size: 12px;
   color: var(--color-muted);
   transition: transform 0.2s ease;
@@ -1883,7 +1884,7 @@ const saveTierCount = async () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -1953,7 +1954,7 @@ const saveTierCount = async () => {
 .tier-count-form__hint {
   flex: 1 1 100%;
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.5;
 }

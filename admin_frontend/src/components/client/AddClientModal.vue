@@ -929,7 +929,7 @@ const handleSubmit = async () => {
 .form-field label {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .form-field .required {
@@ -955,7 +955,7 @@ const handleSubmit = async () => {
 }
 
 .field-hint {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-style: italic;
   margin-top: -4px;
@@ -968,7 +968,7 @@ const handleSubmit = async () => {
 
 .field-error {
   color: var(--color-danger);
-  font-size: 12px;
+  font-size: 14px;
   margin-top: -4px;
 }
 
@@ -979,7 +979,7 @@ const handleSubmit = async () => {
   cursor: pointer;
   font-weight: 500;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   user-select: none;
 }
 
@@ -1074,7 +1074,7 @@ const handleSubmit = async () => {
 }
 
 .kyc-option-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

@@ -701,7 +701,7 @@
         </div>
         <div class="modal-body legal-body">
           <div
-            class="legal-document-content"
+            class="legal-document-content font-floor-content"
             v-html="currentDocument.documentContent"
           ></div>
         </div>
@@ -2266,7 +2266,7 @@ onMounted(() => {
 }
 
 .form-help {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 6px;
   display: flex;
@@ -2437,7 +2437,7 @@ onMounted(() => {
   }
 
   .resubmit-description {
-    font-size: 12px !important;
+    font-size: 14px !important;
     line-height: 1.5;
     margin-bottom: 0 !important;
   }
@@ -2452,7 +2452,7 @@ onMounted(() => {
   }
 
   .resubmit-notes p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
   }
 
@@ -2461,7 +2461,7 @@ onMounted(() => {
   }
 
   .resubmit-items-section .section-title {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 10px;
     gap: 8px;
   }
@@ -2477,21 +2477,22 @@ onMounted(() => {
   }
 
   .resubmit-item .item-header i {
+    /* @font-floor-exempt: visual-only status glyph */
     font-size: 10px;
   }
 
   .resubmit-item .item-label {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .resubmit-item .help-text {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .form-input,
   .form-textarea,
   .form-select {
-    font-size: 13px;
+    font-size: 14px;
     padding: 10px 12px;
   }
 
@@ -2509,7 +2510,7 @@ onMounted(() => {
   }
 
   .progress-steps {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .progress-bar-container {
@@ -2535,7 +2536,7 @@ onMounted(() => {
   }
 
   .category-info p {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.4;
   }
 
@@ -2544,7 +2545,7 @@ onMounted(() => {
   }
 
   .form-label {
-    font-size: 13px;
+    font-size: 14px;
     margin-bottom: 6px;
   }
 
@@ -2553,7 +2554,7 @@ onMounted(() => {
   }
 
   .form-help {
-    font-size: 12px;
+    font-size: 14px;
     line-height: 1.5;
   }
 }
@@ -2790,7 +2791,7 @@ onMounted(() => {
 }
 
 .resubmit-item .help-text {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 8px;
   display: flex;
@@ -2816,7 +2817,7 @@ onMounted(() => {
 
 .saving-indicator {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   display: flex;
   align-items: center;

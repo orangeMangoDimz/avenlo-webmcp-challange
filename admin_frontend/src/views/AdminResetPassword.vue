@@ -643,7 +643,7 @@ onMounted(async () => {
   display: block;
   margin-top: 8px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .error-hint {
@@ -656,7 +656,7 @@ onMounted(async () => {
   border-left: 3px solid var(--color-danger);
   border-radius: var(--radius-sm);
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -719,7 +719,7 @@ onMounted(async () => {
   padding-top: 20px;
   border-top: 1px solid var(--color-border);
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* Responsive */

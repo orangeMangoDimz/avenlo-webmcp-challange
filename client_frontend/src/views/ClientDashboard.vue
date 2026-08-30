@@ -50,6 +50,7 @@
 
       <div class="kyc-notice-content">
         <p
+          class="font-floor-content"
           v-html="
             noticeConfig.description ||
             t('pleaseCompleteKyc', 'Please complete your KYC verification.')
@@ -86,7 +87,10 @@
 
         <div v-if="noticeConfig.verificationTimeNotice" class="info-alert">
           <i class="fas fa-info-circle"></i>
-          <p v-html="noticeConfig.verificationTimeNotice"></p>
+          <p
+            class="font-floor-content"
+            v-html="noticeConfig.verificationTimeNotice"
+          ></p>
         </div>
       </div>
 
@@ -505,7 +509,7 @@ onMounted(async () => {
 
 .kyc-requirement-text span {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   display: block;
   white-space: nowrap;
   overflow: hidden;

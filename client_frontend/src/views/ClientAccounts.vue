@@ -1161,7 +1161,7 @@ onUnmounted(() => {
 }
 
 .account-nickname {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1173,7 +1173,7 @@ onUnmounted(() => {
   background: var(--color-brand-soft);
   color: var(--color-brand);
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .platform-icon-button {
@@ -1290,7 +1290,7 @@ onUnmounted(() => {
   padding: 6px 12px;
   border-radius: 999px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: 14px;
   text-transform: capitalize;
 }
 
@@ -1399,7 +1399,7 @@ onUnmounted(() => {
 }
 .form-modal-field label {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 8px;
@@ -1419,7 +1419,7 @@ onUnmounted(() => {
 }
 .form-modal-current {
   margin: 0 0 14px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .form-modal-success {
@@ -1447,7 +1447,7 @@ onUnmounted(() => {
 }
 .form-modal-error {
   color: var(--color-danger);
-  font-size: 13px;
+  font-size: 14px;
   margin: 0 0 12px;
 }
 .form-modal-actions {

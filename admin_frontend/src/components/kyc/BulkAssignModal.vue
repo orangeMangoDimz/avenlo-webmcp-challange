@@ -426,7 +426,7 @@ export default {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -468,7 +468,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -478,13 +478,13 @@ export default {
 }
 
 .client-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
 }
 
 .client-email {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -496,14 +496,14 @@ export default {
 }
 
 .kyc-template {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
 .kyc-status {
   padding: 2px 6px;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -553,7 +553,7 @@ export default {
 }
 
 .bulk-assignment-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -598,13 +598,13 @@ export default {
 }
 
 .bulk-assignment-info-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 500;
 }
 
 .bulk-assignment-info-value {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   font-weight: 600;
 }

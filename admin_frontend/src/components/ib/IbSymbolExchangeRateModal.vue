@@ -727,7 +727,7 @@ const submit = () => {
 
 .form-hint {
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -750,7 +750,7 @@ const submit = () => {
   position: absolute;
   left: 14px;
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   pointer-events: none;
   z-index: 1;
 }
@@ -792,7 +792,7 @@ const submit = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 14px;
   transition:
     color 0.2s,
     background 0.2s;
@@ -818,7 +818,7 @@ const submit = () => {
 
 .ib-ex-symbol-search__empty {
   padding: 14px 16px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-faint);
   text-align: center;
 }
@@ -854,7 +854,7 @@ const submit = () => {
 }
 
 .ib-ex-symbol-search__option-meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   flex-shrink: 0;
 }
@@ -892,7 +892,7 @@ const submit = () => {
 }
 
 .sync-mode-option__badge {
-  font-size: 11px;
+  font-size: 14px;
   padding: 2px 8px;
   border-radius: 999px;
   background: var(--color-brand-solid);
@@ -902,7 +902,7 @@ const submit = () => {
 .sync-mode-option__desc {
   display: block;
   margin-top: 4px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

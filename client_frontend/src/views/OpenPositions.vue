@@ -526,7 +526,7 @@ onUnmounted(() => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   min-width: 20px;
   text-align: center;
@@ -566,7 +566,7 @@ onUnmounted(() => {
 .positions-table th {
   padding: 15px 12px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-ink);
   border-bottom: 1px solid var(--color-border);
@@ -593,7 +593,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   text-align: center;
   min-width: 70px;
   font-weight: 600;
@@ -660,7 +660,7 @@ onUnmounted(() => {
     var(--color-brand-soft) 100%
   );
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-brand);
 }
@@ -746,16 +746,16 @@ onUnmounted(() => {
   .positions-tab {
     white-space: nowrap;
     padding: 10px 14px;
-    font-size: 13px;
+    font-size: 14px;
     gap: 6px;
   }
 
   .positions-tab i {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .tab-counter {
-    font-size: 11px;
+    font-size: 14px;
     padding: 1px 6px;
   }
 
@@ -776,17 +776,18 @@ onUnmounted(() => {
 
   .positions-table th {
     padding: 10px 8px;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .positions-table td {
     padding: 10px 8px;
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .symbol-icon {
     width: 36px;
     height: 22px;
+    /* @font-floor-exempt: visual-only symbol mark */
     font-size: 9px;
   }
 
@@ -795,17 +796,17 @@ onUnmounted(() => {
   }
 
   .symbol-name {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .trade-label {
     padding: 2px 8px;
-    font-size: 11px;
+    font-size: 14px;
     min-width: 50px;
   }
 
   .pnl-cell {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .empty-state i {

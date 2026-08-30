@@ -544,7 +544,7 @@ onMounted(() => {
 }
 
 .toggle-option-info p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.5;
   margin: 0;
@@ -716,7 +716,7 @@ onMounted(() => {
 
 .modal-env-note p {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   line-height: 1.6;
 }
@@ -751,7 +751,7 @@ onMounted(() => {
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .effect-row.is-on .effect-icon {

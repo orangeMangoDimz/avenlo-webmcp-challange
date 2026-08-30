@@ -7,6 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "test:font-size": "node ../scripts/ci/check-font-size.mjs",
     "test:theme": "node scripts/check-theme-surfaces.mjs",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
     "test": "vitest run",

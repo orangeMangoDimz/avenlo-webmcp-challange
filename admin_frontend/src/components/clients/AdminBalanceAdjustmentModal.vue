@@ -632,7 +632,7 @@ onMounted(() => {
 }
 .form-label {
   display: block;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 8px;
@@ -654,7 +654,7 @@ onMounted(() => {
 }
 .field-note {
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -671,7 +671,7 @@ onMounted(() => {
   background: var(--color-surface);
   border-radius: var(--radius-sm);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   display: flex;
@@ -713,7 +713,7 @@ onMounted(() => {
   padding-top: 10px;
 }
 .balance-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .balance-value {
@@ -730,7 +730,7 @@ onMounted(() => {
   color: var(--color-info);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
-  font-size: 12px;
+  font-size: 14px;
   display: flex;
   align-items: flex-start;
   gap: 8px;
@@ -742,7 +742,7 @@ onMounted(() => {
   color: var(--color-danger);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -752,7 +752,7 @@ onMounted(() => {
   color: var(--color-success);
   border-radius: var(--radius-sm);
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -762,7 +762,7 @@ onMounted(() => {
   padding: 9px 18px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;

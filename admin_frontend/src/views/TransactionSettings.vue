@@ -1163,7 +1163,7 @@
                                               ).data.depositContent || '',
                                             ).trim()
                                           "
-                                          class="gateway-display-preview-content"
+                                          class="gateway-display-preview-content font-floor-content"
                                           v-html="
                                             getGatewayDisplayDetailState(
                                               gateway.gatewayKey,
@@ -1215,7 +1215,7 @@
                                               ).data.withdrawalContent || '',
                                             ).trim()
                                           "
-                                          class="gateway-display-preview-content"
+                                          class="gateway-display-preview-content font-floor-content"
                                           v-html="
                                             getGatewayDisplayDetailState(
                                               gateway.gatewayKey,
@@ -7309,7 +7309,7 @@ onMounted(async () => {
 }
 
 .info-banner-text {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   line-height: 1.6;
 }
@@ -7329,7 +7329,7 @@ onMounted(async () => {
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
 }
@@ -7605,14 +7605,14 @@ onMounted(async () => {
 }
 
 .form-help {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 6px;
   display: block;
 }
 
 .form-error {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-danger);
   margin-top: 6px;
   display: block;
@@ -7691,7 +7691,7 @@ onMounted(async () => {
 }
 
 .switch-toggle-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-text);
 }
@@ -7702,7 +7702,7 @@ onMounted(async () => {
   color: white;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -7811,7 +7811,7 @@ onMounted(async () => {
   color: var(--color-danger);
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -7830,7 +7830,7 @@ onMounted(async () => {
 }
 
 .section-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 4px;
   margin-bottom: 0;
@@ -7928,7 +7928,7 @@ onMounted(async () => {
 }
 
 .requirement-section li {
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.8;
   margin-bottom: 6px;
 }
@@ -7964,7 +7964,7 @@ onMounted(async () => {
 .gateway-table th {
   padding: 15px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -8129,7 +8129,7 @@ onMounted(async () => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -8157,7 +8157,7 @@ onMounted(async () => {
 
 .gateway-detail-label {
   flex-shrink: 0;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -8197,7 +8197,7 @@ onMounted(async () => {
 .gateway-detail-card-title {
   margin-bottom: 12px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -8241,7 +8241,7 @@ onMounted(async () => {
   color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -8292,7 +8292,7 @@ onMounted(async () => {
 }
 
 .gateway-cell-text span {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -8401,7 +8401,7 @@ onMounted(async () => {
   background: var(--color-info-soft);
   border: 1px solid #bfdbfe;
   color: #1e3a8a;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -8459,7 +8459,7 @@ onMounted(async () => {
 }
 
 .gateway-funding-stat-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -8484,7 +8484,7 @@ onMounted(async () => {
 
 .gateway-funding-rule-range {
   margin-bottom: 6px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -8515,7 +8515,7 @@ onMounted(async () => {
 }
 
 .gateway-display-preview-label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -8635,7 +8635,7 @@ onMounted(async () => {
   color: white;
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(var(--color-brand-rgb), 0.3);
 }
@@ -8681,7 +8681,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(var(--color-brand-rgb), 0.3);
@@ -8693,14 +8693,14 @@ onMounted(async () => {
 }
 
 .gateway-question-name {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-ink);
   margin-bottom: 3px;
 }
 
 .gateway-question-hint {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 2px;
 }
@@ -8717,7 +8717,7 @@ onMounted(async () => {
   align-items: center;
   padding: 4px 8px;
   border-radius: var(--radius-lg);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
 }
 
@@ -8725,7 +8725,7 @@ onMounted(async () => {
   background: var(--color-brand-soft);
   color: var(--color-brand);
   border: 1px solid var(--color-brand-soft);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -8765,7 +8765,7 @@ onMounted(async () => {
 }
 
 .gateway-question-info-label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -8784,7 +8784,7 @@ onMounted(async () => {
   background: var(--color-surface);
   border: 1px solid #dbe3f0;
   color: var(--color-text);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -8794,7 +8794,7 @@ onMounted(async () => {
   gap: 5px;
   padding: 4px 8px;
   border-radius: var(--radius-lg);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   background: var(--color-surface-muted);
   color: var(--color-text);
@@ -8805,7 +8805,7 @@ onMounted(async () => {
   flex-wrap: wrap;
   gap: 12px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .action-btn {
@@ -8818,7 +8818,7 @@ onMounted(async () => {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  font-size: 12px;
+  font-size: 14px;
   background: var(--color-surface);
 }
 
@@ -8852,7 +8852,7 @@ onMounted(async () => {
 .gateway-modal-summary p {
   margin: 0;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .gateway-fee-section {
@@ -8883,7 +8883,7 @@ onMounted(async () => {
 .gateway-fee-header p {
   margin: 0;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .gateway-fee-section.standalone {
@@ -8913,7 +8913,7 @@ onMounted(async () => {
 .gateway-fee-description {
   margin: -8px 0 16px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.5;
 }
 
@@ -8945,7 +8945,7 @@ onMounted(async () => {
   border-radius: 999px;
   background: var(--color-brand-soft);
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -8970,7 +8970,7 @@ onMounted(async () => {
 }
 
 .fee-unlimited-toggle span {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -9030,7 +9030,7 @@ onMounted(async () => {
   border-radius: 999px;
   background: var(--color-surface-muted);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -9105,7 +9105,7 @@ onMounted(async () => {
 .rates-table th {
   padding: 15px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -9153,7 +9153,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -9174,7 +9174,7 @@ onMounted(async () => {
   gap: 5px;
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -9191,7 +9191,7 @@ onMounted(async () => {
 
 .sync-updated-at {
   margin-top: 4px;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -9204,7 +9204,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -9225,7 +9225,7 @@ onMounted(async () => {
   background: var(--color-brand-soft);
   color: var(--color-brand);
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   min-width: 40px;
   text-align: center;
@@ -9374,7 +9374,7 @@ onMounted(async () => {
   }
 
   .rates-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .rates-table th,

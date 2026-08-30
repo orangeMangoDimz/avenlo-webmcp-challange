@@ -133,7 +133,7 @@ const formatTime = (value) => {
 .detail-time {
   display: block;
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -141,7 +141,7 @@ const formatTime = (value) => {
   background: none;
   border: none;
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   padding: 6px 8px;

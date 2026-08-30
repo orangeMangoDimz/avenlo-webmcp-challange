@@ -854,7 +854,7 @@ onMounted(() => {
   gap: 10px;
 }
 .dr-filter-label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-muted);
   text-transform: uppercase;
@@ -869,7 +869,7 @@ onMounted(() => {
   background: var(--color-surface-soft);
   color: var(--color-text);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
 }
 .dr-btn-plain:hover:not(:disabled) {
@@ -888,7 +888,7 @@ onMounted(() => {
   padding: 7px 12px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   width: 220px;
   color: var(--color-ink);
 }
@@ -903,7 +903,7 @@ onMounted(() => {
   background: var(--color-brand-solid);
   color: #fff;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   display: inline-flex;
   align-items: center;
@@ -915,7 +915,7 @@ onMounted(() => {
 }
 .dr-tz-badge {
   margin-left: auto;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   background: var(--color-surface-muted);
   border-radius: 999px;
@@ -963,7 +963,7 @@ onMounted(() => {
   color: var(--color-ink);
 }
 .dr-day-weekday {
-  font-size: 10px;
+  font-size: 14px;
   color: var(--color-faint);
   text-transform: uppercase;
 }
@@ -1020,7 +1020,7 @@ onMounted(() => {
   gap: 8px;
 }
 .stat-title {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   text-transform: uppercase;
@@ -1051,7 +1051,7 @@ onMounted(() => {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1097,7 +1097,7 @@ onMounted(() => {
   padding: 12px 16px;
   border-radius: var(--radius-md);
   margin-bottom: 16px;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* Table */
@@ -1134,7 +1134,7 @@ onMounted(() => {
   flex-wrap: wrap;
 }
 .dr-note {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   background: var(--color-success-soft);
   border: 1px solid var(--color-success-soft);
@@ -1148,7 +1148,7 @@ onMounted(() => {
   color: var(--color-success);
 }
 .dr-readonly-hint {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
   display: inline-flex;
   align-items: center;
@@ -1172,7 +1172,7 @@ onMounted(() => {
 .dr-table th {
   padding: 11px 16px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1182,7 +1182,7 @@ onMounted(() => {
 }
 .dr-group-row th.dr-group {
   text-align: center;
-  font-size: 12px;
+  font-size: 14px;
   border-bottom: 1px solid var(--color-border);
 }
 .dr-group-day {
@@ -1226,7 +1226,7 @@ onMounted(() => {
   color: var(--color-ink);
 }
 .dr-sales-email {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 .dr-deposit {
@@ -1277,7 +1277,7 @@ onMounted(() => {
   padding: 5px 9px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   text-align: right;
   color: var(--color-ink);
   background: var(--color-surface);
@@ -1295,18 +1295,18 @@ onMounted(() => {
 }
 .dr-kpi-spinner {
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
 }
 .dr-kpi-saved {
   color: var(--color-success);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .dr-rate-badge {
   display: inline-block;
   padding: 3px 10px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .dr-rate-badge.dr-rate-good {

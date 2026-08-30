@@ -180,12 +180,13 @@ onUnmounted(() => {
 }
 
 .user-role {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .user-menu-arrow {
   color: var(--color-faint);
+  /* @font-floor-exempt: visual-only dropdown glyph */
   font-size: 12px;
   transition: transform 0.3s ease;
 }
@@ -230,7 +231,7 @@ onUnmounted(() => {
 }
 
 .user-dropdown-header .user-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 

@@ -642,7 +642,7 @@ onMounted(async () => {
 .templates-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -682,7 +682,7 @@ onMounted(async () => {
 }
 
 .template-description {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -690,7 +690,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -729,7 +729,7 @@ onMounted(async () => {
   color: var(--color-brand);
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -764,7 +764,7 @@ onMounted(async () => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -847,7 +847,7 @@ onMounted(async () => {
   }
 
   .templates-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .templates-table th,

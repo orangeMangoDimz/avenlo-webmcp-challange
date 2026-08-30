@@ -371,7 +371,7 @@ watch(
 }
 
 .file-upload-hint {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -379,7 +379,7 @@ watch(
   margin-top: 15px;
   padding-top: 15px;
   border-top: 1px solid var(--color-border);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -428,12 +428,12 @@ watch(
 }
 
 .file-size {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .file-status {
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 4px;
   display: flex;
   align-items: center;

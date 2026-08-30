@@ -502,7 +502,7 @@ onMounted(() => {
 }
 
 .reject-reason-description {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -534,7 +534,7 @@ onMounted(() => {
 }
 
 .reject-warning-content p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-danger);
   line-height: 1.5;
   margin: 0;

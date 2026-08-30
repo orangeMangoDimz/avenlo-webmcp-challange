@@ -793,7 +793,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   border: 1px solid var(--color-canvas);
 }
@@ -830,7 +830,7 @@ onUnmounted(() => {
   background: none;
   border: none;
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -935,7 +935,7 @@ onUnmounted(() => {
 }
 
 .notification-message {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 4px;
   overflow: hidden;
@@ -944,7 +944,7 @@ onUnmounted(() => {
 }
 
 .notification-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -1046,7 +1046,7 @@ onUnmounted(() => {
 .panel-subtitle {
   display: block;
   margin-top: 6px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1060,7 +1060,7 @@ onUnmounted(() => {
   background: none;
   border: none;
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   padding: 6px 8px;
@@ -1193,7 +1193,7 @@ onUnmounted(() => {
 }
 
 .panel-item-message {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1209,14 +1209,14 @@ onUnmounted(() => {
 }
 
 .panel-item-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
 .panel-pill {
   background: var(--color-brand-solid);
   color: white;
-  font-size: 11px;
+  font-size: 14px;
   padding: 3px 8px;
   border-radius: 999px;
   font-weight: 600;
@@ -1279,7 +1279,7 @@ onUnmounted(() => {
 .detail-time {
   display: block;
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -1325,7 +1325,7 @@ onUnmounted(() => {
   background: var(--color-success-soft);
   border-radius: var(--radius-md);
   color: var(--color-success);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .withdrawal-confirm-actions {

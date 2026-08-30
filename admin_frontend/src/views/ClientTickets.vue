@@ -458,7 +458,7 @@ onMounted(() => {
 }
 
 .ticket-id {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   background: var(--color-surface-soft);
   padding: 2px 8px;
@@ -473,7 +473,7 @@ onMounted(() => {
 }
 
 .ticket-date {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   display: flex;
   align-items: center;
@@ -481,7 +481,7 @@ onMounted(() => {
 }
 
 .ticket-status-badge {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;
@@ -501,7 +501,7 @@ onMounted(() => {
 }
 
 .btn-ticket-status {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   display: inline-flex;
   align-items: center;

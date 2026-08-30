@@ -278,7 +278,10 @@
                 {{ formData.emailSubject || t("emailTplModal_noSubject") }}
               </div>
             </div>
-            <div class="email-content" v-html="previewContent"></div>
+            <div
+              class="email-content font-floor-content"
+              v-html="previewContent"
+            ></div>
           </div>
         </div>
         <div class="preview-footer">
@@ -575,7 +578,7 @@ const handleSubmit = async () => {
 .label-hint {
   font-weight: 400;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 5px;
 }
 
@@ -605,7 +608,7 @@ const handleSubmit = async () => {
 
 .form-hint {
   display: block;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 5px;
 }
@@ -619,7 +622,7 @@ const handleSubmit = async () => {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-warning);
 }
 
@@ -644,7 +647,7 @@ const handleSubmit = async () => {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-info);
 }
 
@@ -685,7 +688,7 @@ const handleSubmit = async () => {
 }
 
 .variable-label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   margin-bottom: 6px;
@@ -736,7 +739,7 @@ const handleSubmit = async () => {
 }
 
 .btn-add-variable i {
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .form-checkbox-label {
@@ -772,7 +775,7 @@ const handleSubmit = async () => {
 
 .btn-sm {
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .btn-primary {

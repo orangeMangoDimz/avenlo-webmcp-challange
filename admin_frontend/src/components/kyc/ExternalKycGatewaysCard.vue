@@ -812,7 +812,7 @@ onMounted(() => {
 .gateway-table th {
   padding: 15px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -906,7 +906,7 @@ onMounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -950,7 +950,7 @@ onMounted(() => {
   color: var(--color-text);
   cursor: pointer;
   transition: all 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1006,7 +1006,7 @@ onMounted(() => {
 }
 
 .gateway-cell-text span {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1031,7 +1031,7 @@ onMounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1050,7 +1050,7 @@ onMounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1093,7 +1093,7 @@ onMounted(() => {
   color: var(--color-brand-strong);
   padding: 3px 8px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1101,7 +1101,7 @@ onMounted(() => {
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1120,7 +1120,7 @@ onMounted(() => {
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   background: var(--color-danger-soft);
@@ -1128,7 +1128,7 @@ onMounted(() => {
 }
 
 .template-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   margin-bottom: 8px;
   line-height: 1.4;
@@ -1142,7 +1142,7 @@ onMounted(() => {
 }
 
 .template-doctype-chip {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-brand-strong);
   background: var(--color-brand-soft);
   padding: 2px 6px;
@@ -1157,7 +1157,7 @@ onMounted(() => {
 }
 
 .template-meta-chip {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   background: var(--color-surface);
   border: 1px solid var(--color-border);

@@ -239,7 +239,7 @@ onMounted(() => {
 .sales-detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   flex-shrink: 0;
 }
 
@@ -265,7 +265,7 @@ onMounted(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;

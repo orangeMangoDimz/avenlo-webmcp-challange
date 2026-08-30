@@ -120,7 +120,7 @@
             <small
               style="
                 color: var(--color-muted);
-                font-size: 12px;
+                font-size: 14px;
                 margin-top: 8px;
                 display: block;
               "
@@ -441,7 +441,7 @@ const handleSubmit = async () => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .option-input:focus {
@@ -455,7 +455,7 @@ const handleSubmit = async () => {
   border: none;
   border-radius: 4px;
   padding: 6px 10px;
-  font-size: 12px;
+  font-size: 14px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -470,7 +470,7 @@ const handleSubmit = async () => {
   border: none;
   border-radius: var(--radius-sm);
   padding: 8px 12px;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
   margin-top: 10px;
   transition: all 0.3s ease;

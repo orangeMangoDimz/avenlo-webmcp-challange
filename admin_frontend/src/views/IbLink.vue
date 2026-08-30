@@ -238,14 +238,14 @@ onMounted(() => {
   color: #fff;
   border-radius: var(--radius-md);
   cursor: pointer;
-  font-size: 13px;
+  font-size: 14px;
 }
 .ib-link-btn:hover {
   background: var(--color-brand-strong);
 }
 .ib-link-btn--sm {
   padding: 5px 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 .ib-link-btn:disabled {
   opacity: 0.5;
@@ -265,7 +265,7 @@ onMounted(() => {
 .ib-link-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
 }
 .ib-link-table th {
   text-align: left;
@@ -288,7 +288,7 @@ onMounted(() => {
 .ib-link-badge {
   padding: 2px 8px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-brand-soft);
   color: var(--color-brand);
@@ -334,6 +334,6 @@ onMounted(() => {
   margin-top: 16px;
   justify-content: flex-end;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 </style>

@@ -1025,7 +1025,7 @@ onMounted(async () => {
 }
 
 .menu-text {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 550;
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -1038,6 +1038,7 @@ onMounted(async () => {
 }
 
 .menu-arrow {
+  /* @font-floor-exempt: visual-only navigation glyph */
   font-size: 12px;
   transition:
     transform 0.3s ease,
@@ -1077,7 +1078,7 @@ onMounted(async () => {
   transition:
     background var(--transition-fast),
     color var(--transition-fast);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -1108,12 +1109,14 @@ onMounted(async () => {
 .webmcp-parent-copy i {
   width: 14px;
   color: #d8bc83;
+  /* @font-floor-exempt: visual-only navigation glyph */
   font-size: 12px;
   text-align: center;
 }
 
 .webmcp-parent-arrow {
   color: rgba(255, 255, 255, 0.45);
+  /* @font-floor-exempt: visual-only navigation glyph */
   font-size: 10px;
 }
 
@@ -1129,7 +1132,7 @@ onMounted(async () => {
   padding: 7px 10px;
   color: rgba(255, 255, 255, 0.58);
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   text-decoration: none;
   transition:
     background var(--transition-fast),
@@ -1258,7 +1261,7 @@ onMounted(async () => {
 
 .sidebar-brand-copy small {
   color: var(--sidebar-nav-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 650;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -1287,7 +1290,7 @@ onMounted(async () => {
 .sidebar-navigation-label {
   margin: 0 8px 9px;
   color: var(--sidebar-nav-subtle);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 750;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -1335,7 +1338,7 @@ onMounted(async () => {
 
 .menu-text {
   color: var(--sidebar-nav-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.005em;
 }
@@ -1343,7 +1346,7 @@ onMounted(async () => {
 .menu-section-copy small {
   overflow: hidden;
   color: var(--sidebar-nav-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 1.2;
   text-overflow: ellipsis;
@@ -1358,6 +1361,7 @@ onMounted(async () => {
   place-items: center;
   color: var(--sidebar-nav-muted);
   border-radius: 6px;
+  /* @font-floor-exempt: visual-only navigation glyph */
   font-size: 10px;
 }
 
@@ -1385,7 +1389,7 @@ onMounted(async () => {
   color: var(--sidebar-nav-muted);
   border: 1px solid transparent;
   border-radius: 6px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 550;
 }
 

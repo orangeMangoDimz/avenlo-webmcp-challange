@@ -183,7 +183,7 @@
                 </button>
               </div>
               <div style="margin-top: 8px">
-                <small style="color: var(--color-muted); font-size: 12px">
+                <small style="color: var(--color-muted); font-size: 14px">
                   <i class="fas fa-info-circle"></i> Password must be at least 8
                   characters long and contain uppercase, lowercase, number, and
                   special character.
@@ -460,12 +460,13 @@ onUnmounted(() => {
 }
 
 .user-role {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .user-menu-arrow {
   color: var(--color-faint);
+  /* @font-floor-exempt: visual-only dropdown glyph */
   font-size: 12px;
   transition: transform 0.3s ease;
 }
@@ -515,7 +516,7 @@ onUnmounted(() => {
 }
 
 .user-dropdown-header .user-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -697,7 +698,7 @@ onUnmounted(() => {
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 

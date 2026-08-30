@@ -266,7 +266,7 @@ const toggleCountry = (code) => {
 .country-selector-meta {
   display: flex;
   gap: 10px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -285,7 +285,7 @@ const toggleCountry = (code) => {
   color: var(--color-brand);
   border-radius: 999px;
   padding: 7px 12px;
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -367,7 +367,7 @@ const toggleCountry = (code) => {
 }
 
 .country-option-code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -376,7 +376,7 @@ const toggleCountry = (code) => {
   color: var(--color-danger);
   border-radius: 999px;
   padding: 4px 8px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 

@@ -639,13 +639,13 @@ onUnmounted(() => {
 }
 
 .user-role {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .user-menu-arrow {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   transition: transform 0.3s ease;
 }
 
@@ -694,7 +694,7 @@ onUnmounted(() => {
 }
 
 .user-dropdown-header .user-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -877,7 +877,7 @@ onUnmounted(() => {
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -955,13 +955,13 @@ onUnmounted(() => {
 
 .user-dropdown-error-message {
   color: var(--color-danger);
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
 .user-dropdown-success-message {
   color: var(--color-success);
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -976,7 +976,7 @@ onUnmounted(() => {
 
 .user-dropdown-hint-text {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .user-dropdown-phone-row {

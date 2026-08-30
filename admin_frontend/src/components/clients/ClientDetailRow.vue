@@ -518,7 +518,7 @@
           <div class="document-preview">
             <h3>{{ currentDocument ? currentDocument.title : "" }}</h3>
             <div
-              class="document-preview-content"
+              class="document-preview-content font-floor-content"
               v-html="currentDocument ? currentDocument.content : ''"
             ></div>
           </div>
@@ -1044,7 +1044,7 @@ export default {
 
             .signature-item label {
               display: block;
-              font-size: 11px;
+              font-size: 14px;
               color: var(--color-muted);
               text-transform: uppercase;
               font-weight: 600;
@@ -1063,7 +1063,7 @@ export default {
               padding-top: 20px;
               border-top: 2px solid var(--color-border);
               text-align: center;
-              font-size: 12px;
+              font-size: 14px;
               color: var(--color-muted);
             }
 
@@ -1657,7 +1657,7 @@ export default {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1687,7 +1687,7 @@ export default {
   padding: 10px 18px;
   border: none;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1725,7 +1725,7 @@ export default {
   border-radius: var(--radius-sm);
   background: var(--color-brand-solid);
   color: #ffffff;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease;
@@ -1744,7 +1744,7 @@ export default {
   padding: 8px 14px;
   border: none;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1785,7 +1785,7 @@ export default {
 .assignment-field label {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 .assignment-field select,
 .assignment-field textarea {
@@ -1836,7 +1836,7 @@ export default {
 .assignment-info-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 .assignment-info-value {
   color: var(--color-ink);
@@ -1844,14 +1844,14 @@ export default {
   font-weight: 500;
 }
 .assignment-helper {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .assignment-status {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1904,7 +1904,7 @@ export default {
 .detail-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   min-width: 120px;
 }
 
@@ -1969,7 +1969,7 @@ export default {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2075,7 +2075,7 @@ export default {
 }
 
 .platform-count {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
   white-space: nowrap;
@@ -2093,7 +2093,7 @@ export default {
   justify-content: center;
   padding: 6px 12px;
   border-radius: 999px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -2151,7 +2151,7 @@ export default {
 
 .trading-account-subtitle {
   margin-top: 4px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.4;
   word-break: break-word;
@@ -2179,7 +2179,7 @@ export default {
 .info-label {
   font-weight: 600;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .info-value {
@@ -2194,7 +2194,7 @@ export default {
   display: inline-block;
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2314,7 +2314,7 @@ export default {
 }
 
 .document-date {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   display: flex;
   align-items: center;
@@ -2322,6 +2322,7 @@ export default {
 }
 
 .document-date i {
+  /* @font-floor-exempt: visual-only metadata glyph */
   font-size: 11px;
 }
 
@@ -2336,7 +2337,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   padding: 4px 10px;
   background: var(--color-surface-soft);
@@ -2345,6 +2346,7 @@ export default {
 
 .document-meta-item i {
   color: var(--color-brand);
+  /* @font-floor-exempt: visual-only metadata glyph */
   font-size: 12px;
 }
 
@@ -2354,7 +2356,7 @@ export default {
   gap: 5px;
   padding: 4px 10px;
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2365,6 +2367,7 @@ export default {
 }
 
 .document-status i {
+  /* @font-floor-exempt: visual-only status glyph */
   font-size: 11px;
 }
 
@@ -2377,7 +2380,7 @@ export default {
   flex: 1;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -2603,7 +2606,7 @@ export default {
 }
 
 .signature-field label {
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-muted);
   text-transform: uppercase;
   font-weight: 600;

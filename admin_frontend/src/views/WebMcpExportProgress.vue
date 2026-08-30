@@ -323,7 +323,7 @@ onUnmounted(stopPolling);
   position: relative;
   margin: 0 0 11px;
   color: var(--color-brand);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -342,7 +342,7 @@ onUnmounted(stopPolling);
   position: relative;
   margin: 15px 0 28px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -362,7 +362,7 @@ onUnmounted(stopPolling);
   gap: 12px;
   margin-bottom: 14px;
   color: var(--color-ink);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -373,7 +373,7 @@ onUnmounted(stopPolling);
   align-items: center;
   gap: 5px;
   color: #23734a;
-  font-size: 10px;
+  font-size: 14px;
   letter-spacing: 0.04em;
 }
 
@@ -391,7 +391,7 @@ onUnmounted(stopPolling);
 .webmcp-export-details-grid dt {
   margin-bottom: 4px;
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -400,7 +400,7 @@ onUnmounted(stopPolling);
 .webmcp-export-details-grid dd {
   margin: 0;
   color: var(--color-ink);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.45;
 }
 
@@ -418,7 +418,7 @@ onUnmounted(stopPolling);
   display: block;
   margin-bottom: 8px;
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -436,7 +436,7 @@ onUnmounted(stopPolling);
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 14px;
 }
 
 .webmcp-export-progress-track {
@@ -459,7 +459,7 @@ onUnmounted(stopPolling);
   gap: 16px;
   margin-top: 11px;
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .webmcp-export-progress-meta strong {
@@ -473,7 +473,7 @@ onUnmounted(stopPolling);
   margin-top: 27px;
   padding: 13px 15px;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .webmcp-export-alert.is-running {
@@ -497,7 +497,7 @@ onUnmounted(stopPolling);
   color: inherit;
   background: transparent;
   cursor: pointer;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -505,7 +505,7 @@ onUnmounted(stopPolling);
   display: block;
   margin-top: 25px;
   color: var(--color-muted);
-  font-size: 10px;
+  font-size: 14px;
   overflow-wrap: anywhere;
 }
 

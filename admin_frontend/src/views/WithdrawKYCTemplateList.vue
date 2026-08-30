@@ -621,7 +621,7 @@ onMounted(async () => {
 .templates-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -660,7 +660,7 @@ onMounted(async () => {
 }
 
 .template-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -676,7 +676,7 @@ onMounted(async () => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -694,7 +694,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 5px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -726,7 +726,7 @@ onMounted(async () => {
   padding: 8px 12px;
   border: none;
   border-radius: var(--radius-md);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;

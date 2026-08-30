@@ -1125,7 +1125,7 @@ const saveRule = async () => {
 }
 .form-hint {
   margin: 6px 0 0;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 .form-hint--warn {
@@ -1195,7 +1195,7 @@ const saveRule = async () => {
 }
 
 .multi-select-summary {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   flex: 1;
   min-width: 0;
@@ -1213,7 +1213,7 @@ const saveRule = async () => {
   border: none;
   background: transparent;
   color: var(--color-brand);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   padding: 0;
@@ -1254,7 +1254,7 @@ const saveRule = async () => {
 .multi-select-empty {
   padding: 12px 10px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   text-align: center;
 }
 .modal-footer {

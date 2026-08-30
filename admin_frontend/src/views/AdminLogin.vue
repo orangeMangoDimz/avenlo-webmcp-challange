@@ -686,7 +686,7 @@ const showCopyToast = (message) => {
   background: var(--color-surface-soft);
   border-left: 4px solid var(--color-brand);
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   line-height: 1.6;
 }
@@ -707,7 +707,7 @@ const showCopyToast = (message) => {
   align-items: center;
   margin: 30px 0;
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -750,7 +750,7 @@ const showCopyToast = (message) => {
   padding-top: 20px;
   border-top: 1px solid var(--color-border);
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 /* Modal Styles */
@@ -885,7 +885,7 @@ const showCopyToast = (message) => {
   display: block;
   margin-top: 8px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .modal-button {
@@ -1155,7 +1155,7 @@ const showCopyToast = (message) => {
   border: 1px solid rgba(216, 188, 131, 0.48);
   border-radius: 999px;
   color: #e6c98d;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;

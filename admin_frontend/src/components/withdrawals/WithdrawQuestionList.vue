@@ -506,7 +506,7 @@ const handleQuestionSave = () => {
   color: white;
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: bold;
   box-shadow: 0 2px 6px rgba(var(--color-brand-rgb), 0.3);
 }
@@ -523,7 +523,7 @@ const handleQuestionSave = () => {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 12px;
 }
 
@@ -576,7 +576,7 @@ const handleQuestionSave = () => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: bold;
   flex-shrink: 0;
   box-shadow: 0 2px 6px rgba(var(--color-brand-rgb), 0.3);
@@ -587,14 +587,14 @@ const handleQuestionSave = () => {
 }
 
 .question-text {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-ink);
   margin-bottom: 3px;
 }
 
 .question-help {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 2px;
 }
@@ -604,7 +604,7 @@ const handleQuestionSave = () => {
   color: var(--color-brand);
   padding: 4px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   border: 1px solid var(--color-brand-soft);
 }
@@ -614,7 +614,7 @@ const handleQuestionSave = () => {
   color: white;
   padding: 4px 8px;
   border-radius: var(--radius-lg);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   box-shadow: 0 1px 4px rgba(245, 101, 101, 0.3);
 }
@@ -622,7 +622,7 @@ const handleQuestionSave = () => {
 .status-badge {
   padding: 4px 8px;
   border-radius: var(--radius-lg);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: bold;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
@@ -654,7 +654,7 @@ const handleQuestionSave = () => {
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  font-size: 12px;
+  font-size: 14px;
   background: var(--color-surface);
 }
 
@@ -706,7 +706,7 @@ const handleQuestionSave = () => {
 }
 
 .info-label {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   margin-right: 5px;
 }
@@ -718,7 +718,7 @@ const handleQuestionSave = () => {
 .info-badge {
   padding: 3px 8px;
   border-radius: var(--radius-sm);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500;
 }
 
@@ -732,7 +732,7 @@ const handleQuestionSave = () => {
   display: flex;
   align-items: center;
   gap: 15px;
-  font-size: 10px;
+  font-size: 14px;
   color: var(--color-faint);
   margin-top: 5px;
 }
@@ -770,12 +770,12 @@ const handleQuestionSave = () => {
 }
 
 .btn-category-action {
-  font-size: 12px;
+  font-size: 14px;
   padding: 6px 12px;
 }
 
 .btn-category-icon {
-  font-size: 12px;
+  font-size: 14px;
   padding: 6px 10px;
 }
 </style>

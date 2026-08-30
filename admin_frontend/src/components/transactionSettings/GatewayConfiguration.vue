@@ -397,7 +397,7 @@ watch(
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   color: var(--color-brand);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
@@ -410,7 +410,7 @@ watch(
 }
 
 .gateway-title-info p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -502,7 +502,7 @@ watch(
   display: block;
   color: var(--color-muted);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -530,7 +530,7 @@ watch(
 
 .help-text {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   margin-top: 8px;
   display: block;
 }
@@ -551,7 +551,7 @@ watch(
 
 .info-box p {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.6;
   margin: 0;
 }
@@ -565,7 +565,7 @@ watch(
 .btn {
   padding: 8px 16px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;

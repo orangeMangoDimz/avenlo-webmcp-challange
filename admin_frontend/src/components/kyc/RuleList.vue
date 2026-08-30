@@ -28,7 +28,7 @@
       <p
         style="
           color: var(--color-text);
-          font-size: 13px;
+          font-size: 14px;
           margin: 0;
           line-height: 1.6;
         "
@@ -102,7 +102,7 @@
               color: var(--color-brand-strong);
               padding: 2px 8px;
               border-radius: 4px;
-              font-size: 11px;
+              font-size: 14px;
               font-weight: 600;
             "
             >{{ t("kycTplRuleList_if") }}</span
@@ -129,7 +129,7 @@
             style="
               padding: 2px 8px;
               border-radius: 4px;
-              font-size: 11px;
+              font-size: 14px;
               font-weight: 600;
             "
           >
@@ -268,12 +268,12 @@ const handleDeleteRule = async (ruleId) => {
   color: white;
   padding: 3px 10px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
 .rule-description {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.5;
 }
@@ -295,7 +295,7 @@ const handleDeleteRule = async (ruleId) => {
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  font-size: 11px;
+  font-size: 14px;
 }
 
 .rule-action-btn:hover {

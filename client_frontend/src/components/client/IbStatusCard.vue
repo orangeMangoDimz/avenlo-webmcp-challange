@@ -52,7 +52,7 @@
         :class="statusMessage.messageType"
       >
         <h3><i :class="statusMessage.icon"></i> {{ statusMessage.title }}</h3>
-        <div v-html="statusConfig.description"></div>
+        <div class="font-floor-content" v-html="statusConfig.description"></div>
       </div>
 
       <!-- Status Details -->
@@ -458,7 +458,7 @@ onMounted(() => {
 .status-badge {
   padding: 8px 16px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -548,7 +548,7 @@ onMounted(() => {
 }
 
 .detail-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -671,7 +671,7 @@ onMounted(() => {
 }
 
 .timeline-date {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
   margin-bottom: 8px;
   font-weight: 600;

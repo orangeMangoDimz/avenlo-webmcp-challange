@@ -205,7 +205,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   border: 1px solid var(--color-canvas);
 }
@@ -385,14 +385,14 @@ onUnmounted(() => {
 
 .notification-message {
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
   line-height: 1.4;
   margin-bottom: 6px;
 }
 
 .notification-time {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .notification-delete {
@@ -433,7 +433,7 @@ onUnmounted(() => {
   background: none;
   border: none;
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   padding: 8px 12px;

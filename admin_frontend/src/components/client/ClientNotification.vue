@@ -230,7 +230,7 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   border: 2px solid var(--color-canvas);
 }
@@ -279,7 +279,7 @@ onUnmounted(() => {
   background: none;
   border: none;
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: color 0.2s ease;
@@ -381,7 +381,7 @@ onUnmounted(() => {
 }
 
 .notification-message {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   line-height: 1.4;
   margin-bottom: 4px;
@@ -393,7 +393,7 @@ onUnmounted(() => {
 }
 
 .notification-time {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 

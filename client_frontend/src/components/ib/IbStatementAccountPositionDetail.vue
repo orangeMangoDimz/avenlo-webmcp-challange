@@ -463,7 +463,7 @@ onMounted(() => {
   align-items: center;
   align-self: flex-end;
   gap: 6px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-brand);
   text-decoration: none;
@@ -479,7 +479,7 @@ onMounted(() => {
   background: var(--color-surface);
 }
 .stmt-pos-detail__card-label {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
   color: var(--color-muted);
@@ -507,7 +507,7 @@ onMounted(() => {
   border-radius: var(--radius-sm);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 700;
   cursor: pointer;
 }
@@ -540,7 +540,7 @@ onMounted(() => {
 .cth-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
 }
 .cth-table th,
 .cth-table td {
@@ -557,7 +557,7 @@ onMounted(() => {
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
-  font-size: 11px;
+  font-size: 14px;
 }
 .cth-empty {
   text-align: center;
@@ -574,7 +574,7 @@ onMounted(() => {
   color: var(--color-danger);
   padding: 3px 10px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
 }
@@ -582,7 +582,7 @@ onMounted(() => {
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 .cth-badge--buy {
@@ -618,7 +618,7 @@ onMounted(() => {
   cursor: not-allowed;
 }
 .cth-page-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 </style>

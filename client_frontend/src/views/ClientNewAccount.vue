@@ -1375,7 +1375,7 @@ onUnmounted(() => {
 /*  color: #fff;*/
 /*  padding: 4px 12px;*/
 /*  border-radius: 999px;*/
-/*  font-size: 12px;*/
+/*  font-size: 14px;*/
 /*  font-weight: 600;*/
 /*  box-shadow: 0 8px 18px rgba(237, 137, 54, 0.35);*/
 /*}*/
@@ -1671,7 +1671,7 @@ onUnmounted(() => {
 
 .form-group small {
   color: var(--color-muted);
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
 }
 
@@ -1956,7 +1956,7 @@ onUnmounted(() => {
   }
 
   .page-header p {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   /* 手机端横向布局：每行一个 platform，从左到右依次为 icon → 名称 → 优势，
@@ -2019,7 +2019,7 @@ onUnmounted(() => {
 
   .platform-description {
     grid-area: desc;
-    font-size: 11px;
+    font-size: 14px;
     line-height: 1.3;
     margin: 0;
     align-self: start;
@@ -2045,13 +2045,13 @@ onUnmounted(() => {
 
   .platform-features .feature-item {
     padding: 0;
-    font-size: 11px;
+    font-size: 14px;
     gap: 4px;
     line-height: 1.3;
   }
 
   .platform-features .feature-item i {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .platform-features .feature-item:nth-child(n + 3) {
@@ -2068,7 +2068,7 @@ onUnmounted(() => {
     min-width: 0;
     width: 100%;
     padding: 8px 12px;
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .select-indicator {
@@ -2076,7 +2076,7 @@ onUnmounted(() => {
     right: 10px;
     width: 20px;
     height: 20px;
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .account-details-section {

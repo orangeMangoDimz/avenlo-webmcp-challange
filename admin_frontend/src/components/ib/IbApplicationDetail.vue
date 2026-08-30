@@ -83,7 +83,7 @@
                         answer.questionText
                       }}</span>
                       <span
-                        class="detail-value"
+                        class="detail-value font-floor-content"
                         v-if="
                           answer.questionType === 'file_upload' &&
                           answer.files &&
@@ -108,7 +108,7 @@
                       </span>
                       <span
                         v-else
-                        class="detail-value"
+                        class="detail-value font-floor-content"
                         v-html="formatAnswerValue(answer)"
                       ></span>
                     </div>
@@ -232,7 +232,7 @@
                   >
                     <span class="detail-label">{{ answer.questionText }}</span>
                     <span
-                      class="detail-value"
+                      class="detail-value font-floor-content"
                       v-if="
                         answer.questionType === 'file_upload' &&
                         answer.files &&
@@ -255,7 +255,7 @@
                     </span>
                     <span
                       v-else
-                      class="detail-value"
+                      class="detail-value font-floor-content"
                       v-html="formatAnswerValue(answer)"
                     ></span>
                   </div>
@@ -1791,7 +1791,7 @@ onMounted(async () => {
   padding: 6px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1837,7 +1837,7 @@ onMounted(async () => {
 .detail-label {
   font-weight: 600;
   color: var(--color-text);
-  font-size: 12px;
+  font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   margin-bottom: 8px;
@@ -2078,7 +2078,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -2106,7 +2106,7 @@ onMounted(async () => {
   border-radius: var(--radius-sm);
   margin-bottom: 15px;
   border-left: 3px solid var(--color-warning);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-warning);
 }
 
@@ -2151,7 +2151,7 @@ onMounted(async () => {
 .preview-header {
   font-weight: 600;
   color: var(--color-success);
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -2159,7 +2159,7 @@ onMounted(async () => {
 }
 
 .preview-content {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-success);
   line-height: 1.6;
 }
@@ -2168,7 +2168,7 @@ onMounted(async () => {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid var(--color-success-border);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-success);
 }
 
@@ -2228,7 +2228,7 @@ onMounted(async () => {
 }
 
 .rule-meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2275,7 +2275,7 @@ onMounted(async () => {
 }
 
 .empty-subtitle {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-faint);
   margin-top: 5px !important;
 }
@@ -2318,7 +2318,7 @@ onMounted(async () => {
 }
 
 .rule-preview-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2327,7 +2327,7 @@ onMounted(async () => {
   color: var(--color-success);
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2371,7 +2371,7 @@ onMounted(async () => {
 }
 
 .rule-info-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -2391,7 +2391,7 @@ onMounted(async () => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -2418,7 +2418,7 @@ onMounted(async () => {
 
 .status-header {
   font-weight: 600;
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 8px;
   display: flex;
   align-items: center;
@@ -2446,7 +2446,7 @@ onMounted(async () => {
 }
 
 .status-content {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.6;
 }
 
@@ -2620,7 +2620,7 @@ onMounted(async () => {
 }
 
 .toggle-additional-rules p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 8px;
   margin-bottom: 0;
@@ -2816,7 +2816,7 @@ onMounted(async () => {
 }
 
 .tier-edit-field label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }
@@ -2846,7 +2846,7 @@ onMounted(async () => {
   background: var(--color-brand-solid);
   color: white;
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .btn-manage-tiers:hover {

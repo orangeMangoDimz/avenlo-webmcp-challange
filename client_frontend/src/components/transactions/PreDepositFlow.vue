@@ -673,7 +673,7 @@ onBeforeUnmount(() => {
 .option-meta,
 .selected-method-supported {
   flex-basis: 100%;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 500;
 }
@@ -731,7 +731,7 @@ onBeforeUnmount(() => {
   background: var(--color-brand-soft);
   border-bottom: 1px solid var(--color-border);
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
 }
 
@@ -748,7 +748,7 @@ onBeforeUnmount(() => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   margin-top: 10px;
 }
@@ -825,7 +825,7 @@ onBeforeUnmount(() => {
 .crypto-card-code {
   margin-top: 4px;
   color: var(--color-muted);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .step-actions {

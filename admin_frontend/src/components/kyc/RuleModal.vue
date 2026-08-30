@@ -25,10 +25,10 @@
         >
           <div style="display: flex; align-items: center; gap: 8px">
             <i class="fas fa-lightbulb" style="color: var(--color-brand)"></i>
-            <strong style="color: var(--color-ink); font-size: 13px">{{
+            <strong style="color: var(--color-ink); font-size: 14px">{{
               t("kycTplRModal_tip_title")
             }}</strong>
-            <span style="color: var(--color-text); font-size: 13px">{{
+            <span style="color: var(--color-text); font-size: 14px">{{
               t("kycTplRModal_tip_body")
             }}</span>
           </div>
@@ -49,7 +49,7 @@
             <small
               style="
                 color: var(--color-muted);
-                font-size: 12px;
+                font-size: 14px;
                 margin-top: 5px;
                 display: block;
               "
@@ -98,7 +98,7 @@
                   color: var(--color-brand-strong);
                   padding: 4px 10px;
                   border-radius: 4px;
-                  font-size: 12px;
+                  font-size: 14px;
                 "
                 >{{ t("kycTplRModal_badge_if") }}</span
               >
@@ -153,7 +153,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 5px;
                   display: block;
                 "
@@ -189,7 +189,7 @@
                   color: var(--color-success);
                   padding: 4px 10px;
                   border-radius: 4px;
-                  font-size: 12px;
+                  font-size: 14px;
                 "
                 >{{ t("kycTplRModal_badge_then") }}</span
               >
@@ -216,7 +216,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 5px;
                   display: block;
                 "
@@ -243,7 +243,7 @@
               <small
                 style="
                   color: var(--color-muted);
-                  font-size: 12px;
+                  font-size: 14px;
                   margin-top: 5px;
                   display: block;
                 "

@@ -110,7 +110,7 @@ const isMethodEnabled = (method) => method?.isEnabled !== false;
 
 .toggle-label-description {
   margin-top: 4px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -118,7 +118,7 @@ const isMethodEnabled = (method) => method?.isEnabled !== false;
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }

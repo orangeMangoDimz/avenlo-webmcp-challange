@@ -233,7 +233,7 @@ const detailLink = computed(() => {
 }
 
 .node-subtitle {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.9;
   margin-bottom: 4px;
 }
@@ -243,7 +243,7 @@ const detailLink = computed(() => {
 }
 
 .node-alias {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   margin-bottom: 4px;
   word-break: break-word;
@@ -257,7 +257,7 @@ const detailLink = computed(() => {
   display: inline-block;
   padding: 2px 8px;
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 

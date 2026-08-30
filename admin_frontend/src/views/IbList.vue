@@ -935,7 +935,7 @@ onUnmounted(() => {
   margin: 0 0 5px 0;
 }
 .ir-list-stats-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 0;
 }
@@ -1057,7 +1057,7 @@ onUnmounted(() => {
 .ir-list-table__th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1162,12 +1162,12 @@ onUnmounted(() => {
   text-decoration: underline;
 }
 .ir-list-ib__code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-family: "Courier New", monospace;
 }
 .ir-list-ib__alias {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-brand-strong);
   margin-top: 2px;
 }
@@ -1191,7 +1191,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -1211,7 +1211,7 @@ onUnmounted(() => {
   padding: 8px 14px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -1280,7 +1280,7 @@ onUnmounted(() => {
 }
 .ir-list-btn--pagination {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-border);
   color: var(--color-text);
 }
@@ -1304,7 +1304,7 @@ onUnmounted(() => {
   border: 2px solid var(--color-brand);
 }
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1313,14 +1313,14 @@ onUnmounted(() => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 .btn-bulk {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1346,7 +1346,7 @@ onUnmounted(() => {
   height: 20px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-sm);
-  font-size: 11px;
+  font-size: 14px;
 }
 .btn-bulk-notification-text {
   letter-spacing: 0.02em;
@@ -1408,7 +1408,7 @@ onUnmounted(() => {
 }
 .ir-list-table__cell--check-empty {
   color: var(--color-border-strong);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 @media (max-width: 768px) {

@@ -1491,7 +1491,7 @@ onBeforeUnmount(() => {
 }
 
 .tags-header h4 {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   font-weight: 600;
   text-transform: uppercase;
@@ -1502,7 +1502,7 @@ onBeforeUnmount(() => {
   padding: 4px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -1543,7 +1543,7 @@ onBeforeUnmount(() => {
   background: var(--color-brand-solid);
   color: white;
   border-radius: var(--radius-xl);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition:
@@ -1599,7 +1599,7 @@ onBeforeUnmount(() => {
 
 .empty-tags-message {
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -1649,7 +1649,7 @@ onBeforeUnmount(() => {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1659,7 +1659,7 @@ onBeforeUnmount(() => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1667,7 +1667,7 @@ onBeforeUnmount(() => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -1770,7 +1770,7 @@ onBeforeUnmount(() => {
     width 0.2s ease,
     max-height 0.2s ease,
     filter 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -1857,7 +1857,7 @@ onBeforeUnmount(() => {
 .transfer-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -1995,7 +1995,7 @@ onBeforeUnmount(() => {
 }
 
 .client-id {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 2px;
 }
@@ -2013,7 +2013,7 @@ onBeforeUnmount(() => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2028,7 +2028,7 @@ onBeforeUnmount(() => {
   gap: 6px;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -2058,11 +2058,11 @@ onBeforeUnmount(() => {
 .account-number {
   font-weight: 600;
   color: var(--color-ink);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .account-nickname {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2074,7 +2074,7 @@ onBeforeUnmount(() => {
 
 .time-small {
   display: block;
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-faint);
   margin-top: 4px;
 }
@@ -2088,7 +2088,7 @@ onBeforeUnmount(() => {
   display: inline-block;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2129,7 +2129,7 @@ onBeforeUnmount(() => {
   background: var(--color-brand-soft);
   color: var(--color-brand);
   border-radius: 4px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2147,7 +2147,7 @@ onBeforeUnmount(() => {
 
 .no-tags {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -2155,7 +2155,7 @@ onBeforeUnmount(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2360,7 +2360,7 @@ onBeforeUnmount(() => {
   }
 
   .transfer-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .transfer-table th,

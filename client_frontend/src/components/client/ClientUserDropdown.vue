@@ -417,7 +417,7 @@
                 </button>
               </div>
               <div style="margin-top: 8px">
-                <small style="color: var(--color-muted); font-size: 12px">
+                <small style="color: var(--color-muted); font-size: 14px">
                   <i class="fas fa-info-circle"></i>
                   {{ passwordRequirementText }}
                 </small>
@@ -1130,20 +1130,20 @@ onUnmounted(() => {
 }
 
 .user-role {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .user-id {
   margin-left: 6px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 500;
   color: var(--color-faint);
 }
 
 .user-menu-arrow {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   transition: transform 0.3s ease;
 }
 
@@ -1187,13 +1187,13 @@ onUnmounted(() => {
 }
 
 .user-dropdown-header .user-email {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
 .user-dropdown-header .user-uid {
   margin-top: 4px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -1439,7 +1439,7 @@ onUnmounted(() => {
 }
 
 .custom-select-trigger i {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   flex-shrink: 0;
 }
@@ -1508,7 +1508,7 @@ onUnmounted(() => {
 
 .custom-select-empty {
   padding: 14px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1536,7 +1536,7 @@ onUnmounted(() => {
 
 .error-text {
   margin-top: 6px;
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-danger);
 }
 
@@ -1545,7 +1545,7 @@ onUnmounted(() => {
   margin-bottom: 4px;
   padding: 10px 12px;
   border-radius: var(--radius-md);
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-danger-soft);
   color: var(--color-danger);
 }
@@ -1623,7 +1623,7 @@ onUnmounted(() => {
   .user-avatar {
     width: 34px;
     height: 34px;
-    font-size: 13px;
+    font-size: 14px;
   }
 }
 

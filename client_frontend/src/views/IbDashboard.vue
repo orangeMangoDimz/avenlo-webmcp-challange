@@ -81,7 +81,7 @@
         </div>
         <div class="modal-body legal-body">
           <div
-            class="legal-document-content"
+            class="legal-document-content font-floor-content"
             v-html="activeDocument.documentContent"
           ></div>
           <div class="legal-footer">
@@ -604,7 +604,7 @@ onMounted(async () => {
   }
 
   .terms-text p {
-    font-size: 13px;
+    font-size: 14px;
   }
 
   .legal-modal .modal-content {

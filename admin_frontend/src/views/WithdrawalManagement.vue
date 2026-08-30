@@ -1601,7 +1601,7 @@ onMounted(async () => {
 }
 
 .tags-header h4 {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   font-weight: 600;
   text-transform: uppercase;
@@ -1612,7 +1612,7 @@ onMounted(async () => {
   padding: 4px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -1653,7 +1653,7 @@ onMounted(async () => {
   background: var(--color-brand-solid);
   color: white;
   border-radius: var(--radius-xl);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   cursor: pointer;
   transition:
@@ -1709,7 +1709,7 @@ onMounted(async () => {
 
 .empty-tags-message {
   color: var(--color-faint);
-  font-size: 13px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -1765,7 +1765,7 @@ onMounted(async () => {
 }
 
 .bulk-actions-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-brand);
   font-weight: 600;
 }
@@ -1775,7 +1775,7 @@ onMounted(async () => {
   color: white;
   padding: 2px 8px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -1783,7 +1783,7 @@ onMounted(async () => {
   padding: 6px 12px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -1874,7 +1874,7 @@ onMounted(async () => {
     width 0.2s ease,
     max-height 0.2s ease,
     filter 0.2s ease;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   border-bottom: 1px solid var(--color-border);
 }
@@ -1962,7 +1962,7 @@ onMounted(async () => {
 .withdrawal-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -2105,7 +2105,7 @@ onMounted(async () => {
 }
 
 .client-id {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2116,7 +2116,7 @@ onMounted(async () => {
 }
 
 .amount-crypto {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 2px;
 }
@@ -2135,7 +2135,7 @@ onMounted(async () => {
 }
 
 .account-text {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-ink);
 }
@@ -2146,7 +2146,7 @@ onMounted(async () => {
   gap: 6px;
   padding: 4px 10px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -2178,7 +2178,7 @@ onMounted(async () => {
   gap: 6px;
   padding: 6px 12px;
   border-radius: 20px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -2194,7 +2194,7 @@ onMounted(async () => {
 
 .time-small {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   display: block;
   margin-top: 2px;
 }
@@ -2213,7 +2213,7 @@ onMounted(async () => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -2260,7 +2260,7 @@ onMounted(async () => {
   background: var(--color-warning-soft);
   color: var(--color-warning);
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   white-space: nowrap;
   transition:
@@ -2306,7 +2306,7 @@ onMounted(async () => {
 
 .no-tags {
   color: var(--color-faint);
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
 }
 
@@ -2314,7 +2314,7 @@ onMounted(async () => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2547,7 +2547,7 @@ onMounted(async () => {
   }
 
   .withdrawal-table {
-    font-size: 12px;
+    font-size: 14px;
   }
 
   .withdrawal-table th,

@@ -288,7 +288,7 @@ const sendEmail = () => {
 
 .recipient-email {
   color: var(--color-brand);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .form-group input,

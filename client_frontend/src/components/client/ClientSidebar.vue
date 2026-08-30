@@ -487,7 +487,7 @@ const handleKeydown = (event) => {
 }
 
 .menu-text {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 550;
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -500,6 +500,7 @@ const handleKeydown = (event) => {
 }
 
 .menu-arrow {
+  /* @font-floor-exempt: visual-only navigation glyph */
   font-size: 12px;
   transition:
     transform 0.3s ease,
@@ -539,7 +540,7 @@ const handleKeydown = (event) => {
   transition:
     background var(--transition-fast),
     color var(--transition-fast);
-  font-size: 13px;
+  font-size: 14px;
   cursor: pointer;
 }
 
@@ -572,7 +573,7 @@ const handleKeydown = (event) => {
 /* Lock Icon for IB Section */
 .menu-lock-icon {
   margin-left: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: white;
   opacity: 0.7;
 }
@@ -614,7 +615,7 @@ const handleKeydown = (event) => {
   color: white;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;
@@ -640,7 +641,7 @@ const handleKeydown = (event) => {
   color: white;
   padding: 8px 12px;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   white-space: nowrap;
   opacity: 0;
   pointer-events: none;

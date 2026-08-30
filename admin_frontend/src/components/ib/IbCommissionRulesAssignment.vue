@@ -277,7 +277,7 @@
                     min="0"
                     :disabled="!canEdit"
                   />
-                  <span style="color: var(--color-muted); font-size: 13px"
+                  <span style="color: var(--color-muted); font-size: 14px"
                     >USD</span
                   >
                 </div>
@@ -1494,7 +1494,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -1522,7 +1522,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   border-radius: var(--radius-sm);
   margin-bottom: 15px;
   border-left: 3px solid var(--color-warning);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-warning);
 }
 
@@ -1580,7 +1580,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
 .preview-header {
   font-weight: 600;
   color: var(--color-success);
-  font-size: 13px;
+  font-size: 14px;
   margin-bottom: 10px;
   display: flex;
   align-items: center;
@@ -1588,7 +1588,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
 }
 
 .preview-content {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-success);
   line-height: 1.6;
 }
@@ -1597,7 +1597,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   margin-top: 10px;
   padding-top: 10px;
   border-top: 1px solid var(--color-success-border);
-  font-size: 11px;
+  font-size: 14px;
   color: var(--color-success);
 }
 
@@ -1663,7 +1663,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
 }
 
 .rule-meta {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -1736,7 +1736,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
 }
 
 .payment-field label {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
 }
@@ -1746,7 +1746,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   padding: 10px 12px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   transition: all 0.3s ease;
 }
 
@@ -1774,7 +1774,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   padding: 10px 12px;
   border: 2px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   transition: all 0.3s ease;
 }
 
@@ -1818,7 +1818,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   background: var(--color-surface-soft);
   padding: 10px 12px;
   text-align: left;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   border: 1px solid var(--color-border);
@@ -1826,7 +1826,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
 
 .product-commission-table td {
   padding: 10px 12px;
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-ink);
   border: 1px solid var(--color-border);
 }
@@ -1835,7 +1835,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1904,7 +1904,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
 }
 
 .toggle-additional-rules p {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-top: 8px;
   margin-bottom: 0;
@@ -1953,7 +1953,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
   background: var(--color-brand-solid);
   color: white;
   padding: 6px 12px;
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .btn-manage-tiers:hover:not(:disabled) {
@@ -2206,7 +2206,7 @@ watch(selectedRuleIds, async (newIds, oldIds) => {
 }
 
 .tier-edit-field label {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-muted);
 }

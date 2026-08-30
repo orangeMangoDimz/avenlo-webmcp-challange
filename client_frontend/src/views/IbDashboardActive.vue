@@ -557,12 +557,12 @@
                       class="fas fa-ellipsis-h"
                       style="font-size: 16px; margin-bottom: 4px"
                     ></i>
-                    <div style="font-weight: 600; font-size: 12px">
+                    <div style="font-weight: 600; font-size: 14px">
                       {{ member.name }}
                     </div>
                     <div
                       v-if="member.code"
-                      style="font-size: 11px; margin-top: 2px"
+                      style="font-size: 14px; margin-top: 2px"
                     >
                       {{ member.code }}
                     </div>
@@ -638,12 +638,12 @@
                             class="fas fa-ellipsis-h"
                             style="font-size: 16px; margin-bottom: 4px"
                           ></i>
-                          <div style="font-weight: 600; font-size: 12px">
+                          <div style="font-weight: 600; font-size: 14px">
                             {{ child.name }}
                           </div>
                           <div
                             v-if="child.code"
-                            style="font-size: 11px; margin-top: 2px"
+                            style="font-size: 14px; margin-top: 2px"
                           >
                             {{ child.code }}
                           </div>
@@ -708,12 +708,12 @@
                                   class="fas fa-ellipsis-h"
                                   style="font-size: 16px; margin-bottom: 4px"
                                 ></i>
-                                <div style="font-weight: 600; font-size: 12px">
+                                <div style="font-weight: 600; font-size: 14px">
                                   {{ grandchild.name }}
                                 </div>
                                 <div
                                   v-if="grandchild.code"
-                                  style="font-size: 11px; margin-top: 2px"
+                                  style="font-size: 14px; margin-top: 2px"
                                 >
                                   {{ grandchild.code }}
                                 </div>
@@ -931,7 +931,7 @@
                         </div>
                       </template>
                       <template v-else>
-                        <div style="color: var(--color-faint); font-size: 12px">
+                        <div style="color: var(--color-faint); font-size: 14px">
                           {{ t("ibActiveNoData", "No data") }}
                         </div>
                       </template>
@@ -2003,7 +2003,7 @@ onUnmounted(() => {
   border-radius: var(--radius-md);
   background: var(--color-surface);
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2034,7 +2034,7 @@ onUnmounted(() => {
 
 .ib-dashboard-alias-error {
   color: var(--color-danger);
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 4px;
 }
 
@@ -2157,13 +2157,13 @@ onUnmounted(() => {
 }
 
 .stat-card-label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 12px;
 }
 
 .stat-card-trend {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-success);
   display: flex;
   align-items: center;
@@ -2171,6 +2171,7 @@ onUnmounted(() => {
 }
 
 .stat-card-trend i {
+  /* @font-floor-exempt: visual-only trend glyph */
   font-size: 10px;
 }
 
@@ -2218,7 +2219,7 @@ onUnmounted(() => {
 }
 
 .url-card-title p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 0;
 }
@@ -2247,7 +2248,7 @@ onUnmounted(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition:
@@ -2283,7 +2284,7 @@ onUnmounted(() => {
 }
 
 .url-stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2331,7 +2332,7 @@ onUnmounted(() => {
 }
 
 .ib-referral-url-card-title p {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   margin: 0;
 }
@@ -2362,7 +2363,7 @@ onUnmounted(() => {
   padding: 8px 16px;
   border: none;
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   display: inline-flex;
@@ -2398,7 +2399,7 @@ onUnmounted(() => {
 }
 
 .ib-referral-url-stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2512,7 +2513,7 @@ onUnmounted(() => {
 }
 
 .commission-stat-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -2523,7 +2524,7 @@ onUnmounted(() => {
 }
 
 .commission-by-rule {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -2556,7 +2557,7 @@ onUnmounted(() => {
 .commission-rules-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .commission-rules-table th,
@@ -2610,7 +2611,7 @@ onUnmounted(() => {
 }
 
 .commission-product {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -2625,7 +2626,7 @@ onUnmounted(() => {
 }
 
 .commission-type {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-faint);
 }
 
@@ -2684,7 +2685,7 @@ onUnmounted(() => {
   padding: 8px 12px 8px 36px;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   width: 200px;
   transition: border-color 0.2s ease;
 }
@@ -2700,7 +2701,7 @@ onUnmounted(() => {
 }
 
 .level-selector label {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -2709,7 +2710,7 @@ onUnmounted(() => {
   padding: 6px 10px;
   border-radius: var(--radius-md);
   border-color: var(--color-border);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .level-selector :deep(.custom-select__menu) {
@@ -2736,7 +2737,7 @@ onUnmounted(() => {
   padding: 6px 10px;
   border-radius: var(--radius-md);
   border-color: var(--color-border);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .network-show-rows__select :deep(.custom-select__trigger-text) {
@@ -2774,7 +2775,7 @@ onUnmounted(() => {
 }
 .network-pagination__btn {
   padding: 8px 14px;
-  font-size: 13px;
+  font-size: 14px;
   background: var(--color-border);
   color: var(--color-text);
   border: none;
@@ -2801,7 +2802,7 @@ onUnmounted(() => {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   cursor: pointer;
   display: flex;
@@ -2840,7 +2841,7 @@ onUnmounted(() => {
 
 .network-info-banner span {
   color: var(--color-text);
-  font-size: 13px;
+  font-size: 14px;
 }
 
 .zoom-indicator {
@@ -2851,7 +2852,7 @@ onUnmounted(() => {
   color: white;
   padding: 8px 16px;
   border-radius: 20px;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   z-index: 100;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
@@ -3081,7 +3082,7 @@ onUnmounted(() => {
 }
 
 .node-subtitle {
-  font-size: 12px;
+  font-size: 14px;
   opacity: 0.85;
   margin-bottom: 6px;
 }
@@ -3095,7 +3096,7 @@ onUnmounted(() => {
   padding: 3px 8px;
   background: rgba(255, 255, 255, 0.2);
   border-radius: var(--radius-md);
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
 }
 
@@ -3109,7 +3110,7 @@ onUnmounted(() => {
   margin-top: 8px;
   padding-top: 8px;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
-  font-size: 11px;
+  font-size: 14px;
   flex-wrap: wrap;
 }
 
@@ -3276,7 +3277,7 @@ onUnmounted(() => {
 }
 
 .summary-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   text-align: center;
 }
@@ -3302,7 +3303,7 @@ onUnmounted(() => {
 .members-table th {
   padding: 16px 20px;
   text-align: left;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--color-text);
   text-transform: uppercase;
@@ -3461,7 +3462,7 @@ onUnmounted(() => {
 }
 
 .member-code {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -3469,7 +3470,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -3493,7 +3494,7 @@ onUnmounted(() => {
 }
 
 .performance-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
 }
 
@@ -3514,7 +3515,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 12px;
   border-radius: var(--radius-lg);
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   text-transform: uppercase;
 }
@@ -3534,7 +3535,7 @@ onUnmounted(() => {
   background: var(--color-surface-soft);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-text);
   cursor: pointer;
   display: inline-flex;
@@ -3596,7 +3597,7 @@ onUnmounted(() => {
 }
 
 .detail-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   font-weight: 600;
   text-transform: uppercase;
@@ -3638,7 +3639,7 @@ onUnmounted(() => {
 }
 
 .overview-label {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 4px;
 }
@@ -3661,7 +3662,7 @@ onUnmounted(() => {
 }
 
 .pagination-info {
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-muted);
 }
 
@@ -3676,7 +3677,7 @@ onUnmounted(() => {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 13px;
+  font-size: 14px;
   color: var(--color-text);
   cursor: pointer;
   transition:
@@ -3828,7 +3829,7 @@ onUnmounted(() => {
 }
 
 .timeline-date {
-  font-size: 12px;
+  font-size: 14px;
   color: var(--color-muted);
   margin-bottom: 8px;
   font-weight: 600;
@@ -3852,7 +3853,7 @@ onUnmounted(() => {
   display: inline-block;
   padding: 4px 10px;
   border-radius: 4px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 600;
   background: var(--color-brand-soft);
   color: var(--color-brand);
@@ -3966,7 +3967,7 @@ onUnmounted(() => {
   }
 
   .members-table {
-    font-size: 12px;
+    font-size: 14px;
     min-width: 700px;
   }
 
