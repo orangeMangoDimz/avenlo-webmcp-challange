@@ -190,7 +190,9 @@ class WebMcpClientExportService
         try {
             $input = $exportType === 'clients'
                 ? WebMcpClientController::normalizeExportClientInput($rawInput)
-                : WebMcpClientController::normalizeExportTransactionInput($rawInput);
+                : (array_key_exists('clientIds', $rawInput)
+                    ? WebMcpClientController::normalizeExportTransactionInput($rawInput)
+                    : WebMcpClientController::normalizeExportTransactionsInput($rawInput));
 
             self::writeProgress($jobId, [
                 'adminUserId' => $adminUserId,
@@ -396,28 +398,36 @@ class WebMcpClientExportService
 
     private function fetchTransactionRows(array $input, array $scope): array
     {
-        [$visibleIdSql, $visibleParams] = $this->idCondition('cu.id', $input['clientIds'], 'visible_client_id_');
-        $visibleConditions = [$visibleIdSql];
-        if (($scope['scope'] ?? '') === 'own') {
-            $visibleConditions[] = 'cu.id IN (SELECT clientId FROM sales_bind WHERE salesId = :visible_restrict_to_sales_id)';
-            $visibleParams['visible_restrict_to_sales_id'] = (int)($scope['restrict_to_sales_id'] ?? 0);
-        }
-        $visibleRows = Database::getInstance()->fetchAll(
-            "SELECT cu.id FROM clientUsers cu WHERE " . implode(' AND ', $visibleConditions),
-            $visibleParams
-        );
-        if (!$visibleRows) {
-            return [];
+        $visibleIds = null;
+        if (array_key_exists('clientIds', $input)) {
+            [$visibleIdSql, $visibleParams] = $this->idCondition('cu.id', $input['clientIds'], 'visible_client_id_');
+            $visibleConditions = [$visibleIdSql];
+            if (($scope['scope'] ?? '') === 'own') {
+                $visibleConditions[] = 'cu.id IN (SELECT clientId FROM sales_bind WHERE salesId = :visible_restrict_to_sales_id)';
+                $visibleParams['visible_restrict_to_sales_id'] = (int)($scope['restrict_to_sales_id'] ?? 0);
+            }
+            $visibleRows = Database::getInstance()->fetchAll(
+                "SELECT cu.id FROM clientUsers cu WHERE " . implode(' AND ', $visibleConditions),
+                $visibleParams
+            );
+            if (!$visibleRows) {
+                return [];
+            }
+
+            $visibleIds = array_map(static function (array $row): int {
+                return (int)$row['id'];
+            }, $visibleRows);
         }
 
-        $visibleIds = array_map(static function (array $row): int {
-            return (int)$row['id'];
-        }, $visibleRows);
         $queries = [];
         $params = [];
 
         if ($input['type'] === 'all' || $input['type'] === 'deposit') {
-            [$idSql, $idParams] = $this->idCondition('d.userId', $visibleIds, 'deposit_client_id_');
+            $idSql = '1 = 1';
+            $idParams = [];
+            if ($visibleIds !== null) {
+                [$idSql, $idParams] = $this->idCondition('d.userId', $visibleIds, 'deposit_client_id_');
+            }
             $queries[] = "SELECT
                 d.userId AS clientId,
                 CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
@@ -435,7 +445,11 @@ class WebMcpClientExportService
             $params = array_merge($params, $idParams);
         }
         if ($input['type'] === 'all' || $input['type'] === 'withdrawal') {
-            [$idSql, $idParams] = $this->idCondition('w.userId', $visibleIds, 'withdrawal_client_id_');
+            $idSql = '1 = 1';
+            $idParams = [];
+            if ($visibleIds !== null) {
+                [$idSql, $idParams] = $this->idCondition('w.userId', $visibleIds, 'withdrawal_client_id_');
+            }
             $queries[] = "SELECT
                 w.userId AS clientId,
                 CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
@@ -452,8 +466,12 @@ class WebMcpClientExportService
              WHERE {$idSql}";
             $params = array_merge($params, $idParams);
         }
-        if ($input['type'] === 'all' || $input['type'] === 'credit') {
-            [$idSql, $idParams] = $this->idCondition('ta_credit.userId', $visibleIds, 'credit_client_id_');
+        if (($input['includeCredit'] ?? true) && ($input['type'] === 'all' || $input['type'] === 'credit')) {
+            $idSql = '1 = 1';
+            $idParams = [];
+            if ($visibleIds !== null) {
+                [$idSql, $idParams] = $this->idCondition('ta_credit.userId', $visibleIds, 'credit_client_id_');
+            }
             $queries[] = "SELECT
                 ta_credit.userId AS clientId,
                 CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
@@ -472,7 +490,11 @@ class WebMcpClientExportService
             $params = array_merge($params, $idParams);
         }
         if ($input['type'] === 'all' || $input['type'] === 'internal_transfer') {
-            [$idSql, $idParams] = $this->idCondition('it.userId', $visibleIds, 'transfer_client_id_');
+            $idSql = '1 = 1';
+            $idParams = [];
+            if ($visibleIds !== null) {
+                [$idSql, $idParams] = $this->idCondition('it.userId', $visibleIds, 'transfer_client_id_');
+            }
             $queries[] = "SELECT
                 it.userId AS clientId,
                 CONCAT_WS(' ', cu.firstName, cu.lastName) AS clientName,
@@ -491,6 +513,10 @@ class WebMcpClientExportService
         }
 
         $conditions = ['1 = 1'];
+        if (($scope['scope'] ?? '') === 'own') {
+            $conditions[] = 'transactions.clientId IN (SELECT clientId FROM sales_bind WHERE salesId = :transaction_export_sales_id)';
+            $params['transaction_export_sales_id'] = (int)($scope['restrict_to_sales_id'] ?? 0);
+        }
         if (isset($input['dateFrom'])) {
             $conditions[] = 'transactions.transactionDate >= :transaction_date_from';
             $params['transaction_date_from'] = $input['dateFrom'];
@@ -502,6 +528,14 @@ class WebMcpClientExportService
         if (isset($input['status'])) {
             $conditions[] = 'transactions.status = :transaction_status';
             $params['transaction_status'] = $input['status'];
+        }
+        if (isset($input['minAmount'])) {
+            $conditions[] = 'transactions.amount >= :transaction_min_amount';
+            $params['transaction_min_amount'] = $input['minAmount'];
+        }
+        if (isset($input['maxAmount'])) {
+            $conditions[] = 'transactions.amount <= :transaction_max_amount';
+            $params['transaction_max_amount'] = $input['maxAmount'];
         }
 
         $unionSql = implode(' UNION ALL ', $queries);

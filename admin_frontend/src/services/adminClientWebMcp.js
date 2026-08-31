@@ -63,6 +63,11 @@ const searchClientsInputSchema = {
       maxLength: 50,
       description: "Exact client account status.",
     },
+    salesAssignment: {
+      type: "string",
+      enum: ["unassigned"],
+      description: "Use unassigned to return clients without a sales representative.",
+    },
     search: {
       type: "string",
       maxLength: 100,
@@ -86,6 +91,7 @@ const searchClientsInputSchema = {
     { required: ["neverLoggedIn"] },
     { required: ["kycStatus"] },
     { required: ["status"] },
+    { required: ["salesAssignment"] },
     { required: ["search"] },
   ],
   additionalProperties: false,
@@ -261,6 +267,43 @@ const exportClientTransactionsInputSchema = {
       type: "string",
       maxLength: 50,
       description: "Exact transaction status.",
+    },
+  },
+  additionalProperties: false,
+};
+
+const exportTransactionsInputSchema = {
+  type: "object",
+  properties: {
+    dateFrom: {
+      type: "string",
+      pattern: "^\\d{4}-\\d{2}-\\d{2}$",
+      description: "Inclusive transaction date lower bound.",
+    },
+    dateTo: {
+      type: "string",
+      pattern: "^\\d{4}-\\d{2}-\\d{2}$",
+      description: "Inclusive transaction date upper bound.",
+    },
+    type: {
+      type: "string",
+      enum: ["all", "deposit", "withdrawal", "internal_transfer", "credit"],
+      description: "Transaction type; defaults to all.",
+    },
+    status: {
+      type: "string",
+      maxLength: 50,
+      description: "Exact transaction status.",
+    },
+    minAmount: {
+      type: "number",
+      minimum: 0,
+      description: "Inclusive transaction amount lower bound.",
+    },
+    maxAmount: {
+      type: "number",
+      minimum: 0,
+      description: "Inclusive transaction amount upper bound.",
     },
   },
   additionalProperties: false,
@@ -463,6 +506,73 @@ export const normalizeExportTransactionInput = (input = {}) => {
   return normalized;
 };
 
+export const normalizeExportTransactionsInput = (input = {}) => {
+  if (!input || typeof input !== "object" || Array.isArray(input)) {
+    throw new Error("Input must be an object.");
+  }
+
+  const allowedKeys = [
+    "dateFrom",
+    "dateTo",
+    "type",
+    "status",
+    "minAmount",
+    "maxAmount",
+  ];
+  const unsupportedKey = Object.keys(input).find(
+    (key) => !allowedKeys.includes(key),
+  );
+  if (unsupportedKey) {
+    throw new Error(`${unsupportedKey} is not supported for transaction export.`);
+  }
+
+  const normalized = {};
+  for (const key of ["dateFrom", "dateTo"]) {
+    if (Object.prototype.hasOwnProperty.call(input, key)) {
+      normalized[key] = normalizeExportDate(input, key);
+    }
+  }
+  normalizeExportDateRange(normalized, "dateFrom", "dateTo");
+
+  const aliases = {
+    deposits: "deposit",
+    withdrawals: "withdrawal",
+    "internal-transfer": "internal_transfer",
+    "internal-transfers": "internal_transfer",
+    internaltransfer: "internal_transfer",
+    internaltransfers: "internal_transfer",
+  };
+  const type = String(input.type ?? "all")
+    .trim()
+    .toLowerCase();
+  normalized.type = aliases[type] || type;
+  if (
+    !["all", "deposit", "withdrawal", "internal_transfer", "credit"].includes(
+      normalized.type,
+    )
+  ) {
+    throw new Error(
+      "type must be one of: all, deposit, withdrawal, internal_transfer, credit.",
+    );
+  }
+  if (Object.prototype.hasOwnProperty.call(input, "status")) {
+    normalized.status = normalizeStringFilter(input, "status", 50);
+  }
+  for (const key of ["minAmount", "maxAmount"]) {
+    if (Object.prototype.hasOwnProperty.call(input, key)) {
+      normalized[key] = normalizeAmountFilter(input[key], key);
+    }
+  }
+  if (
+    normalized.minAmount !== undefined &&
+    normalized.maxAmount !== undefined &&
+    normalized.minAmount > normalized.maxAmount
+  ) {
+    throw new Error("minAmount cannot be greater than maxAmount.");
+  }
+  return normalized;
+};
+
 export const normalizeSearchInput = (input = {}) => {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new Error("Input must be an object.");
@@ -474,13 +584,14 @@ export const normalizeSearchInput = (input = {}) => {
     "neverLoggedIn",
     "kycStatus",
     "status",
+    "salesAssignment",
     "search",
   ];
   if (
     !filterKeys.some((key) => Object.prototype.hasOwnProperty.call(input, key))
   ) {
     throw new Error(
-      "At least one search filter is required: country, tag, neverLoggedIn, kycStatus, status, or search.",
+      "At least one search filter is required: country, tag, neverLoggedIn, kycStatus, status, salesAssignment, or search.",
     );
   }
 
@@ -502,6 +613,12 @@ export const normalizeSearchInput = (input = {}) => {
   }
   if (Object.prototype.hasOwnProperty.call(input, "status")) {
     normalized.status = normalizeStringFilter(input, "status", 50);
+  }
+  if (Object.prototype.hasOwnProperty.call(input, "salesAssignment")) {
+    if (input.salesAssignment !== "unassigned") {
+      throw new Error("salesAssignment must be unassigned.");
+    }
+    normalized.salesAssignment = "unassigned";
   }
   if (Object.prototype.hasOwnProperty.call(input, "search")) {
     normalized.search = normalizeStringFilter(input, "search", 100);
@@ -1101,6 +1218,26 @@ export const createExportClientTransactionsTool = ({
     errorMessage: "Unable to export client transactions.",
   });
 
+export const createExportTransactionsTool = ({
+  authStore,
+  webMcpApi = adminWebMcpApi,
+  router,
+}) =>
+  createExportTool({
+    authStore,
+    webMcpApi,
+    router,
+    inputSchema: exportTransactionsInputSchema,
+    normalizeInput: normalizeExportTransactionsInput,
+    permissionKeys: TRANSACTION_EXPORT_PERMISSIONS,
+    name: "export_transactions",
+    title: "Export transactions",
+    description:
+      "Start an Excel export for funding transactions visible to the signed-in administrator, including deposits, withdrawals, internal transfers, and credits, with optional filters.",
+    request: (api, input) => api.exportTransactions(input),
+    errorMessage: "Unable to export transactions.",
+  });
+
 export const registerAdminClientWebMcpTools = ({
   authStore,
   webMcpApi = adminWebMcpApi,
@@ -1157,6 +1294,10 @@ export const registerAdminClientWebMcpTools = ({
     {
       catalog: WEBMCP_TOOL_CATALOG[9],
       create: () => createGetTransactionTool({ authStore, webMcpApi }),
+    },
+    {
+      catalog: WEBMCP_TOOL_CATALOG[10],
+      create: () => createExportTransactionsTool({ authStore, webMcpApi, router }),
     },
   ];
   const tools = toolDefinitions

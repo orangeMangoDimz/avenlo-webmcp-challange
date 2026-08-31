@@ -2,7 +2,6 @@
   <div class="webmcp-page">
     <div class="webmcp-page-header">
       <div>
-        <p class="webmcp-kicker">{{ t("webmcp_kicker", "Developer tools") }}</p>
         <h1>
           <i class="fas fa-list-check" aria-hidden="true"></i>
           {{ t("webmcp_tools_title", "Tool catalog") }}
@@ -11,13 +10,15 @@
           {{
             t(
               "webmcp_tools_subtitle",
-              "The read-only client tools exposed to the browser Model Context API.",
+              "The permission-aware admin tools exposed to the browser Model Context API.",
             )
           }}
         </p>
       </div>
       <PageHeaderActions />
     </div>
+
+    <DeveloperToolsTabs />
 
     <section class="webmcp-catalog-panel">
       <div class="webmcp-catalog-heading">
@@ -41,196 +42,328 @@
         </div>
       </div>
 
-      <div class="webmcp-section-list">
-        <section
-          v-for="section in groupedTools"
-          :key="section.key"
-          class="webmcp-section"
-        >
-          <button
-            class="webmcp-section-toggle"
-            type="button"
-            :aria-expanded="isSectionExpanded(section.key)"
-            @click="toggleSection(section.key)"
-          >
-            <span class="webmcp-section-leading">
-              <span class="webmcp-section-icon">
-                <i :class="['fas', section.icon]" aria-hidden="true"></i>
-              </span>
-              <span class="webmcp-section-copy">
-                <span class="webmcp-eyebrow">{{
-                  t("webmcp_section_label", "Section")
-                }}</span>
-                <strong>{{ section.title }}</strong>
-                <small>{{ section.description }}</small>
-              </span>
-            </span>
-            <span class="webmcp-section-meta">
-              <span
-                >{{ section.tools.length }}
-                {{ t("webmcp_tools_label", "tools") }}</span
-              >
-              <i
-                class="fas fa-chevron-down"
-                :class="{ 'is-collapsed': !isSectionExpanded(section.key) }"
-                aria-hidden="true"
-              ></i>
-            </span>
-          </button>
-
-          <div
-            v-if="isSectionExpanded(section.key)"
-            class="webmcp-section-tools"
-          >
-            <article
-              v-for="tool in section.tools"
-              :key="tool.name"
-              class="webmcp-tool"
-              :class="{ 'is-expanded': isToolExpanded(tool.name) }"
-            >
-              <button
-                class="webmcp-tool-summary"
-                type="button"
-                :aria-expanded="isToolExpanded(tool.name)"
-                :aria-controls="`webmcp-tool-details-${tool.name}`"
-                @click="toggleTool(tool.name)"
-              >
-                <span class="webmcp-tool-icon">
-                  <i :class="['fas', tool.icon]" aria-hidden="true"></i>
-                </span>
-                <span class="webmcp-tool-copy">
-                  <span class="webmcp-tool-name-line">
-                    <strong>{{ tool.name }}</strong>
-                    <span class="webmcp-tool-badge">{{ tool.title }}</span>
-                    <span
-                      class="webmcp-operation-badge"
-                      :class="`is-${tool.accessMode}`"
-                    >
-                      <i
-                        :class="[
-                          'fas',
-                          tool.accessMode === 'write' ? 'fa-pen' : 'fa-eye',
-                        ]"
-                        aria-hidden="true"
-                      ></i>
-                      {{ accessModeLabel(tool) }}
-                    </span>
-                  </span>
-                </span>
-                <span class="webmcp-tool-status" :class="tool.statusClass">
-                  <span class="webmcp-status-dot"></span>
-                  {{ tool.statusLabel }}
-                </span>
-                <i
-                  class="fas fa-chevron-down webmcp-tool-chevron"
-                  :class="{ 'is-expanded': isToolExpanded(tool.name) }"
-                  aria-hidden="true"
-                ></i>
-              </button>
-
-              <div
-                v-if="isToolExpanded(tool.name)"
-                :id="`webmcp-tool-details-${tool.name}`"
-                class="webmcp-tool-details"
-              >
-                <div class="webmcp-tool-detail-grid">
-                  <div class="webmcp-tool-detail webmcp-tool-detail-wide">
-                    <span>{{ t("webmcp_detail_purpose", "Purpose") }}</span>
-                    <p>{{ tool.description }}</p>
-                  </div>
-                  <div class="webmcp-tool-detail webmcp-tool-detail-wide">
-                    <span>{{
-                      t("webmcp_detail_arguments", "Input arguments")
-                    }}</span>
-                    <div class="webmcp-arguments-table-wrap">
-                      <table class="webmcp-arguments-table">
-                        <thead>
-                          <tr>
-                            <th scope="col">
-                              {{ t("webmcp_argument_name", "Argument") }}
-                            </th>
-                            <th scope="col">
-                              {{ t("webmcp_argument_type", "Type") }}
-                            </th>
-                            <th scope="col">
-                              {{ t("webmcp_argument_requirement", "Required") }}
-                            </th>
-                            <th scope="col">
-                              {{
-                                t("webmcp_argument_description", "Description")
-                              }}
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr
-                            v-for="field in tool.inputFields"
-                            :key="field.name"
-                          >
-                            <td>
-                              <code>{{ field.name }}</code>
-                            </td>
-                            <td>{{ field.type }}</td>
-                            <td>
-                              <span
-                                class="webmcp-requirement"
-                                :class="requirementClass(field.requirement)"
-                              >
-                                {{ field.requirement }}
-                              </span>
-                            </td>
-                            <td>{{ field.description }}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                  <div class="webmcp-tool-detail">
-                    <span>{{ t("webmcp_detail_input", "Request JSON") }}</span>
-                    <p>{{ tool.inputSummary }}</p>
-                    <pre><code>{{ formatJson(tool.inputExample) }}</code></pre>
-                  </div>
-                  <div class="webmcp-tool-detail">
-                    <span>{{
-                      t("webmcp_detail_output", "Response JSON")
-                    }}</span>
-                    <p>{{ tool.outputSummary }}</p>
-                    <pre><code>{{ formatJson(tool.outputExample) }}</code></pre>
-                  </div>
-                  <div class="webmcp-tool-detail webmcp-tool-detail-wide">
-                    <span>{{
-                      t("webmcp_detail_access", "Permission status")
-                    }}</span>
-                    <p>
-                      <strong
-                        class="webmcp-inline-access"
-                        :class="`is-${tool.accessMode}`"
-                      >
-                        {{ accessModeLabel(tool) }}
-                      </strong>
-                      {{ permissionLabel(tool) }}
-                    </p>
-                  </div>
-                </div>
-                <div class="webmcp-tool-detail-footer">
-                  <span>
-                    <i class="fas fa-shield-halved" aria-hidden="true"></i>
-                    {{
-                      t(
-                        "webmcp_permission_checked",
-                        "Permission checked at runtime",
-                      )
-                    }}
-                  </span>
-                  <span :class="tool.statusClass">
-                    <span class="webmcp-status-dot"></span>
-                    {{ tool.statusLabel }}
-                  </span>
-                </div>
-              </div>
-            </article>
+      <div class="webmcp-filter-bar">
+        <div class="webmcp-search-field">
+          <label for="webmcp-tool-search">
+            {{ t("webmcp_search_tools", "Search tools") }}
+          </label>
+          <div class="webmcp-search-input-wrapper">
+            <input
+              id="webmcp-tool-search"
+              v-model="searchQuery"
+              type="search"
+              @input="handleToolSearch"
+              :placeholder="t('webmcp_search_placeholder', 'Search by tool name or description...')"
+            />
+            <i class="fas fa-search webmcp-search-icon" aria-hidden="true"></i>
           </div>
-        </section>
+        </div>
+        <div class="webmcp-filter-field">
+          <label for="webmcp-section-filter">
+            {{ t("webmcp_filter_section", "Section") }}
+          </label>
+          <select
+            id="webmcp-section-filter"
+            v-model="selectedSection"
+            @change="handleSectionFilterChange"
+          >
+            <option value="all">
+              {{ t("webmcp_filter_all_sections", "All sections") }}
+            </option>
+            <option
+              v-for="section in groupedTools"
+              :key="section.key"
+              :value="section.key"
+            >
+              {{ section.title }}
+            </option>
+          </select>
+        </div>
+        <div class="webmcp-filter-field">
+          <label for="webmcp-access-filter">
+            {{ t("webmcp_filter_access", "Access") }}
+          </label>
+          <select
+            id="webmcp-access-filter"
+            v-model="selectedAccess"
+            @change="handleAccessFilterChange"
+          >
+            <option value="all">
+              {{ t("webmcp_filter_all_access", "All access") }}
+            </option>
+            <option value="read">
+              {{ t("webmcp_access_read", "Read") }}
+            </option>
+            <option value="write">
+              {{ t("webmcp_access_write", "Write") }}
+            </option>
+            <option value="export">
+              {{ t("webmcp_access_export", "Export") }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="webmcp-table-container">
+        <div class="webmcp-table-header">
+          <h2>
+            <i class="fas fa-list-check" aria-hidden="true"></i>
+            {{ t("webmcp_table_title", "WebMCP Tool Details") }}
+          </h2>
+        </div>
+        <div class="webmcp-table-scroll">
+          <table class="webmcp-tool-table">
+            <thead>
+              <tr>
+                <th scope="col">
+                  {{ t("webmcp_tool_information_column", "Tool information") }}
+                </th>
+                <th scope="col">
+                  {{ t("webmcp_section_column", "Section") }}
+                </th>
+                <th scope="col">{{ t("webmcp_access_column", "Access") }}</th>
+                <th scope="col">{{ t("webmcp_status_column", "Status") }}</th>
+                <th scope="col" class="webmcp-tool-action-column">
+                  {{ t("webmcp_detail_column", "Detail") }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <template
+                v-for="section in visibleGroupedTools"
+                :key="section.key"
+              >
+                <template v-for="tool in section.tools" :key="tool.name">
+                    <tr
+                      class="webmcp-tool-row"
+                      :class="{ 'is-expanded': isToolExpanded(tool.name) }"
+                    >
+                      <td class="webmcp-tool-cell">
+                        <div class="webmcp-tool-info">
+                          <span class="webmcp-tool-icon">
+                            <i
+                              :class="['fas', tool.icon]"
+                              aria-hidden="true"
+                            ></i>
+                          </span>
+                          <span class="webmcp-tool-copy">
+                            <strong>{{ tool.name }}</strong>
+                            <span class="webmcp-tool-description">{{
+                              tool.description
+                            }}</span>
+                          </span>
+                        </div>
+                      </td>
+                      <td class="webmcp-tool-section-cell">
+                        <span class="webmcp-tool-section">{{
+                          section.title
+                        }}</span>
+                      </td>
+                      <td>
+                        <span
+                          class="webmcp-operation-badge"
+                          :class="`is-${tool.accessMode}`"
+                        >
+                          <i
+                            :class="['fas', accessModeIcon(tool)]"
+                            aria-hidden="true"
+                          ></i>
+                          {{ accessModeLabel(tool) }}
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          class="webmcp-tool-status"
+                          :class="tool.statusClass"
+                        >
+                          <span class="webmcp-status-dot"></span>
+                          {{ tool.statusLabel }}
+                        </span>
+                      </td>
+                      <td class="webmcp-tool-action-cell">
+                        <button
+                          class="webmcp-tool-action btn-action btn-detail"
+                          type="button"
+                          :aria-expanded="isToolExpanded(tool.name)"
+                          :aria-controls="`webmcp-tool-details-${tool.name}`"
+                          :aria-label="`${tool.title}: ${
+                            isToolExpanded(tool.name)
+                              ? t('webmcp_hide_details', 'Hide details')
+                              : t('webmcp_show_details', 'Show details')
+                          }`"
+                          @click="toggleTool(tool.name)"
+                        >
+                          <i
+                            :class="
+                              isToolExpanded(tool.name)
+                                ? 'fas fa-chevron-up'
+                                : 'fas fa-chevron-down'
+                            "
+                            aria-hidden="true"
+                          ></i>
+                          {{ t("webmcp_detail_button", "Detail") }}
+                        </button>
+                      </td>
+                    </tr>
+
+                    <tr
+                      v-if="isToolExpanded(tool.name)"
+                      class="webmcp-tool-detail-row"
+                    >
+                      <td colspan="5">
+                        <div
+                          :id="`webmcp-tool-details-${tool.name}`"
+                          class="webmcp-tool-details"
+                        >
+                          <div class="webmcp-tool-detail-grid">
+                            <div
+                              class="webmcp-tool-detail webmcp-tool-detail-wide"
+                            >
+                              <span>
+                                {{ t("webmcp_detail_purpose", "Purpose") }}
+                              </span>
+                              <p>{{ tool.description }}</p>
+                            </div>
+                            <div
+                              class="webmcp-tool-detail webmcp-tool-detail-wide"
+                            >
+                              <span>
+                                {{
+                                  t(
+                                    "webmcp_detail_arguments",
+                                    "Input arguments",
+                                  )
+                                }}
+                              </span>
+                              <div class="webmcp-arguments-table-wrap">
+                                <table class="webmcp-arguments-table">
+                                  <thead>
+                                    <tr>
+                                      <th scope="col">
+                                        {{
+                                          t("webmcp_argument_name", "Argument")
+                                        }}
+                                      </th>
+                                      <th scope="col">
+                                        {{ t("webmcp_argument_type", "Type") }}
+                                      </th>
+                                      <th scope="col">
+                                        {{
+                                          t(
+                                            "webmcp_argument_requirement",
+                                            "Required",
+                                          )
+                                        }}
+                                      </th>
+                                      <th scope="col">
+                                        {{
+                                          t(
+                                            "webmcp_argument_description",
+                                            "Description",
+                                          )
+                                        }}
+                                      </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr
+                                      v-for="field in tool.inputFields"
+                                      :key="field.name"
+                                    >
+                                      <td>
+                                        <code>{{ field.name }}</code>
+                                      </td>
+                                      <td>{{ field.type }}</td>
+                                      <td>
+                                        <span
+                                          class="webmcp-requirement"
+                                          :class="
+                                            requirementClass(field.requirement)
+                                          "
+                                        >
+                                          {{ field.requirement }}
+                                        </span>
+                                      </td>
+                                      <td>{{ field.description }}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </div>
+                            </div>
+                            <div class="webmcp-tool-detail">
+                              <span>
+                                {{
+                                  t("webmcp_detail_input", "Request JSON")
+                                }}
+                              </span>
+                              <p>{{ tool.inputSummary }}</p>
+                              <pre><code>{{
+                                formatJson(tool.inputExample)
+                              }}</code></pre>
+                            </div>
+                            <div class="webmcp-tool-detail">
+                              <span>
+                                {{
+                                  t("webmcp_detail_output", "Response JSON")
+                                }}
+                              </span>
+                              <p>{{ tool.outputSummary }}</p>
+                              <pre><code>{{
+                                formatJson(tool.outputExample)
+                              }}</code></pre>
+                            </div>
+                            <div
+                              class="webmcp-tool-detail webmcp-tool-detail-wide"
+                            >
+                              <span>
+                                {{
+                                  t("webmcp_detail_access", "Permission status")
+                                }}
+                              </span>
+                              <p>
+                                <strong
+                                  class="webmcp-inline-access"
+                                  :class="`is-${tool.accessMode}`"
+                                >
+                                  {{ accessModeLabel(tool) }}
+                                </strong>
+                                {{ permissionLabel(tool) }}
+                              </p>
+                            </div>
+                          </div>
+                          <div class="webmcp-tool-detail-footer">
+                            <span>
+                              <i
+                                class="fas fa-shield-halved"
+                                aria-hidden="true"
+                              ></i>
+                              {{
+                                t(
+                                  "webmcp_permission_checked",
+                                  "Permission checked at runtime",
+                                )
+                              }}
+                            </span>
+                            <span :class="tool.statusClass">
+                              <span class="webmcp-status-dot"></span>
+                              {{ tool.statusLabel }}
+                            </span>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </template>
+              </template>
+            </tbody>
+          </table>
+        </div>
+        <div class="webmcp-table-footer">
+          {{
+            tParams("webmcp_catalog_showing_all", "Showing {count} tools", {
+              count: visibleToolCount,
+            })
+          }}
+        </div>
       </div>
     </section>
   </div>
@@ -238,6 +371,7 @@
 
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from "vue";
+import DeveloperToolsTabs from "@/components/layout/DeveloperToolsTabs.vue";
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 import { useAdminI18n } from "@/composables/useAdminI18n";
 import { useAuthStore } from "@/stores/auth";
@@ -254,14 +388,18 @@ const { t, tParams } = useAdminI18n();
 const authStore = useAuthStore();
 const enabled = ref(isWebMcpEnabled());
 const modelContextSupported = ref(false);
-const expandedSections = ref(["client"]);
+const selectedSection = ref("all");
+const selectedAccess = ref("all");
+const searchQuery = ref("");
 const expandedTools = ref([]);
 let unsubscribeWebMcpSetting = () => {};
 
-const hasToolPermission = (tool) =>
-  tool.permissionKeys.some((permissionKey) =>
+const hasToolPermission = (tool) => {
+  const matcher = tool.permissionMatch === "all" ? "every" : "some";
+  return tool.permissionKeys[matcher]((permissionKey) =>
     authStore.hasPermission(permissionKey),
   );
+};
 
 const getToolState = (tool) => {
   const permitted = hasToolPermission(tool);
@@ -292,21 +430,62 @@ const groupedTools = computed(() =>
   })),
 );
 
-const isSectionExpanded = (sectionKey) =>
-  expandedSections.value.includes(sectionKey);
+const visibleGroupedTools = computed(() => {
+  const normalizedQuery = searchQuery.value.trim().toLowerCase();
+  return groupedTools.value
+    .filter(
+      (section) =>
+        selectedSection.value === "all" ||
+        section.key === selectedSection.value,
+    )
+    .map((section) => ({
+      ...section,
+      tools: section.tools.filter((tool) => {
+        if (
+          selectedAccess.value !== "all" &&
+          tool.accessMode !== selectedAccess.value
+        ) {
+          return false;
+        }
+        if (!normalizedQuery) return true;
+        return [
+          tool.name,
+          tool.title,
+          tool.description,
+          section.title,
+        ].some((value) =>
+          String(value || "")
+            .toLowerCase()
+            .includes(normalizedQuery),
+        );
+      }),
+    }))
+    .filter((section) => section.tools.length > 0);
+});
 
-const toggleSection = (sectionKey) => {
-  expandedSections.value = isSectionExpanded(sectionKey)
-    ? expandedSections.value.filter((key) => key !== sectionKey)
-    : [...expandedSections.value, sectionKey];
+const visibleToolCount = computed(() =>
+  visibleGroupedTools.value.reduce(
+    (count, section) => count + section.tools.length,
+    0,
+  ),
+);
+
+const handleSectionFilterChange = () => {
+  expandedTools.value = [];
+};
+
+const handleAccessFilterChange = () => {
+  expandedTools.value = [];
+};
+
+const handleToolSearch = () => {
+  expandedTools.value = [];
 };
 
 const isToolExpanded = (toolName) => expandedTools.value.includes(toolName);
 
 const toggleTool = (toolName) => {
-  expandedTools.value = isToolExpanded(toolName)
-    ? expandedTools.value.filter((name) => name !== toolName)
-    : [...expandedTools.value, toolName];
+  expandedTools.value = isToolExpanded(toolName) ? [] : [toolName];
 };
 
 const permissionLabel = (tool) => {
@@ -315,16 +494,31 @@ const permissionLabel = (tool) => {
       permission: tool.permissionKeys[0],
     });
   }
+  if (tool.permissionMatch === "all") {
+    return tParams(
+      "webmcp_permission_all_label",
+      "Requires all of: {permissions}",
+      { permissions: tool.permissionKeys.join(", ") },
+    );
+  }
   return t(
     "webmcp_permission_any_label",
     "Requires one of the client permissions",
   );
 };
 
-const accessModeLabel = (tool) =>
-  tool.accessMode === "write"
-    ? t("webmcp_access_write", "Write")
-    : t("webmcp_access_read", "Read");
+const accessModeLabel = (tool) => {
+  if (tool.accessMode === "write") return t("webmcp_access_write", "Write");
+  if (tool.accessMode === "export")
+    return t("webmcp_access_export", "Export");
+  return t("webmcp_access_read", "Read");
+};
+
+const accessModeIcon = (tool) => {
+  if (tool.accessMode === "write") return "fa-pen";
+  if (tool.accessMode === "export") return "fa-file-export";
+  return "fa-eye";
+};
 
 const formatJson = (value) => JSON.stringify(value, null, 2);
 
@@ -365,7 +559,6 @@ onUnmounted(() => {
   border-bottom: 1px solid var(--color-border);
 }
 
-.webmcp-kicker,
 .webmcp-eyebrow {
   margin: 0 0 8px;
   color: var(--color-brand);
@@ -398,26 +591,15 @@ onUnmounted(() => {
 }
 
 .webmcp-catalog-panel {
-  overflow: hidden;
   margin-top: 22px;
-  background: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 9px;
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.05);
 }
 
 .webmcp-catalog-heading {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: space-between;
   gap: 24px;
-  padding: 24px 26px 22px;
-  background: linear-gradient(
-    135deg,
-    var(--color-surface-soft),
-    var(--color-surface)
-  );
-  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 12px;
 }
 
 .webmcp-catalog-heading h2 {
@@ -429,10 +611,10 @@ onUnmounted(() => {
 
 .webmcp-catalog-heading p:not(.webmcp-eyebrow) {
   max-width: 680px;
-  margin: 7px 0 0;
+  margin: 4px 0 0;
   color: var(--color-muted);
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.45;
 }
 
 .webmcp-catalog-count {
@@ -460,147 +642,249 @@ onUnmounted(() => {
   letter-spacing: 0.08em;
 }
 
-.webmcp-section-list {
-  display: grid;
-  gap: 12px;
-  padding: 16px;
-  background: var(--color-canvas);
-}
-
-.webmcp-section {
-  overflow: hidden;
+.webmcp-filter-bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 12px 14px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
-  border-radius: 8px;
+  border-radius: var(--radius-lg);
 }
 
-.webmcp-section-toggle,
-.webmcp-tool-summary {
-  width: 100%;
-  border: 0;
+.webmcp-filter-field {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.webmcp-filter-field label {
+  color: var(--color-text);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.webmcp-filter-field select {
+  min-width: 250px;
+  min-height: 40px;
+  padding: 8px 36px 8px 12px;
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
   font: inherit;
-  text-align: left;
+  font-size: 14px;
   cursor: pointer;
 }
 
-.webmcp-section-toggle {
+.webmcp-filter-field select:hover,
+.webmcp-filter-field select:focus {
+  border-color: var(--color-brand);
+}
+
+.webmcp-search-field {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-  padding: 16px 18px;
-  color: var(--color-ink);
-  background: var(--color-surface-soft);
-}
-
-.webmcp-section-toggle:hover,
-.webmcp-section-toggle:focus-visible {
-  background: var(--color-brand-soft);
-}
-
-.webmcp-section-toggle:focus-visible,
-.webmcp-tool-summary:focus-visible {
-  outline: 2px solid var(--color-brand);
-  outline-offset: -2px;
-}
-
-.webmcp-section-leading {
-  display: flex;
-  align-items: center;
-  min-width: 0;
+  flex: 1 1 360px;
+  min-width: 300px;
   gap: 12px;
 }
 
-.webmcp-section-icon {
-  display: grid;
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
-  place-items: center;
-  color: var(--color-brand);
-  background: var(--color-brand-soft);
-  border: 1px solid var(--color-brand-soft-strong);
-  border-radius: 6px;
-}
-
-.webmcp-section-copy {
-  display: grid;
-  min-width: 0;
-}
-
-.webmcp-section-copy .webmcp-eyebrow {
-  margin-bottom: 3px;
+.webmcp-search-field label {
+  flex: 0 0 auto;
+  color: var(--color-text);
   font-size: 14px;
+  font-weight: 600;
 }
 
-.webmcp-section-copy strong {
+.webmcp-search-input-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.webmcp-search-input-wrapper input {
+  width: 100%;
+  min-height: 40px;
+  padding: 10px 40px 10px 15px;
   color: var(--color-ink);
-  font-size: 15px;
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-.webmcp-section-copy small {
+.webmcp-search-input-wrapper input:focus {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(var(--color-brand-rgb), 0.1);
+}
+
+.webmcp-search-icon {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  color: var(--color-faint);
+  transform: translateY(-50%);
+}
+
+.webmcp-table-container {
   overflow: hidden;
-  margin-top: 3px;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.webmcp-table-header {
+  display: flex;
+  align-items: center;
+  min-height: 72px;
+  padding: 20px 30px;
+  background: var(--color-surface-soft);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.webmcp-table-header h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  color: var(--color-ink);
+  font-size: 18px;
+}
+
+.webmcp-table-header h2 i {
+  color: var(--color-brand);
+}
+
+.webmcp-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-inline: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.webmcp-table-footer {
+  padding: 20px 30px;
   color: var(--color-muted);
+  border-top: 2px solid var(--color-border);
   font-size: 14px;
-  text-overflow: ellipsis;
+}
+
+.webmcp-tool-table {
+  width: 100%;
+  min-width: 1060px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  font-family: var(--font-ui);
+}
+
+.webmcp-tool-table thead {
+  background: var(--color-surface-soft);
+}
+
+.webmcp-tool-table th {
+  padding: 16px 20px;
+  color: var(--color-text);
+  border-bottom: 2px solid var(--color-border);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
   white-space: nowrap;
 }
 
-.webmcp-section-meta {
-  display: inline-flex;
-  align-items: center;
-  flex: 0 0 auto;
-  gap: 12px;
+.webmcp-tool-table > thead > tr > th:nth-child(1) {
+  width: 36%;
+}
+
+.webmcp-tool-table > thead > tr > th:nth-child(2) {
+  width: 16%;
+}
+
+.webmcp-tool-table > thead > tr > th:nth-child(3) {
+  width: 14%;
+}
+
+.webmcp-tool-table > thead > tr > th:nth-child(4) {
+  width: 20%;
+}
+
+.webmcp-tool-table > thead > tr > th:nth-child(5) {
+  width: 14%;
+}
+
+.webmcp-tool-table td {
+  padding: 16px 20px;
+  color: var(--color-text);
+  border-bottom: 1px solid var(--color-border);
+  font-size: 14px;
+  text-align: left;
+  vertical-align: middle;
+  line-height: 1.4;
+}
+
+.webmcp-tool-table th:nth-child(1),
+.webmcp-tool-table td:nth-child(1) {
+  min-width: 360px;
+}
+
+.webmcp-tool-action-column,
+.webmcp-tool-action-cell {
+  width: 112px;
+  min-width: 112px !important;
+  padding-right: 20px !important;
+  padding-left: 20px !important;
+  text-align: left !important;
+}
+
+.webmcp-tool-table tbody tr {
+  border-bottom: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+
+.webmcp-tool-table tbody tr:not(.webmcp-tool-detail-row):hover {
+  background: var(--color-surface-soft);
+}
+
+.webmcp-tool-action:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.webmcp-tool-section {
+  display: inline-block;
   color: var(--color-muted);
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
+  white-space: nowrap;
 }
 
-.webmcp-section-meta i,
-.webmcp-tool-chevron {
-  transition: transform var(--transition-fast);
+.webmcp-tool-row.is-expanded td {
+  background: var(--color-brand-soft);
 }
 
-.webmcp-section-meta i.is-collapsed,
-.webmcp-tool-chevron:not(.is-expanded) {
-  transform: rotate(-90deg);
-}
-
-.webmcp-section-tools {
-  display: grid;
-  gap: 1px;
-  background: var(--color-border);
-}
-
-.webmcp-tool {
-  background: var(--color-surface);
-}
-
-.webmcp-tool-summary {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto auto;
+.webmcp-tool-info {
+  display: flex;
   align-items: center;
-  gap: 13px;
-  padding: 14px 18px;
-  color: var(--color-ink);
-  background: var(--color-surface);
-}
-
-.webmcp-tool-summary:hover,
-.webmcp-tool.is-expanded .webmcp-tool-summary {
-  background: var(--color-surface-soft);
+  width: 100%;
+  gap: 12px;
 }
 
 .webmcp-tool-icon {
   display: grid;
-  width: 32px;
-  height: 32px;
-  flex: 0 0 32px;
+  width: 40px;
+  height: 40px;
+  flex: 0 0 40px;
   place-items: center;
-  color: var(--color-brand);
-  background: var(--color-brand-soft);
-  border-radius: 6px;
+  color: #fff;
+  background: var(--color-brand-solid);
+  border-radius: 50%;
   font-size: 14px;
 }
 
@@ -608,14 +892,8 @@ onUnmounted(() => {
   min-width: 0;
 }
 
-.webmcp-tool-name-line {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.webmcp-tool-name-line strong {
+.webmcp-tool-copy strong {
+  display: block;
   overflow: hidden;
   color: var(--color-ink);
   font-size: 14px;
@@ -624,14 +902,16 @@ onUnmounted(() => {
   white-space: nowrap;
 }
 
-.webmcp-tool-badge {
-  padding: 3px 7px;
+.webmcp-tool-description {
+  display: block;
+  max-width: 100%;
+  margin-top: 3px;
   color: var(--color-muted);
-  background: var(--color-surface-soft);
-  border: 1px solid var(--color-border);
-  border-radius: 4px;
   font-size: 14px;
-  font-weight: 700;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: normal;
+  overflow-wrap: anywhere;
 }
 
 .webmcp-operation-badge {
@@ -653,6 +933,12 @@ onUnmounted(() => {
   color: var(--color-warning);
   background: var(--color-warning-soft);
   border-color: var(--color-warning-border);
+}
+
+.webmcp-operation-badge.is-export {
+  color: var(--color-info, #2563eb);
+  background: color-mix(in srgb, currentColor 10%, transparent);
+  border-color: color-mix(in srgb, currentColor 25%, transparent);
 }
 
 .webmcp-tool-status {
@@ -708,20 +994,43 @@ onUnmounted(() => {
   border-color: var(--color-danger-border);
 }
 
-.webmcp-tool-chevron {
-  width: 16px;
-  color: var(--color-muted);
-  /* @font-floor-exempt: visual-only disclosure glyph */
-  font-size: 10px;
-  text-align: center;
+.webmcp-tool-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: auto;
+  height: auto;
+  padding: 8px 16px;
+  color: var(--color-brand);
+  background: var(--color-brand-soft);
+  border: 0;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.webmcp-tool-chevron.is-expanded {
-  transform: rotate(0deg);
+.webmcp-tool-action:hover {
+  color: #fff;
+  background: var(--color-brand-solid);
 }
 
 .webmcp-tool-details {
-  padding: 0 18px 16px 63px;
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+  background: var(--color-surface-soft);
+}
+
+.webmcp-tool-detail-row > td {
+  max-width: 0;
+  padding: 0 !important;
+  overflow: hidden;
   background: var(--color-surface-soft);
 }
 
@@ -865,6 +1174,10 @@ onUnmounted(() => {
   color: var(--color-warning);
 }
 
+.webmcp-inline-access.is-export {
+  color: var(--color-info, #2563eb);
+}
+
 .webmcp-tool-detail-footer {
   display: flex;
   align-items: center;
@@ -893,30 +1206,25 @@ onUnmounted(() => {
     flex-direction: column;
   }
 
-  .webmcp-section-toggle {
+  .webmcp-tool-table th,
+  .webmcp-tool-table td {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+
+  .webmcp-filter-field,
+  .webmcp-filter-field select,
+  .webmcp-search-field {
+    width: 100%;
+  }
+
+  .webmcp-filter-field {
     align-items: flex-start;
-  }
-
-  .webmcp-section-meta {
-    margin-top: 2px;
-  }
-
-  .webmcp-tool-summary {
-    grid-template-columns: auto minmax(0, 1fr) auto;
-  }
-
-  .webmcp-tool-status {
-    grid-column: 2 / 3;
-    justify-self: start;
-  }
-
-  .webmcp-tool-chevron {
-    grid-column: 3 / 4;
-    grid-row: 1 / 3;
+    flex-direction: column;
   }
 
   .webmcp-tool-details {
-    padding-left: 18px;
+    padding: 20px;
   }
 
   .webmcp-tool-detail-grid {

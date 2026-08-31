@@ -14,6 +14,7 @@ import {
   createGetTransactionTool,
   registerAdminClientWebMcpTools,
 } from "../adminClientWebMcp";
+import * as webMcpTools from "../adminClientWebMcp";
 import {
   WEBMCP_TOOL_CATALOG,
   WEBMCP_TOOL_SECTIONS,
@@ -63,6 +64,11 @@ const webMcpApi = {
     jobId: "wmcp_transaction_42",
     queued: true,
   })),
+  exportTransactions: vi.fn(async () => ({
+    jobId: "wmcp_transactions_42",
+    exportType: "transactions",
+    queued: true,
+  })),
 };
 
 const router = {
@@ -109,6 +115,11 @@ describe("admin client WebMCP tools", () => {
       jobId: "wmcp_transaction_42",
       queued: true,
     });
+    webMcpApi.exportTransactions.mockResolvedValue({
+      jobId: "wmcp_transactions_42",
+      exportType: "transactions",
+      queued: true,
+    });
 
     vi.stubGlobal("URL", {
       ...URL,
@@ -130,6 +141,45 @@ describe("admin client WebMCP tools", () => {
       "export_client_transactions",
       "search_transactions",
       "get_transaction",
+      "export_transactions",
+      "search_kyc",
+      "get_kyc",
+      "get_kyc_answers",
+      "get_kyc_documents",
+      "get_kyc_progress",
+      "get_kyc_timeline",
+      "get_ib_partner",
+      "get_ib_network",
+      "get_ib_network_stats",
+      "get_ib_clients",
+      "get_client_ib_upline",
+      "navigate_to_ib",
+      "search_sales",
+      "get_sales_clients",
+      "get_sales_partners",
+      "get_sales_performance",
+      "get_sales_daily_summary",
+      "get_sales_leaderboard",
+      "navigate_to_sales",
+      "get_funding_summary",
+      "search_funding_transactions",
+      "get_daily_sales_performance",
+      "search_ib_partners",
+      "get_ib_statement",
+      "list_custom_reports",
+      "get_custom_report_results",
+      "navigate_to_report",
+      "export_funding_report",
+      "export_ib_statement",
+      "search_admin_users",
+      "get_admin_user",
+      "get_role_permissions",
+      "find_roles_by_permission",
+      "check_admin_user_permission",
+      "search_operation_logs",
+      "get_operation_log",
+      "navigate_to_operation_logs",
+      "export_operation_logs",
     ]);
     expect(WEBMCP_TOOL_CATALOG.every(({ description }) => description)).toBe(
       true,
@@ -168,6 +218,11 @@ describe("admin client WebMCP tools", () => {
     expect(WEBMCP_TOOL_SECTIONS.map(({ key }) => key)).toEqual([
       "client",
       "transactions",
+      "kyc",
+      "ib",
+      "sales",
+      "report",
+      "admin_log",
     ]);
     expect(groupWebMcpTools(WEBMCP_TOOL_CATALOG)).toEqual(
       expect.arrayContaining([
@@ -185,6 +240,7 @@ describe("admin client WebMCP tools", () => {
           tools: expect.arrayContaining([
             expect.objectContaining({ name: "search_transactions" }),
             expect.objectContaining({ name: "get_transaction" }),
+            expect.objectContaining({ name: "export_transactions" }),
           ]),
         }),
       ]),
@@ -259,6 +315,27 @@ describe("admin client WebMCP tools", () => {
       clients: [{ id: 42, name: "Jane Smith", tags: ["VIP"] }],
       pagination: { page: 1, perPage: 25, total: 1 },
     });
+  });
+
+  it("searches for clients without a sales assignment", async () => {
+    const tool = createSearchClientsTool({ authStore, webMcpApi });
+
+    await tool.execute({ salesAssignment: "unassigned" });
+
+    expect(webMcpApi.searchClients).toHaveBeenLastCalledWith({
+      salesAssignment: "unassigned",
+      page: 1,
+      limit: 25,
+    });
+  });
+
+  it("rejects unsupported sales-assignment filters", async () => {
+    const tool = createSearchClientsTool({ authStore, webMcpApi });
+
+    await expect(
+      tool.execute({ salesAssignment: "assigned" }),
+    ).rejects.toThrow(/salesAssignment/i);
+    expect(webMcpApi.searchClients).not.toHaveBeenCalled();
   });
 
   it("returns client documents as a structured object", async () => {
@@ -431,6 +508,84 @@ describe("admin client WebMCP tools", () => {
     });
   });
 
+  it("exports general transactions without a client selector", async () => {
+    const routerWithProgress = {
+      ...router,
+      resolve: vi.fn(() => ({
+        href: "/#/webmcp/export-progress?jobId=wmcp_transactions_42",
+      })),
+    };
+    const tool = webMcpTools.createExportTransactionsTool({
+      authStore,
+      webMcpApi,
+      router: routerWithProgress,
+    });
+    const result = await tool.execute({
+      dateFrom: "2026-08-01",
+      dateTo: "2026-08-30",
+      type: "deposits",
+      status: " completed ",
+      minAmount: "100",
+      maxAmount: 5000,
+    });
+
+    expect(webMcpApi.exportTransactions).toHaveBeenLastCalledWith({
+      dateFrom: "2026-08-01",
+      dateTo: "2026-08-30",
+      type: "deposit",
+      status: "completed",
+      minAmount: 100,
+      maxAmount: 5000,
+    });
+    expect(window.open).toHaveBeenLastCalledWith(
+      "/#/webmcp/export-progress?jobId=wmcp_transactions_42",
+      "_blank",
+      "noopener",
+    );
+    expect(result.jobId).toBe("wmcp_transactions_42");
+  });
+
+  it("allows an unfiltered general transaction export with type all", async () => {
+    const tool = webMcpTools.createExportTransactionsTool({
+      authStore,
+      webMcpApi,
+      router,
+    });
+
+    await tool.execute({});
+
+    expect(webMcpApi.exportTransactions).toHaveBeenLastCalledWith({
+      type: "all",
+    });
+  });
+
+  it("rejects invalid general transaction export ranges before calling the API", async () => {
+    const tool = webMcpTools.createExportTransactionsTool({
+      authStore,
+      webMcpApi,
+    });
+
+    await expect(
+      tool.execute({ dateFrom: "2026-08-31", dateTo: "2026-08-01" }),
+    ).rejects.toThrow(/dateFrom/i);
+    await expect(
+      tool.execute({ minAmount: 100, maxAmount: 99 }),
+    ).rejects.toThrow(/minAmount/i);
+    expect(webMcpApi.exportTransactions).not.toHaveBeenCalled();
+  });
+
+  it("rejects client selectors for the general transaction export", async () => {
+    const tool = webMcpTools.createExportTransactionsTool({
+      authStore,
+      webMcpApi,
+    });
+
+    await expect(tool.execute({ clientIds: [42] })).rejects.toThrow(
+      /unsupported|client/i,
+    );
+    expect(webMcpApi.exportTransactions).not.toHaveBeenCalled();
+  });
+
   it("rejects empty export selections and invalid dates before calling the API", async () => {
     const clientTool = createExportClientsTool({ authStore, webMcpApi });
     const transactionTool = createExportClientTransactionsTool({
@@ -511,7 +666,7 @@ describe("admin client WebMCP tools", () => {
     });
     await Promise.resolve();
 
-    expect(registerTool).toHaveBeenCalledTimes(10);
+    expect(registerTool).toHaveBeenCalledTimes(11);
     expect(registerTool.mock.calls.map(([tool]) => tool.name)).toEqual([
       "get_client",
       "navigate_to_client",
@@ -523,6 +678,7 @@ describe("admin client WebMCP tools", () => {
       "export_client_transactions",
       "search_transactions",
       "get_transaction",
+      "export_transactions",
     ]);
 
     const signal = registerTool.mock.calls[0][1].signal;

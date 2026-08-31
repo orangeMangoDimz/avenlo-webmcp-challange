@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   getExportDetails,
+  resolveExportTransport,
   shouldAutoDownloadExport,
 } from "../webMcpExportDetails";
 
@@ -25,7 +26,7 @@ describe("getExportDetails", () => {
 
   it("describes a transaction export", () => {
     expect(getExportDetails("transactions")).toEqual({
-      subject: "Funding transactions for selected clients",
+      subject: "Funding transactions",
       recordLabel: "1 row per transaction",
       format: "Excel-compatible .xls",
       dataType: "Tabular text (CSV-compatible)",
@@ -48,6 +49,32 @@ describe("getExportDetails", () => {
       dataType: "Tabular text (CSV-compatible)",
       scope: "Access-controlled admin export",
       fields: [],
+    });
+  });
+
+  it("describes Report-specific funding and IB statement exports", () => {
+    expect(getExportDetails("funding_report").subject).toBe("Funding report");
+    expect(getExportDetails("ib_statement").subject).toBe("IB statement");
+  });
+
+  it("describes and routes operation-log exports by their owner-bound job prefix", () => {
+    expect(getExportDetails("operation_logs")).toEqual({
+      subject: "Administrator operation logs",
+      recordLabel: "1 row per audit event",
+      format: "CSV (.csv)",
+      dataType: "Tabular text (CSV)",
+      scope: "Filtered operation logs visible to this administrator",
+      fields: [
+        "Operation time and administrator",
+        "Module and submodule",
+        "Operation type and target",
+        "Localized audit detail",
+        "IP address",
+      ],
+    });
+    expect(resolveExportTransport({ jobId: "aolr_abc123" })).toEqual({
+      kind: "operation_logs",
+      exportType: "operation_logs",
     });
   });
 

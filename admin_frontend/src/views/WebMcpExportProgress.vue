@@ -106,11 +106,26 @@ import { useRoute } from "vue-router";
 import { adminWebMcpApi } from "@/services/adminWebMcpApi";
 import {
   getExportDetails,
+  resolveExportTransport,
   shouldAutoDownloadExport,
 } from "@/services/webMcpExportDetails";
+import {
+  getExportStatus as getOperationLogExportStatus,
+  downloadExport as downloadOperationLogExport,
+} from "@/services/operationLogReportApi";
 
 const route = useRoute();
 const jobId = computed(() => String(route.query.jobId || "").trim());
+const reportExportKind = computed(() => {
+  const kind = String(route.query.exportKind || "").trim();
+  return ["funding_report", "ib_statement"].includes(kind) ? kind : "";
+});
+const exportTransport = computed(() =>
+  resolveExportTransport({
+    jobId: jobId.value,
+    exportKind: reportExportKind.value,
+  }),
+);
 const exportType = ref("");
 const status = ref("");
 const message = ref("Connecting to the export worker...");
@@ -129,11 +144,20 @@ let pollInFlight = false;
 const invalidJob = computed(() => !/^[A-Za-z0-9._-]{1,80}$/.test(jobId.value));
 const isDone = computed(() => status.value === "done");
 const exportDetails = computed(() => getExportDetails(exportType.value));
-const title = computed(() =>
-  exportType.value === "transactions"
-    ? "Client transaction export"
-    : "Client export",
+const isClientTransactionExport = computed(() =>
+  fileName.value.startsWith("client_transactions_"),
 );
+const title = computed(() => {
+  if (exportType.value === "operation_logs") return "Operation log export";
+  if (exportType.value === "funding_report") return "Funding report export";
+  if (exportType.value === "ib_statement") return "IB statement export";
+  if (exportType.value === "transactions") {
+    return isClientTransactionExport.value
+      ? "Client transaction export"
+      : "Transaction export";
+  }
+  return "Client export";
+});
 
 const stopPolling = () => {
   if (pollTimer !== null) {
@@ -178,7 +202,17 @@ const downloadNow = async ({ retry = false } = {}) => {
   isDownloading.value = true;
   errorMessage.value = "";
   try {
-    const blob = await adminWebMcpApi.downloadExport(jobId.value);
+    let blob;
+    if (exportTransport.value.kind === "operation_logs") {
+      blob = await downloadOperationLogExport(jobId.value);
+    } else if (exportTransport.value.kind === "report") {
+      blob = await adminWebMcpApi.downloadReportExport(
+          jobId.value,
+          reportExportKind.value,
+        );
+    } else {
+      blob = await adminWebMcpApi.downloadExport(jobId.value);
+    }
     if (blob instanceof Blob && blob.type.includes("application/json")) {
       errorMessage.value = await parseDownloadError(blob);
       return;
@@ -201,8 +235,19 @@ const poll = async () => {
     return;
   pollInFlight = true;
   try {
-    const payload = await adminWebMcpApi.getExportStatus(jobId.value);
-    exportType.value = payload?.exportType || "";
+    let payload;
+    if (exportTransport.value.kind === "operation_logs") {
+      payload = await getOperationLogExportStatus(jobId.value);
+    } else if (exportTransport.value.kind === "report") {
+      payload = await adminWebMcpApi.getReportExportStatus(
+          jobId.value,
+          reportExportKind.value,
+        );
+    } else {
+      payload = await adminWebMcpApi.getExportStatus(jobId.value);
+    }
+    exportType.value =
+      exportTransport.value.exportType || payload?.exportType || "";
     status.value = payload?.status || "";
     message.value = payload?.message || "Preparing export...";
     percent.value = Math.max(0, Math.min(100, Number(payload?.percent) || 0));

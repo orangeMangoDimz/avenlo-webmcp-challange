@@ -79,6 +79,18 @@ assertTrue(
     WebMcpClientController::normalizeSearchInput(['neverLoggedIn' => 'true'])['neverLoggedIn'] === true,
     'Expected HTTP query-string booleans to be normalized.'
 );
+assertTrue(
+    WebMcpClientController::normalizeSearchInput(['salesAssignment' => 'unassigned']) === [
+        'salesAssignment' => 'unassigned',
+        'page' => 1,
+        'limit' => 25
+    ],
+    'Expected the unassigned sales filter to be normalized.'
+);
+assertThrows(
+    static fn() => WebMcpClientController::normalizeSearchInput(['salesAssignment' => 'assigned']),
+    'Expected unsupported sales-assignment filters to be rejected.'
+);
 
 assertThrows(
     static fn() => WebMcpClientController::normalizeTransactionInput(['id' => 42, 'type' => 'unknown']),
@@ -148,5 +160,38 @@ assertTrue(
     ],
     'Expected transaction export filters to be normalized.'
 );
+
+assertTrue(
+    method_exists(WebMcpClientController::class, 'normalizeExportTransactionsInput'),
+    'Expected a general transaction export normalizer.'
+);
+if (method_exists(WebMcpClientController::class, 'normalizeExportTransactionsInput')) {
+    assertTrue(
+        WebMcpClientController::normalizeExportTransactionsInput([
+            'dateFrom' => '2026-08-01',
+            'dateTo' => '2026-08-30',
+            'type' => 'deposits',
+            'status' => ' completed ',
+            'minAmount' => '100',
+            'maxAmount' => 5000
+        ]) === [
+            'dateFrom' => '2026-08-01',
+            'dateTo' => '2026-08-30',
+            'type' => 'deposit',
+            'status' => 'completed',
+            'minAmount' => 100.0,
+            'maxAmount' => 5000.0
+        ],
+        'Expected general transaction export filters to be normalized.'
+    );
+    assertTrue(
+        WebMcpClientController::normalizeExportTransactionsInput([]) === ['type' => 'all'],
+        'Expected an unfiltered general transaction export to default to all types.'
+    );
+    assertThrows(
+        static fn() => WebMcpClientController::normalizeExportTransactionsInput(['clientIds' => [42]]),
+        'Expected general transaction exports to reject client selectors.'
+    );
+}
 
 echo "webmcp client lookup validation tests passed\n";

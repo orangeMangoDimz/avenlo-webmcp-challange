@@ -1,11 +1,21 @@
 <?php
 
 require_once __DIR__ . '/../controllers/WebMcpClientController.php';
+require_once __DIR__ . '/../controllers/WebMcpKycController.php';
+require_once __DIR__ . '/../controllers/WebMcpIbController.php';
+require_once __DIR__ . '/../controllers/WebMcpAdminLogController.php';
+require_once __DIR__ . '/../controllers/WebMcpSalesController.php';
+require_once __DIR__ . '/../controllers/WebMcpReportController.php';
 require_once __DIR__ . '/../middleware/AuthMiddleware.php';
 require_once __DIR__ . '/../utils/Response.php';
 require_once __DIR__ . '/../services/ApplicationErrorHandler.php';
 
 $controller = new WebMcpClientController();
+$kycController = new WebMcpKycController();
+$ibController = new WebMcpIbController();
+$adminLogController = new WebMcpAdminLogController();
+$salesController = new WebMcpSalesController();
+$reportController = new WebMcpReportController();
 $method = $_SERVER['REQUEST_METHOD'];
 $path = trim((string)($_GET['path'] ?? ''), '/');
 
@@ -22,16 +32,58 @@ try {
         'admin/get-transaction' => ['handler' => 'getTransaction', 'method' => 'GET'],
         'admin/export-clients' => ['handler' => 'exportClients', 'method' => 'POST'],
         'admin/export-client-transactions' => ['handler' => 'exportClientTransactions', 'method' => 'POST'],
+        'admin/export-transactions' => ['handler' => 'exportTransactions', 'method' => 'POST'],
         'admin/export-status' => ['handler' => 'exportStatus', 'method' => 'GET'],
         'admin/export-download' => ['handler' => 'exportDownload', 'method' => 'GET']
     ];
+
+    foreach (WebMcpKycController::routeHandlers() as $kycPath => $handler) {
+        $routes[$kycPath] = [
+            'handler' => $handler,
+            'method' => 'GET',
+            'controller' => $kycController
+        ];
+    }
+
+    foreach (WebMcpIbController::routeHandlers() as $ibPath => $handler) {
+        $routes[$ibPath] = [
+            'handler' => $handler,
+            'method' => 'GET',
+            'controller' => $ibController
+        ];
+    }
+
+    foreach (WebMcpAdminLogController::routeHandlers() as $adminLogPath => $handler) {
+        $routes[$adminLogPath] = [
+            'handler' => $handler,
+            'method' => $adminLogPath === 'admin/export-operation-logs' ? 'POST' : 'GET',
+            'controller' => $adminLogController
+        ];
+    }
+
+    foreach (WebMcpSalesController::routeHandlers() as $salesPath => $handler) {
+        $routes[$salesPath] = [
+            'handler' => $handler,
+            'method' => 'GET',
+            'controller' => $salesController
+        ];
+    }
+
+    foreach (WebMcpReportController::routeHandlers() as $reportPath => $route) {
+        $routes[$reportPath] = [
+            'handler' => $route['handler'],
+            'method' => $route['method'],
+            'controller' => $reportController
+        ];
+    }
 
     if (isset($routes[$path])) {
         $route = $routes[$path];
         if ($method !== $route['method']) {
             Response::error('Method not allowed', 405);
         }
-        $controller->{$route['handler']}();
+        $routeController = $route['controller'] ?? $controller;
+        $routeController->{$route['handler']}();
     }
 
     Response::error('Route not found', 404);

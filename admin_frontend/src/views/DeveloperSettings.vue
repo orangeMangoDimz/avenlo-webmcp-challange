@@ -20,6 +20,8 @@
       </div>
     </div>
 
+    <DeveloperToolsTabs />
+
     <div v-if="loading" class="loading-container">
       <i class="fas fa-spinner fa-spin"></i>
       <p>{{ t("developerSettings_loading", "Loading settings...") }}</p>
@@ -162,6 +164,7 @@
 <script setup>
 import { ref, computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
+import DeveloperToolsTabs from "@/components/layout/DeveloperToolsTabs.vue";
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 import { useAdminI18n } from "@/composables/useAdminI18n";
 import api from "@/services/api";

@@ -2,7 +2,6 @@
   <div class="webmcp-page">
     <div class="webmcp-page-header">
       <div>
-        <p class="webmcp-kicker">{{ t("webmcp_kicker", "Developer tools") }}</p>
         <h1>
           <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
           {{ t("webmcp_overview_title", "WebMCP") }}
@@ -19,6 +18,8 @@
       <PageHeaderActions />
     </div>
 
+    <DeveloperToolsTabs />
+
     <div class="webmcp-overview-grid">
       <section class="webmcp-panel webmcp-control-panel">
         <div class="webmcp-panel-heading">
@@ -31,7 +32,7 @@
               {{
                 t(
                   "webmcp_runtime_description",
-                  "When enabled, this admin session exposes approved client tools through the browser's Model Context API.",
+                  "When enabled, this admin session exposes approved, permission-aware admin tools through the browser's Model Context API.",
                 )
               }}
             </p>
@@ -101,7 +102,7 @@
           {{
             t(
               "webmcp_safety_description",
-              "Every tool checks the signed-in administrator and the same page permissions used by the admin portal before it reads client data.",
+              "Every tool checks the signed-in administrator and the same page permissions used by the admin portal before it reads protected data.",
             )
           }}
         </p>
@@ -116,6 +117,7 @@
 
 <script setup>
 import { computed, onMounted, onUnmounted, ref } from "vue";
+import DeveloperToolsTabs from "@/components/layout/DeveloperToolsTabs.vue";
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 import { WEBMCP_TOOL_CATALOG } from "@/services/adminWebMcpCatalog";
 import {
@@ -184,7 +186,6 @@ onUnmounted(() => {
   border-bottom: 1px solid var(--color-border);
 }
 
-.webmcp-kicker,
 .webmcp-eyebrow {
   margin: 0 0 8px;
   color: var(--color-brand);

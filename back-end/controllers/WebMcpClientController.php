@@ -95,7 +95,7 @@ class WebMcpClientController {
      * @throws InvalidArgumentException
      */
     public static function normalizeSearchInput(array $input): array {
-        $filterKeys = ['country', 'tag', 'neverLoggedIn', 'kycStatus', 'status', 'search'];
+        $filterKeys = ['country', 'tag', 'neverLoggedIn', 'kycStatus', 'status', 'salesAssignment', 'search'];
         $hasFilter = false;
         foreach ($filterKeys as $key) {
             if (array_key_exists($key, $input)) {
@@ -106,7 +106,7 @@ class WebMcpClientController {
 
         if (!$hasFilter) {
             throw new InvalidArgumentException(
-                'At least one search filter is required: country, tag, neverLoggedIn, kycStatus, status, or search.'
+                'At least one search filter is required: country, tag, neverLoggedIn, kycStatus, status, salesAssignment, or search.'
             );
         }
 
@@ -140,6 +140,13 @@ class WebMcpClientController {
                 throw new InvalidArgumentException('neverLoggedIn must be a boolean.');
             }
             $normalized['neverLoggedIn'] = $neverLoggedIn;
+        }
+
+        if (array_key_exists('salesAssignment', $input)) {
+            if (!is_string($input['salesAssignment']) || trim($input['salesAssignment']) !== 'unassigned') {
+                throw new InvalidArgumentException('salesAssignment must be unassigned.');
+            }
+            $normalized['salesAssignment'] = 'unassigned';
         }
 
         $normalized['page'] = self::normalizePositiveInteger($input['page'] ?? 1, 'page', 1000);
@@ -374,6 +381,69 @@ class WebMcpClientController {
         return $normalized;
     }
 
+    /**
+     * Normalize general transaction export filters without a client selector.
+     *
+     * @param array $input
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    public static function normalizeExportTransactionsInput(array $input): array {
+        $allowedKeys = ['dateFrom', 'dateTo', 'type', 'status', 'minAmount', 'maxAmount', 'includeCredit'];
+        $unsupportedKeys = array_diff(array_keys($input), $allowedKeys);
+        if ($unsupportedKeys) {
+            throw new InvalidArgumentException(
+                'Unsupported transaction export filter: ' . (string)$unsupportedKeys[0] . '.'
+            );
+        }
+
+        $normalized = [];
+        foreach (['dateFrom', 'dateTo'] as $key) {
+            if (array_key_exists($key, $input)) {
+                $normalized[$key] = self::normalizeExportDate($input[$key], $key);
+            }
+        }
+        self::validateExportDateRange($normalized, 'dateFrom', 'dateTo');
+
+        $type = strtolower(trim((string)($input['type'] ?? 'all')));
+        $typeAliases = [
+            'deposits' => 'deposit',
+            'withdrawals' => 'withdrawal',
+            'internal-transfer' => 'internal_transfer',
+            'internal-transfers' => 'internal_transfer',
+            'internaltransfer' => 'internal_transfer',
+            'internaltransfers' => 'internal_transfer'
+        ];
+        $type = $typeAliases[$type] ?? $type;
+        if (!in_array($type, ['all', 'deposit', 'withdrawal', 'internal_transfer', 'credit'], true)) {
+            throw new InvalidArgumentException(
+                'type must be one of: all, deposit, withdrawal, internal_transfer, credit.'
+            );
+        }
+        $normalized['type'] = $type;
+
+        if (array_key_exists('includeCredit', $input)) {
+            if (!is_bool($input['includeCredit'])) {
+                throw new InvalidArgumentException('includeCredit must be a boolean.');
+            }
+            $normalized['includeCredit'] = $input['includeCredit'];
+        }
+
+        if (array_key_exists('status', $input)) {
+            $normalized['status'] = self::normalizeOptionalExportString($input['status'], 'status', 50);
+        }
+        foreach (['minAmount', 'maxAmount'] as $key) {
+            if (array_key_exists($key, $input)) {
+                $normalized[$key] = self::normalizeTransactionAmount($input[$key], $key);
+            }
+        }
+        if (isset($normalized['minAmount'], $normalized['maxAmount']) && $normalized['minAmount'] > $normalized['maxAmount']) {
+            throw new InvalidArgumentException('minAmount cannot be greater than maxAmount.');
+        }
+
+        return $normalized;
+    }
+
     private static function normalizeExportClientIds($value): array {
         if (!is_array($value) || count($value) === 0) {
             throw new InvalidArgumentException('clientIds must contain between 1 and ' . self::MAX_EXPORT_CLIENTS . ' client IDs.');
@@ -453,11 +523,11 @@ class WebMcpClientController {
         return $number;
     }
 
-    private function requireClientScope(array $permissionKeys): array {
+    private function requireClientScope(array $permissionKeys, string $scopePagePermissionKey = 'page_clientslist'): array {
         AuthMiddleware::requireAdmin();
         AuthMiddleware::checkAnyPermission($permissionKeys);
 
-        $scope = AdminSalesPermission::getClientDataScopeForPage('page_clientslist');
+        $scope = AdminSalesPermission::getClientDataScopeForPage($scopePagePermissionKey);
         if (($scope['scope'] ?? 'none') === 'none') {
             Response::forbidden('You do not have permission to view clients');
         }
@@ -611,6 +681,12 @@ class WebMcpClientController {
         if (isset($input['status'])) {
             $conditions[] = 'cu.status = :client_status';
             $params['client_status'] = $input['status'];
+        }
+        if (isset($input['salesAssignment'])) {
+            if (($scope['scope'] ?? 'none') !== 'all') {
+                Response::forbidden('You do not have permission to view unassigned clients');
+            }
+            $conditions[] = 'NOT EXISTS (SELECT 1 FROM sales_bind sb_assignment WHERE sb_assignment.clientId = cu.id)';
         }
         if (isset($input['search'])) {
             $searchPattern = '%' . $input['search'] . '%';
@@ -998,7 +1074,7 @@ class WebMcpClientController {
      * GET /api/webmcp/admin/search-transactions
      */
     public function searchTransactions(): void {
-        $scope = $this->requireClientScope(['page_fundingreport_readonly']);
+        $scope = $this->requireClientScope(['page_fundingreport_readonly'], 'page_fundingreport');
         try {
             $input = self::normalizeTransactionSearchInput($_GET);
         } catch (InvalidArgumentException $exception) {
@@ -1016,7 +1092,7 @@ class WebMcpClientController {
      * GET /api/webmcp/admin/get-transaction
      */
     public function getTransaction(): void {
-        $scope = $this->requireClientScope(['page_fundingreport_readonly']);
+        $scope = $this->requireClientScope(['page_fundingreport_readonly'], 'page_fundingreport');
         try {
             $input = self::normalizeGetTransactionInput($_GET);
         } catch (InvalidArgumentException $exception) {
@@ -1187,7 +1263,33 @@ class WebMcpClientController {
      * POST /api/webmcp/admin/export-client-transactions
      */
     public function exportClientTransactions(): void {
+        $this->startExport('transactions', true);
+    }
+
+    /**
+     * POST /api/webmcp/admin/export-transactions
+     */
+    public function exportTransactions(): void {
         $this->startExport('transactions');
+    }
+
+    /**
+     * Report-scoped transaction export. Accepts Report date names and excludes
+     * credit deals so the file matches Funding Report totals and filters.
+     */
+    public function exportFundingReport(?array $inputOverride = null): void {
+        $raw = $inputOverride ?? $this->requestJsonBody();
+        $mapped = $raw;
+        if (array_key_exists('startDate', $mapped)) {
+            $mapped['dateFrom'] = $mapped['startDate'];
+            unset($mapped['startDate']);
+        }
+        if (array_key_exists('endDate', $mapped)) {
+            $mapped['dateTo'] = $mapped['endDate'];
+            unset($mapped['endDate']);
+        }
+        $mapped['includeCredit'] = false;
+        $this->startExport('transactions', false, $mapped);
     }
 
     /**
@@ -1242,18 +1344,27 @@ class WebMcpClientController {
         exit;
     }
 
-    private function startExport(string $exportType): void {
+    private function startExport(
+        string $exportType,
+        bool $clientScopedTransactions = false,
+        ?array $rawInputOverride = null
+    ): void {
         require_once __DIR__ . '/../services/WebMcpClientExportService.php';
         $permissionKeys = $exportType === 'clients'
             ? ['page_clientslist_export']
             : ['page_fundingreport_export'];
-        $scope = $this->requireClientScope($permissionKeys);
+        $scopePagePermissionKey = $exportType === 'transactions'
+            ? 'page_fundingreport'
+            : 'page_clientslist';
+        $scope = $this->requireClientScope($permissionKeys, $scopePagePermissionKey);
 
         try {
-            $rawInput = $this->requestJsonBody();
+            $rawInput = $rawInputOverride ?? $this->requestJsonBody();
             $input = $exportType === 'clients'
                 ? self::normalizeExportClientInput($rawInput)
-                : self::normalizeExportTransactionInput($rawInput);
+                : ($clientScopedTransactions
+                    ? self::normalizeExportTransactionInput($rawInput)
+                    : self::normalizeExportTransactionsInput($rawInput));
         } catch (InvalidArgumentException $exception) {
             Response::error($exception->getMessage(), 422);
         }
@@ -1286,7 +1397,10 @@ class WebMcpClientController {
         }
 
         $jobId = 'wmcp_' . $exportType . '_' . bin2hex(random_bytes(12));
-        $fileName = ($exportType === 'clients' ? 'clients_' : 'client_transactions_') . date('Y-m-d') . '.xls';
+        $filePrefix = $exportType === 'clients'
+            ? 'clients_'
+            : ($clientScopedTransactions ? 'client_transactions_' : 'transactions_');
+        $fileName = $filePrefix . date('Y-m-d') . '.xls';
         $progress = [
             'adminUserId' => $adminUserId,
             'exportType' => $exportType,
@@ -1359,7 +1473,10 @@ class WebMcpClientController {
         if (!$permissionKeys) {
             Response::notFound('Export job not found');
         }
-        $this->requireClientScope($permissionKeys);
+        $this->requireClientScope(
+            $permissionKeys,
+            $exportType === 'transactions' ? 'page_fundingreport' : 'page_clientslist'
+        );
 
         return [$progress, $adminUserId];
     }
