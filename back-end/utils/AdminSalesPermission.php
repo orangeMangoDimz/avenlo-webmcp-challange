@@ -25,6 +25,32 @@ class AdminSalesPermission {
     }
 
     /**
+     * Current administrator's sales-tool visibility.
+     * Management and super admins can view every sales user; a sales user can
+     * view only themselves. Daily-report permission is tracked independently.
+     */
+    public static function getCurrentSalesAccess(): array {
+        $ctx = self::resolveSalesContext();
+        $isSuperAdmin = (int)$ctx['role_id'] === 1;
+        $canViewAllSales = $isSuperAdmin || $ctx['is_sales_management'];
+        $canViewSales = $canViewAllSales || $ctx['is_sales'];
+        $canViewDaily = false;
+        if ((int)$ctx['admin_user_id'] > 0) {
+            $canViewDaily = (new AdminPermission())->userHasPermission(
+                (int)$ctx['admin_user_id'],
+                'page_dailyreport_readonly'
+            );
+        }
+
+        return array_merge($ctx, [
+            'is_super_admin' => $isSuperAdmin,
+            'can_view_sales' => $canViewSales,
+            'can_view_all_sales' => $canViewAllSales,
+            'can_view_daily' => $canViewDaily,
+        ]);
+    }
+
+    /**
      * 按页面 permissionKey 计算客户/IB 数据范围
      * @param string $pagePermissionKey 如 page_leads、page_iblist
      * @return array {

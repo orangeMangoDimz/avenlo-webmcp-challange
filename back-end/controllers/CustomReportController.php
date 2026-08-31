@@ -11,6 +11,8 @@ require_once __DIR__ . '/../utils/AdminSalesPermission.php';
 require_once __DIR__ . '/../services/OperationLog/CustomReportOperationLog.php';
 
 class CustomReportController {
+    private const MAX_TABLE_VISIBLE_COLUMNS = 10;
+
     /**
      * GET /api/custom-reports
      */
@@ -2824,8 +2826,8 @@ class CustomReportController {
     private function attachPageState(array $view, $raw, $kind) {
         $source = is_array($raw) ? $raw : [];
         $isChart = $kind === 'chart';
-        $allowed = $isChart ? [50, 100, 150] : [1000, 2000, 5000];
-        $defaultPerPage = $isChart ? 50 : 1000;
+        $allowed = $isChart ? [50, 100, 150] : [50, 100, 200];
+        $defaultPerPage = $isChart ? 50 : 100;
         $perPage = (int)($source['perPage'] ?? $defaultPerPage);
         if (!in_array($perPage, $allowed, true)) {
             $perPage = $defaultPerPage;
@@ -2863,6 +2865,7 @@ class CustomReportController {
         ];
         if (array_key_exists('visibleColumns', $source) && is_array($source['visibleColumns'])) {
             $visible = $this->sanitizeColumnNameList($source['visibleColumns'], $fields);
+            $visible = array_slice($visible, 0, self::MAX_TABLE_VISIBLE_COLUMNS);
             if (!$visible && $clean['columnOrder']) {
                 $visible = [ $clean['columnOrder'][0] ];
             }

@@ -191,6 +191,21 @@
           </div>
         </div>
       </el-config-provider>
+      <div v-if="appliedWebMcpFilters.length" class="olr-webmcp-filters">
+        <strong>{{
+          t("operationLogReport_webmcpFilters", "Applied WebMCP filters")
+        }}</strong>
+        <button
+          v-for="filter in appliedWebMcpFilters"
+          :key="filter.key"
+          type="button"
+          class="olr-webmcp-filter"
+          @click="clearWebMcpFilter(filter.key)"
+        >
+          {{ filter.label }}
+          <i class="fas fa-xmark" aria-hidden="true"></i>
+        </button>
+      </div>
     </div>
 
     <div class="olr-table-wrap">
@@ -219,7 +234,9 @@
               <option :value="5">{{ t("ibList_rows_5") }}</option>
               <option :value="10">{{ t("ibList_rows_10") }}</option>
               <option :value="20">{{ t("ibList_rows_20") }}</option>
-              <option value="all">{{ t("ibList_rows_all") }}</option>
+              <option v-if="activeModuleKey !== 'all'" value="all">
+                {{ t("ibList_rows_all") }}
+              </option>
             </select>
           </div>
         </div>
@@ -370,6 +387,7 @@
 
 <script setup>
 import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
 import { ElConfigProvider, ElDatePicker } from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
 import en from "element-plus/es/locale/lang/en";
@@ -379,6 +397,7 @@ import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 import ExportProgressBanner from "@/components/common/ExportProgressBanner.vue";
 import { useAdminI18n } from "@/composables/useAdminI18n";
 import { useAsyncReportExport } from "@/composables/useAsyncReportExport";
+import { hydrateOperationLogRouteQuery } from "@/services/operationLogWebMcpNavigation";
 import {
   fetchOperationLogReportInit,
   fetchOperationLogReports,
@@ -390,6 +409,7 @@ import {
 } from "@/services/operationLogReportApi";
 
 const { t, tParams, languageStore } = useAdminI18n();
+const route = useRoute();
 
 const {
   exportJobId,
@@ -451,6 +471,12 @@ const filters = ref({
   operationType: "all",
   subModule: "all",
 });
+const webMcpFilters = ref({
+  operatorId: null,
+  targetType: "",
+  targetId: null,
+  query: "",
+});
 
 const listItems = ref([]);
 const pagination = ref({ total: 0, page: 1, per_page: 10, total_pages: 1 });
@@ -469,6 +495,31 @@ const isReportModuleTab = computed(
 );
 
 const tableColumnCount = computed(() => (isReportModuleTab.value ? 6 : 8));
+
+const appliedWebMcpFilters = computed(() => {
+  const items = [];
+  if (webMcpFilters.value.operatorId) {
+    items.push({
+      key: "operatorId",
+      label: `Operator ID: ${webMcpFilters.value.operatorId}`,
+    });
+  }
+  if (webMcpFilters.value.targetType) {
+    items.push({
+      key: "target",
+      label: `Target: ${webMcpFilters.value.targetType}${
+        webMcpFilters.value.targetId ? ` #${webMcpFilters.value.targetId}` : ""
+      }`,
+    });
+  }
+  if (webMcpFilters.value.query) {
+    items.push({
+      key: "query",
+      label: `Audit text: ${webMcpFilters.value.query}`,
+    });
+  }
+  return items;
+});
 
 const totalPagesText = computed(() =>
   String(pagination.value.total_pages || 1),
@@ -577,6 +628,10 @@ function buildQueryParams() {
     keyword: filters.value.keyword.trim(),
     sub_module: filters.value.subModule,
     operation_type: filters.value.operationType,
+    operator_id: webMcpFilters.value.operatorId || undefined,
+    target_type: webMcpFilters.value.targetType || undefined,
+    target_id: webMcpFilters.value.targetId || undefined,
+    query: webMcpFilters.value.query || undefined,
     page: currentPage.value,
     per_page: perPage.value,
   };
@@ -590,6 +645,10 @@ function buildExportBody() {
     keyword: filters.value.keyword.trim(),
     subModule: filters.value.subModule,
     operationType: filters.value.operationType,
+    operatorId: webMcpFilters.value.operatorId || undefined,
+    targetType: webMcpFilters.value.targetType || undefined,
+    targetId: webMcpFilters.value.targetId || undefined,
+    query: webMcpFilters.value.query || undefined,
   };
 }
 
@@ -622,6 +681,9 @@ async function loadList() {
 
 async function switchModule(modelKey) {
   activeModuleKey.value = modelKey;
+  if (modelKey === "all" && perPage.value === "all") {
+    perPage.value = 20;
+  }
   filters.value.subModule = "all";
   if (modelKey === REPORT_MODULE_KEY) {
     filters.value.operationType = "all";
@@ -640,6 +702,25 @@ async function resetFilters() {
   filters.value.keyword = "";
   filters.value.operationType = "all";
   filters.value.subModule = "all";
+  webMcpFilters.value = {
+    operatorId: null,
+    targetType: "",
+    targetId: null,
+    query: "",
+  };
+  currentPage.value = 1;
+  await loadList();
+}
+
+async function clearWebMcpFilter(key) {
+  if (key === "target") {
+    webMcpFilters.value.targetType = "";
+    webMcpFilters.value.targetId = null;
+  } else if (key === "operatorId") {
+    webMcpFilters.value.operatorId = null;
+  } else if (key === "query") {
+    webMcpFilters.value.query = "";
+  }
   currentPage.value = 1;
   await loadList();
 }
@@ -721,13 +802,34 @@ onMounted(async () => {
     perPage.value = defaults.perPage || 10;
     currentPage.value = defaults.page || 1;
     const list = data.list || {};
-    listItems.value = list.items || [];
-    pagination.value = list.pagination || {
-      total: 0,
-      page: 1,
-      per_page: 10,
-      total_pages: 1,
-    };
+    const hydrated = hydrateOperationLogRouteQuery(route.query);
+    if (hydrated) {
+      activeModuleKey.value = moduleTabs.value.some(
+        (tab) => tab.modelKey === hydrated.modelKey,
+      )
+        ? hydrated.modelKey
+        : "all";
+      filters.value.startDate = hydrated.startDate;
+      filters.value.endDate = hydrated.endDate;
+      filters.value.subModule = hydrated.subModule;
+      filters.value.operationType = hydrated.operationType;
+      webMcpFilters.value = {
+        operatorId: hydrated.operatorId || null,
+        targetType: hydrated.targetType || "",
+        targetId: hydrated.targetId || null,
+        query: hydrated.query || "",
+      };
+      currentPage.value = 1;
+      await loadList();
+    } else {
+      listItems.value = list.items || [];
+      pagination.value = list.pagination || {
+        total: 0,
+        page: 1,
+        per_page: 10,
+        total_pages: 1,
+      };
+    }
   } catch {
     initDefaultDates();
   } finally {
@@ -825,6 +927,31 @@ onMounted(async () => {
   margin-bottom: 24px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
   border: 1px solid var(--color-border);
+}
+
+.olr-webmcp-filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.olr-webmcp-filter {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 9px;
+  border: 1px solid color-mix(in srgb, var(--color-brand) 35%, var(--color-border));
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-brand) 8%, var(--color-surface));
+  color: var(--color-brand);
+  cursor: pointer;
+  font: inherit;
 }
 
 .olr-filter-row--main {

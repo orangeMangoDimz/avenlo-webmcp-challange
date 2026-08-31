@@ -182,10 +182,11 @@
     <div class="date-filter-section">
       <el-config-provider :locale="elementPlusLocale">
         <div class="date-filter-container">
-          <span class="date-filter-label">{{
-            t("fundingReport_timePeriod")
-          }}</span>
-          <div class="date-filter-presets">
+          <div class="date-filter-row date-filter-row--presets">
+            <span class="date-filter-label">{{
+              t("fundingReport_timePeriod")
+            }}</span>
+            <div class="date-filter-presets">
             <button
               :class="['preset-btn', { active: activePreset === 'today' }]"
               @click="selectPreset('today')"
@@ -210,8 +211,10 @@
             >
               {{ t("fundingReport_preset_quarter") }}
             </button>
+            </div>
           </div>
-          <div class="date-input-wrapper">
+          <div class="date-filter-row date-filter-row--controls">
+            <div class="date-input-wrapper">
             <label>{{ t("fundingReport_fromDate") }}</label>
             <el-date-picker
               v-model="startDate"
@@ -221,8 +224,8 @@
               class="filter-date"
               clearable
             />
-          </div>
-          <div class="date-input-wrapper">
+            </div>
+            <div class="date-input-wrapper">
             <label>{{ t("fundingReport_toDate") }}</label>
             <el-date-picker
               v-model="endDate"
@@ -232,14 +235,15 @@
               class="filter-date"
               clearable
             />
+            </div>
+            <button
+              type="button"
+              class="btn-apply-filter"
+              @click="applyDateFilter"
+            >
+              <i class="fas fa-filter"></i> {{ t("fundingReport_applyFilter") }}
+            </button>
           </div>
-          <button
-            type="button"
-            class="btn-apply-filter"
-            @click="applyDateFilter"
-          >
-            <i class="fas fa-filter"></i> {{ t("fundingReport_applyFilter") }}
-          </button>
         </div>
       </el-config-provider>
     </div>

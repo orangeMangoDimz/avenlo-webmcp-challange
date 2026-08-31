@@ -1,5 +1,13 @@
 import api from "./api";
 
+export const normalizeSalesDashboardId = (value) => {
+  const id =
+    typeof value === "string" && /^\d+$/.test(value.trim())
+      ? Number(value.trim())
+      : value;
+  return Number.isSafeInteger(id) && id > 0 ? id : null;
+};
+
 /**
  * Sales 列表与统计 API（统一在 sales.php）
  */
@@ -39,6 +47,17 @@ const salesApi = {
    */
   async getMe() {
     const res = await api.get("/sales", { params: { subpath: "me" } });
+    const data = res?.data ?? res;
+    return data?.data ?? data;
+  },
+
+  /**
+   * One authorized Sales profile for a selected dashboard.
+   */
+  async getById(salesId) {
+    const id = normalizeSalesDashboardId(salesId);
+    if (id === null) throw new Error("Invalid sales id");
+    const res = await api.get("/sales", { params: { subpath: String(id) } });
     const data = res?.data ?? res;
     return data?.data ?? data;
   },

@@ -11,6 +11,7 @@ class OperationLogReportExportService
 {
     private const BATCH_SIZE = 500;
     private const REPORT_MODULE_KEY = 'log_report';
+    private const EXPORT_REUSE_SECONDS = 600;
 
     private static function exportDir(): string
     {
@@ -69,6 +70,16 @@ class OperationLogReportExportService
             $existing = is_string($raw) && $raw !== '' ? json_decode($raw, true) : null;
             if (!is_array($existing)) {
                 $existing = [];
+            }
+
+            foreach ([
+                'exportType', 'inputFingerprint', 'query', 'completedAt',
+                'downloadRequestedAt', 'downloadRequestCount', 'matchedTotal',
+                'truncated',
+            ] as $key) {
+                if (!array_key_exists($key, $data) && array_key_exists($key, $existing)) {
+                    $data[$key] = $existing[$key];
+                }
             }
 
             require_once __DIR__ . '/ExportProgressGuard.php';
@@ -200,6 +211,119 @@ class OperationLogReportExportService
         return $progress;
     }
 
+    public static function inputFingerprint(int $adminUserId, array $query): string
+    {
+        $payload = [
+            'adminUserId' => $adminUserId,
+            'query' => self::sortFingerprintValue($query),
+        ];
+        $json = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if ($json === false) {
+            throw new RuntimeException('Unable to fingerprint export input.');
+        }
+        return hash('sha256', $json);
+    }
+
+    public static function canReuseCompletedExport(?array $progress, string $inputFingerprint): bool
+    {
+        if (
+            $progress === null
+            || ($progress['status'] ?? '') !== 'done'
+            || !is_string($progress['inputFingerprint'] ?? null)
+            || !hash_equals((string)$progress['inputFingerprint'], $inputFingerprint)
+        ) {
+            return false;
+        }
+        $completedAt = strtotime((string)($progress['completedAt'] ?? $progress['updatedAt'] ?? ''));
+        return $completedAt !== false
+            && $completedAt > 0
+            && (time() - $completedAt) <= self::EXPORT_REUSE_SECONDS;
+    }
+
+    public static function escapeCsvCell($value): string
+    {
+        $value = (string)$value;
+        return preg_match('/^[=+\-@]/', $value) === 1 ? "'" . $value : $value;
+    }
+
+    public static function queueForAdmin(int $adminUserId, array $query): array
+    {
+        if ($adminUserId <= 0) {
+            throw new RuntimeException('Unauthorized.');
+        }
+        $filters = is_array($query['filters'] ?? null) ? $query['filters'] : [];
+        $modelKey = trim((string)($filters['modelKey'] ?? ''));
+        if ($modelKey === '') {
+            throw new RuntimeException('modelKey is required.');
+        }
+        $query['language'] = strtolower((string)($query['language'] ?? 'en')) === 'zh' ? 'zh' : 'en';
+        $query['filters'] = $filters;
+
+        $fingerprint = self::inputFingerprint($adminUserId, $query);
+        $active = self::getActiveForAdmin($adminUserId);
+        $activeStatus = (string)($active['status'] ?? '');
+        if (in_array($activeStatus, ['queued', 'running', 'cancelling'], true)) {
+            if (
+                is_string($active['inputFingerprint'] ?? null)
+                && hash_equals((string)$active['inputFingerprint'], $fingerprint)
+            ) {
+                return self::queuedPayload($active, false, true);
+            }
+            throw new RuntimeException('An operation-log export is already in progress.');
+        }
+        if (self::canReuseCompletedExport($active, $fingerprint)) {
+            return self::queuedPayload($active, false, true);
+        }
+        if ($active !== null) {
+            self::clearActive($adminUserId);
+        }
+
+        $jobId = str_replace('.', '', uniqid('aolr_', true));
+        $fileName = 'operation-log-report_' . date('Y-m-d') . '.csv';
+        $progress = [
+            'adminUserId' => $adminUserId,
+            'exportType' => 'operation_logs',
+            'status' => 'queued',
+            'cancelRequested' => false,
+            'percent' => 0,
+            'processed' => 0,
+            'total' => 0,
+            'message' => 'Queued',
+            'downloadReady' => false,
+            'downloadRequestedAt' => null,
+            'downloadRequestCount' => 0,
+            'inputFingerprint' => $fingerprint,
+            'query' => $query,
+            'file' => $jobId . '.csv',
+            'fileName' => $fileName,
+        ];
+
+        self::ensureExportDir();
+        self::writeProgress($jobId, $progress);
+        self::writeActive($adminUserId, $jobId);
+        try {
+            self::dispatchSwooleTask([
+                'type' => 'export_admin_operation_log_report',
+                'jobId' => $jobId,
+                'adminUserId' => $adminUserId,
+                'userId' => $adminUserId,
+                'userType' => 'admin',
+                'query' => $query,
+                'requestedAt' => time(),
+            ]);
+        } catch (Throwable $exception) {
+            self::clearActive($adminUserId);
+            self::writeProgress($jobId, array_merge($progress, [
+                'status' => 'error',
+                'message' => 'Unable to queue export.',
+                'file' => null,
+            ]));
+            throw new RuntimeException('Unable to queue export.');
+        }
+
+        return self::queuedPayload(array_merge($progress, ['jobId' => $jobId]), true, false);
+    }
+
     public function run(array $data): void
     {
         $jobId = (string)($data['jobId'] ?? '');
@@ -328,7 +452,16 @@ class OperationLogReportExportService
             return;
         }
 
-        $this->finishDone($jobId, $adminUserId, $processed, $total, $csvFile, $fileName);
+        $this->finishDone(
+            $jobId,
+            $adminUserId,
+            $processed,
+            $total,
+            $matched,
+            $truncated,
+            $csvFile,
+            $fileName
+        );
 
         $range = '';
         if (!empty($filters['startDate']) || !empty($filters['endDate'])) {
@@ -381,7 +514,7 @@ class OperationLogReportExportService
         }
         $out[] = $this->pickZhEn($row, 'detailZh', 'detailEn', $zh);
         $out[] = (string)($row['ipAddress'] ?? '');
-        return $out;
+        return array_map([self::class, 'escapeCsvCell'], $out);
     }
 
     private function operationTypeMap(): array
@@ -584,6 +717,8 @@ class OperationLogReportExportService
         int $adminUserId,
         int $processed,
         int $total,
+        int $matchedTotal,
+        bool $truncated,
         string $csvFile,
         string $fileName
     ): void {
@@ -594,10 +729,60 @@ class OperationLogReportExportService
             'percent' => 100,
             'processed' => $processed,
             'total' => $total,
+            'matchedTotal' => $matchedTotal,
+            'truncated' => $truncated,
             'message' => $total > 0 ? 'Export ready' : 'No data to export',
             'downloadReady' => true,
+            'completedAt' => date('Y-m-d H:i:s'),
             'file' => basename($csvFile),
             'fileName' => $fileName !== '' ? $fileName : basename($csvFile),
         ]);
+    }
+
+    private static function sortFingerprintValue($value)
+    {
+        if (!is_array($value)) {
+            return $value;
+        }
+        if (array_keys($value) !== range(0, count($value) - 1)) {
+            ksort($value);
+        }
+        foreach ($value as $key => $item) {
+            $value[$key] = self::sortFingerprintValue($item);
+        }
+        return $value;
+    }
+
+    private static function queuedPayload(array $progress, bool $queued, bool $reused): array
+    {
+        return [
+            'jobId' => (string)($progress['jobId'] ?? ''),
+            'exportType' => 'operation_logs',
+            'fileName' => (string)($progress['fileName'] ?? ''),
+            'queued' => $queued,
+            'reused' => $reused,
+            'downloadRequestedAt' => $progress['downloadRequestedAt'] ?? null,
+        ];
+    }
+
+    private static function dispatchSwooleTask(array $payload): void
+    {
+        $address = config_swoole_address();
+        $errno = 0;
+        $errstr = '';
+        $socket = @stream_socket_client($address, $errno, $errstr, 1.0);
+        if (!$socket) {
+            throw new RuntimeException('Failed to connect myswoole.');
+        }
+        $json = json_encode($payload, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        if ($json === false) {
+            fclose($socket);
+            throw new RuntimeException('Failed to encode export task.');
+        }
+        $written = @fwrite($socket, $json . '$$$###');
+        fclose($socket);
+        if ($written === false || $written <= 0) {
+            throw new RuntimeException('Failed to send export task.');
+        }
     }
 }

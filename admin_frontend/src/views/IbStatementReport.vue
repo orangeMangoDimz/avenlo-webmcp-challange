@@ -102,10 +102,11 @@
       <div class="date-filter-section">
         <el-config-provider :locale="elementPlusLocale">
           <div class="date-filter-container">
-            <span class="date-filter-label">{{
-              t("ibReport_timePeriod", "Time Period:")
-            }}</span>
-            <div class="date-filter-presets">
+            <div class="date-filter-row date-filter-row--presets">
+              <span class="date-filter-label">{{
+                t("ibReport_timePeriod", "Time Period:")
+              }}</span>
+              <div class="date-filter-presets">
               <button
                 type="button"
                 :class="['preset-btn', { active: activePreset === 'today' }]"
@@ -134,8 +135,10 @@
               >
                 {{ t("ibReport_preset_year", "This Year") }}
               </button>
+              </div>
             </div>
-            <div class="date-input-wrapper">
+            <div class="date-filter-row date-filter-row--controls">
+              <div class="date-input-wrapper">
               <label>{{ t("ibReport_fromDate", "From Date") }}</label>
               <el-date-picker
                 v-model="startDate"
@@ -146,8 +149,8 @@
                 clearable
                 @change="activePreset = ''"
               />
-            </div>
-            <div class="date-input-wrapper">
+              </div>
+              <div class="date-input-wrapper">
               <label>{{ t("ibReport_toDate", "To Date") }}</label>
               <el-date-picker
                 v-model="endDate"
@@ -158,17 +161,17 @@
                 clearable
                 @change="activePreset = ''"
               />
-            </div>
-            <button
-              type="button"
-              class="btn-apply-filter"
-              :disabled="loading"
-              @click="loadStatement"
-            >
-              <i class="fas fa-filter"></i>
-              {{ t("ibReport_applyFilter", "Apply Filter") }}
-            </button>
-            <div v-if="hasExportPermission" class="export-wrap">
+              </div>
+              <button
+                type="button"
+                class="btn-apply-filter"
+                :disabled="loading"
+                @click="loadStatement"
+              >
+                <i class="fas fa-filter"></i>
+                {{ t("ibReport_applyFilter", "Apply Filter") }}
+              </button>
+              <div v-if="hasExportPermission" class="export-wrap">
               <button
                 type="button"
                 class="btn-export"
@@ -193,6 +196,7 @@
                   <i class="fas fa-file-excel"></i>
                   <span>{{ t("fundingReport_export_excel", "Excel") }}</span>
                 </div>
+              </div>
               </div>
             </div>
           </div>

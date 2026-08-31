@@ -1800,27 +1800,7 @@
               class="table-scroll table-scroll--limited"
               ref="tableScrollRef"
             >
-              <table
-                class="transaction-table"
-                :style="{ width: displayTableWidth + 'px' }"
-              >
-                <colgroup>
-                  <col :style="{ width: CHECKBOX_COL_WIDTH + 'px' }" />
-                  <col
-                    v-for="col in tableColumns"
-                    :key="col.field"
-                    :style="{
-                      width:
-                        (columnWidths[col.field] || DEFAULT_COL_WEIGHT) + 'px',
-                      minWidth:
-                        (columnWidths[col.field] || DEFAULT_COL_WEIGHT) + 'px',
-                    }"
-                  />
-                  <col
-                    v-if="hasDetailPanels"
-                    :style="{ width: DETAIL_COL_WIDTH + 'px' }"
-                  />
-                </colgroup>
+              <table class="transaction-table">
                 <thead>
                   <tr>
                     <th class="checkbox-col">
@@ -3477,9 +3457,35 @@ const filterColumns = computed(() => {
   return order.map((name) => defs[name]).filter(Boolean);
 });
 
-const tableColumns = computed(() =>
-  filterColumns.value.filter((col) => visibleColumns.value[col.field]),
-);
+const inferredTableColumns = computed(() => {
+  const sample = transactions.value.find(
+    (row) => row && typeof row === "object" && !Array.isArray(row),
+  );
+  if (!sample) return [];
+
+  return Object.keys(sample).map((field) => ({
+    field,
+    label: field
+      .replace(/([a-z])([A-Z])/g, "$1 $2")
+      .replace(/[_-]+/g, " ")
+      .replace(/^./, (char) => char.toUpperCase()),
+    icon: "Aa",
+    type: "text",
+    role: "dimension",
+  }));
+});
+
+const tableColumns = computed(() => {
+  const configured = filterColumns.value.filter(
+    (col) => visibleColumns.value[col.field],
+  );
+  if (configured.length) return configured.slice(0, MAX_TABLE_VISIBLE_COLUMNS);
+
+  // A saved view with no visible columns must never render a checkbox-only grid.
+  return filterColumns.value.length
+    ? filterColumns.value.slice(0, MAX_TABLE_VISIBLE_COLUMNS)
+    : inferredTableColumns.value.slice(0, MAX_TABLE_VISIBLE_COLUMNS);
+});
 
 const detailPanels = computed(() => widgetMeta.value?.detailPanels || []);
 const hasDetailPanels = computed(() => detailPanels.value.length > 0);
@@ -4018,9 +4024,10 @@ const pageTitle = computed(() => {
 const TYPE_ID_PATTERN = /^[A-Za-z0-9_-]+$/;
 const MAX_WIDGET_TYPES = 20;
 const CHART_PER_PAGE_OPTIONS = [50, 100, 150];
-const TABLE_PER_PAGE_OPTIONS = [1000, 2000, 5000];
+const TABLE_PER_PAGE_OPTIONS = [50, 100, 200];
+const MAX_TABLE_VISIBLE_COLUMNS = 10;
 const DEFAULT_CHART_PER_PAGE = 50;
-const DEFAULT_TABLE_PER_PAGE = 1000;
+const DEFAULT_TABLE_PER_PAGE = 100;
 
 const activeView = ref("");
 const widgetTypes = ref([]);
@@ -5483,7 +5490,10 @@ const applyQueryState = (saved) => {
 const currentVisibleColumnNames = () => {
   const names = sourceFields.value.map((field) => field.columnName);
   const shown = names.filter((name) => visibleColumns.value[name] !== false);
-  return shown.length ? shown : names.slice(0, 1);
+  return (shown.length ? shown : names.slice(0, 1)).slice(
+    0,
+    MAX_TABLE_VISIBLE_COLUMNS,
+  );
 };
 
 const ACCOUNTS_DEFAULT_VISIBLE = [
@@ -5507,9 +5517,9 @@ const defaultVisibleColumnNames = () => {
     const preferred = ACCOUNTS_DEFAULT_VISIBLE.filter((name) =>
       names.includes(name),
     );
-    if (preferred.length) return preferred;
+    if (preferred.length) return preferred.slice(0, MAX_TABLE_VISIBLE_COLUMNS);
   }
-  return names;
+  return names.slice(0, MAX_TABLE_VISIBLE_COLUMNS);
 };
 
 const applySavedVisibleColumns = (saved) => {
@@ -5524,7 +5534,11 @@ const applySavedVisibleColumns = (saved) => {
     visibleColumns.value = vis;
     return;
   }
-  const shown = new Set(saved.filter((name) => names.includes(name)));
+  const shown = new Set(
+    saved
+      .filter((name) => names.includes(name))
+      .slice(0, MAX_TABLE_VISIBLE_COLUMNS),
+  );
   if (!shown.size) shown.add(names[0]);
   names.forEach((name) => {
     vis[name] = shown.has(name);
@@ -5691,6 +5705,23 @@ const applySourceFields = () => {
   sorts.value = sortField
     ? [{ id: sortIdSeq++, field: sortField, direction: DEFAULT_SORT_DIRECTION }]
     : [];
+};
+
+const restoreVisibleColumns = () => {
+  if (!filterColumns.value.length) return;
+  const next = { ...visibleColumns.value };
+  const shown = filterColumns.value.filter(
+    (col) => visibleColumns.value[col.field],
+  );
+  const visibleFields = new Set(
+    (shown.length ? shown : filterColumns.value)
+      .slice(0, MAX_TABLE_VISIBLE_COLUMNS)
+      .map((col) => col.field),
+  );
+  filterColumns.value.forEach((col) => {
+    next[col.field] = visibleFields.has(col.field);
+  });
+  visibleColumns.value = next;
 };
 
 const persistViewConfig = async () => {
@@ -6061,6 +6092,7 @@ const loadMeta = async () => {
       skipPersist.value = true;
       applySourceFields();
       applyViewConfig(widgetMeta.value.viewConfig);
+      restoreVisibleColumns();
       await nextTick();
       skipPersist.value = false;
     }
@@ -6103,12 +6135,17 @@ const onFilterRuleValueInput = (rule, raw) => {
 };
 
 const loadTransactions = async () => {
+  restoreVisibleColumns();
+  const normalizedPerPage = normalizeTablePerPage(perPage.value);
+  if (perPage.value !== normalizedPerPage) {
+    perPage.value = normalizedPerPage;
+  }
   const showFullLoading = loading.value || transactions.value.length === 0;
   if (showFullLoading) loading.value = true;
   try {
     const params = {
       page: currentPage.value,
-      per_page: perPage.value,
+      per_page: normalizedPerPage,
     };
     if (sortActive.value && sorts.value.length) {
       params.sorts = JSON.stringify(
@@ -6160,6 +6197,22 @@ const loadTransactions = async () => {
     loading.value = false;
   }
 };
+
+watch(
+  perPage,
+  (value) => {
+    const normalized = normalizeTablePerPage(value);
+    if (value === normalized) return;
+
+    perPage.value = normalized;
+    if (!widgetMeta.value || activeKind.value !== "table") return;
+
+    currentPage.value = 1;
+    persistTypeQuery();
+    loadTransactions();
+  },
+  { immediate: true },
+);
 
 const handleSearch = () => {
   clearTimeout(searchTimer);
@@ -8937,7 +8990,7 @@ onUnmounted(() => {
   width: max-content;
   min-width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 .table-scroll {
@@ -8981,6 +9034,14 @@ onUnmounted(() => {
   text-overflow: ellipsis;
   white-space: nowrap;
   min-width: 200px;
+}
+
+.transaction-table th.checkbox-col,
+.transaction-table td.checkbox-col {
+  width: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  padding: 16px 10px !important;
 }
 
 .transaction-table th.sortable {

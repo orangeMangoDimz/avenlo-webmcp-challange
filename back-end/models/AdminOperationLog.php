@@ -32,8 +32,46 @@ class AdminOperationLog extends BaseModel {
      * @return array{where:string,params:array,binds:array}
      */
     public function buildListWhere(array $filters) {
-        $where = ['l.modelKey = :modelKey'];
-        $params = ['modelKey' => trim((string) ($filters['modelKey'] ?? ''))];
+        $where = [];
+        $params = [];
+
+        $modelKey = trim((string) ($filters['modelKey'] ?? ''));
+        if ($modelKey !== '' && $modelKey !== 'all') {
+            $where[] = 'l.modelKey = :modelKey';
+            $params['modelKey'] = $modelKey;
+        } elseif ($modelKey === 'all' && !empty($filters['modelKeys']) && is_array($filters['modelKeys'])) {
+            $modelConditions = [];
+            foreach (array_values($filters['modelKeys']) as $index => $visibleModelKey) {
+                $visibleModelKey = trim((string)$visibleModelKey);
+                if ($visibleModelKey === '') {
+                    continue;
+                }
+                $param = 'visibleModelKey' . $index;
+                $modelConditions[] = "l.modelKey = :{$param}";
+                $params[$param] = $visibleModelKey;
+            }
+            if ($modelConditions) {
+                $where[] = '(' . implode(' OR ', $modelConditions) . ')';
+            }
+        }
+
+        $logId = (int)($filters['logId'] ?? 0);
+        if ($logId > 0) {
+            $where[] = 'l.id = :logId';
+            $params['logId'] = $logId;
+        }
+
+        $operatorId = (int)($filters['operatorId'] ?? 0);
+        if ($operatorId > 0) {
+            $where[] = 'l.operatorId = :operatorId';
+            $params['operatorId'] = $operatorId;
+        }
+
+        $targetId = (int)($filters['targetId'] ?? 0);
+        if ($targetId > 0) {
+            $where[] = 'l.targetId = :targetId';
+            $params['targetId'] = $targetId;
+        }
 
         $startDate = trim((string) ($filters['startDate'] ?? ''));
         if ($startDate !== '' && preg_match('/^\d{4}-\d{2}-\d{2}$/', $startDate)) {
@@ -63,6 +101,47 @@ class AdminOperationLog extends BaseModel {
         if ($keyword !== '') {
             $where[] = '(CAST(l.operatorId AS CHAR) LIKE :kw OR au.fullName LIKE :kw)';
             $params['kw'] = '%' . $keyword . '%';
+        }
+
+        $query = trim((string)($filters['query'] ?? ''));
+        if ($query !== '') {
+            $where[] = '(CAST(l.id AS CHAR) LIKE :auditQuery
+                OR CAST(l.operatorId AS CHAR) LIKE :auditQuery
+                OR CAST(l.targetId AS CHAR) LIKE :auditQuery
+                OR au.fullName LIKE :auditQuery
+                OR l.moduleNameEn LIKE :auditQuery
+                OR l.moduleNameZh LIKE :auditQuery
+                OR l.subModuleNameEn LIKE :auditQuery
+                OR l.subModuleNameZh LIKE :auditQuery
+                OR l.detailEn LIKE :auditQuery
+                OR l.detailZh LIKE :auditQuery)';
+            $params['auditQuery'] = '%' . $query . '%';
+        }
+
+        $targetScopes = is_array($filters['targetScopes'] ?? null)
+            ? $filters['targetScopes']
+            : [];
+        if ($targetScopes) {
+            $scopeConditions = [];
+            foreach (array_values($targetScopes) as $index => $scope) {
+                $scopeModelKey = trim((string)($scope['modelKey'] ?? ''));
+                $scopeSubModuleKey = trim((string)($scope['subModuleKey'] ?? ''));
+                if ($scopeModelKey === '' || $scopeSubModuleKey === '') {
+                    continue;
+                }
+                $modelParam = 'targetScopeModel' . $index;
+                $subModuleParam = 'targetScopeSubModule' . $index;
+                $scopeConditions[] = "(l.modelKey = :{$modelParam} AND l.subModuleKey = :{$subModuleParam})";
+                $params[$modelParam] = $scopeModelKey;
+                $params[$subModuleParam] = $scopeSubModuleKey;
+            }
+            if ($scopeConditions) {
+                $where[] = '(' . implode(' OR ', $scopeConditions) . ')';
+            }
+        }
+
+        if (!$where) {
+            $where[] = '1 = 1';
         }
 
         return [

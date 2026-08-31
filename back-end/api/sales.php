@@ -59,6 +59,8 @@ try {
         $controller->boundIbs($firstPart);
     } elseif (is_numeric($firstPart) && $secondPart === 'monthly-performance') {
         $controller->monthlyPerformance($firstPart);
+    } elseif (is_numeric($firstPart) && $secondPart === '') {
+        $controller->show($firstPart);
     } elseif ($firstPart === '' || $firstPart === null) {
         $controller->index();
     } else {

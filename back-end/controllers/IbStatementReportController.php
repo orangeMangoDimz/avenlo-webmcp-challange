@@ -80,7 +80,7 @@ class IbStatementReportController
         Response::success($payload);
     }
 
-    public function exportReport()
+    public function exportReport(?array $inputOverride = null)
     {
         $this->requireExportAccess();
         require_once __DIR__ . '/../services/IbStatementReportExportService.php';
@@ -102,7 +102,7 @@ class IbStatementReportController
             IbStatementReportExportService::clearActive($adminUserId);
         }
 
-        $input = json_decode(file_get_contents('php://input'), true) ?? [];
+        $input = $inputOverride ?? (json_decode(file_get_contents('php://input'), true) ?? []);
         $ibPartnerId = (int) ($input['ibPartnerId'] ?? 0);
         $startRaw = $input['startDate'] ?? $input['start_date'] ?? '';
         $endRaw = $input['endDate'] ?? $input['end_date'] ?? '';

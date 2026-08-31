@@ -678,17 +678,19 @@
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 
 import { ref, computed, watch, nextTick, onMounted, onUnmounted } from "vue";
+import { useRoute } from "vue-router";
 import { ElConfigProvider, ElDatePicker } from "element-plus";
 import zhCn from "element-plus/es/locale/lang/zh-cn";
 import en from "element-plus/es/locale/lang/en";
 import "element-plus/es/components/date-picker/style/css";
 import "element-plus/es/components/config-provider/style/css";
 import IbDetailNetworkGraphNode from "@/components/ib/IbDetailNetworkGraphNode.vue";
-import salesApi from "@/services/salesApi";
+import salesApi, { normalizeSalesDashboardId } from "@/services/salesApi";
 import ibPartnersApi from "@/services/ibPartnersApi";
 import { useAdminI18n } from "@/composables/useAdminI18n";
 
 const { t, tParams, languageStore } = useAdminI18n();
+const route = useRoute();
 
 const elementPlusLocale = computed(() =>
   languageStore.currentLanguage === "zh" ? zhCn : en,
@@ -833,11 +835,14 @@ const zoomLevel = ref("100");
 
 const salesId = computed(() => currentSales.value?.id ?? null);
 
-async function loadMe() {
+async function loadSalesProfile() {
   loadingMe.value = true;
   currentSales.value = null;
   try {
-    const data = await salesApi.getMe();
+    const targetSalesId = normalizeSalesDashboardId(route.query.salesId);
+    const data = targetSalesId
+      ? await salesApi.getById(targetSalesId)
+      : await salesApi.getMe();
     currentSales.value = data;
     urlClicks.value = data?.referralUrlClicks ?? 0;
     registrations.value = data?.referralRegistrationsCount ?? 0;
@@ -846,7 +851,7 @@ async function loadMe() {
     if (e?.response?.status === 403) {
       currentSales.value = null;
     } else {
-      console.error("Load current sales failed:", e);
+      console.error("Load sales dashboard failed:", e);
     }
   } finally {
     loadingMe.value = false;
@@ -1304,8 +1309,15 @@ watch(
   { immediate: true },
 );
 
+watch(
+  () => route.query.salesId,
+  (current, previous) => {
+    if (current !== previous) loadSalesProfile();
+  },
+);
+
 onMounted(() => {
-  loadMe();
+  loadSalesProfile();
   document.addEventListener("mousemove", handleGraphMouseMove);
   document.addEventListener("mouseup", handleGraphMouseUp);
 });

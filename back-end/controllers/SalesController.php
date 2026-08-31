@@ -12,6 +12,7 @@ require_once __DIR__ . '/../models/SalesReferralSettings.php';
 require_once __DIR__ . '/../middleware/AuthMiddleware.php';
 require_once __DIR__ . '/../utils/Response.php';
 require_once __DIR__ . '/../utils/Database.php';
+require_once __DIR__ . '/../utils/AdminSalesPermission.php';
 require_once __DIR__ . '/../utils/ClientIp.php';
 require_once __DIR__ . '/../services/AdminOperationLogWriter.php';
 require_once __DIR__ . '/../services/OperationLogPages.php';
@@ -173,6 +174,60 @@ class SalesController {
         if (isset($bindCounts[$userId])) {
             $item['totalIbs'] = $bindCounts[$userId]['ibs'];
             $item['totalClients'] = $bindCounts[$userId]['clients'];
+        }
+        Response::success($item);
+    }
+
+    /**
+     * One sales profile for a dashboard selected by sales management.
+     * A sales-only caller may resolve only their own ID.
+     * GET /api/sales/{salesId}
+     */
+    public function show($salesId) {
+        $salesId = (int)$salesId;
+        if ($salesId <= 0) {
+            Response::notFound('Sales user not found');
+            return;
+        }
+
+        $access = AdminSalesPermission::getCurrentSalesAccess();
+        if (empty($access['can_view_sales'])) {
+            Response::forbidden('You do not have permission to view sales data');
+            return;
+        }
+        if (empty($access['can_view_all_sales'])
+            && (int)$access['admin_user_id'] !== $salesId) {
+            Response::notFound('Sales user not found');
+            return;
+        }
+
+        $user = $this->userModel->getUserFullInfo($salesId);
+        if (!$user) {
+            Response::notFound('Sales user not found');
+            return;
+        }
+        $roleId = (int)($user['roleId'] ?? 0);
+        $isSales = $roleId === 1
+            || $roleId === $this->salesRoleId
+            || $this->userModel->hasRolePermission($salesId, $this->salesDashboardViewPermissionId);
+        if (!$isSales) {
+            Response::notFound('Sales user not found');
+            return;
+        }
+
+        $config = require __DIR__ . '/../config/app.php';
+        $referralRow = $this->referralSettingsModel->getOrCreateByUserId($salesId);
+        $item = $this->mapUserToSalesItem(
+            $user,
+            $config['client_frontend_url'],
+            $this->getDepartmentNameMap(),
+            $this->getPositionNameMap(),
+            $referralRow
+        );
+        $bindCounts = $this->getSalesBindCounts([$salesId]);
+        if (isset($bindCounts[$salesId])) {
+            $item['totalIbs'] = $bindCounts[$salesId]['ibs'];
+            $item['totalClients'] = $bindCounts[$salesId]['clients'];
         }
         Response::success($item);
     }

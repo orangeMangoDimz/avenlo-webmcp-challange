@@ -8,6 +8,7 @@ require_once __DIR__ . '/../models/AdminOperationLogModuleSetting.php';
 require_once __DIR__ . '/../models/AdminDictionaryItem.php';
 require_once __DIR__ . '/../middleware/AuthMiddleware.php';
 require_once __DIR__ . '/../utils/Response.php';
+require_once __DIR__ . '/../services/WebMcpAdminLogService.php';
 
 class AdminOperationLogReportController {
     private $logModel;
@@ -66,10 +67,25 @@ class AdminOperationLogReportController {
         $perPage = 10;
         $list = $this->fetchListPayload($filters, 1, $perPage);
 
+        $subModulesByModelKey = $this->dictModel->findOperationLogSubModulesByModelKeys($modelKeys);
+        $allSubModules = [];
+        foreach ($subModulesByModelKey as $key => $items) {
+            if ($key === 'all') {
+                continue;
+            }
+            foreach ($items as $item) {
+                $value = trim((string)($item['value'] ?? ''));
+                if ($value !== '') {
+                    $allSubModules[$value] = $item;
+                }
+            }
+        }
+        $subModulesByModelKey['all'] = array_values($allSubModules);
+
         Response::success([
             'modules' => $tabs,
             'operationTypes' => $this->dictModel->findOperationLogTypes(),
-            'subModulesByModelKey' => $this->dictModel->findOperationLogSubModulesByModelKeys($modelKeys),
+            'subModulesByModelKey' => $subModulesByModelKey,
             'defaults' => $defaults,
             'list' => $list,
         ]);
@@ -85,6 +101,9 @@ class AdminOperationLogReportController {
         $filters = $this->parseListFiltersFromQuery();
         $page = max(1, (int) ($_GET['page'] ?? 1));
         $perPage = $this->parsePerPage($_GET['per_page'] ?? 10);
+        if (($filters['modelKey'] ?? '') === 'all' && $perPage === 'all') {
+            $perPage = 100;
+        }
 
         Response::success($this->fetchListPayload($filters, $page, $perPage));
     }
@@ -105,65 +124,28 @@ class AdminOperationLogReportController {
                 Response::error('Unauthorized', 401);
             }
 
-            $active = OperationLogReportExportService::getActiveForAdmin($adminUserId);
-            $activeStatus = (string)($active['status'] ?? '');
-            if (in_array($activeStatus, ['queued', 'running', 'cancelling'], true)) {
-                Response::error('Export already in progress', 409, $this->exportProgressPayload($active));
-            }
-            if ($activeStatus === 'done') {
-                OperationLogReportExportService::clearActive($adminUserId);
-            }
-
             $query = $this->sanitizeExportQuery($this->getJsonBody());
             if ($query === null) {
-                Response::validationError(['modelKey' => 'modelKey is required']);
+                Response::validationError(['filters' => 'Operation-log export filters are invalid']);
             }
-
-            $jobId = str_replace('.', '', uniqid('aolr_', true));
-            $fileName = 'operation-log-report_' . date('Y-m-d') . '.csv';
-            OperationLogReportExportService::ensureExportDir();
-            OperationLogReportExportService::writeProgress($jobId, [
-                'adminUserId' => $adminUserId,
-                'status' => 'queued',
-                'cancelRequested' => false,
-                'percent' => 0,
-                'processed' => 0,
-                'total' => 0,
-                'message' => 'Queued',
-                'file' => $jobId . '.csv',
-                'fileName' => $fileName,
-            ]);
-            OperationLogReportExportService::writeActive($adminUserId, $jobId);
-
-            $payload = [
-                'type' => 'export_admin_operation_log_report',
-                'jobId' => $jobId,
-                'adminUserId' => $adminUserId,
-                'userId' => $adminUserId,
-                'userType' => 'admin',
-                'query' => $query,
-                'requestedAt' => time(),
-            ];
-
             try {
-                $this->dispatchSwooleTask($payload);
-            } catch (Exception $e) {
-                OperationLogReportExportService::writeProgress($jobId, [
-                    'adminUserId' => $adminUserId,
-                    'status' => 'error',
-                    'cancelRequested' => false,
-                    'percent' => 0,
-                    'message' => $e->getMessage(),
-                    'file' => null,
-                ]);
-                OperationLogReportExportService::clearActive($adminUserId);
-                Response::error('Failed to queue export task: ' . $e->getMessage(), 500);
+                $query['filters'] = WebMcpAdminLogService::scopeFiltersToVisibleModules(
+                    $query['filters'],
+                    $this->visibleModelKeys()
+                );
+            } catch (InvalidArgumentException $e) {
+                Response::validationError(['module' => $e->getMessage()]);
+            }
+            try {
+                $queued = OperationLogReportExportService::queueForAdmin($adminUserId, $query);
+            } catch (RuntimeException $e) {
+                $statusCode = strpos($e->getMessage(), 'already in progress') !== false ? 409 : 503;
+                Response::error($e->getMessage(), $statusCode);
             }
 
-            Response::success([
-                'jobId' => $jobId,
-                'queued' => true,
-            ], 'Export task accepted');
+            Response::success($queued, !empty($queued['reused'])
+                ? 'Existing export remains available'
+                : 'Export task accepted');
         } catch (Exception $e) {
             Response::error('Failed to export: ' . $e->getMessage(), 500);
         }
@@ -283,12 +265,15 @@ class AdminOperationLogReportController {
                 Response::error('Export file missing', 404);
             }
 
-            OperationLogReportExportService::clearActive($adminUserId);
-
             $filename = trim((string)($progress['fileName'] ?? ''));
             if ($filename === '' || !preg_match('/^[A-Za-z0-9._-]+\.csv$/', $filename)) {
                 $filename = 'operation-log-report_' . date('Y-m-d') . '.csv';
             }
+            OperationLogReportExportService::writeProgress($jobId, array_merge($progress, [
+                'downloadRequestedAt' => date('Y-m-d H:i:s'),
+                'downloadRequestCount' => max(0, (int)($progress['downloadRequestCount'] ?? 0)) + 1,
+            ]));
+            OperationLogReportExportService::clearActive($adminUserId);
             header('Content-Type: text/csv; charset=utf-8');
             header('Content-Disposition: attachment; filename="' . $filename . '"');
             header('Content-Length: ' . filesize($csvFile));
@@ -303,6 +288,14 @@ class AdminOperationLogReportController {
     private function fetchListPayload(array $filters, $page, $perPage) {
         if ($filters['modelKey'] === '') {
             Response::validationError(['modelKey' => ['modelKey is required']]);
+        }
+        try {
+            $filters = WebMcpAdminLogService::scopeFiltersToVisibleModules(
+                $filters,
+                $this->visibleModelKeys()
+            );
+        } catch (InvalidArgumentException $e) {
+            Response::validationError(['module' => $e->getMessage()]);
         }
 
         $total = $this->logModel->countByFilters($filters);
@@ -340,14 +333,27 @@ class AdminOperationLogReportController {
     }
 
     private function parseListFiltersFromQuery() {
-        return [
+        $filters = [
             'modelKey' => trim((string) ($_GET['model_key'] ?? $_GET['modelKey'] ?? '')),
             'startDate' => trim((string) ($_GET['start_date'] ?? $_GET['startDate'] ?? '')),
             'endDate' => trim((string) ($_GET['end_date'] ?? $_GET['endDate'] ?? '')),
             'keyword' => trim((string) ($_GET['keyword'] ?? '')),
             'subModule' => trim((string) ($_GET['sub_module'] ?? $_GET['subModule'] ?? 'all')) ?: 'all',
             'operationType' => trim((string) ($_GET['operation_type'] ?? $_GET['operationType'] ?? 'all')) ?: 'all',
+            'operatorId' => max(0, (int)($_GET['operator_id'] ?? $_GET['operatorId'] ?? 0)),
+            'targetId' => max(0, (int)($_GET['target_id'] ?? $_GET['targetId'] ?? 0)),
+            'query' => trim((string)($_GET['query'] ?? '')),
         ];
+        $targetType = trim((string)($_GET['target_type'] ?? $_GET['targetType'] ?? ''));
+        if ($targetType !== '') {
+            $filters['targetScopes'] = WebMcpAdminLogService::targetScopes($targetType);
+            if (!$filters['targetScopes']) {
+                Response::validationError(['targetType' => 'targetType is not supported']);
+            }
+        } elseif ($filters['targetId'] > 0) {
+            Response::validationError(['targetType' => 'targetType is required when targetId is provided']);
+        }
+        return $filters;
     }
 
     private function sanitizeExportQuery(array $body): ?array
@@ -388,6 +394,22 @@ class AdminOperationLogReportController {
             $operationType = 'all';
         }
 
+        $operatorId = max(0, (int)($body['operatorId'] ?? $body['operator_id'] ?? 0));
+        $targetId = max(0, (int)($body['targetId'] ?? $body['target_id'] ?? 0));
+        $queryText = trim((string)($body['query'] ?? ''));
+        if (function_exists('mb_substr')) {
+            $queryText = mb_substr($queryText, 0, 200);
+        } else {
+            $queryText = substr($queryText, 0, 200);
+        }
+        $targetType = trim((string)($body['targetType'] ?? $body['target_type'] ?? ''));
+        $targetScopes = $targetType !== ''
+            ? WebMcpAdminLogService::targetScopes($targetType)
+            : [];
+        if (($targetType !== '' && !$targetScopes) || ($targetId > 0 && $targetType === '')) {
+            return null;
+        }
+
         return [
             'filters' => [
                 'modelKey' => $modelKey,
@@ -396,6 +418,10 @@ class AdminOperationLogReportController {
                 'keyword' => $keyword,
                 'subModule' => $subModule,
                 'operationType' => $operationType,
+                'operatorId' => $operatorId,
+                'targetId' => $targetId,
+                'query' => $queryText,
+                'targetScopes' => $targetScopes,
             ],
             'language' => $language,
         ];
@@ -437,12 +463,17 @@ class AdminOperationLogReportController {
         return [
             'active' => true,
             'jobId' => (string)($progress['jobId'] ?? ''),
+            'exportType' => (string)($progress['exportType'] ?? 'operation_logs'),
             'status' => (string)($progress['status'] ?? ''),
             'percent' => (int)($progress['percent'] ?? 0),
             'message' => (string)($progress['message'] ?? ''),
             'processed' => (int)($progress['processed'] ?? 0),
             'total' => (int)($progress['total'] ?? 0),
+            'matchedTotal' => (int)($progress['matchedTotal'] ?? $progress['total'] ?? 0),
+            'truncated' => !empty($progress['truncated']),
             'downloadReady' => !empty($progress['downloadReady']) || (($progress['status'] ?? '') === 'done'),
+            'downloadRequestedAt' => $progress['downloadRequestedAt'] ?? null,
+            'downloadRequestCount' => max(0, (int)($progress['downloadRequestCount'] ?? 0)),
             'fileName' => (string)($progress['fileName'] ?? ''),
         ];
     }
@@ -452,6 +483,13 @@ class AdminOperationLogReportController {
             return 'all';
         }
         return max(1, min(100, (int) $raw));
+    }
+
+    private function visibleModelKeys(): array {
+        return array_values(array_filter(array_map(
+            static fn($row) => trim((string)($row['modelKey'] ?? '')),
+            $this->moduleModel->findReportTabs()
+        )));
     }
 
     private function formatTabs(array $rows) {
@@ -464,6 +502,16 @@ class AdminOperationLogReportController {
                 'moduleNameEn' => (string) ($row['moduleNameEn'] ?? ''),
                 'status' => (int) ($row['status'] ?? 0),
                 'sortOrder' => (int) ($row['sortOrder'] ?? 0),
+            ];
+        }
+        if ($out) {
+            $out[] = [
+                'id' => 0,
+                'modelKey' => 'all',
+                'moduleNameZh' => '全部模块',
+                'moduleNameEn' => 'All modules',
+                'status' => 1,
+                'sortOrder' => 9999,
             ];
         }
         return $out;

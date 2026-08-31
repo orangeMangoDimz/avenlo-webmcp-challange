@@ -401,6 +401,7 @@ import { CLIENT_DETAIL_PERMISSION_KEYS } from "@/utils/constants";
 import { useAdminI18n } from "@/composables/useAdminI18n";
 import { translateApiErrorMessage } from "@/i18n/adminI18nBridge";
 import { getSubModuleKey } from "@/config/operationLogPages";
+import { applyIbListWebMcpNavigation } from "@/services/ibListWebMcpNavigation";
 
 const ibListLogSubModule = getSubModuleKey("page_ib_list");
 
@@ -847,21 +848,32 @@ const handleViewAsClient = async (ib) => {
   }
 };
 
-onMounted(async () => {
-  if (route.query.search != null && route.query.search !== "") {
-    searchKeyword.value = String(route.query.search);
-  }
-  await loadList();
-  const detailId = route.query.detailId;
-  if (detailId != null && detailId !== "") {
-    const id = parseInt(detailId, 10);
-    if (!Number.isNaN(id)) {
-      const fromList = idToRow.value[id];
-      if (fromList) {
+const syncWebMcpNavigation = async () => {
+  await applyIbListWebMcpNavigation({
+    query: route.query,
+    setSearch: (search) => {
+      searchKeyword.value = search;
+    },
+    loadList,
+    hasRow: (id) => Boolean(idToRow.value[id]),
+    expand: (id) => {
+      if (!expandedRows.value.includes(id)) {
         expandedRows.value.push(id);
       }
-    }
-  }
+    },
+  });
+};
+
+watch(
+  () => [route.query.search, route.query.detailId],
+  async () => {
+    await syncWebMcpNavigation();
+    scheduleListLayoutRecalc();
+  },
+);
+
+onMounted(async () => {
+  await syncWebMcpNavigation();
   scheduleListLayoutRecalc();
   window.addEventListener("resize", syncDetailPanelWidth);
 });

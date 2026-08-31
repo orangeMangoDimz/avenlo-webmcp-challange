@@ -175,70 +175,74 @@
     <div class="date-filter-section">
       <el-config-provider :locale="elementPlusLocale">
         <div class="date-filter-container">
-          <span class="date-filter-label">{{ t("ibReport_timePeriod") }}</span>
-          <div class="date-filter-presets">
+          <div class="date-filter-row date-filter-row--presets">
+            <span class="date-filter-label">{{ t("ibReport_timePeriod") }}</span>
+            <div class="date-filter-presets">
+              <button
+                :class="['preset-btn', { active: activePreset === 'today' }]"
+                @click="selectPreset('today')"
+              >
+                {{ t("ibReport_preset_today") }}
+              </button>
+              <button
+                :class="['preset-btn', { active: activePreset === 'month' }]"
+                @click="selectPreset('month')"
+              >
+                {{ t("ibReport_preset_month") }}
+              </button>
+              <button
+                :class="['preset-btn', { active: activePreset === 'quarter' }]"
+                @click="selectPreset('quarter')"
+              >
+                {{ t("ibReport_preset_quarter") }}
+              </button>
+              <button
+                :class="['preset-btn', { active: activePreset === 'year' }]"
+                @click="selectPreset('year')"
+              >
+                {{ t("ibReport_preset_year") }}
+              </button>
+            </div>
+          </div>
+          <div class="date-filter-row date-filter-row--controls">
+            <div class="date-input-wrapper">
+              <label>{{ t("ibReport_fromDate") }}</label>
+              <el-date-picker
+                v-model="startDate"
+                type="date"
+                value-format="YYYY-MM-DD"
+                :placeholder="t('ibReport_fromDate')"
+                class="filter-date"
+                clearable
+              />
+            </div>
+            <div class="date-input-wrapper">
+              <label>{{ t("ibReport_toDate") }}</label>
+              <el-date-picker
+                v-model="endDate"
+                type="date"
+                value-format="YYYY-MM-DD"
+                :placeholder="t('ibReport_toDate')"
+                class="filter-date"
+                clearable
+              />
+            </div>
             <button
-              :class="['preset-btn', { active: activePreset === 'today' }]"
-              @click="selectPreset('today')"
+              type="button"
+              class="btn-apply-filter"
+              @click="applyDateFilter"
             >
-              {{ t("ibReport_preset_today") }}
+              <i class="fas fa-filter"></i> {{ t("ibReport_applyFilter") }}
             </button>
             <button
-              :class="['preset-btn', { active: activePreset === 'month' }]"
-              @click="selectPreset('month')"
+              v-if="hasExportPermission"
+              type="button"
+              class="btn-export"
+              @click="exportDetailReport"
             >
-              {{ t("ibReport_preset_month") }}
-            </button>
-            <button
-              :class="['preset-btn', { active: activePreset === 'quarter' }]"
-              @click="selectPreset('quarter')"
-            >
-              {{ t("ibReport_preset_quarter") }}
-            </button>
-            <button
-              :class="['preset-btn', { active: activePreset === 'year' }]"
-              @click="selectPreset('year')"
-            >
-              {{ t("ibReport_preset_year") }}
+              <i class="fas fa-download"></i> {{ t("ibReport_export") }}
             </button>
           </div>
-          <div class="date-input-wrapper">
-            <label>{{ t("ibReport_fromDate") }}</label>
-            <el-date-picker
-              v-model="startDate"
-              type="date"
-              value-format="YYYY-MM-DD"
-              :placeholder="t('ibReport_fromDate')"
-              class="filter-date"
-              clearable
-            />
-          </div>
-          <div class="date-input-wrapper">
-            <label>{{ t("ibReport_toDate") }}</label>
-            <el-date-picker
-              v-model="endDate"
-              type="date"
-              value-format="YYYY-MM-DD"
-              :placeholder="t('ibReport_toDate')"
-              class="filter-date"
-              clearable
-            />
-          </div>
-          <button
-            type="button"
-            class="btn-apply-filter"
-            @click="applyDateFilter"
-          >
-            <i class="fas fa-filter"></i> {{ t("ibReport_applyFilter") }}
-          </button>
-          <button
-            v-if="hasExportPermission"
-            type="button"
-            class="btn-export"
-            @click="exportDetailReport"
-          >
-            <i class="fas fa-download"></i> {{ t("ibReport_export") }}
-          </button>
         </div>
       </el-config-provider>
     </div>
