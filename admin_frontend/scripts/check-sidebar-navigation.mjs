@@ -7,7 +7,6 @@ const sidebarSource = fs.readFileSync(path.join(appRoot, 'src', 'components', 'l
 const layoutSource = fs.readFileSync(path.join(appRoot, 'src', 'layouts', 'MainLayout.vue'), 'utf8')
 
 const requiredSidebarContracts = [
-  ['sidebar-brand-mark', /sidebar-brand-mark/],
   ['Client operations', /nav_section_clients["']\s*,\s*["']Client operations["']/],
   ['Identity & compliance', /nav_section_compliance["']\s*,\s*["']Identity & compliance["']/],
   ['Money movement', /nav_section_money["']\s*,\s*["']Money movement["']/],
@@ -19,18 +18,27 @@ const requiredSidebarContracts = [
   ['Withdrawals', /nav_withdrawals["']\s*,\s*["']Withdrawals["']/],
   ['Partner network link', /nav_partner_network["']\s*,\s*["']Partner network["']/],
   ['Sales team', /nav_sales_team["']\s*,\s*["']Sales team["']/],
-  ['User accounts', /nav_user_accounts["']\s*,\s*["']User accounts["']/]
+  ['User accounts', /nav_user_accounts["']\s*,\s*["']User accounts["']/],
+  ['WebMCP overview', /nav_webmcp_overview["']\s*,\s*["']WebMCP overview["']/],
+  ['Tool catalog', /nav_webmcp_tools["']\s*,\s*["']Tool catalog["']/]
 ]
 
 const requiredLayoutContracts = [
   'workspace-brand-monogram',
   'Avenlo',
   'Control center',
-  '>Menu<'
+  'workspace-navigate-button',
+  'aria-label="Open navigation"',
+  'fa-bars'
 ]
 
 const removedSidebarContracts = [
-  ['pin control', /sidebar-pin-btn|data-testid=["']sidebar-pin["']|toggle-pin|thumbtack/]
+  ['duplicate sidebar brand', /sidebar-brand(?:-mark|-copy)?/],
+  ['pin control', /sidebar-pin-btn|data-testid=["']sidebar-pin["']|toggle-pin|thumbtack/],
+  ['nested WebMCP links', /webmcp-parent-item|menu-sub-items|menu-sub-item/]
+]
+const removedLayoutContracts = [
+  ['visible menu label', /<span>Menu<\/span>/]
 ]
 
 const missing = [
@@ -42,7 +50,10 @@ const missing = [
     .map((contract) => `Topbar brand contract missing: ${contract}`),
   ...removedSidebarContracts
     .filter(([, contract]) => contract.test(sidebarSource) || contract.test(layoutSource))
-    .map(([name]) => `Removed sidebar contract still present: ${name}`)
+    .map(([name]) => `Removed sidebar contract still present: ${name}`),
+  ...removedLayoutContracts
+    .filter(([, contract]) => contract.test(layoutSource))
+    .map(([name]) => `Removed layout contract still present: ${name}`)
 ]
 
 if (missing.length) {

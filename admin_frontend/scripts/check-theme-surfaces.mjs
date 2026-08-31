@@ -9,6 +9,7 @@ const themeStylesheets = [
   path.join(sourceRoot, 'assets', 'styles', 'workspace.css')
 ]
 const workspaceStylesheet = themeStylesheets[1]
+const mainStylesheet = themeStylesheets[0]
 const rawSurfaceColor = /\bbackground(?:-color)?\s*:\s*(white|#[0-9a-f]{3,6})\b/gi
 const rawTextColor = /(?<![-\w])color\s*:\s*(#[0-9a-f]{3,6})\b/gi
 const legacyTextColors = new Set([
@@ -66,6 +67,7 @@ for (const filePath of [...listVueFiles(sourceRoot), ...themeStylesheets]) {
 }
 
 const workspaceSource = fs.readFileSync(workspaceStylesheet, 'utf8')
+const mainSource = fs.readFileSync(mainStylesheet, 'utf8')
 const stickySurfaceContracts = [
   ['Clients sticky action header', /#app\s+\.workspace-main\s+\.clients-table\s*>\s*thead\s*>\s*tr\s*>\s*\.clients-table__th--sticky\s*\{[^}]*background:\s*var\(--color-surface-soft\)/s],
   ['Clients sticky action cell', /#app\s+\.workspace-main\s+\.clients-table\s*>\s*tbody\s*>\s*tr\s*>\s*\.clients-table__cell--sticky\s*\{[^}]*background:\s*var\(--color-surface\)/s],
@@ -82,9 +84,20 @@ const detailSurfaceContracts = [
 const headerControlContracts = [
   ['Topbar theme toggle foreground', /#app\s+\.workspace-header-actions\s+:is\([^)]*\.theme-toggle[^)]*\)\s*\{[^}]*color:\s*var\(--color-ink\)/s]
 ]
+const lightThemeContracts = [
+  ['Light theme topbar surface', /:root:not\(\[data-theme="dark"\]\)\s+#app\s+\.workspace-shell\s+\.workspace-topbar\s*\{[^}]*background:\s*var\(--color-surface\)/s],
+  ['Light theme topbar foreground', /:root:not\(\[data-theme="dark"\]\)\s+#app\s+\.workspace-shell\s+\.workspace-topbar\s*\{[^}]*color:\s*var\(--color-ink\)/s],
+  ['Light theme sidebar surface', /:root:not\(\[data-theme="dark"\]\)\s+#app\s+\.workspace-shell\s+>\s+\.sidebar\s*\{[^}]*background:\s*var\(--color-surface\)/s],
+  ['Light theme sidebar foreground', /:root:not\(\[data-theme="dark"\]\)\s+#app\s+\.workspace-shell\s+>\s+\.sidebar\s*\{[^}]*color:\s*var\(--color-ink\)/s],
+  ['Light theme active sidebar foreground', /:root:not\(\[data-theme="dark"\]\)\s+#app\s+\.workspace-shell\s+>\s+\.sidebar\s+:is\([^)]*\.menu-item\.active[^)]*\)\s*\{[^}]*color:\s*#fff/s]
+]
+const datePickerContracts = [
+  ['Element Plus date picker inner input reset', /#app\s+:where\(\.el-date-editor\)\s+\.el-input__inner\s*\{[^}]*min-height:\s*0;[^}]*background:\s*transparent;[^}]*border:\s*0;[^}]*box-shadow:\s*none;/s]
+]
 const tablePositionContracts = [
   ['IB grid headers stay within their scroll region', /#app\s+\.workspace-main\s+\.ir-list-table\s*>\s*thead\s*>\s*tr\s*>\s*th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;/s],
-  ['IB sticky action header keeps horizontal pinning only', /#app\s+\.workspace-main\s+\.ir-list-table\s*>\s*thead\s*>\s*tr\s*>\s*\.ir-list-table__th--sticky\s*\{[^}]*position:\s*sticky;[^}]*top:\s*auto;[^}]*right:\s*0;[^}]*z-index:\s*4;/s]
+  ['IB sticky action header keeps horizontal pinning only', /#app\s+\.workspace-main\s+\.ir-list-table\s*>\s*thead\s*>\s*tr\s*>\s*\.ir-list-table__th--sticky\s*\{[^}]*position:\s*sticky;[^}]*top:\s*auto;[^}]*right:\s*0;[^}]*z-index:\s*4;/s],
+  ['Activity audit header stays within its table', /#app\s+\.workspace-main\s+\.operation-log-report-page\s+\.olr-table\s*>\s*thead\s*>\s*tr\s*>\s*th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;[^}]*z-index:\s*auto;/s]
 ]
 const darkThemeSource = fs.readFileSync(themeStylesheets[0], 'utf8').match(/:root\[data-theme=(?:'dark'|"dark")\]\s*\{([\s\S]*?)\n\}/)?.[1] || ''
 const darkPaletteContracts = {
@@ -118,8 +131,11 @@ if (nonSolidSemanticBackgrounds.length) {
   violations.push(`Filled semantic UI must use solid tokens: ${nonSolidSemanticBackgrounds.join(', ')}`)
 }
 
-for (const [name, contract] of [...stickySurfaceContracts, ...detailSurfaceContracts, ...headerControlContracts, ...tablePositionContracts]) {
+for (const [name, contract] of [...stickySurfaceContracts, ...detailSurfaceContracts, ...headerControlContracts, ...lightThemeContracts, ...tablePositionContracts]) {
   if (!contract.test(workspaceSource)) violations.push(`${name} is missing its tokenized workspace fallback`)
+}
+for (const [name, contract] of datePickerContracts) {
+  if (!contract.test(mainSource)) violations.push(`${name} is missing its tokenized main stylesheet reset`)
 }
 
 if (violations.length) {

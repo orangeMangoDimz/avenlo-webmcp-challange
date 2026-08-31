@@ -14,25 +14,6 @@
     @click="closeAfterNavigation"
     @keydown.tab.prevent="trapFocus"
   >
-    <div class="sidebar-header">
-      <div class="sidebar-brand" aria-label="Avenlo control center">
-        <span class="sidebar-brand-mark" aria-hidden="true">A</span>
-        <span class="sidebar-brand-copy">
-          <strong>Avenlo</strong>
-          <small>Control center</small>
-        </span>
-      </div>
-      <button
-        v-if="open"
-        type="button"
-        class="toggle-sidebar-btn"
-        aria-label="Close navigation"
-        @click="toggleSidebar"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-    </div>
-
     <nav class="sidebar-navigation" aria-label="Operations navigation">
       <p class="sidebar-navigation-label">
         {{ t("nav_navigation", "Navigation") }}
@@ -572,35 +553,18 @@
           </router-link>
           <router-link
             to="/webmcp/overview"
-            class="menu-item webmcp-parent-item"
-            :class="{ active: isWebMcpRoute }"
+            class="menu-item"
             active-class="active"
           >
-            <span class="webmcp-parent-copy">
-              <i class="fas fa-wand-magic-sparkles" aria-hidden="true"></i>
-              <span>{{ t("nav_webmcp", "WebMCP") }}</span>
-            </span>
-            <i
-              class="fas fa-chevron-right webmcp-parent-arrow"
-              aria-hidden="true"
-            ></i>
+            {{ t("nav_webmcp_overview", "WebMCP overview") }}
           </router-link>
-          <div class="menu-sub-items" aria-label="WebMCP pages">
-            <router-link
-              to="/webmcp/overview"
-              class="menu-sub-item"
-              active-class="active"
-            >
-              {{ t("nav_webmcp_overview", "Overview") }}
-            </router-link>
-            <router-link
-              to="/webmcp/tools"
-              class="menu-sub-item"
-              active-class="active"
-            >
-              {{ t("nav_webmcp_tools", "Tool catalog") }}
-            </router-link>
-          </div>
+          <router-link
+            to="/webmcp/tools"
+            class="menu-item"
+            active-class="active"
+          >
+            {{ t("nav_webmcp_tools", "Tool catalog") }}
+          </router-link>
         </div>
       </div>
     </nav>
@@ -718,10 +682,6 @@ const isCustomReportRoute = computed(() =>
   String(route.path || "").startsWith("/custom-report"),
 );
 
-const isWebMcpRoute = computed(() =>
-  String(route.path || "").startsWith("/webmcp"),
-);
-
 // 检查 System Setting 分组是否有任何页面权限
 const hasSystemSettingSectionPermission = computed(() => {
   return (
@@ -736,10 +696,6 @@ const hasSystemSettingSectionPermission = computed(() => {
     authStore.hasPermission("page_logsettings_edit")
   );
 });
-
-const toggleSidebar = () => {
-  emit("close");
-};
 
 const closeAfterNavigation = (event) => {
   if (event.target.closest("a")) emit("close");
@@ -909,79 +865,6 @@ onMounted(async () => {
   border-radius: 3px;
 }
 
-.sidebar-header {
-  min-height: 78px;
-  padding: 18px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: transparent;
-}
-
-.logo-container {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex: 1;
-  transition: opacity 0.3s ease;
-}
-
-.sidebar.collapsed .logo-container {
-  opacity: 0;
-  display: none;
-}
-
-/* 横版logo样式 */
-.horizontal-logo .sidebar-logo {
-  height: 36px;
-  max-width: 200px;
-  object-fit: contain;
-}
-
-/* 正方形logo + 文字样式 */
-.square-logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.sidebar-logo-square {
-  width: 40px;
-  height: 40px;
-  object-fit: contain;
-  flex-shrink: 0;
-}
-
-.logo-text {
-  font-size: 18px;
-  font-weight: 600;
-  color: white;
-  white-space: nowrap;
-}
-
-.toggle-sidebar-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: white;
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition:
-    background var(--transition-fast),
-    border-color var(--transition-fast);
-  font-size: 15px;
-}
-
-.toggle-sidebar-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.24);
-}
-
 .menu-section {
   margin: 3px 10px;
 }
@@ -1095,63 +978,6 @@ onMounted(async () => {
   font-weight: 600;
 }
 
-.webmcp-parent-item {
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.webmcp-parent-copy {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-}
-
-.webmcp-parent-copy i {
-  width: 14px;
-  color: #d8bc83;
-  /* @font-floor-exempt: visual-only navigation glyph */
-  font-size: 12px;
-  text-align: center;
-}
-
-.webmcp-parent-arrow {
-  color: rgba(255, 255, 255, 0.45);
-  /* @font-floor-exempt: visual-only navigation glyph */
-  font-size: 10px;
-}
-
-.menu-sub-items {
-  margin: 0 8px 4px 25px;
-  padding: 2px 0 2px 13px;
-  border-left: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.menu-sub-item {
-  display: block;
-  margin: 2px 0;
-  padding: 7px 10px;
-  color: rgba(255, 255, 255, 0.58);
-  border-radius: var(--radius-sm);
-  font-size: 14px;
-  text-decoration: none;
-  transition:
-    background var(--transition-fast),
-    color var(--transition-fast);
-}
-
-.menu-sub-item:hover,
-.menu-sub-item.active,
-.menu-sub-item.router-link-active {
-  color: #fff;
-  background: rgba(255, 255, 255, 0.08);
-}
-
-.menu-sub-item.active,
-.menu-sub-item.router-link-active {
-  box-shadow: inset 2px 0 0 var(--color-accent);
-  font-weight: 600;
-}
-
 .sidebar.collapsed .menu-items {
   display: none;
 }
@@ -1176,7 +1002,6 @@ onMounted(async () => {
     width: min(320px, 88vw);
   }
 
-  .sidebar.collapsed .logo-container,
   .sidebar.collapsed .menu-text {
     display: flex;
     opacity: 1;
@@ -1190,9 +1015,6 @@ onMounted(async () => {
     display: block;
   }
 
-  .sidebar.collapsed .menu-sub-items {
-    display: block;
-  }
 }
 </style>
 
@@ -1205,78 +1027,6 @@ onMounted(async () => {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-}
-
-.sidebar-header {
-  min-height: 82px;
-  padding: 16px 18px;
-  background: linear-gradient(
-    135deg,
-    var(--color-sidebar-raised),
-    var(--color-sidebar)
-  );
-}
-
-.sidebar-brand {
-  display: flex;
-  min-width: 0;
-  align-items: center;
-  gap: 11px;
-}
-
-.sidebar-brand-mark {
-  display: inline-grid;
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-  place-items: center;
-  color: #fff;
-  background: linear-gradient(
-    145deg,
-    var(--color-brand),
-    var(--color-brand-strong)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 10px 4px 10px 4px;
-  box-shadow: 0 8px 18px rgba(4, 10, 22, 0.24);
-  font-family: var(--font-display);
-  font-size: 19px;
-  font-weight: 800;
-  letter-spacing: -0.08em;
-}
-
-.sidebar-brand-copy {
-  display: grid;
-  min-width: 0;
-  gap: 2px;
-  line-height: 1;
-}
-
-.sidebar-brand-copy strong {
-  color: #fff;
-  font-size: 15px;
-  font-weight: 750;
-  letter-spacing: 0.01em;
-}
-
-.sidebar-brand-copy small {
-  color: var(--sidebar-nav-muted);
-  font-size: 14px;
-  font-weight: 650;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.toggle-sidebar-btn {
-  width: 36px;
-  height: 36px;
-  flex: 0 0 36px;
-  border-radius: 8px;
-}
-
-.toggle-sidebar-btn:focus-visible {
-  outline: 2px solid var(--color-brand);
-  outline-offset: 2px;
 }
 
 .sidebar-navigation {
@@ -1429,8 +1179,7 @@ onMounted(async () => {
 }
 
 .menu-section-header:focus-visible,
-.menu-item:focus-visible,
-.toggle-sidebar-btn:focus-visible {
+.menu-item:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
 }

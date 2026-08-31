@@ -9,6 +9,17 @@
       :inert="navigationModalOpen"
       :aria-hidden="navigationModalOpen || undefined"
     >
+      <button
+        ref="menuButton"
+        type="button"
+        class="workspace-navigate-button"
+        aria-label="Open navigation"
+        aria-controls="sidebar"
+        :aria-expanded="isNavigationOpen || sidebarPinned"
+        @click="openNavigation"
+      >
+        <i class="fas fa-bars" aria-hidden="true"></i>
+      </button>
       <div class="workspace-brand" aria-label="Avenlo control center">
         <span class="workspace-brand-monogram" aria-hidden="true">A</span>
         <span class="workspace-brand-copy">
@@ -16,17 +27,6 @@
           <small>Control center</small>
         </span>
       </div>
-      <button
-        ref="menuButton"
-        type="button"
-        class="workspace-navigate-button"
-        aria-controls="sidebar"
-        :aria-expanded="isNavigationOpen || sidebarPinned"
-        @click="openNavigation"
-      >
-        <i class="fas fa-bars" aria-hidden="true"></i>
-        <span>Menu</span>
-      </button>
       <PageHeaderActions topbar class="workspace-header-actions" />
     </header>
     <button
@@ -61,7 +61,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
 import Sidebar from "@/components/layout/Sidebar.vue";
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
-import { registerAdminClientWebMcpTools } from "@/services/adminClientWebMcp";
+import { registerAdminWebMcpTools } from "@/services/adminWebMcpRegistry";
 import {
   isWebMcpEnabled,
   subscribeWebMcpEnabled,
@@ -85,15 +85,15 @@ const {
 const navigationModalOpen = computed(
   () => isNavigationOpen.value && !sidebarPinned.value,
 );
-let unregisterAdminClientWebMcp = () => {};
+let unregisterAdminWebMcp = () => {};
 let unsubscribeWebMcpSetting = () => {};
 
 const syncWebMcpRegistration = (enabled = isWebMcpEnabled()) => {
-  unregisterAdminClientWebMcp();
-  unregisterAdminClientWebMcp = () => {};
+  unregisterAdminWebMcp();
+  unregisterAdminWebMcp = () => {};
 
   if (enabled) {
-    unregisterAdminClientWebMcp = registerAdminClientWebMcpTools({
+    unregisterAdminWebMcp = registerAdminWebMcpTools({
       authStore,
       router,
     });
@@ -129,6 +129,6 @@ onMounted(() => {
 
 onUnmounted(() => {
   unsubscribeWebMcpSetting();
-  unregisterAdminClientWebMcp();
+  unregisterAdminWebMcp();
 });
 </script>

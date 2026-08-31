@@ -22,6 +22,11 @@
   border-bottom: 1px solid var(--color-border);
 }
 
+:root:not([data-theme="dark"]) #app .workspace-shell .workspace-topbar {
+  color: var(--color-ink);
+  background: var(--color-surface);
+}
+
 #app .workspace-brand {
   display: flex;
   min-width: max-content;
@@ -59,6 +64,9 @@
   font-weight: 750;
   letter-spacing: 0.01em;
 }
+:root:not([data-theme="dark"]) #app .workspace-brand-copy strong {
+  color: var(--color-ink-strong);
+}
 #app .workspace-brand-copy small {
   color: var(--color-muted);
   font-size: 14px;
@@ -67,13 +75,15 @@
   text-transform: uppercase;
 }
 
-#app .workspace-navigate-button,
-#app .workspace-shell .sidebar .toggle-sidebar-btn {
+#app .workspace-navigate-button {
   display: inline-flex;
+  width: 40px;
+  min-width: 40px;
   min-height: 34px;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  padding: 0 11px;
+  padding: 0;
   color: #fff;
   background: transparent;
   border: 1px solid var(--color-border-strong);
@@ -84,16 +94,24 @@
   text-transform: uppercase;
 }
 
-#app .workspace-navigate-button:hover,
-#app .workspace-shell .sidebar .toggle-sidebar-btn:hover {
+#app .workspace-navigate-button:hover {
   border-color: var(--workspace-gold);
   color: #fff;
+}
+:root:not([data-theme="dark"]) #app .workspace-navigate-button {
+  color: var(--color-ink);
+}
+:root:not([data-theme="dark"]) #app .workspace-navigate-button:hover {
+  color: var(--color-brand);
 }
 #app .workspace-header-actions {
   margin-left: auto;
 }
 #app .workspace-header-actions :is(button, a) {
   color: #fff;
+}
+:root:not([data-theme="dark"]) #app .workspace-header-actions :is(button, a) {
+  color: var(--color-ink);
 }
 #app
   .workspace-header-actions
@@ -136,7 +154,7 @@
   bottom: 0;
   left: 0;
   z-index: 330;
-  width: min(360px, 92vw);
+  width: min(280px, 88vw);
   height: auto;
   margin: 0;
   color: #fff;
@@ -147,22 +165,109 @@
   transform: translateX(-101%);
   transition: transform 150ms ease;
 }
+:root:not([data-theme="dark"]) #app .workspace-shell > .sidebar {
+  --sidebar-nav-ink: var(--color-ink);
+  --sidebar-nav-muted: var(--color-muted);
+  --sidebar-nav-subtle: var(--color-muted);
+  --sidebar-nav-border: var(--color-border);
+  color: var(--color-ink);
+  background: var(--color-surface);
+  border-right-color: var(--color-border);
+  box-shadow: none;
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .sidebar-navigation-label {
+  color: var(--color-muted);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-section-header:hover {
+  background: var(--color-surface-soft);
+  border-color: var(--color-border);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-icon {
+  background: var(--color-brand-soft);
+  border-color: var(--color-brand-soft-strong);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-arrow {
+  color: var(--color-muted);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-section-header:hover
+  .menu-arrow {
+  color: var(--color-ink);
+  background: var(--color-surface-soft);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-item:not(.active):not(.router-link-active) {
+  color: var(--color-muted);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-item:not(.active):not(.router-link-active):hover {
+  color: var(--color-ink);
+  background: var(--color-surface-soft);
+  border-color: var(--color-border);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  :is(.menu-item.active, .menu-item.router-link-active) {
+  color: #fff;
+  background: var(--color-brand-solid);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-item.active::before,
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar
+  .menu-item.router-link-active::before {
+  box-shadow: 0 0 0 3px var(--color-surface);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+:root:not([data-theme="dark"])
+  #app
+  .workspace-shell
+  > .sidebar::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+}
 #app .workspace-shell > .sidebar.is-open {
   transform: translateX(0);
 }
 #app .workspace-shell > .sidebar.is-pinned {
   transform: translateX(0);
   box-shadow: none;
-}
-#app .workspace-shell > .sidebar .sidebar-header {
-  min-height: 82px;
-  padding: 16px 18px;
-  background: linear-gradient(
-    135deg,
-    var(--color-sidebar-raised),
-    var(--color-sidebar)
-  );
-  border-bottom-color: var(--color-border);
 }
 #app .workspace-shell > .sidebar .menu-section {
   margin: 0 0 6px;
@@ -193,7 +298,7 @@
 
 @media (min-width: 1024px) {
   #app .workspace-shell.sidebar-pinned {
-    --sidebar-width: min(360px, 92vw);
+    --sidebar-width: min(280px, 88vw);
   }
   #app .workspace-shell.sidebar-pinned > .workspace-main {
     width: calc(100% - var(--sidebar-width));
@@ -203,6 +308,9 @@
 }
 
 @media (max-width: 1023px) {
+  #app .workspace-shell > .sidebar {
+    width: min(320px, 88vw);
+  }
   #app .workspace-shell > .sidebar.is-pinned {
     transform: translateX(-101%);
   }
@@ -336,6 +444,179 @@
   border-radius: 2px;
   box-shadow: none;
 }
+
+/* Report date filters must wrap before actions can collide with a picker. */
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-filter-section {
+  overflow: visible;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-filter-container {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-filter-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-filter-row--controls {
+  align-items: flex-end;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-filter-label {
+  flex: 0 0 auto;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-filter-presets {
+  min-width: 0;
+  display: flex;
+  flex: 1 1 0;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-filter-presets
+  .preset-btn {
+  display: inline-flex;
+  min-width: 110px;
+  flex: 1 1 110px;
+  align-items: center;
+  justify-content: center;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-input-wrapper {
+  width: auto;
+  min-width: 180px;
+  max-width: none;
+  flex: 1 1 240px;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-input-wrapper
+  .filter-date,
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .date-input-wrapper
+  .el-date-editor {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  :is(.btn-apply-filter, .btn-export) {
+  flex: 0 0 auto;
+  justify-content: center;
+  white-space: nowrap;
+}
+#app
+  .workspace-main
+  :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+  .export-wrap {
+  flex: 0 0 auto;
+}
+@media (max-width: 768px) {
+  #app
+    .workspace-main
+    :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+    .date-filter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  #app
+    .workspace-main
+    :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+    .date-filter-presets {
+    min-width: 0;
+    flex-basis: 100%;
+  }
+  #app
+    .workspace-main
+    :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+    .date-input-wrapper {
+    width: 100%;
+    max-width: none;
+    flex: 1 1 100%;
+  }
+  #app
+    .workspace-main
+    :is(.ib-report-page, .funding-report-page, .ib-statement-page)
+    :is(.btn-apply-filter, .btn-export) {
+    width: 100%;
+  }
+}
+#app
+  .workspace-main
+  :is(
+    .withdrawal-management-page,
+    .deposit-management-page,
+    .internal-transfer-management-page
+  )
+  .search-filter-section {
+  width: 100%;
+}
+#app
+  .workspace-main
+  :is(
+    .withdrawal-management-page,
+    .deposit-management-page,
+    .internal-transfer-management-page
+  )
+  .search-filter-container {
+  display: grid;
+  width: 100%;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+#app
+  .workspace-main
+  :is(
+    .withdrawal-management-page,
+    .deposit-management-page,
+    .internal-transfer-management-page
+  )
+  :is(.search-input-wrapper, .tags-section, .tags-header, .tags-container) {
+  width: 100%;
+  min-width: 0;
+}
+#app
+  .workspace-main
+  :is(
+    .withdrawal-management-page,
+    .deposit-management-page,
+    .internal-transfer-management-page
+  )
+  .tags-section {
+  padding-top: 14px;
+  border-top: 1px solid var(--color-border);
+}
 #app .workspace-main :is(.search-input-wrapper input, .search-box input) {
   min-height: 36px;
   background: transparent;
@@ -395,6 +676,24 @@
   top: auto;
   z-index: auto;
 }
+#app .workspace-main .webmcp-tool-table {
+  width: 100%;
+  min-width: 1060px;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+#app .workspace-main .webmcp-tool-table > thead > tr > th {
+  top: 0;
+  height: auto;
+  padding: 16px 20px;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--color-border);
+}
+#app .workspace-main .webmcp-tool-table > tbody > tr > td {
+  padding: 16px 20px;
+  border-bottom-color: var(--color-border);
+}
 #app
   .workspace-main
   :is(
@@ -412,6 +711,17 @@
   table
   th {
   top: 0;
+}
+#app
+  .workspace-main
+  .operation-log-report-page
+  .olr-table
+  > thead
+  > tr
+  > th {
+  position: static;
+  top: auto;
+  z-index: auto;
 }
 #app .workspace-main table td {
   padding: 10px 12px;
@@ -507,7 +817,7 @@
 }
 #app
   .workspace-main
-  :is(input:not([type="checkbox"]):not([type="radio"]), select, textarea) {
+  :is(input:not([type="checkbox"]):not([type="radio"]):not(.el-input__inner), select, textarea) {
   min-height: 38px;
   border: 1px solid var(--color-border-strong);
   border-radius: 2px;
@@ -516,7 +826,7 @@
 #app .workspace-main textarea {
   min-height: 96px;
 }
-#app .workspace-main :is(input, select, textarea):focus {
+#app .workspace-main :is(input:not(.el-input__inner), select, textarea):focus {
   border-color: var(--workspace-cobalt);
   box-shadow: 0 0 0 2px rgba(var(--color-brand-rgb), 0.15);
 }
