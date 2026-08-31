@@ -229,6 +229,7 @@ const router = createRouter({
           component: () => import("@/views/OperationLogReport.vue"),
           meta: {
             requiresAuth: true,
+            permissionKey: "page_operationlogreport_readonly",
           },
         },
         {
