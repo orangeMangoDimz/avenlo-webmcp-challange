@@ -671,7 +671,37 @@
   font-weight: 750;
   letter-spacing: 0.07em;
 }
+#app
+  .workspace-main
+  :is(.roles-card, .accounts-card, .templates-table-container, .ls-table-wrap)
+  table
+  th {
+  position: static;
+  top: auto;
+  z-index: auto;
+}
 #app .workspace-main .webmcp-arguments-table th {
+  position: static;
+  top: auto;
+  z-index: auto;
+}
+#app .workspace-main .funding-chart table th {
+  position: static;
+  top: auto;
+  z-index: auto;
+  height: auto;
+}
+#app .workspace-main .gateway-table table th {
+  position: static;
+  top: auto;
+  z-index: auto;
+}
+#app .workspace-main .rates-table table th {
+  position: static;
+  top: auto;
+  z-index: auto;
+}
+#app .workspace-main .dr-table th {
   position: static;
   top: auto;
   z-index: auto;

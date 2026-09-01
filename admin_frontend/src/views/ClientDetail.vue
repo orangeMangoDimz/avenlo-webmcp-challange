@@ -3753,7 +3753,9 @@ const getTagTextColor = (color) => {
   const green = parseInt(normalized.slice(2, 4), 16);
   const blue = parseInt(normalized.slice(4, 6), 16);
   const luminance = (red * 299 + green * 587 + blue * 114) / 1000;
-  return luminance > 150 ? "var(--color-ink)" : "#ffffff";
+  // Bright tag colors need stable dark ink in both themes; --color-ink
+  // becomes light in dark mode and loses contrast on yellow/orange fills.
+  return luminance > 150 ? "#101828" : "#ffffff";
 };
 
 const getKycFileUrl = (file) => {
