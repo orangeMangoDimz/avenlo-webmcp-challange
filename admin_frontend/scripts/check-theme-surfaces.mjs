@@ -97,7 +97,11 @@ const datePickerContracts = [
 const tablePositionContracts = [
   ['IB grid headers stay within their scroll region', /#app\s+\.workspace-main\s+\.ir-list-table\s*>\s*thead\s*>\s*tr\s*>\s*th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;/s],
   ['IB sticky action header keeps horizontal pinning only', /#app\s+\.workspace-main\s+\.ir-list-table\s*>\s*thead\s*>\s*tr\s*>\s*\.ir-list-table__th--sticky\s*\{[^}]*position:\s*sticky;[^}]*top:\s*auto;[^}]*right:\s*0;[^}]*z-index:\s*4;/s],
-  ['Activity audit header stays within its table', /#app\s+\.workspace-main\s+\.operation-log-report-page\s+\.olr-table\s*>\s*thead\s*>\s*tr\s*>\s*th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;[^}]*z-index:\s*auto;/s]
+  ['Activity audit header stays within its table', /#app\s+\.workspace-main\s+\.operation-log-report-page\s+\.olr-table\s*>\s*thead\s*>\s*tr\s*>\s*th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;[^}]*z-index:\s*auto;/s],
+  ['Funding trend rows stay within their table', /#app\s+\.workspace-main\s+\.funding-chart\s+table\s+th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;[^}]*z-index:\s*auto;/s],
+  ['Payment gateway headers stay within their table', /#app\s+\.workspace-main\s+\.gateway-table\s+table\s+th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;[^}]*z-index:\s*auto;/s],
+  ['Exchange rate headers stay within their table', /#app\s+\.workspace-main\s+\.rates-table\s+table\s+th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;[^}]*z-index:\s*auto;/s],
+  ['Daily sales headers stay within their table', /#app\s+\.workspace-main\s+\.dr-table\s+th\s*\{[^}]*position:\s*static;[^}]*top:\s*auto;[^}]*z-index:\s*auto;/s]
 ]
 const darkThemeSource = fs.readFileSync(themeStylesheets[0], 'utf8').match(/:root\[data-theme=(?:'dark'|"dark")\]\s*\{([\s\S]*?)\n\}/)?.[1] || ''
 const darkPaletteContracts = {

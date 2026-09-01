@@ -2,6 +2,7 @@
 
 $controllerPath = __DIR__ . '/../controllers/WebMcpReportController.php';
 $servicePath = __DIR__ . '/../services/WebMcpReportService.php';
+$viewsPath = __DIR__ . '/../database/all_views_260613.sql';
 
 function assertReportTrue(bool $condition, string $message): void {
     if (!$condition) {
@@ -20,6 +21,13 @@ function assertReportThrows(callable $callback, string $message): void {
 
 assertReportTrue(file_exists($controllerPath), 'Expected the Report WebMCP controller to exist.');
 assertReportTrue(file_exists($servicePath), 'Expected the Report WebMCP service to exist.');
+assertReportTrue(file_exists($viewsPath), 'Expected the canonical view definition to exist.');
+
+$viewsSql = file_get_contents($viewsPath);
+assertReportTrue(
+    substr_count($viewsSql, 'AS currency') >= 3,
+    'Expected vAllTransactions to expose currency for every transaction type.'
+);
 
 require_once $controllerPath;
 require_once $servicePath;
