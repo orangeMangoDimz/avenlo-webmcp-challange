@@ -19,7 +19,7 @@ const requiredSidebarContracts = [
   ['Partner network link', /nav_partner_network["']\s*,\s*["']Partner network["']/],
   ['Sales team', /nav_sales_team["']\s*,\s*["']Sales team["']/],
   ['User accounts', /nav_user_accounts["']\s*,\s*["']User accounts["']/],
-  ['WebMCP overview', /nav_webmcp_overview["']\s*,\s*["']WebMCP overview["']/],
+  ['Operations overview', /nav_operations_overview["']\s*,\s*["']Operations overview["']/],
   ['Tool catalog', /nav_webmcp_tools["']\s*,\s*["']Tool catalog["']/]
 ]
 
@@ -35,7 +35,8 @@ const requiredLayoutContracts = [
 const removedSidebarContracts = [
   ['duplicate sidebar brand', /sidebar-brand(?:-mark|-copy)?/],
   ['pin control', /sidebar-pin-btn|data-testid=["']sidebar-pin["']|toggle-pin|thumbtack/],
-  ['nested WebMCP links', /webmcp-parent-item|menu-sub-items|menu-sub-item/]
+  ['nested WebMCP links', /webmcp-parent-item|menu-sub-items|menu-sub-item/],
+  ['WebMCP overview inside Developer tools', /showDeveloperSettings[\s\S]*?to="\/webmcp\/overview"/]
 ]
 const removedLayoutContracts = [
   ['visible menu label', /<span>Menu<\/span>/]
@@ -55,6 +56,16 @@ const missing = [
     .filter(([, contract]) => contract.test(layoutSource))
     .map(([name]) => `Removed layout contract still present: ${name}`)
 ]
+
+const navigationLabelIndex = sidebarSource.indexOf('sidebar-navigation-label')
+const operationsLinkIndex = sidebarSource.indexOf('to="/webmcp/overview"')
+const clientSectionIndex = sidebarSource.indexOf('<!-- Client operations -->')
+if (operationsLinkIndex < 0 || clientSectionIndex < 0 || operationsLinkIndex > clientSectionIndex) {
+  missing.push('Operations overview is not the first navigation item')
+}
+if (navigationLabelIndex < 0 || operationsLinkIndex < navigationLabelIndex) {
+  missing.push('Operations overview is not positioned after the navigation label')
+}
 
 if (missing.length) {
   console.error('Sidebar navigation contract failed:')

@@ -19,6 +19,24 @@
         {{ t("nav_navigation", "Navigation") }}
       </p>
 
+      <router-link
+        to="/webmcp/overview"
+        class="menu-item menu-item-prominent"
+        active-class="active"
+      >
+        <span class="menu-item-prominent-icon" aria-hidden="true">
+          <i class="fas fa-tower-broadcast"></i>
+        </span>
+        <span class="menu-item-prominent-copy">
+          <span class="menu-text">{{
+            t("nav_operations_overview", "Operations overview")
+          }}</span>
+          <small>{{
+            t("nav_operations_overview_hint", "What needs attention today")
+          }}</small>
+        </span>
+      </router-link>
+
       <!-- Client operations -->
       <div
         v-if="hasClientSectionPermission"
@@ -552,13 +570,6 @@
             {{ t("nav_feature_controls", "Feature controls") }}
           </router-link>
           <router-link
-            to="/webmcp/overview"
-            class="menu-item"
-            active-class="active"
-          >
-            {{ t("nav_webmcp_overview", "WebMCP overview") }}
-          </router-link>
-          <router-link
             to="/webmcp/tools"
             class="menu-item"
             active-class="active"
@@ -773,7 +784,7 @@ const expandDeveloperSectionIfNeeded = () => {
         "/log-settings",
       ],
     ],
-    ["developer", ["/developer-settings", "/webmcp"]],
+    ["developer", ["/developer-settings", "/webmcp/tools"]],
   ];
   const activeSection = sectionByPath.find(([, paths]) =>
     paths.some((prefix) => path.startsWith(prefix)),
@@ -1143,6 +1154,75 @@ onMounted(async () => {
   font-weight: 550;
 }
 
+.menu-item-prominent {
+  display: grid;
+  grid-template-columns: 34px minmax(0, 1fr);
+  align-items: center;
+  gap: 10px;
+  min-height: 54px;
+  margin: 0 0 14px;
+  padding: 8px 10px;
+  color: var(--sidebar-nav-ink);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--color-brand-solid) 32%, var(--color-sidebar)),
+    color-mix(in srgb, var(--color-brand) 12%, var(--color-sidebar))
+  );
+  border-color: color-mix(in srgb, var(--color-brand) 45%, transparent);
+  box-shadow: 0 8px 18px rgba(5, 12, 24, 0.18);
+}
+
+.menu-item-prominent::before {
+  display: none;
+}
+
+.menu-item-prominent:hover,
+.menu-item-prominent.router-link-active,
+.menu-item-prominent.active {
+  color: #fff;
+  background: var(--color-brand-solid);
+  border-color: var(--color-brand);
+}
+
+.menu-item-prominent:hover .menu-text,
+.menu-item-prominent.router-link-active .menu-text,
+.menu-item-prominent.active .menu-text {
+  color: #fff;
+}
+
+.menu-item-prominent-icon {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: var(--color-accent);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+}
+
+.menu-item-prominent-copy {
+  display: grid;
+  min-width: 0;
+  gap: 3px;
+}
+
+.menu-item-prominent-copy small {
+  overflow: hidden;
+  color: var(--sidebar-nav-muted);
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.menu-item-prominent:hover .menu-item-prominent-copy small,
+.menu-item-prominent.router-link-active .menu-item-prominent-copy small,
+.menu-item-prominent.active .menu-item-prominent-copy small {
+  color: rgba(255, 255, 255, 0.82);
+}
+
 .menu-item::before {
   position: absolute;
   top: 50%;
@@ -1182,6 +1262,18 @@ onMounted(async () => {
 .menu-item:focus-visible {
   outline: 2px solid var(--color-brand);
   outline-offset: 2px;
+}
+
+.sidebar.collapsed .menu-item-prominent {
+  display: grid;
+  grid-template-columns: 1fr;
+  margin-right: 0;
+  padding: 8px;
+  place-items: center;
+}
+
+.sidebar.collapsed .menu-item-prominent-copy {
+  display: none;
 }
 
 @media (max-width: 1023px) {
