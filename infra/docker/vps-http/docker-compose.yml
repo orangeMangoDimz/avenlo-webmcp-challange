@@ -1,0 +1,113 @@
+name: avenlo-crm
+
+services:
+  mysql:
+    image: mysql:5.7
+    restart: unless-stopped
+    env_file:
+      - ../../../.env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "MYSQL_PWD=$$MYSQL_ROOT_PASSWORD mysqladmin ping -h 127.0.0.1 -uroot --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    networks: [data]
+
+  api:
+    build:
+      context: ../../..
+      dockerfile: infra/docker/images/backend.Dockerfile
+      target: api
+    restart: unless-stopped
+    init: true
+    env_file:
+      - ../../../.env
+    environment:
+      DB_HOST: mysql
+      DB_PORT: 3306
+    tmpfs:
+      - /tmp
+      - /usr/local/var/run:uid=33,gid=33,mode=0750
+      - /var/www/html/cache:uid=33,gid=33,mode=0750
+      - /var/www/html/runtime:uid=33,gid=33,mode=0750
+    volumes:
+      - backend_uploads:/var/www/html/uploads
+      - backend_storage:/var/www/html/storage
+      - backend_logs:/var/www/html/logs
+    healthcheck:
+      test: ["CMD", "php", "-r", "$$s=@fsockopen('127.0.0.1',9000); if(!$$s){exit(1);} fclose($$s);"]
+      interval: 15s
+      timeout: 3s
+      retries: 10
+      start_period: 30s
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks: [app, data]
+
+  admin:
+    build:
+      context: ../../..
+      dockerfile: infra/docker/images/frontend.Dockerfile
+      args:
+        APP_DIR: admin_frontend
+        VITE_API_BASE_URL: /index.php?path=api
+        VITE_CLIENT_BASE_URL: /client/
+    restart: unless-stopped
+    read_only: true
+    tmpfs:
+      - /tmp:uid=101,gid=101,mode=0750
+    depends_on:
+      api:
+        condition: service_healthy
+    networks: [app]
+
+  gateway:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    read_only: true
+    ports:
+      - "127.0.0.1:8000:80"
+    tmpfs:
+      - /etc/nginx/conf.d
+      - /var/cache/nginx
+      - /var/run
+    volumes:
+      - ./nginx.conf:/etc/nginx/templates/default.conf.template:ro
+    command:
+      - /bin/sh
+      - -ec
+      - |
+        envsubst < /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf
+        exec nginx -g 'daemon off;'
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/"]
+      interval: 15s
+      timeout: 3s
+      retries: 10
+      start_period: 20s
+    depends_on:
+      api:
+        condition: service_healthy
+      admin:
+        condition: service_started
+    networks: [app]
+
+volumes:
+  mysql_data:
+  backend_uploads:
+  backend_storage:
+  backend_logs:
+
+networks:
+  app:
+  data:
+    internal: true
