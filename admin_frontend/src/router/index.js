@@ -28,7 +28,7 @@ const router = createRouter({
       children: [
         {
           path: "",
-          redirect: "/clients-list",
+          redirect: "/webmcp/overview",
         },
         {
           path: "accounts",
@@ -470,7 +470,7 @@ router.beforeEach(async (to, from, next) => {
   if (requiresAuth && !authStore.isAuthenticated) {
     next({ name: "login", query: { redirect: to.fullPath } });
   } else if (to.name === "login" && authStore.isAuthenticated) {
-    next({ name: "clients-list" });
+    next({ name: "webmcp-overview" });
   } else {
     const requiredPermissions = to.matched.flatMap((record) => {
       if (Array.isArray(record.meta.permissionKeys))

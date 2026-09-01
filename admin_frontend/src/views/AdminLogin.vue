@@ -351,9 +351,12 @@ const copyToast = ref({ show: false, message: "" });
 const handleLogin = async () => {
   loading.value = true;
   try {
-    const result = await authStore.login(loginForm.value);
+    const result = await authStore.login({
+      ...loginForm.value,
+      username: loginForm.value.username.trim(),
+    });
     if (result.success) {
-      router.push("/clients-list");
+      router.push("/webmcp/overview");
     } else {
       alert(`Login failed: ${result.error}`);
     }
