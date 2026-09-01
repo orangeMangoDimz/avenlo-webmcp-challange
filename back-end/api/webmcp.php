@@ -6,6 +6,7 @@ require_once __DIR__ . '/../controllers/WebMcpIbController.php';
 require_once __DIR__ . '/../controllers/WebMcpAdminLogController.php';
 require_once __DIR__ . '/../controllers/WebMcpSalesController.php';
 require_once __DIR__ . '/../controllers/WebMcpReportController.php';
+require_once __DIR__ . '/../controllers/WebMcpOperationsController.php';
 require_once __DIR__ . '/../middleware/AuthMiddleware.php';
 require_once __DIR__ . '/../utils/Response.php';
 require_once __DIR__ . '/../services/ApplicationErrorHandler.php';
@@ -16,6 +17,7 @@ $ibController = new WebMcpIbController();
 $adminLogController = new WebMcpAdminLogController();
 $salesController = new WebMcpSalesController();
 $reportController = new WebMcpReportController();
+$operationsController = new WebMcpOperationsController();
 $method = $_SERVER['REQUEST_METHOD'];
 $path = trim((string)($_GET['path'] ?? ''), '/');
 
@@ -74,6 +76,14 @@ try {
             'handler' => $route['handler'],
             'method' => $route['method'],
             'controller' => $reportController
+        ];
+    }
+
+    foreach (WebMcpOperationsController::routeHandlers() as $operationsPath => $route) {
+        $routes[$operationsPath] = [
+            'handler' => $route['handler'],
+            'method' => $route['method'],
+            'controller' => $operationsController
         ];
     }
 

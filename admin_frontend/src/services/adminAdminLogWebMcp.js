@@ -4,6 +4,7 @@ import {
   buildOperationLogRouteQuery,
   isRegisteredOperationLogModule,
 } from "@/services/operationLogWebMcpNavigation";
+import { recordWebMcpActivity } from "@/services/adminWebMcpOperations";
 
 const MAX_ID = 2147483647;
 const MAX_PAGE = 1000;
@@ -640,6 +641,15 @@ export const createExportOperationLogsTool = ({
     } catch {
       opened = false;
     }
+    recordWebMcpActivity(
+      {
+        id: `export:${jobId}`,
+        kind: "export",
+        label: "Operation log export",
+        jobId,
+      },
+      authStore?.user?.id,
+    );
     return {
       success: true,
       jobId,

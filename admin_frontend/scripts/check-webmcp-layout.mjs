@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const views = ['WebMcpOverview.vue', 'WebMcpTools.vue']
-const developerViews = ['DeveloperSettings.vue', ...views]
+const developerViews = ['DeveloperSettings.vue', 'WebMcpTools.vue']
 const developerTabsSource = fs.readFileSync(
   path.join(appRoot, 'src', 'components', 'layout', 'DeveloperToolsTabs.vue'),
   'utf8',
@@ -39,6 +39,26 @@ for (const view of views) {
     }
     if (!source.includes('class="webmcp-tool-section-cell"') || source.includes('class="webmcp-section-row"')) {
       violations.push('WebMcpTools does not render each tool as a direct table row with a section column')
+    }
+  }
+
+  if (view === 'WebMcpOverview.vue') {
+    for (const dashboardSurface of [
+      'class="operations-filter-bar"',
+      'class="operations-metric-grid"',
+      'class="operations-attention-panel"',
+      'class="operations-support-grid"',
+      'aria-live="polite"',
+    ]) {
+      if (!source.includes(dashboardSurface)) {
+        violations.push(`WebMcpOverview is missing ${dashboardSurface}`)
+      }
+    }
+    if (!source.includes('getOperationsOverview')) {
+      violations.push('WebMcpOverview does not request the permission-aware operations aggregate')
+    }
+    if (!source.includes('setWebMcpEnabled')) {
+      violations.push('WebMcpOverview no longer exposes the compact browser runtime control')
     }
   }
 

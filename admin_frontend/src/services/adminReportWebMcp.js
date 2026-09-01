@@ -1,5 +1,6 @@
 import { adminWebMcpApi } from "@/services/adminWebMcpApi";
 import { WEBMCP_TOOL_CATALOG } from "@/services/adminWebMcpCatalog";
+import { recordWebMcpActivity } from "@/services/adminWebMcpOperations";
 
 const MAX_ID = 2147483647;
 const MAX_PAGE = 1000;
@@ -508,6 +509,16 @@ const createExportTool = ({
     );
     const jobId = String(job?.jobId || "").trim();
     if (!jobId) throw new Error("Unable to queue the report export.");
+    recordWebMcpActivity(
+      {
+        id: `export:${jobId}`,
+        kind: "export",
+        label: catalogEntry(name)?.title || name,
+        jobId,
+        exportKind,
+      },
+      authStore?.user?.id,
+    );
     return {
       success: true,
       jobId,

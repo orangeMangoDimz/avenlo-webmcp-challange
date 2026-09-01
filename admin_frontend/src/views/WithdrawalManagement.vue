@@ -568,6 +568,7 @@ import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 
 import { ref, computed, onMounted, watch } from "vue";
 import { useAuthStore } from "@/stores/auth";
+import { useRoute } from "vue-router";
 import WithdrawalDetailRow from "../components/withdrawals/WithdrawalDetailRow.vue";
 import BulkApproveModal from "../components/deposits/BulkApproveModal.vue"; // 复用
 import BulkTagModal from "../components/deposits/BulkTagModal.vue"; // 复用
@@ -590,6 +591,7 @@ const { t, tParams, languageStore } = useAdminI18n();
 const WITHDRAWALS_LOG_SUB_MODULE = getSubModuleKey("page_withdrawals");
 
 const authStore = useAuthStore();
+const route = useRoute();
 
 // Permission checks for Withdraw page
 const hasTagsPermission = computed(() =>
@@ -1360,7 +1362,19 @@ watch(showExportDropdown, () => {
 
 // 页面加载
 onMounted(async () => {
+  if (route.query.source === "webmcp-overview" && route.query.search) {
+    searchQuery.value = String(route.query.search).slice(0, 100);
+  }
   await Promise.all([loadWithdrawals(), loadStatistics(), loadSearchTags()]);
+  const detailId = Number(route.query.detailId);
+  if (
+    route.query.source === "webmcp-overview" &&
+    Number.isSafeInteger(detailId) &&
+    detailId > 0 &&
+    withdrawals.value.some((withdrawal) => Number(withdrawal.id) === detailId)
+  ) {
+    expandedWithdrawalId.value = detailId;
+  }
 });
 </script>
 

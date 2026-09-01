@@ -545,6 +545,7 @@ import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 
 import { ref, computed, onMounted, watch } from "vue";
 import { useAuthStore } from "@/stores/auth";
+import { useRoute } from "vue-router";
 import DepositDetailRow from "../components/deposits/DepositDetailRow.vue";
 import BulkApproveModal from "../components/deposits/BulkApproveModal.vue";
 import BulkTagModal from "../components/deposits/BulkTagModal.vue";
@@ -560,6 +561,7 @@ import { translateApiErrorMessage } from "@/i18n/adminI18nBridge";
 const { t, tParams, languageStore } = useAdminI18n();
 
 const authStore = useAuthStore();
+const route = useRoute();
 
 // Permission checks for Deposit page
 const hasTagsPermission = computed(() =>
@@ -1250,7 +1252,19 @@ watch(showExportDropdown, () => {
 
 // 页面加载
 onMounted(async () => {
+  if (route.query.source === "webmcp-overview" && route.query.search) {
+    searchQuery.value = String(route.query.search).slice(0, 100);
+  }
   await Promise.all([loadDeposits(), loadStatistics(), loadSearchTags()]);
+  const detailId = Number(route.query.detailId);
+  if (
+    route.query.source === "webmcp-overview" &&
+    Number.isSafeInteger(detailId) &&
+    detailId > 0 &&
+    deposits.value.some((deposit) => Number(deposit.id) === detailId)
+  ) {
+    expandedDepositId.value = detailId;
+  }
 });
 </script>
 

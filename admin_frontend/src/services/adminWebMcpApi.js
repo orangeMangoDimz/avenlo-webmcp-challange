@@ -55,6 +55,10 @@ webMcpApi.interceptors.response.use(
 );
 
 export const adminWebMcpApi = {
+  async getOperationsOverview(input) {
+    return webMcpApi.get("/admin/get-operations-overview", { params: input });
+  },
+
   async getClient(input) {
     return webMcpApi.get("/admin/get-client", { params: input });
   },

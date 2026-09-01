@@ -83,6 +83,16 @@ return [
         'max_per_page' => 100
     ],
 
+    'operations_dashboard' => [
+        'high_value_amount' => config_env_int('WEBMCP_DASHBOARD_HIGH_VALUE_AMOUNT', 10000),
+        'kyc_overdue_hours' => config_env_int('WEBMCP_DASHBOARD_KYC_OVERDUE_HOURS', 24),
+        'audit_mutation_burst_count' => config_env_int('WEBMCP_DASHBOARD_AUDIT_BURST_COUNT', 5),
+        'audit_mutation_window_minutes' => config_env_int('WEBMCP_DASHBOARD_AUDIT_BURST_MINUTES', 15),
+        'queue_limit' => config_env_int('WEBMCP_DASHBOARD_QUEUE_LIMIT', 25),
+        'queue_reserve_per_type' => config_env_int('WEBMCP_DASHBOARD_QUEUE_RESERVE_PER_TYPE', 1),
+        'stale_after_seconds' => config_env_int('WEBMCP_DASHBOARD_STALE_SECONDS', 300),
+    ],
+
     // 时区
 //    'timezone' => 'Asia/Shanghai',
 

@@ -130,7 +130,7 @@
             </thead>
             <tbody>
               <template
-                v-for="section in visibleGroupedTools"
+                v-for="section in paginatedGroupedTools"
                 :key="section.key"
               >
                 <template v-for="tool in section.tools" :key="tool.name">
@@ -357,7 +357,50 @@
             </tbody>
           </table>
         </div>
-        <div class="webmcp-table-footer">
+        <div v-if="totalPages > 1" class="pagination">
+          <div class="pagination-info">
+            {{
+              tParams(
+                "webmcp_catalog_pagination_range",
+                "Showing {from}–{to} of {total} tools",
+                {
+                  from: (currentPage - 1) * perPage + 1,
+                  to: Math.min(currentPage * perPage, visibleToolCount),
+                  total: visibleToolCount,
+                },
+              )
+            }}
+          </div>
+          <div class="pagination-controls">
+            <button
+              class="pagination-btn"
+              :disabled="currentPage === 1"
+              @click="changePage(currentPage - 1)"
+            >
+              <i class="fas fa-chevron-left" aria-hidden="true"></i>
+              {{ t("webmcp_catalog_pagination_previous", "Previous") }}
+            </button>
+            <template v-for="page in visiblePages" :key="page">
+              <button
+                v-if="page !== '...'"
+                :class="['pagination-btn', { active: currentPage === page }]"
+                @click="changePage(page)"
+              >
+                {{ page }}
+              </button>
+              <span v-else class="pagination-ellipsis">...</span>
+            </template>
+            <button
+              class="pagination-btn"
+              :disabled="currentPage === totalPages"
+              @click="changePage(currentPage + 1)"
+            >
+              {{ t("webmcp_catalog_pagination_next", "Next") }}
+              <i class="fas fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+        </div>
+        <div v-else class="webmcp-table-footer">
           {{
             tParams("webmcp_catalog_showing_all", "Showing {count} tools", {
               count: visibleToolCount,
@@ -392,6 +435,8 @@ const selectedSection = ref("all");
 const selectedAccess = ref("all");
 const searchQuery = ref("");
 const expandedTools = ref([]);
+const currentPage = ref(1);
+const perPage = 10;
 let unsubscribeWebMcpSetting = () => {};
 
 const hasToolPermission = (tool) => {
@@ -470,15 +515,81 @@ const visibleToolCount = computed(() =>
   ),
 );
 
+const visibleTools = computed(() =>
+  visibleGroupedTools.value.flatMap((section) =>
+    section.tools.map((tool) => ({
+      sectionKey: section.key,
+      sectionTitle: section.title,
+      tool,
+    })),
+  ),
+);
+
+const totalPages = computed(() =>
+  Math.ceil(visibleToolCount.value / perPage),
+);
+
+const visiblePages = computed(() => {
+  const pages = [];
+  const maxVisible = 5;
+
+  if (totalPages.value <= maxVisible) {
+    for (let i = 1; i <= totalPages.value; i++) {
+      pages.push(i);
+    }
+  } else if (currentPage.value <= 3) {
+    for (let i = 1; i <= 4; i++) pages.push(i);
+    pages.push("...");
+    pages.push(totalPages.value);
+  } else if (currentPage.value >= totalPages.value - 2) {
+    pages.push(1);
+    pages.push("...");
+    for (let i = totalPages.value - 3; i <= totalPages.value; i++) {
+      pages.push(i);
+    }
+  } else {
+    pages.push(1);
+    pages.push("...");
+    pages.push(currentPage.value - 1);
+    pages.push(currentPage.value);
+    pages.push(currentPage.value + 1);
+    pages.push("...");
+    pages.push(totalPages.value);
+  }
+
+  return pages;
+});
+
+const paginatedGroupedTools = computed(() => {
+  const start = (currentPage.value - 1) * perPage;
+  const pageTools = visibleTools.value.slice(start, start + perPage);
+
+  return pageTools.reduce((sections, entry) => {
+    const lastSection = sections[sections.length - 1];
+    if (!lastSection || lastSection.key !== entry.sectionKey) {
+      sections.push({
+        key: entry.sectionKey,
+        title: entry.sectionTitle,
+        tools: [],
+      });
+    }
+    sections[sections.length - 1].tools.push(entry.tool);
+    return sections;
+  }, []);
+});
+
 const handleSectionFilterChange = () => {
+  currentPage.value = 1;
   expandedTools.value = [];
 };
 
 const handleAccessFilterChange = () => {
+  currentPage.value = 1;
   expandedTools.value = [];
 };
 
 const handleToolSearch = () => {
+  currentPage.value = 1;
   expandedTools.value = [];
 };
 
@@ -526,6 +637,12 @@ const requirementClass = (requirement) => {
   if (requirement === "Optional") return "is-optional";
   if (requirement === "At least one") return "is-conditional";
   return "is-required";
+};
+
+const changePage = (page) => {
+  if (page === "..." || page < 1 || page > totalPages.value) return;
+  currentPage.value = page;
+  expandedTools.value = [];
 };
 
 onMounted(() => {
@@ -767,6 +884,62 @@ onUnmounted(() => {
   overflow-y: hidden;
   overscroll-behavior-inline: contain;
   -webkit-overflow-scrolling: touch;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  border-top: 2px solid var(--color-border);
+}
+
+.pagination-info {
+  color: var(--color-muted);
+  font-size: 14px;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.pagination-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 12px;
+  color: var(--color-text);
+  background: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  color: var(--color-brand);
+  background: var(--color-brand-soft);
+  border-color: var(--color-brand);
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-btn.active {
+  color: #fff;
+  background: var(--color-brand-solid);
+  border-color: var(--color-brand);
+}
+
+.pagination-ellipsis {
+  padding: 8px 12px;
+  color: var(--color-faint);
+  font-weight: 600;
 }
 
 .webmcp-table-footer {
@@ -1234,6 +1407,16 @@ onUnmounted(() => {
 
   .webmcp-tool-detail-wide {
     grid-column: auto;
+  }
+
+  .pagination {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .pagination-controls {
+    flex-wrap: wrap;
+    justify-content: center;
   }
 }
 </style>

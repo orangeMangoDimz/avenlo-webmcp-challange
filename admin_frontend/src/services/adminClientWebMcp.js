@@ -1,5 +1,6 @@
 import { adminWebMcpApi } from "@/services/adminWebMcpApi";
 import { WEBMCP_TOOL_CATALOG } from "@/services/adminWebMcpCatalog";
+import { recordWebMcpActivity } from "@/services/adminWebMcpOperations";
 
 const MAX_CLIENT_ID = 2147483647;
 const MAX_EXPORT_CLIENTS = 500;
@@ -1164,6 +1165,15 @@ const createExportTool = ({
       throw new Error(errorMessage);
     }
     const { progressUrl, opened } = openExportProgress(router, jobId);
+    recordWebMcpActivity(
+      {
+        id: `export:${jobId}`,
+        kind: "export",
+        label: title,
+        jobId,
+      },
+      authStore?.user?.id,
+    );
     return {
       success: true,
       jobId,

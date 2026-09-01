@@ -345,13 +345,14 @@
 </template>
 
 <script>
-import { ref, reactive, onMounted, computed } from "vue";
+import { ref, onMounted, computed } from "vue";
 import { useAuthStore } from "@/stores/auth";
 import KYCSubmissionDetail from "@/components/kyc/KYCSubmissionDetail.vue";
 import BulkAssignModal from "@/components/kyc/BulkAssignModal.vue";
 import { kycSubmissionService } from "@/services/kycListService";
 import { formatNumber } from "@/utils/helpers";
 import { useAdminI18n } from "@/composables/useAdminI18n";
+import { useRoute } from "vue-router";
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 import { recordOperationLog } from "@/services/operationLogReportApi";
 import { buildExportLogPayload } from "@/config/operationLogPages";
@@ -366,6 +367,7 @@ export default {
     BulkAssignModal,
   },
   setup() {
+    const route = useRoute();
     const { t, tParams, languageStore } = useAdminI18n();
     const dateLocale = () =>
       languageStore.currentLanguage === "zh" ? "zh-CN" : "en-US";
@@ -867,7 +869,7 @@ export default {
       showBulkAssignModal.value = false;
     };
 
-    const handleBulkAssign = async (assignmentData) => {
+    const handleBulkAssign = async () => {
       // 注意：API调用已经在BulkAssignModal组件中完成
       // 这里只需要更新UI状态
       try {
@@ -976,8 +978,34 @@ export default {
     };
 
     // 生命周期
-    onMounted(() => {
-      loadSubmissions();
+    onMounted(async () => {
+      const targetId = Number(route.query.submissionId);
+      const hasDashboardTarget =
+        route.query.source === "webmcp-overview" &&
+        Number.isSafeInteger(targetId) &&
+        targetId > 0;
+      if (hasDashboardTarget) {
+        try {
+          loading.value = true;
+          const response = await kycSubmissionService.getDetail(targetId);
+          const target = response?.data?.submission || response?.data;
+          if (target && Number(target.submissionId) === targetId) {
+            submissions.value = [target];
+            totalItems.value = 1;
+            totalPagesFromApi.value = 1;
+            expandedRows.value = [targetId];
+          } else {
+            await loadSubmissions();
+          }
+        } catch (error) {
+          console.error("Failed to open dashboard KYC target:", error);
+          await loadSubmissions();
+        } finally {
+          loading.value = false;
+        }
+      } else {
+        await loadSubmissions();
+      }
       loadStatistics();
     });
 

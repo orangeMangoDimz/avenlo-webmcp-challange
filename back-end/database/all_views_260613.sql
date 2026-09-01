@@ -99,6 +99,7 @@ SELECT
     d.status AS status,
     COALESCE(pgs.gatewayName, 'Deposit') AS paymentMethod,
     COALESCE(pgs.type, 'fiat') AS paymentType,
+    d.currencyCode AS currency,
     d.requestedAt AS requestedAt,
     d.approvedAt AS approvedAt,
     d.completedAt AS completedAt,
@@ -137,6 +138,7 @@ SELECT
     w.status AS status,
     COALESCE(pgs.gatewayName, 'Withdrawal') AS paymentMethod,
     COALESCE(pgs.type, 'fiat') AS paymentType,
+    w.currencyCode AS currency,
     w.requestedAt AS requestedAt,
     w.approvedAt AS approvedAt,
     w.completedAt AS completedAt,
@@ -181,6 +183,7 @@ SELECT
             COALESCE(tota.accountNickname, 'Trading Account')
     ) AS paymentMethod,
     'internal' AS paymentType,
+    COALESCE(it.toDisplayUnit, it.fromDisplayUnit, 'USD') AS currency,
     it.requestedAt AS requestedAt,
     it.approvedAt AS approvedAt,
     it.completedAt AS completedAt,
