@@ -21,11 +21,7 @@
         <i class="fas fa-bars" aria-hidden="true"></i>
       </button>
       <div class="workspace-brand" aria-label="Avenlo control center">
-        <span class="workspace-brand-monogram" aria-hidden="true">A</span>
-        <span class="workspace-brand-copy">
-          <strong>Avenlo</strong>
-          <small>Control center</small>
-        </span>
+        <img :src="avenloLogo" alt="Avenlo" class="workspace-brand-logo" />
       </div>
       <PageHeaderActions topbar class="workspace-header-actions" />
     </header>
@@ -59,6 +55,7 @@
 import { computed, nextTick, onMounted, onUnmounted, ref } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/auth";
+import avenloLogo from "@/assets/brand/avenlo-logo.png";
 import Sidebar from "@/components/layout/Sidebar.vue";
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
 import { registerAdminWebMcpTools } from "@/services/adminWebMcpRegistry";

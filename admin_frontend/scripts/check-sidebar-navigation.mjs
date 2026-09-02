@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const sidebarSource = fs.readFileSync(path.join(appRoot, 'src', 'components', 'layout', 'Sidebar.vue'), 'utf8')
 const layoutSource = fs.readFileSync(path.join(appRoot, 'src', 'layouts', 'MainLayout.vue'), 'utf8')
+const brandAssetPath = path.join(appRoot, 'src', 'assets', 'brand', 'avenlo-logo.png')
 
 const requiredSidebarContracts = [
   ['Client operations', /nav_section_clients["']\s*,\s*["']Client operations["']/],
@@ -24,9 +25,9 @@ const requiredSidebarContracts = [
 ]
 
 const requiredLayoutContracts = [
-  'workspace-brand-monogram',
-  'Avenlo',
-  'Control center',
+  'workspace-brand-logo',
+  'avenloLogo',
+  'alt="Avenlo"',
   'workspace-navigate-button',
   'aria-label="Open navigation"',
   'fa-bars'
@@ -39,7 +40,8 @@ const removedSidebarContracts = [
   ['WebMCP overview inside Developer tools', /showDeveloperSettings[\s\S]*?to="\/webmcp\/overview"/]
 ]
 const removedLayoutContracts = [
-  ['visible menu label', /<span>Menu<\/span>/]
+  ['visible menu label', /<span>Menu<\/span>/],
+  ['legacy text logo', /workspace-brand-monogram|workspace-brand-copy/]
 ]
 
 const missing = [
@@ -49,6 +51,9 @@ const missing = [
   ...requiredLayoutContracts
     .filter((contract) => !layoutSource.includes(contract))
     .map((contract) => `Topbar brand contract missing: ${contract}`),
+  ...(fs.existsSync(brandAssetPath)
+    ? []
+    : ['Topbar brand asset missing: src/assets/brand/avenlo-logo.png']),
   ...removedSidebarContracts
     .filter(([, contract]) => contract.test(sidebarSource) || contract.test(layoutSource))
     .map(([name]) => `Removed sidebar contract still present: ${name}`),
