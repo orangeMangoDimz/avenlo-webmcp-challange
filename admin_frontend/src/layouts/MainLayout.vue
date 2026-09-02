@@ -22,6 +22,13 @@
       </button>
       <div class="workspace-brand" aria-label="Avenlo control center">
         <img :src="avenloLogo" alt="Avenlo" class="workspace-brand-logo" />
+        <img
+          v-if="isDark"
+          :src="avenloLogo"
+          alt=""
+          aria-hidden="true"
+          class="workspace-brand-logo-dark-wordmark"
+        />
       </div>
       <PageHeaderActions topbar class="workspace-header-actions" />
     </header>
@@ -58,6 +65,7 @@ import { useAuthStore } from "@/stores/auth";
 import avenloLogo from "@/assets/brand/avenlo-logo.png";
 import Sidebar from "@/components/layout/Sidebar.vue";
 import PageHeaderActions from "@/components/layout/PageHeaderActions.vue";
+import { useTheme } from "@/composables/useTheme";
 import { registerAdminWebMcpTools } from "@/services/adminWebMcpRegistry";
 import {
   isWebMcpEnabled,
@@ -71,6 +79,7 @@ import {
 const route = useRoute();
 const router = useRouter();
 const authStore = useAuthStore();
+const { isDark } = useTheme();
 const isNavigationOpen = ref(false);
 const menuButton = ref(null);
 const {

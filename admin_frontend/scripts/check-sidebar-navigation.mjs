@@ -26,7 +26,10 @@ const requiredSidebarContracts = [
 
 const requiredLayoutContracts = [
   'workspace-brand-logo',
+  'workspace-brand-logo-dark-wordmark',
   'avenloLogo',
+  'useTheme',
+  'v-if="isDark"',
   'alt="Avenlo"',
   'workspace-navigate-button',
   'aria-label="Open navigation"',
