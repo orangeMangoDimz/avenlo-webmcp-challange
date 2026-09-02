@@ -6,6 +6,8 @@ const MAX_CLIENT_ID = 2147483647;
 const MAX_EXPORT_CLIENTS = 500;
 const LOOKUP_KEYS = ["email", "id", "code"];
 const noop = () => {};
+const catalogEntry = (name) =>
+  WEBMCP_TOOL_CATALOG.find((entry) => entry.name === name);
 
 const clientLookupInputSchema = {
   type: "object",
@@ -67,7 +69,8 @@ const searchClientsInputSchema = {
     salesAssignment: {
       type: "string",
       enum: ["unassigned"],
-      description: "Use unassigned to return clients without a sales representative.",
+      description:
+        "Use unassigned to return clients without a sales representative.",
     },
     search: {
       type: "string",
@@ -524,7 +527,9 @@ export const normalizeExportTransactionsInput = (input = {}) => {
     (key) => !allowedKeys.includes(key),
   );
   if (unsupportedKey) {
-    throw new Error(`${unsupportedKey} is not supported for transaction export.`);
+    throw new Error(
+      `${unsupportedKey} is not supported for transaction export.`,
+    );
   }
 
   const normalized = {};
@@ -1252,9 +1257,10 @@ export const registerAdminClientWebMcpTools = ({
   authStore,
   webMcpApi = adminWebMcpApi,
   router,
+  modelContext = typeof document !== "undefined"
+    ? document.modelContext
+    : undefined,
 }) => {
-  const modelContext =
-    typeof document === "undefined" ? null : document.modelContext;
   if (!modelContext?.registerTool || !authStore?.isAuthenticated) {
     return noop;
   }
@@ -1262,57 +1268,58 @@ export const registerAdminClientWebMcpTools = ({
   const controller = new AbortController();
   const toolDefinitions = [
     {
-      catalog: WEBMCP_TOOL_CATALOG[0],
+      catalog: catalogEntry("get_client"),
       create: () => createGetClientTool({ authStore, webMcpApi }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[1],
+      catalog: catalogEntry("navigate_to_client"),
       create: () =>
         createNavigateToClientTool({ authStore, webMcpApi, router }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[2],
+      catalog: catalogEntry("search_clients"),
       create: () => createSearchClientsTool({ authStore, webMcpApi }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[3],
+      catalog: catalogEntry("get_client_documents"),
       create: () => createGetClientDocumentsTool({ authStore, webMcpApi }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[4],
+      catalog: catalogEntry("get_client_trading_accounts"),
       create: () =>
         createGetClientTradingAccountsTool({ authStore, webMcpApi }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[5],
+      catalog: catalogEntry("get_client_recent_transactions"),
       create: () =>
         createGetClientRecentTransactionsTool({ authStore, webMcpApi }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[6],
+      catalog: catalogEntry("export_clients"),
       create: () => createExportClientsTool({ authStore, webMcpApi, router }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[7],
+      catalog: catalogEntry("export_client_transactions"),
       create: () =>
         createExportClientTransactionsTool({ authStore, webMcpApi, router }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[8],
+      catalog: catalogEntry("search_transactions"),
       create: () => createSearchTransactionsTool({ authStore, webMcpApi }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[9],
+      catalog: catalogEntry("get_transaction"),
       create: () => createGetTransactionTool({ authStore, webMcpApi }),
     },
     {
-      catalog: WEBMCP_TOOL_CATALOG[10],
-      create: () => createExportTransactionsTool({ authStore, webMcpApi, router }),
+      catalog: catalogEntry("export_transactions"),
+      create: () =>
+        createExportTransactionsTool({ authStore, webMcpApi, router }),
     },
   ];
   const tools = toolDefinitions
     .filter(({ catalog }) =>
-      hasAnyPermission(authStore, catalog.permissionKeys),
+      hasAnyPermission(authStore, catalog?.permissionKeys || []),
     )
     .map(({ create }) => create());
 

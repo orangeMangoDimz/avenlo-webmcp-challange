@@ -131,6 +131,7 @@ describe("admin client WebMCP tools", () => {
 
   it("exposes the registered tools in the admin catalog", () => {
     expect(WEBMCP_TOOL_CATALOG.map(({ name }) => name)).toEqual([
+      "get_dashboard_summary",
       "get_client",
       "navigate_to_client",
       "search_clients",
@@ -216,6 +217,7 @@ describe("admin client WebMCP tools", () => {
 
   it("groups catalog tools into the Client section", () => {
     expect(WEBMCP_TOOL_SECTIONS.map(({ key }) => key)).toEqual([
+      "dashboard",
       "client",
       "transactions",
       "kyc",
@@ -332,9 +334,9 @@ describe("admin client WebMCP tools", () => {
   it("rejects unsupported sales-assignment filters", async () => {
     const tool = createSearchClientsTool({ authStore, webMcpApi });
 
-    await expect(
-      tool.execute({ salesAssignment: "assigned" }),
-    ).rejects.toThrow(/salesAssignment/i);
+    await expect(tool.execute({ salesAssignment: "assigned" })).rejects.toThrow(
+      /salesAssignment/i,
+    );
     expect(webMcpApi.searchClients).not.toHaveBeenCalled();
   });
 

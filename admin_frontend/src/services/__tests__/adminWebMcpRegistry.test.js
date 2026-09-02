@@ -24,6 +24,7 @@ describe("admin WebMCP registry", () => {
     await Promise.resolve();
 
     expect(registerTool.mock.calls.map(([tool]) => tool.name)).toEqual([
+      "get_dashboard_summary",
       "get_client",
       "navigate_to_client",
       "search_clients",

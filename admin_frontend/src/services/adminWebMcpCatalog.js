@@ -1,5 +1,11 @@
 export const WEBMCP_TOOL_SECTIONS = [
   {
+    key: "dashboard",
+    title: "Dashboard",
+    description: "Summarize the current WebMCP runtime and execution health.",
+    icon: "fa-gauge-high",
+  },
+  {
     key: "client",
     title: "Client",
     description: "Look up and navigate through client information.",
@@ -26,7 +32,8 @@ export const WEBMCP_TOOL_SECTIONS = [
   {
     key: "sales",
     title: "Sales",
-    description: "Discover sales users, assignments, performance, and rankings.",
+    description:
+      "Discover sales users, assignments, performance, and rankings.",
     icon: "fa-user-tie",
   },
   {
@@ -323,6 +330,42 @@ const KYC_QUEUE_RESPONSE = {
 };
 
 export const WEBMCP_TOOL_CATALOG = [
+  {
+    name: "get_dashboard_summary",
+    title: "Get dashboard summary",
+    description:
+      "Retrieve the current permission-scoped Operations Overview shown in the admin dashboard.",
+    icon: "fa-gauge-high",
+    permissionKeys: [],
+    sectionKey: "dashboard",
+    inputSummary:
+      "No input is required. Returns the dashboard's default seven-day window in the browser timezone.",
+    inputFields: [
+      {
+        name: "None",
+        type: "none",
+        requirement: "None",
+        description: "This tool does not accept parameters.",
+      },
+    ],
+    inputExample: {},
+    outputSummary:
+      "Returns dashboard metrics, exception queue, funding trend, sales and IB summaries, recent activity, scopes, and section errors.",
+    outputExample: {
+      generatedAt: "2026-09-03T08:00:00Z",
+      period: { startDate: "2026-08-28", endDate: "2026-09-03" },
+      policy: { highValueAmount: 10000, kycOverdueHours: 24 },
+      scope: { funding: { access: "all", canExport: true } },
+      metrics: { netFunding: { status: "ready", totals: [] } },
+      attentionQueue: { items: [], total: 0, truncated: false },
+      fundingTrend: { status: "ready", points: [] },
+      sales: { status: "ready", summary: {}, rankings: [] },
+      ib: { status: "ready", summary: {}, leaders: [] },
+      recentActivity: { status: "ready", items: [] },
+      sectionErrors: [],
+    },
+    accessMode: "read",
+  },
   {
     name: "get_client",
     title: "Get client",
@@ -1131,7 +1174,8 @@ export const WEBMCP_TOOL_CATALOG = [
         name: "page / limit",
         type: "integer",
         requirement: "Optional",
-        description: "Page defaults to 1; limit defaults to 25 and is capped at 50.",
+        description:
+          "Page defaults to 1; limit defaults to 25 and is capped at 50.",
       },
     ],
     inputExample: { query: "Sarah", page: 1, limit: 25 },
@@ -1159,7 +1203,8 @@ export const WEBMCP_TOOL_CATALOG = [
     icon: "fa-users",
     permissionKeys: ["page_saleslist_view", "page_salesdashboard_view"],
     sectionKey: "sales",
-    inputSummary: "Provide a sales ID and optional client search or pagination.",
+    inputSummary:
+      "Provide a sales ID and optional client search or pagination.",
     inputFields: [
       {
         name: "salesId",
@@ -1177,11 +1222,13 @@ export const WEBMCP_TOOL_CATALOG = [
         name: "page / limit",
         type: "integer",
         requirement: "Optional",
-        description: "Page defaults to 1; limit defaults to 25 and is capped at 50.",
+        description:
+          "Page defaults to 1; limit defaults to 25 and is capped at 50.",
       },
     ],
     inputExample: { salesId: 42, page: 1, limit: 25 },
-    outputSummary: "Returns sanitized assigned clients and pagination metadata.",
+    outputSummary:
+      "Returns sanitized assigned clients and pagination metadata.",
     outputExample: {
       sales: { id: 42, name: "Sarah Tan" },
       clients: [
@@ -1202,11 +1249,13 @@ export const WEBMCP_TOOL_CATALOG = [
   {
     name: "get_sales_partners",
     title: "Get sales partners",
-    description: "Retrieve approved IB partners assigned to one visible sales user.",
+    description:
+      "Retrieve approved IB partners assigned to one visible sales user.",
     icon: "fa-handshake",
     permissionKeys: ["page_saleslist_view", "page_salesdashboard_view"],
     sectionKey: "sales",
-    inputSummary: "Provide a sales ID and optional partner search or pagination.",
+    inputSummary:
+      "Provide a sales ID and optional partner search or pagination.",
     inputFields: [
       {
         name: "salesId",
@@ -1224,11 +1273,13 @@ export const WEBMCP_TOOL_CATALOG = [
         name: "page / limit",
         type: "integer",
         requirement: "Optional",
-        description: "Page defaults to 1; limit defaults to 25 and is capped at 50.",
+        description:
+          "Page defaults to 1; limit defaults to 25 and is capped at 50.",
       },
     ],
     inputExample: { salesId: 42, search: "IB-2026", page: 1, limit: 25 },
-    outputSummary: "Returns sanitized assigned IB partners and pagination metadata.",
+    outputSummary:
+      "Returns sanitized assigned IB partners and pagination metadata.",
     outputExample: {
       sales: { id: 42, name: "Sarah Tan" },
       partners: [
@@ -1254,7 +1305,8 @@ export const WEBMCP_TOOL_CATALOG = [
     icon: "fa-chart-line",
     permissionKeys: ["page_saleslist_view", "page_salesdashboard_view"],
     sectionKey: "sales",
-    inputSummary: "Provide a sales ID, optional calendar month, and timezone offset.",
+    inputSummary:
+      "Provide a sales ID, optional calendar month, and timezone offset.",
     inputFields: [
       {
         name: "salesId",
@@ -1345,13 +1397,15 @@ export const WEBMCP_TOOL_CATALOG = [
     icon: "fa-ranking-star",
     permissionKeys: ["page_dailyreport_readonly", "page_saleslist_view"],
     sectionKey: "sales",
-    inputSummary: "Choose an optional metric, period, date or month, timezone, and result limit.",
+    inputSummary:
+      "Choose an optional metric, period, date or month, timezone, and result limit.",
     inputFields: [
       {
         name: "metric",
         type: "enum",
         requirement: "Optional",
-        description: "newClients, newLeads, netDeposit, or deposits; defaults to newClients.",
+        description:
+          "newClients, newLeads, netDeposit, or deposits; defaults to newClients.",
       },
       {
         name: "period",
@@ -1384,21 +1438,21 @@ export const WEBMCP_TOOL_CATALOG = [
       month: "2026-08",
       limit: 10,
     },
-    outputSummary: "Returns deterministic competition rankings for the selected metric.",
+    outputSummary:
+      "Returns deterministic competition rankings for the selected metric.",
     outputExample: {
       metric: "newClients",
       period: "month",
       month: "2026-08",
-      rankings: [
-        { rank: 1, sales: { id: 42, name: "Sarah Tan" }, value: 5 },
-      ],
+      rankings: [{ rank: 1, sales: { id: 42, name: "Sarah Tan" }, value: 5 }],
     },
     accessMode: "read",
   },
   {
     name: "navigate_to_sales",
     title: "Navigate to sales",
-    description: "Open one visible sales user's dashboard in the admin application.",
+    description:
+      "Open one visible sales user's dashboard in the admin application.",
     icon: "fa-compass",
     permissionKeys: ["page_saleslist_view", "page_salesdashboard_view"],
     sectionKey: "sales",
@@ -1412,7 +1466,8 @@ export const WEBMCP_TOOL_CATALOG = [
       },
     ],
     inputExample: { salesId: 42 },
-    outputSummary: "Navigates to the selected sales dashboard and returns its route.",
+    outputSummary:
+      "Navigates to the selected sales dashboard and returns its route.",
     outputExample: {
       success: true,
       salesId: 42,
@@ -1423,34 +1478,70 @@ export const WEBMCP_TOOL_CATALOG = [
   {
     name: "get_funding_summary",
     title: "Get funding summary",
-    description: "Return scoped funding totals and net flow for an inclusive date range.",
+    description:
+      "Return scoped funding totals and net flow for an inclusive date range.",
     icon: "fa-chart-pie",
     permissionKeys: ["page_fundingreport_readonly"],
     sectionKey: "report",
-    inputSummary: "Provide an optional date range; the current month is used by default.",
+    inputSummary:
+      "Provide an optional date range; the current month is used by default.",
     inputFields: [
-      { name: "startDate / endDate", type: "YYYY-MM-DD", requirement: "Optional pair", description: "Inclusive funding period." },
+      {
+        name: "startDate / endDate",
+        type: "YYYY-MM-DD",
+        requirement: "Optional pair",
+        description: "Inclusive funding period.",
+      },
     ],
     inputExample: { startDate: "2026-08-01", endDate: "2026-08-31" },
-    outputSummary: "Returns deposit, withdrawal, transfer, count, and net-flow totals.",
-    outputExample: { period: { startDate: "2026-08-01", endDate: "2026-08-31" }, summary: { totalDeposits: 1000, totalWithdrawals: 200, netFlow: 800 } },
+    outputSummary:
+      "Returns deposit, withdrawal, transfer, count, and net-flow totals.",
+    outputExample: {
+      period: { startDate: "2026-08-01", endDate: "2026-08-31" },
+      summary: { totalDeposits: 1000, totalWithdrawals: 200, netFlow: 800 },
+    },
     accessMode: "read",
   },
   {
     name: "search_funding_transactions",
     title: "Search funding transactions",
-    description: "Search scoped Funding Report rows by period, type, status, client, transaction, or amount.",
+    description:
+      "Search scoped Funding Report rows by period, type, status, client, transaction, or amount.",
     icon: "fa-magnifying-glass-dollar",
     permissionKeys: ["page_fundingreport_readonly"],
     sectionKey: "report",
     inputSummary: "Provide optional funding filters and pagination.",
     inputFields: [
-      { name: "startDate / endDate", type: "YYYY-MM-DD", requirement: "Optional pair", description: "Inclusive period; defaults to the current month." },
-      { name: "type / status / query", type: "filters", requirement: "Optional", description: "Funding transaction filters." },
-      { name: "minAmount / maxAmount", type: "number", requirement: "Optional", description: "Inclusive amount range." },
-      { name: "page / limit", type: "integer", requirement: "Optional", description: "Limit defaults to 25 and is capped at 50." },
+      {
+        name: "startDate / endDate",
+        type: "YYYY-MM-DD",
+        requirement: "Optional pair",
+        description: "Inclusive period; defaults to the current month.",
+      },
+      {
+        name: "type / status / query",
+        type: "filters",
+        requirement: "Optional",
+        description: "Funding transaction filters.",
+      },
+      {
+        name: "minAmount / maxAmount",
+        type: "number",
+        requirement: "Optional",
+        description: "Inclusive amount range.",
+      },
+      {
+        name: "page / limit",
+        type: "integer",
+        requirement: "Optional",
+        description: "Limit defaults to 25 and is capped at 50.",
+      },
     ],
-    inputExample: { type: "withdrawal", startDate: "2026-08-24", endDate: "2026-08-31" },
+    inputExample: {
+      type: "withdrawal",
+      startDate: "2026-08-24",
+      endDate: "2026-08-31",
+    },
     outputSummary: "Returns sanitized transactions and pagination.",
     outputExample: { transactions: [], pagination: PAGINATION_RESPONSE },
     accessMode: "read",
@@ -1458,36 +1549,74 @@ export const WEBMCP_TOOL_CATALOG = [
   {
     name: "get_daily_sales_performance",
     title: "Get daily sales performance",
-    description: "Return scoped daily sales totals and deterministic rankings for one metric.",
+    description:
+      "Return scoped daily sales totals and deterministic rankings for one metric.",
     icon: "fa-ranking-star",
     permissionKeys: ["page_dailyreport_readonly"],
     sectionKey: "report",
-    inputSummary: "Choose an optional date, timezone, ranking metric, and limit.",
+    inputSummary:
+      "Choose an optional date, timezone, ranking metric, and limit.",
     inputFields: [
-      { name: "date", type: "YYYY-MM-DD", requirement: "Optional", description: "Defaults to today." },
-      { name: "rankBy", type: "enum", requirement: "Optional", description: "deposits, withdrawals, netDeposit, newLeads, or newClients." },
-      { name: "tzOffset / limit", type: "integer", requirement: "Optional", description: "Browser timezone and top-row limit." },
+      {
+        name: "date",
+        type: "YYYY-MM-DD",
+        requirement: "Optional",
+        description: "Defaults to today.",
+      },
+      {
+        name: "rankBy",
+        type: "enum",
+        requirement: "Optional",
+        description:
+          "deposits, withdrawals, netDeposit, newLeads, or newClients.",
+      },
+      {
+        name: "tzOffset / limit",
+        type: "integer",
+        requirement: "Optional",
+        description: "Browser timezone and top-row limit.",
+      },
     ],
     inputExample: { date: "2026-08-31", rankBy: "deposits", limit: 10 },
-    outputSummary: "Returns team/self totals and ranked rows with complete daily metrics.",
-    outputExample: { date: "2026-08-31", rankBy: "deposits", summary: {}, rankings: [] },
+    outputSummary:
+      "Returns team/self totals and ranked rows with complete daily metrics.",
+    outputExample: {
+      date: "2026-08-31",
+      rankBy: "deposits",
+      summary: {},
+      rankings: [],
+    },
     accessMode: "read",
   },
   {
     name: "search_ib_partners",
     title: "Search IB partners",
-    description: "Find approved IB partners available to the IB statement report.",
+    description:
+      "Find approved IB partners available to the IB statement report.",
     icon: "fa-magnifying-glass",
     permissionKeys: ["page_ibstatement_readonly", "page_ibstatement"],
     sectionKey: "report",
     inputSummary: "Provide IB code, name, or alias search text.",
     inputFields: [
-      { name: "query", type: "string", requirement: "Required", description: "IB code, name, or alias." },
-      { name: "page / limit", type: "integer", requirement: "Optional", description: "Limit defaults to 25 and is capped at 50." },
+      {
+        name: "query",
+        type: "string",
+        requirement: "Required",
+        description: "IB code, name, or alias.",
+      },
+      {
+        name: "page / limit",
+        type: "integer",
+        requirement: "Optional",
+        description: "Limit defaults to 25 and is capped at 50.",
+      },
     ],
     inputExample: { query: "IB-001" },
     outputSummary: "Returns visible partner IDs, codes, names, and pagination.",
-    outputExample: { partners: [{ id: 1, ibCode: "IB-001", name: "Partner" }], pagination: PAGINATION_RESPONSE },
+    outputExample: {
+      partners: [{ id: 1, ibCode: "IB-001", name: "Partner" }],
+      pagination: PAGINATION_RESPONSE,
+    },
     accessMode: "read",
   },
   {
@@ -1499,25 +1628,55 @@ export const WEBMCP_TOOL_CATALOG = [
     sectionKey: "report",
     inputSummary: "Provide one IB ID or code and an optional date range.",
     inputFields: [
-      { name: "ibPartnerId / ibCode", type: "IB selector", requirement: "One of", description: "Exact IB identifier." },
-      { name: "startDate / endDate", type: "YYYY-MM-DD", requirement: "Optional pair", description: "Defaults to the current month." },
-      { name: "page / limit", type: "integer", requirement: "Optional", description: "Account-detail pagination." },
+      {
+        name: "ibPartnerId / ibCode",
+        type: "IB selector",
+        requirement: "One of",
+        description: "Exact IB identifier.",
+      },
+      {
+        name: "startDate / endDate",
+        type: "YYYY-MM-DD",
+        requirement: "Optional pair",
+        description: "Defaults to the current month.",
+      },
+      {
+        name: "page / limit",
+        type: "integer",
+        requirement: "Optional",
+        description: "Account-detail pagination.",
+      },
     ],
-    inputExample: { ibCode: "IB-001", startDate: "2026-08-01", endDate: "2026-08-31" },
-    outputSummary: "Returns statement headline, movements, breakdowns, and paginated accounts.",
-    outputExample: { partner: { id: 1, ibCode: "IB-001" }, accounts: [], accountsPagination: PAGINATION_RESPONSE },
+    inputExample: {
+      ibCode: "IB-001",
+      startDate: "2026-08-01",
+      endDate: "2026-08-31",
+    },
+    outputSummary:
+      "Returns statement headline, movements, breakdowns, and paginated accounts.",
+    outputExample: {
+      partner: { id: 1, ibCode: "IB-001" },
+      accounts: [],
+      accountsPagination: PAGINATION_RESPONSE,
+    },
     accessMode: "read",
   },
   {
     name: "list_custom_reports",
     title: "List custom reports",
-    description: "List custom reports available in the current administrator's report scope.",
+    description:
+      "List custom reports available in the current administrator's report scope.",
     icon: "fa-table-list",
     permissionKeys: ["page_fundingreport_readonly"],
     sectionKey: "report",
     inputSummary: "Optionally search report names and paginate.",
     inputFields: [
-      { name: "search / page / limit", type: "filter", requirement: "Optional", description: "Name search and pagination." },
+      {
+        name: "search / page / limit",
+        type: "filter",
+        requirement: "Optional",
+        description: "Name search and pagination.",
+      },
     ],
     inputExample: { search: "Funding" },
     outputSummary: "Returns report metadata, widget counts, and pagination.",
@@ -1527,146 +1686,309 @@ export const WEBMCP_TOOL_CATALOG = [
   {
     name: "get_custom_report_results",
     title: "Get custom report results",
-    description: "Return bounded saved results for one custom report or widget.",
+    description:
+      "Return bounded saved results for one custom report or widget.",
     icon: "fa-table-cells",
     permissionKeys: ["page_fundingreport_readonly"],
     sectionKey: "report",
     inputSummary: "Provide a report ID and optional widget ID or pagination.",
     inputFields: [
-      { name: "reportId", type: "string", requirement: "Required", description: "Exact custom report ID." },
-      { name: "widgetId / page / limit", type: "filter", requirement: "Optional", description: "Widget selection and result pagination." },
+      {
+        name: "reportId",
+        type: "string",
+        requirement: "Required",
+        description: "Exact custom report ID.",
+      },
+      {
+        name: "widgetId / page / limit",
+        type: "filter",
+        requirement: "Optional",
+        description: "Widget selection and result pagination.",
+      },
     ],
     inputExample: { reportId: "12" },
-    outputSummary: "Returns saved widget views using configured visible columns and filters.",
+    outputSummary:
+      "Returns saved widget views using configured visible columns and filters.",
     outputExample: { report: { id: "12" }, widgets: [], truncated: false },
     accessMode: "read",
   },
   {
     name: "navigate_to_report",
     title: "Navigate to report",
-    description: "Open a funding, daily sales, IB statement, operation log, or custom report page.",
+    description:
+      "Open a funding, daily sales, IB statement, operation log, or custom report page.",
     icon: "fa-compass",
-    permissionKeys: ["page_fundingreport_readonly", "page_dailyreport_readonly", "page_ibstatement_readonly", "page_ibstatement", "page_operationlogreport_readonly"],
+    permissionKeys: [
+      "page_fundingreport_readonly",
+      "page_dailyreport_readonly",
+      "page_ibstatement_readonly",
+      "page_ibstatement",
+      "page_operationlogreport_readonly",
+    ],
     sectionKey: "report",
     inputSummary: "Choose a report key and optional custom report ID.",
     inputFields: [
-      { name: "reportKey", type: "enum", requirement: "Required", description: "funding, daily_sales, ib_statement, operation_logs, or custom." },
-      { name: "reportId", type: "string", requirement: "Optional", description: "Custom report ID only." },
+      {
+        name: "reportKey",
+        type: "enum",
+        requirement: "Required",
+        description:
+          "funding, daily_sales, ib_statement, operation_logs, or custom.",
+      },
+      {
+        name: "reportId",
+        type: "string",
+        requirement: "Optional",
+        description: "Custom report ID only.",
+      },
     ],
     inputExample: { reportKey: "funding" },
     outputSummary: "Navigates to the permission-checked route.",
-    outputExample: { success: true, reportKey: "funding", route: "/funding-report" },
+    outputExample: {
+      success: true,
+      reportKey: "funding",
+      route: "/funding-report",
+    },
     accessMode: "read",
   },
   {
     name: "export_funding_report",
     title: "Export funding report",
-    description: "Queue a scoped funding report export and open its automatic-download progress page.",
+    description:
+      "Queue a scoped funding report export and open its automatic-download progress page.",
     icon: "fa-file-export",
     permissionKeys: ["page_fundingreport_export"],
     sectionKey: "report",
-    inputSummary: "Provide optional funding period, type, status, or amount filters.",
+    inputSummary:
+      "Provide optional funding period, type, status, or amount filters.",
     inputFields: [
-      { name: "startDate / endDate", type: "YYYY-MM-DD", requirement: "Optional pair", description: "Defaults to the current month." },
-      { name: "type / status / minAmount / maxAmount", type: "filters", requirement: "Optional", description: "Funding export filters." },
+      {
+        name: "startDate / endDate",
+        type: "YYYY-MM-DD",
+        requirement: "Optional pair",
+        description: "Defaults to the current month.",
+      },
+      {
+        name: "type / status / minAmount / maxAmount",
+        type: "filters",
+        requirement: "Optional",
+        description: "Funding export filters.",
+      },
     ],
     inputExample: { startDate: "2026-08-01", endDate: "2026-08-31" },
     outputSummary: "Returns the export job and typed progress URL.",
-    outputExample: { jobId: "wmcp_funding_123", exportKind: "funding_report", queued: true },
+    outputExample: {
+      jobId: "wmcp_funding_123",
+      exportKind: "funding_report",
+      queued: true,
+    },
     accessMode: "export",
   },
   {
     name: "export_ib_statement",
     title: "Export IB statement",
-    description: "Queue a scoped IB statement export and open its automatic-download progress page.",
+    description:
+      "Queue a scoped IB statement export and open its automatic-download progress page.",
     icon: "fa-file-export",
     permissionKeys: ["page_ibstatement_readonly", "page_ibstatement_export"],
     permissionMatch: "all",
     sectionKey: "report",
-    inputSummary: "Provide one IB selector, optional period, and CSV or Excel format.",
+    inputSummary:
+      "Provide one IB selector, optional period, and CSV or Excel format.",
     inputFields: [
-      { name: "ibPartnerId / ibCode", type: "IB selector", requirement: "One of", description: "Exact visible IB." },
-      { name: "startDate / endDate / format", type: "filters", requirement: "Optional", description: "Period and output format." },
+      {
+        name: "ibPartnerId / ibCode",
+        type: "IB selector",
+        requirement: "One of",
+        description: "Exact visible IB.",
+      },
+      {
+        name: "startDate / endDate / format",
+        type: "filters",
+        requirement: "Optional",
+        description: "Period and output format.",
+      },
     ],
-    inputExample: { ibPartnerId: 1, startDate: "2026-08-01", endDate: "2026-08-31", format: "csv" },
+    inputExample: {
+      ibPartnerId: 1,
+      startDate: "2026-08-01",
+      endDate: "2026-08-31",
+      format: "csv",
+    },
     outputSummary: "Returns the export job and typed progress URL.",
-    outputExample: { jobId: "wmcp_ib_123", exportKind: "ib_statement", queued: true },
+    outputExample: {
+      jobId: "wmcp_ib_123",
+      exportKind: "ib_statement",
+      queued: true,
+    },
     accessMode: "export",
   },
   {
     name: "search_admin_users",
     title: "Search administrator users",
-    description: "Find non-deleted administrator accounts by ID, name, username, email, role, or status.",
+    description:
+      "Find non-deleted administrator accounts by ID, name, username, email, role, or status.",
     icon: "fa-user-shield",
-    permissionKeys: ["page_accountmanagement_readonly", "page_accountmanagement_edit"],
+    permissionKeys: [
+      "page_accountmanagement_readonly",
+      "page_accountmanagement_edit",
+    ],
     sectionKey: "admin_log",
     inputSummary: "Provide at least one administrator filter.",
     inputFields: [
-      { name: "query", type: "string", requirement: "At least one", description: "Name, username, email, or exact administrator ID." },
-      { name: "roleId / status", type: "integer / enum", requirement: "At least one", description: "Exact role ID or active/inactive status." },
-      { name: "page / limit", type: "integer", requirement: "Optional", description: "Limit defaults to 25 and caps at 50." },
+      {
+        name: "query",
+        type: "string",
+        requirement: "At least one",
+        description: "Name, username, email, or exact administrator ID.",
+      },
+      {
+        name: "roleId / status",
+        type: "integer / enum",
+        requirement: "At least one",
+        description: "Exact role ID or active/inactive status.",
+      },
+      {
+        name: "page / limit",
+        type: "integer",
+        requirement: "Optional",
+        description: "Limit defaults to 25 and caps at 50.",
+      },
     ],
     inputExample: { query: "Sarah", status: "active" },
     outputSummary: "Returns sanitized administrators and pagination.",
-    outputExample: { adminUsers: [{ id: 42, fullName: "Sarah Tan", status: "active", role: { id: 4, name: "Operations" } }], pagination: PAGINATION_RESPONSE },
+    outputExample: {
+      adminUsers: [
+        {
+          id: 42,
+          fullName: "Sarah Tan",
+          status: "active",
+          role: { id: 4, name: "Operations" },
+        },
+      ],
+      pagination: PAGINATION_RESPONSE,
+    },
     accessMode: "read",
   },
   {
     name: "get_admin_user",
     title: "Get administrator user",
-    description: "Retrieve one sanitized administrator profile with current role and account status.",
+    description:
+      "Retrieve one sanitized administrator profile with current role and account status.",
     icon: "fa-address-card",
-    permissionKeys: ["page_accountmanagement_readonly", "page_accountmanagement_edit"],
+    permissionKeys: [
+      "page_accountmanagement_readonly",
+      "page_accountmanagement_edit",
+    ],
     sectionKey: "admin_log",
     inputSummary: "Provide an exact administrator ID.",
-    inputFields: [{ name: "adminUserId", type: "integer", requirement: "Required", description: "Exact administrator ID." }],
+    inputFields: [
+      {
+        name: "adminUserId",
+        type: "integer",
+        requirement: "Required",
+        description: "Exact administrator ID.",
+      },
+    ],
     inputExample: { adminUserId: 42 },
     outputSummary: "Returns a sanitized administrator profile.",
-    outputExample: { adminUser: { id: 42, fullName: "Sarah Tan", status: "active", role: { id: 4, name: "Operations" } } },
+    outputExample: {
+      adminUser: {
+        id: 42,
+        fullName: "Sarah Tan",
+        status: "active",
+        role: { id: 4, name: "Operations" },
+      },
+    },
     accessMode: "read",
   },
   {
     name: "get_role_permissions",
     title: "Get role permissions",
-    description: "Retrieve all active permissions assigned to one exact administrator role.",
+    description:
+      "Retrieve all active permissions assigned to one exact administrator role.",
     icon: "fa-key",
-    permissionKeys: ["page_rolemanagement_readonly", "page_rolemanagement_edit"],
+    permissionKeys: [
+      "page_rolemanagement_readonly",
+      "page_rolemanagement_edit",
+    ],
     sectionKey: "admin_log",
     inputSummary: "Provide exactly one role ID or exact role name.",
-    inputFields: [{ name: "roleId / roleName", type: "integer / string", requirement: "One of", description: "Exact administrator role selector." }],
+    inputFields: [
+      {
+        name: "roleId / roleName",
+        type: "integer / string",
+        requirement: "One of",
+        description: "Exact administrator role selector.",
+      },
+    ],
     inputExample: { roleName: "Operations" },
     outputSummary: "Returns the role and its assigned active permissions.",
-    outputExample: { role: { id: 4, name: "Operations" }, permissions: [{ key: "page_withdraw_approve" }] },
+    outputExample: {
+      role: { id: 4, name: "Operations" },
+      permissions: [{ key: "page_withdraw_approve" }],
+    },
     accessMode: "read",
   },
   {
     name: "find_roles_by_permission",
     title: "Find roles by permission",
-    description: "Find roles that grant an exact active permission, including implicit Super Admin access.",
+    description:
+      "Find roles that grant an exact active permission, including implicit Super Admin access.",
     icon: "fa-users-gear",
-    permissionKeys: ["page_rolemanagement_readonly", "page_rolemanagement_edit"],
+    permissionKeys: [
+      "page_rolemanagement_readonly",
+      "page_rolemanagement_edit",
+    ],
     sectionKey: "admin_log",
     inputSummary: "Provide an exact permission key.",
     inputFields: [
-      { name: "permissionKey", type: "string", requirement: "Required", description: "Exact key, such as page_withdraw_approve." },
-      { name: "includeInactive", type: "boolean", requirement: "Optional", description: "Include inactive roles; defaults to false." },
+      {
+        name: "permissionKey",
+        type: "string",
+        requirement: "Required",
+        description: "Exact key, such as page_withdraw_approve.",
+      },
+      {
+        name: "includeInactive",
+        type: "boolean",
+        requirement: "Optional",
+        description: "Include inactive roles; defaults to false.",
+      },
     ],
     inputExample: { permissionKey: "page_withdraw_approve" },
     outputSummary: "Returns the permission and matching roles.",
-    outputExample: { permission: { key: "page_withdraw_approve" }, roles: [{ id: 4, name: "Operations" }] },
+    outputExample: {
+      permission: { key: "page_withdraw_approve" },
+      roles: [{ id: 4, name: "Operations" }],
+    },
     accessMode: "read",
   },
   {
     name: "check_admin_user_permission",
     title: "Check administrator permission",
-    description: "Check effective access through role, custom grant, or Super Admin privileges.",
+    description:
+      "Check effective access through role, custom grant, or Super Admin privileges.",
     icon: "fa-user-check",
-    permissionKeys: ["page_rolemanagement_readonly", "page_rolemanagement_edit"],
+    permissionKeys: [
+      "page_rolemanagement_readonly",
+      "page_rolemanagement_edit",
+    ],
     sectionKey: "admin_log",
     inputSummary: "Provide an administrator ID and exact permission key.",
     inputFields: [
-      { name: "adminUserId", type: "integer", requirement: "Required", description: "Exact administrator ID." },
-      { name: "permissionKey", type: "string", requirement: "Required", description: "Exact active permission key." },
+      {
+        name: "adminUserId",
+        type: "integer",
+        requirement: "Required",
+        description: "Exact administrator ID.",
+      },
+      {
+        name: "permissionKey",
+        type: "string",
+        requirement: "Required",
+        description: "Exact active permission key.",
+      },
     ],
     inputExample: { adminUserId: 42, permissionKey: "page_withdraw_approve" },
     outputSummary: "Returns the effective result and grant sources.",
@@ -1676,16 +1998,37 @@ export const WEBMCP_TOOL_CATALOG = [
   {
     name: "search_operation_logs",
     title: "Search operation logs",
-    description: "Search newest-first administrator activity across modules by operator, module, operation, target, dates, or audit text.",
+    description:
+      "Search newest-first administrator activity across modules by operator, module, operation, target, dates, or audit text.",
     icon: "fa-clock-rotate-left",
     permissionKeys: ["page_operationlogreport_readonly"],
     sectionKey: "admin_log",
     inputSummary: "Provide at least one audit filter; pagination is optional.",
     inputFields: [
-      { name: "operatorId / module / operationType", type: "integer / key", requirement: "At least one", description: "Exact operator, submodule, or operation type." },
-      { name: "targetType / targetId", type: "enum / integer", requirement: "Optional", description: "Exact target; targetId requires targetType." },
-      { name: "startDate / endDate / query", type: "date / string", requirement: "Optional", description: "Inclusive UTC dates or audit text." },
-      { name: "page / limit", type: "integer", requirement: "Optional", description: "Limit defaults to 25 and caps at 50." },
+      {
+        name: "operatorId / module / operationType",
+        type: "integer / key",
+        requirement: "At least one",
+        description: "Exact operator, submodule, or operation type.",
+      },
+      {
+        name: "targetType / targetId",
+        type: "enum / integer",
+        requirement: "Optional",
+        description: "Exact target; targetId requires targetType.",
+      },
+      {
+        name: "startDate / endDate / query",
+        type: "date / string",
+        requirement: "Optional",
+        description: "Inclusive UTC dates or audit text.",
+      },
+      {
+        name: "page / limit",
+        type: "integer",
+        requirement: "Optional",
+        description: "Limit defaults to 25 and caps at 50.",
+      },
     ],
     inputExample: { module: "role_management" },
     outputSummary: "Returns sanitized operation logs and pagination.",
@@ -1700,7 +2043,14 @@ export const WEBMCP_TOOL_CATALOG = [
     permissionKeys: ["page_operationlogreport_readonly"],
     sectionKey: "admin_log",
     inputSummary: "Provide an exact operation-log ID.",
-    inputFields: [{ name: "operationLogId", type: "integer", requirement: "Required", description: "Exact operation-log ID." }],
+    inputFields: [
+      {
+        name: "operationLogId",
+        type: "integer",
+        requirement: "Required",
+        description: "Exact operation-log ID.",
+      },
+    ],
     inputExample: { operationLogId: 123 },
     outputSummary: "Returns the complete visible audit record.",
     outputExample: { operationLog: { id: 123, operationType: "edit" } },
@@ -1714,21 +2064,42 @@ export const WEBMCP_TOOL_CATALOG = [
     permissionKeys: ["page_operationlogreport_readonly"],
     sectionKey: "admin_log",
     inputSummary: "Provide the audit filters to open.",
-    inputFields: [{ name: "audit filters", type: "object fields", requirement: "At least one", description: "Same filters as search_operation_logs without pagination." }],
+    inputFields: [
+      {
+        name: "audit filters",
+        type: "object fields",
+        requirement: "At least one",
+        description:
+          "Same filters as search_operation_logs without pagination.",
+      },
+    ],
     inputExample: { targetType: "client", targetId: 456 },
     outputSummary: "Navigates to the filtered audit report.",
-    outputExample: { success: true, route: "/operation-log-report?modelKey=all&targetType=client&targetId=456" },
+    outputExample: {
+      success: true,
+      route:
+        "/operation-log-report?modelKey=all&targetType=client&targetId=456",
+    },
     accessMode: "read",
   },
   {
     name: "export_operation_logs",
     title: "Export operation logs",
-    description: "Start a permission-gated CSV export for the same audit filters and open its progress page.",
+    description:
+      "Start a permission-gated CSV export for the same audit filters and open its progress page.",
     icon: "fa-file-export",
     permissionKeys: ["page_operationlogreport_export"],
     sectionKey: "admin_log",
     inputSummary: "Provide the audit filters to export.",
-    inputFields: [{ name: "audit filters", type: "object fields", requirement: "At least one", description: "Same filters as search_operation_logs without pagination." }],
+    inputFields: [
+      {
+        name: "audit filters",
+        type: "object fields",
+        requirement: "At least one",
+        description:
+          "Same filters as search_operation_logs without pagination.",
+      },
+    ],
     inputExample: { operatorId: 42, module: "role_management" },
     outputSummary: "Returns an owner-bound job and opens the progress page.",
     outputExample: { jobId: "aolr_abc123", queued: true, opened: true },

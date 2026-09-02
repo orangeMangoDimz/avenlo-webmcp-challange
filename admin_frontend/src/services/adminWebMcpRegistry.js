@@ -4,9 +4,11 @@ import { registerAdminKycWebMcpTools } from "@/services/adminKycWebMcp";
 import { registerAdminSalesWebMcpTools } from "@/services/adminSalesWebMcp";
 import { registerAdminReportWebMcpTools } from "@/services/adminReportWebMcp";
 import { registerAdminAdminLogWebMcpTools } from "@/services/adminAdminLogWebMcp";
+import { registerAdminDashboardWebMcpTools } from "@/services/adminWebMcpDashboard";
 
 export const registerAdminWebMcpTools = ({ authStore, router } = {}) => {
   const cleanups = [
+    registerAdminDashboardWebMcpTools({ authStore }),
     registerAdminClientWebMcpTools({ authStore, router }),
     registerAdminKycWebMcpTools({ authStore }),
     registerAdminIbWebMcpTools({ authStore, router }),
