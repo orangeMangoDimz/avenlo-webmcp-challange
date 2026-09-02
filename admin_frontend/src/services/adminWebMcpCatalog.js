@@ -51,6 +51,107 @@ export const WEBMCP_TOOL_SECTIONS = [
   },
 ];
 
+export const WEBMCP_BASE_ROLES = [
+  {
+    key: "administrator",
+    label: "Administrator",
+    hasAllPermissions: true,
+    permissionKeys: [],
+  },
+  {
+    key: "manager",
+    label: "Manager",
+    permissionKeys: [
+      "page_clientsdetail_document",
+      "page_clientsdetail_funding",
+      "page_clientsdetail_profile",
+      "page_clientsdetail_trading",
+      "page_clientslist_export",
+      "page_clientslist_readonly",
+      "page_fundingreport_export",
+      "page_fundingreport_readonly",
+      "page_iblist_readonly",
+      "page_kyclist_readonly",
+      "page_operationlogreport_export",
+      "page_operationlogreport_readonly",
+      "page_salesdashboard_view",
+      "page_saleslist_view",
+    ],
+  },
+  { key: "operator", label: "Operator", permissionKeys: [] },
+  { key: "viewer", label: "Viewer", permissionKeys: [] },
+  {
+    key: "sales_manager",
+    label: "Sales Manager",
+    permissionKeys: [
+      "page_clientsdetail_document",
+      "page_clientsdetail_funding",
+      "page_clientsdetail_profile",
+      "page_clientsdetail_trading",
+      "page_clientslist_export",
+      "page_clientslist_readonly",
+      "page_dailyreport_readonly",
+      "page_iblist_readonly",
+      "page_kyclist_readonly",
+      "page_salesdashboard_view",
+      "page_saleslist_view",
+    ],
+  },
+  {
+    key: "sales",
+    label: "Sales",
+    permissionKeys: [
+      "page_clientsdetail_document",
+      "page_clientsdetail_funding",
+      "page_clientsdetail_profile",
+      "page_clientsdetail_trading",
+      "page_clientslist_export",
+      "page_clientslist_readonly",
+      "page_dailyreport_readonly",
+      "page_fundingreport_readonly",
+      "page_iblist_readonly",
+      "page_kyclist_readonly",
+      "page_salesdashboard_view",
+    ],
+  },
+  {
+    key: "ops",
+    label: "Ops",
+    permissionKeys: [
+      "page_clientsdetail_document",
+      "page_clientsdetail_funding",
+      "page_clientsdetail_profile",
+      "page_clientsdetail_trading",
+      "page_clientslist_export",
+      "page_clientslist_readonly",
+      "page_fundingreport_export",
+      "page_fundingreport_readonly",
+      "page_iblist_readonly",
+      "page_kyclist_readonly",
+      "page_salesdashboard_view",
+      "page_saleslist_view",
+    ],
+  },
+];
+
+export const getWebMcpToolBaseRoles = (tool = {}) => {
+  const requiredPermissionKeys = Array.isArray(tool.permissionKeys)
+    ? tool.permissionKeys
+    : [];
+  if (requiredPermissionKeys.length === 0) {
+    return WEBMCP_BASE_ROLES.map((role) => role.label);
+  }
+  const matcher = tool.permissionMatch === "all" ? "every" : "some";
+
+  return WEBMCP_BASE_ROLES.filter(
+    (role) =>
+      role.hasAllPermissions ||
+      requiredPermissionKeys[matcher]((permissionKey) =>
+        role.permissionKeys.includes(permissionKey),
+      ),
+  ).map((role) => role.label);
+};
+
 const CLIENT_LOOKUP_FIELDS = [
   {
     name: "email",

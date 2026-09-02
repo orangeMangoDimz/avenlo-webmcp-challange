@@ -34,6 +34,17 @@ for (const view of views) {
     if (!source.includes('class="webmcp-table-scroll"')) {
       violations.push('WebMcpTools does not render the table scroll wrapper')
     }
+    if (!source.includes('webmcp_accessible_roles_column')) {
+      violations.push('WebMcpTools does not expose an Accessible roles column')
+    }
+    if (!source.includes('class="webmcp-tool-role-badge"') || !source.includes('colspan="6"')) {
+      violations.push('WebMcpTools does not render role badges or span expanded rows across all columns')
+    }
+    if (!source.includes('min-width: 1320px') ||
+        !source.includes('th:nth-child(5) {\n  width: 16%;') ||
+        !source.includes('th:nth-child(6) {\n  width: 14%;')) {
+      violations.push('WebMcpTools does not reserve sufficient width for Status and Detail alongside role badges')
+    }
     if (source.includes('class="webmcp-section-list"') || source.includes('class="webmcp-tool-summary"')) {
       violations.push('WebMcpTools still renders the card-based accordion catalog')
     }
@@ -87,6 +98,14 @@ if (
 
 if (!workspaceSource.includes('.webmcp-tool-table > thead > tr > th')) {
   violations.push('WebMCP catalog table does not use the report-style table header rule')
+}
+
+if (
+  !/#app\s+\.workspace-main\s+\.webmcp-tool-table\s*\{[^}]*min-width:\s*1320px;/s.test(
+    workspaceSource,
+  )
+) {
+  violations.push('WebMCP workspace table rule does not preserve the catalog width needed for Status and Detail')
 }
 
 if (violations.length) {
