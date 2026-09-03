@@ -5,6 +5,7 @@ import { fileURLToPath } from 'node:url'
 const appRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const sidebarSource = fs.readFileSync(path.join(appRoot, 'src', 'components', 'layout', 'Sidebar.vue'), 'utf8')
 const layoutSource = fs.readFileSync(path.join(appRoot, 'src', 'layouts', 'MainLayout.vue'), 'utf8')
+const workspaceStyleSource = fs.readFileSync(path.join(appRoot, 'src', 'assets', 'styles', 'workspace.css'), 'utf8')
 const brandAssetPath = path.join(appRoot, 'src', 'assets', 'brand', 'avenlo-logo.png')
 
 const requiredSidebarContracts = [
@@ -46,6 +47,11 @@ const removedLayoutContracts = [
   ['visible menu label', /<span>Menu<\/span>/],
   ['legacy text logo', /workspace-brand-monogram|workspace-brand-copy/]
 ]
+const lightThemeHoverContracts = [
+  ['prominent light hover selector', '.menu-item-prominent:not(.active):not(.router-link-active):hover'],
+  ['prominent light hover background', '.menu-item-prominent:not(.active):not(.router-link-active):hover {\n  color: #fff;\n  background: var(--color-brand-solid);'],
+  ['prominent light hover label', '.menu-item-prominent:not(.active):not(.router-link-active):hover .menu-text {\n  color: #fff;'],
+]
 
 const missing = [
   ...requiredSidebarContracts
@@ -63,6 +69,9 @@ const missing = [
   ...removedLayoutContracts
     .filter(([, contract]) => contract.test(layoutSource))
     .map(([name]) => `Removed layout contract still present: ${name}`)
+  ,...lightThemeHoverContracts
+    .filter(([, contract]) => !workspaceStyleSource.includes(contract))
+    .map(([name]) => `Light theme hover contract missing: ${name}`)
 ]
 
 const navigationLabelIndex = sidebarSource.indexOf('sidebar-navigation-label')

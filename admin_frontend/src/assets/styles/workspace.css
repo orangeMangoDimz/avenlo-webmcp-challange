@@ -220,6 +220,17 @@
   .menu-item.router-link-active::before {
   box-shadow: 0 0 0 3px var(--color-surface);
 }
+:root:not([data-theme="dark"]) #app .workspace-shell > .sidebar .menu-item-prominent:not(.active):not(.router-link-active):hover {
+  color: #fff;
+  background: var(--color-brand-solid);
+  border-color: var(--color-brand);
+}
+:root:not([data-theme="dark"]) #app .workspace-shell > .sidebar .menu-item-prominent:not(.active):not(.router-link-active):hover .menu-text {
+  color: #fff;
+}
+:root:not([data-theme="dark"]) #app .workspace-shell > .sidebar .menu-item-prominent:not(.active):not(.router-link-active):hover .menu-item-prominent-copy small {
+  color: rgba(255, 255, 255, 0.82);
+}
 :root:not([data-theme="dark"])
   #app
   .workspace-shell
