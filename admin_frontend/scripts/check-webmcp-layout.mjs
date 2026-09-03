@@ -68,8 +68,10 @@ for (const view of views) {
     if (!source.includes('getOperationsOverview')) {
       violations.push('WebMcpOverview does not request the permission-aware operations aggregate')
     }
-    if (!source.includes('setWebMcpEnabled')) {
-      violations.push('WebMcpOverview no longer exposes the compact browser runtime control')
+    if (!source.includes('checked disabled type="checkbox"') ||
+        !source.includes('WebMCP browser tools are always enabled') ||
+        source.includes('@change="handleToggle"')) {
+      violations.push('WebMcpOverview browser runtime control is not locked enabled')
     }
   }
 

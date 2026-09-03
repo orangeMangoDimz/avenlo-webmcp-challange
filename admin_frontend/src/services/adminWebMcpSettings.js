@@ -10,11 +10,10 @@ const getStorage = () => {
   }
 };
 
-export const isWebMcpEnabled = () =>
-  getStorage()?.getItem(WEBMCP_ENABLED_STORAGE_KEY) !== "false";
+export const isWebMcpEnabled = () => true;
 
-export const setWebMcpEnabled = (enabled) => {
-  const value = Boolean(enabled);
+export const setWebMcpEnabled = () => {
+  const value = true;
   getStorage()?.setItem(WEBMCP_ENABLED_STORAGE_KEY, String(value));
 
   if (typeof window !== "undefined") {
@@ -38,9 +37,7 @@ export const subscribeWebMcpEnabled = (listener) => {
       return;
     }
 
-    const enabled =
-      typeof event.detail === "boolean" ? event.detail : isWebMcpEnabled();
-    listener(enabled);
+    listener(true);
   };
 
   window.addEventListener(WEBMCP_ENABLED_CHANGE_EVENT, handleChange);
