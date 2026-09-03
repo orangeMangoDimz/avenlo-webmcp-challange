@@ -537,7 +537,6 @@
       </div>
 
       <div
-        v-if="showDeveloperSettings"
         class="menu-section"
         :class="{ expanded: expandedSections.includes('developer') }"
       >
@@ -588,7 +587,6 @@ import { useRoute } from "vue-router";
 import { useMenuSettingsStore } from "@/stores/menuSettings";
 import { useAuthStore } from "@/stores/auth";
 import { useAdminI18n } from "@/composables/useAdminI18n";
-import api from "@/services/api";
 
 const { t } = useAdminI18n();
 
@@ -607,7 +605,6 @@ const emit = defineEmits(["close"]);
 
 const sidebarRef = ref(null);
 const expandedSections = ref([]);
-const showDeveloperSettings = ref(false);
 const isVisible = computed(() => props.open || props.pinned);
 const isModal = computed(() => props.open && !props.pinned);
 
@@ -721,18 +718,6 @@ const toggleSection = (section) => {
   }
 };
 
-const isNonProductionEnv = (env) => env === "dev" || env === "staging";
-
-const loadDeveloperSettings = async () => {
-  try {
-    const res = await api.get("/developer-settings");
-    const payload = res.data || {};
-    showDeveloperSettings.value = isNonProductionEnv(payload.environment);
-  } catch {
-    showDeveloperSettings.value = false;
-  }
-};
-
 const expandDeveloperSectionIfNeeded = () => {
   const path = String(route.path || "");
   const sectionByPath = [
@@ -837,7 +822,6 @@ const trapFocus = (event) => {
 
 onMounted(async () => {
   await menuSettingsStore.loadSettings();
-  await loadDeveloperSettings();
   expandDeveloperSectionIfNeeded();
 });
 </script>

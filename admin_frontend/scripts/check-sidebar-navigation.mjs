@@ -41,7 +41,8 @@ const removedSidebarContracts = [
   ['duplicate sidebar brand', /sidebar-brand(?:-mark|-copy)?/],
   ['pin control', /sidebar-pin-btn|data-testid=["']sidebar-pin["']|toggle-pin|thumbtack/],
   ['nested WebMCP links', /webmcp-parent-item|menu-sub-items|menu-sub-item/],
-  ['WebMCP overview inside Developer tools', /showDeveloperSettings[\s\S]*?to="\/webmcp\/overview"/]
+  ['WebMCP overview inside Developer tools', /showDeveloperSettings[\s\S]*?to="\/webmcp\/overview"/],
+  ['environment-gated Developer tools section', /v-if="showDeveloperSettings"/]
 ]
 const removedLayoutContracts = [
   ['visible menu label', /<span>Menu<\/span>/],
