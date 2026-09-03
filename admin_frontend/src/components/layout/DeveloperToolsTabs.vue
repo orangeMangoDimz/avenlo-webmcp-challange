@@ -24,11 +24,6 @@ const tabs = [
     label: "Feature controls",
   },
   {
-    to: "/webmcp/overview",
-    key: "nav_webmcp_overview",
-    label: "WebMCP overview",
-  },
-  {
     to: "/webmcp/tools",
     key: "nav_webmcp_tools",
     label: "Tool catalog",

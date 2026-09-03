@@ -76,9 +76,11 @@ for (const view of views) {
 }
 
 if (!developerTabsSource.includes('to: "/developer-settings"') ||
-    !developerTabsSource.includes('to: "/webmcp/overview"') ||
     !developerTabsSource.includes('to: "/webmcp/tools"')) {
-  violations.push('Developer tools tab strip does not expose all tool sections')
+  violations.push('Developer tools tab strip is missing a retained tool section')
+}
+if (developerTabsSource.includes('to: "/webmcp/overview"')) {
+  violations.push('Developer tools tab strip still exposes the WebMCP overview tab')
 }
 
 for (const view of developerViews) {
