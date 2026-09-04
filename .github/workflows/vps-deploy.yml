@@ -53,11 +53,12 @@ jobs:
 
       - name: Verify public HTTP endpoint
         env:
-          VPS_HOST: ${{ vars.VPS_HOST }}
+          VPS_PUBLIC_URL: ${{ vars.VPS_PUBLIC_URL }}
         run: |
           set -euo pipefail
+          test -n "$VPS_PUBLIC_URL"
           for attempt in {1..20}; do
-            if curl --fail --silent --show-error --max-time 10 "http://$VPS_HOST/" >/dev/null; then
+            if curl --fail --silent --show-error --max-time 10 "$VPS_PUBLIC_URL/" >/dev/null; then
               exit 0
             fi
             sleep 6
